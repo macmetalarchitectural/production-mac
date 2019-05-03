@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="search_template_with_invoice_date_option" name="Account Report Search View: Add Invoice Date Option" inherit_id="account_reports.search_template">
+        <xpath expr="//div[hasclass('o_account_reports_filter_date')]" position="after">
+            <div class="btn-group o_dropdown o_account_reports_filter__reference_date" t-if="'use_maturity_date' in options">
+                <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <t t-if="not options['use_maturity_date']">Invoice Date</t>
+                    <t t-if="options['use_maturity_date']">Maturity Date</t>
+                    <span class="caret"/>
+                </a>
+                <ul class="dropdown-menu o_filters_menu" role="menu">
+                    <li title="Invoice Date" data-value="invoice_date"
+                        t-att-class="'o_account_reports__reference_date ' + (not options['use_maturity_date'] and 'selected' or '')">
+                        <a>Invoice Date</a>
+                    </li>
+                    <li title="Maturity Date" data-value="maturity_date"
+                        t-att-class="'o_account_reports__reference_date ' + (options['use_maturity_date'] and 'selected' or '')">
+                        <a>Maturity Date</a>
+                    </li>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="search_template_with_account_currency_option" name="Account Report Search View: Add Account Currency Option" inherit_id="account_reports.search_template">
+        <xpath expr="//div[hasclass('o_account_reports_filter_date')]" position="after">
+            <div class="btn-group o_dropdown o_account_reports_filter__reference_currency" t-if="'use_account_currency' in options">
+                <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <t t-if="not options['use_account_currency']">Company Currency</t>
+                    <t t-if="options['use_account_currency']">Account Currency</t>
+                    <t t-if="options['account']">(<t t-raw="options['account'][1]"></t>)</t>
+                    <span class="caret"/>
+                </a>
+                <ul class="dropdown-menu o_filters_menu" role="menu">
+                    <li title="Invoice Date" data-value="company_currency"
+                        t-att-class="'o_account_reports__reference_currency ' + (not options['use_account_currency'] and 'selected' or '')">
+                        <a>Company Currency</a>
+                    </li>
+                    <li title="Maturity Date" data-value="account_currency"
+                        t-att-class="'o_account_reports__reference_currency ' + (options['use_account_currency'] and 'selected' or '')">
+                        <a>Account Currency</a>
+                    </li>
+                    <li class="o_account_reports__account_selection" style="padding: 8px;">
+                        <label>Account</label><br />
+                        <div class="form-group">
+                            <select class="o_account_reports_account_auto_complete" single="1" style="width: 100%;">
+                                <option t-att-value="-1" style="height: 30px"> </option>
+                                <t t-foreach="options['available_accounts']" t-as="a">
+                                    <option t-att-value="a[0]"><t t-esc="a[1]" /></option>
+                                </t>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary o_account_reports_add_account">Apply</button>
+                    </li>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
