@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_wisth_thickness" model="ir.ui.view">
+        <field name="name">Product Template: Add Width and Thickness</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='inventory']" position="inside">
+                <group name="steel_specification" string="Steel Specification">
+                    <label for="width"/>
+                    <div class="o_row">
+                            <field name="width" nolabel="1"/>
+                        <span>
+                            <field name="width_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                    <label for="thickness"/>
+                    <div class="o_row">
+                            <field name="thickness" nolabel="1"/>
+                        <span>
+                            <field name="thickness_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_variant_easy_width_thickness" model="ir.ui.view">
+        <field name="name">Product: Add Width and Thickness to easy view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='packaging']" position="after">
+                <group name="steel_specification" string="Steel Specification">
+                    <label for="width"/>
+                    <div class="o_row">
+                        <field name="width" nolabel="1"/>
+                        <span>
+                            <field name="width_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                    <label for="thickness"/>
+                    <div class="o_row">
+                        <field name="thickness" nolabel="1"/>
+                        <span>
+                            <field name="thickness_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_normal_form_view_width_thickness" model="ir.ui.view">
+        <field name="name">Product Variants: Add Width and Thickness to easy view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='inventory']" position="inside">
+                <group name="steel_specification" string="Steel Specification">
+                    <label for="width"/>
+                    <div class="o_row">
+                        <field name="width" nolabel="1"/>
+                        <span>
+                            <field name="width_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                    <label for="thickness"/>
+                    <div class="o_row">
+                        <field name="thickness" nolabel="1"/>
+                        <span>
+                            <field name="thickness_uom_id" nolabel="1"/>
+                        </span>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
