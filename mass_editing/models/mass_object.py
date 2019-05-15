@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -24,14 +23,10 @@ class MassObject(models.Model):
                                                 "template available on "
                                                 "records of the related "
                                                 "document model.")
-    # ref_ir_value_id = fields.Many2one('ir.values', 'Sidebar button',# boris.gra
-    #                                   readonly=True,# boris.gra
-    #                                   help="Sidebar button to open "# boris.gra
-    #                                        "the sidebar action.")# boris.gra
     model_list = fields.Char('Model List')
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', _('Name must be unique!')),
+        ('name_uniq', 'unique (name)', 'Name must be unique!'),
     ]
 
     @api.onchange('model_id')
@@ -43,7 +38,7 @@ class MassObject(models.Model):
             model_list = [self.model_id.id]
             active_model_obj = self.env[self.model_id.model]
             if active_model_obj._inherits:
-                keys = active_model_obj._inherits.keys()
+                keys = list(active_model_obj._inherits.keys())
                 inherits_model_list = model_obj.search([('model', 'in', keys)])
                 model_list.extend((inherits_model_list and
                                    inherits_model_list.ids or []))
@@ -63,20 +58,18 @@ class MassObject(models.Model):
             'src_model': src_obj,
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form, tree',
+            'view_mode': 'form',
             'target': 'new',
-            'binding_type': 'action',# boris.gra
-            'binding_model_id': self.model_id.id,# boris.gra
+            'binding_model_id': self.model_id.id,
+            'binding_type': 'action',
+            'multi': True,
         }).id
         self.write(vals)
         return True
 
     @api.multi
     def unlink_action(self):
-        # We make sudo as any user with rights in this model should be able
-        # to delete the action, not only admin
-        self.mapped('ref_ir_act_window_id').sudo().unlink()
-        self.mapped('ref_ir_value_id').sudo().unlink()
+        self.mapped('ref_ir_act_window_id').unlink()
         return True
 
     @api.multi
@@ -84,6 +77,7 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
+    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
