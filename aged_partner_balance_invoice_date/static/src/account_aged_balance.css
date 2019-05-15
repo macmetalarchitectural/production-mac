@@ -1,0 +1,6 @@
+/**
+ * Make the height of the empty option of the account selector equal to other options.
+ */
+.select2-result {
+	min-height: 25px;
+}

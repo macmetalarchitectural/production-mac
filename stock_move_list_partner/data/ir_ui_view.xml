@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record model="ir.ui.view" id="stock_move_list_with_partner">
+    <field name="active" eval="True"/>
+    <field type="xml" name="arch">
+      <data>
+        <xpath expr="//field[@name='reference']" position="after">
+          <field name="picking_partner_id" string="Partenaire"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="field_parent" eval="False"/>
+    <field name="groups_id" eval="[(6, 0, [])]"/>
+    <field name="inherit_id" ref="stock.view_move_tree"/>
+    <field name="mode">extension</field>
+    <field name="model">stock.move</field>
+    <field name="name">Add the partner to the stock move list</field>
+    <field name="priority">99</field>
+    <field name="type">tree</field>
+  </record>
+</odoo>
