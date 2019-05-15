@@ -1,4 +1,5 @@
-# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# -*- coding: utf-8 -*-
+# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from lxml import etree
@@ -9,15 +10,16 @@ from odoo import api, models
 
 class MassEditingWizard(models.TransientModel):
     _name = 'mass.editing.wizard'
-    _description = "Wizard for mass edition"
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
-        result = super(MassEditingWizard, self).fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar,
-            submenu=submenu)
-        context = self.env.context
+        result =\
+            super(MassEditingWizard, self).fields_view_get(view_id=view_id,
+                                                           view_type=view_type,
+                                                           toolbar=toolbar,
+                                                           submenu=submenu)
+        context = self._context
         if context.get('mass_editing_object'):
             mass_obj = self.env['mass.object']
             editing_data = mass_obj.browse(context.get('mass_editing_object'))
@@ -232,9 +234,9 @@ class MassEditingWizard(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        if (self.env.context.get('active_model') and
-                self.env.context.get('active_ids')):
-            model_obj = self.env[self.env.context.get('active_model')]
+        if (self._context.get('active_model') and
+                self._context.get('active_ids')):
+            model_obj = self.env[self._context.get('active_model')]
             model_field_obj = self.env['ir.model.fields']
             translation_obj = self.env['ir.translation']
 
@@ -250,16 +252,15 @@ class MassEditingWizard(models.TransientModel):
                         # If field to remove is translatable,
                         # its translations have to be removed
                         model_field = model_field_obj.search([
-                            ('model', '=',
-                             self.env.context.get('active_model')),
+                            ('model', '=', self._context.get('active_model')),
                             ('name', '=', split_key)])
                         if model_field and model_field.translate:
                             translation_ids = translation_obj.search([
-                                ('res_id', 'in', self.env.context.get(
+                                ('res_id', 'in', self._context.get(
                                     'active_ids')),
                                 ('type', '=', 'model'),
                                 ('name', '=', u"{0},{1}".format(
-                                    self.env.context.get('active_model'),
+                                    self._context.get('active_model'),
                                     split_key))])
                             translation_ids.unlink()
 
@@ -278,8 +279,7 @@ class MassEditingWizard(models.TransientModel):
                             m2m_list.append((4, m2m_id))
                         values.update({split_key: m2m_list})
             if values:
-                model_obj.browse(
-                    self.env.context.get('active_ids')).write(values)
+                model_obj.browse(self._context.get('active_ids')).write(values)
         return super(MassEditingWizard, self).create({})
 
     @api.multi
