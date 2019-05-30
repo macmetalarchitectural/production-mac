@@ -11,7 +11,6 @@
     'summary': 'Deactivate terminated activities instead of deleting.',
     'depends': [
         'crm',
-        'p -r ',
     ],
     'data': [
         'views/activity.xml',
