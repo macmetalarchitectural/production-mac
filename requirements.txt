@@ -1,3 +1,5 @@
--e git+https://github.com/aeroo/aeroolib.git#egg=aeroolib
+#-e git+https://github.com/aeroo/aeroolib.git#egg=aeroolib
+#Code  ported from: https://github.com/aeroo/aeroo_reports/commit/ac8970dcd984e2da76505f84837d52ca4be68b5b
+-e git+https://github.com/adhoc-dev/aeroolib@master-fix-ods
 pysftp
 raven
