@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="report_invoice_mac" inherit_id="e3k_default_reports.report_invoice_baleco">
+
+        <xpath expr="//div[@name='comment']" position="replace">
+            <div t-if="not is_html_empty(o.narration)" name="comment">
+                <table class="table">
+                    <tr>
+                        <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                            <span t-field="o.narration"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
