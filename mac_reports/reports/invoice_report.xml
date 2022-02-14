@@ -12,7 +12,7 @@
                 </table>
             </div>
         </xpath>
-        <xpath expr="//p[@name='payment_term']" position="attribute">
+        <xpath expr="//p[@name='payment_term']" position="attributes">
             <attribute name="style">display: none !important</attribute>
         </xpath>
         <xpath expr="//div[@id='informations']//div[@name='invoice_date']" position="after">
