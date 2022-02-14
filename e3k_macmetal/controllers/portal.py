@@ -31,7 +31,6 @@ class CustomerPortal(portal.CustomerPortal):
       return {'error': _('Signature is missing.')}
 
     try:
-      _logger.info(pC+' portal_quote_accept delivery: %s'+wC, delivery)
       order_sudo.write({
         'commitment_date': delivery,
         'signed_by': name,
