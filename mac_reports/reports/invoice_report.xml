@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-
     <template id="report_invoice_mac" inherit_id="e3k_default_reports.report_invoice_baleco">
-
         <xpath expr="//div[@name='comment']" position="replace">
             <div t-if="not is_html_empty(o.narration)" name="comment">
                 <table class="table">
@@ -15,6 +12,15 @@
                 </table>
             </div>
         </xpath>
+        <xpath expr="//p[@name='payment_term']" position="attribute">
+            <attribute name="style">display: none !important</attribute>
+        </xpath>
+        <xpath expr="//div[@id='informations']//div[@name='invoice_date']" position="after">
 
+            <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_payment_term_id" name="payment_term">
+                <strong>Payment terms:</strong>
+                <p class="m-0" t-field="o.invoice_payment_term_id"/>
+            </div>
+        </xpath>
     </template>
 </odoo>

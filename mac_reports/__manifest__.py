@@ -3,7 +3,6 @@
     'name': "Mac Reports",
     'summary': """
         """,
-
     'description': """
     """,
     'author': "E3K",
