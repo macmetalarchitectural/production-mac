@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.inherit.sale</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[@id='proforma_configuration']" position="after">
+        <div class="col-12 col-lg-6 o_setting_box" id="use_delivery_terms">
+          <style>
+            .oe_delivery_terms {
+              flex: auto !important;
+            }
+          </style>
+          <div class="o_setting_left_pane">
+            <field name="use_delivery_terms"/>
+          </div>
+          <div class="o_setting_right_pane">
+            <label for="use_delivery_terms"/>
+            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+            <div class="text-muted">
+              Show standard delivery terms &amp; conditions on sale orders
+            </div>
+            <div class="content-group" attrs="{'invisible': [('use_delivery_terms','=',False)]}">
+              <div class="mt16" attrs="{'invisible': [('use_delivery_terms','=',False)]}">
+                <div class="d-flex">
+                  <field name="delivery_terms"
+                    class="oe_delivery_terms"
+                    placeholder="Insert your terms &amp; conditions here..."/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
