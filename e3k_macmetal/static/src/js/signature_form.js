@@ -3,6 +3,8 @@ odoo.define('e3k_macmetal.signature_form', function (require) {
 
   var NameAndSignature = require('web.name_and_signature').NameAndSignature;
   var SignatureForm = require('portal.signature_form').SignatureForm;
+  var core = require('web.core');
+  var qweb = core.qweb;
 
   NameAndSignature.include({
     xmlDependencies: (NameAndSignature.prototype.xmlDependencies || []).concat(

@@ -9,3 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [1.0.0] - 2022-02-13
 
 Initial Release.
+
+## [1.0.1] - 2022-02-14
+
+Adjustment Release.

@@ -29,11 +29,7 @@
     <field name="name">calendar.event.view.pivot</field>
     <field name="model">calendar.event</field>
     <field name="arch" type="xml">
-      <pivot string="Meetings" disable_linking="1">
-        <field name="name" type="row"/>
-        <field name="user_id" type="col"/>
-        <field name="duration" type="measure"/>
-      </pivot>
+      <pivot string="Meetings"/>
     </field>
   </record>
 

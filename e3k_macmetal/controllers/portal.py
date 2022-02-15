@@ -33,6 +33,7 @@ class CustomerPortal(portal.CustomerPortal):
     try:
       order_sudo.write({
         'commitment_date': delivery,
+        'customer_delivery_date': delivery,
         'signed_by': name,
         'signed_on': fields.Datetime.now(),
         'signature': signature,
