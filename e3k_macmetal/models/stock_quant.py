@@ -6,7 +6,7 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 class StockQuant(models.Model):
   _inherit = 'stock.quant'
 
-  note = fields.Char('Note', required=True)
+  note = fields.Char('Note')
 
   @api.model
   def _get_inventory_fields_write(self):
