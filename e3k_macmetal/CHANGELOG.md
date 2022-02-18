@@ -13,3 +13,7 @@ Initial Release.
 ## [1.0.1] - 2022-02-14
 
 Adjustment Release.
+
+## [1.0.2] - 2022-02-18
+
+Adjustment Release.
