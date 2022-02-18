@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e-20220204\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 08:26+0000\n"
-"PO-Revision-Date: 2022-02-15 08:26+0000\n"
+"POT-Creation-Date: 2022-02-18 18:15+0000\n"
+"PO-Revision-Date: 2022-02-18 18:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,6 @@ msgstr "Termes & Conditions de Livraison par Défaut"
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
-#: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__customer_delivery_date
 #, python-format
 msgid "Delivery Date"
@@ -81,9 +80,19 @@ msgid "Delivery Default Terms and Conditions"
 msgstr "Termes et Conditions de Livraison par Défaut"
 
 #. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__delivery_route
+msgid "Delivery Route"
+msgstr "Route de Livraison"
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_calendar_event_tree_inherited
 msgid "Description"
 msgstr "Description"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Destination Package"
+msgstr ""
 
 #. module: e3k_macmetal
 #. openerp-web
@@ -134,10 +143,94 @@ msgid "Meetings"
 msgstr "Rendez-vous"
 
 #. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Move Lines"
+msgstr ""
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_move_line__note
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_quant__note
+msgid "Note"
+msgstr "Note"
+
+#. module: e3k_macmetal
+#: code:addons/e3k_macmetal/models/stock_quant.py:0
+#, python-format
+msgid "Only a stock manager can validate an inventory adjustment."
+"Seul le gestionnaire des stocks peut valider l'ajustement d'un inventaire."
+
+#. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
 #, python-format
 msgid "Order signed by %s"
 msgstr "Ordre signé par %s"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Owner"
+msgstr ""
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__delivery_route
+msgid "Preferred delivery route."
+msgstr "Route de livraison préférée"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
+
+#. module: e3k_macmetal
+#: code:addons/e3k_macmetal/models/stock_quant.py:0
+#, python-format
+msgid "Product Quantity Confirmed"
+msgstr "Quantité d'Article Confirmée"
+
+#. module: e3k_macmetal
+#: code:addons/e3k_macmetal/models/stock_quant.py:0
+#, python-format
+msgid "Product Quantity Updated"
+msgstr "Quantité d'article mise à jour"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Quantity Done"
+msgstr "Quantité traitée"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Quantity Reserved"
+msgstr "Quantité réservée"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_stock_quant
+msgid "Quants"
+msgstr "Quants"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Reference"
+msgstr "Référence"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields.selection,name:e3k_macmetal.selection__sale_order__delivery_route__route1
+msgid "Route 1 - Laurentides, Laval, Lanaudière"
+msgstr ""
+
+#. module: e3k_macmetal
+#: model:ir.model.fields.selection,name:e3k_macmetal.selection__sale_order__delivery_route__route2
+msgid "Route 2 - Estrie, Rive-Sud"
+msgstr ""
+
+#. module: e3k_macmetal
+#: model:ir.model.fields.selection,name:e3k_macmetal.selection__sale_order__delivery_route__route3
+msgid "Route 3 - Montréal"
+msgstr ""
+
+#. module: e3k_macmetal
+#: model:ir.model.fields.selection,name:e3k_macmetal.selection__sale_order__delivery_route__route4
+msgid "Route 4 - Autres"
+msgstr ""
 
 #. module: e3k_macmetal
 #: model:ir.model,name:e3k_macmetal.model_sale_order
@@ -152,13 +245,20 @@ msgstr "Représentant"
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
 msgid "Show standard delivery terms &amp; conditions on sale orders"
-msgstr "Montrer les termes &amp; conditions de livraison sur les devis/bon de commande"
+msgstr ""
+"Montrer les termes &amp; conditions de livraison sur les devis/bon de "
+"commande"
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
 #, python-format
 msgid "Signature is missing."
 msgstr "La signature est manquante."
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Source Package"
+msgstr "Colis source"
 
 #. module: e3k_macmetal
 #. openerp-web
@@ -173,6 +273,20 @@ msgstr "Style"
 #, python-format
 msgid "Styles"
 msgstr "Styles"
+
+#. module: e3k_macmetal
+#. openerp-web
+#: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
+#, python-format
+msgid "The date you selected is greater than the maximum date: "
+msgstr "La date que vous avez sélectionnée est supérieure à la date maximale: "
+
+#. module: e3k_macmetal
+#. openerp-web
+#: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
+#, python-format
+msgid "The date you selected is lower than the minimum date: "
+msgstr "La date que vous avez sélectionnée est inférieure à la date minimale: "
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
@@ -191,6 +305,11 @@ msgstr "Le fichier n'est pas valide. S'il vous plait choisissez une image."
 #: model:ir.model.fields,help:e3k_macmetal.field_sale_order__customer_delivery_date
 msgid "This is the delivery date selected by the customer."
 msgstr "C'est la date de livraison choisie par au client"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
+msgid "Unit of Measure"
+msgstr ""
 
 #. module: e3k_macmetal
 #. openerp-web
