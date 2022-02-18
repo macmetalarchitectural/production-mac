@@ -4,8 +4,7 @@
 
 from odoo import fields, models
 
-
 class ResPartnerRestrictedField(models.Model):
-    _inherit = 'res.partner.restricted.field'
+  _inherit = 'res.partner.restricted.field'
 
-    apply_on_sales = fields.Boolean('Apply on sales', default=False)
+  apply_on_sales = fields.Boolean('Apply on sales', default=False)

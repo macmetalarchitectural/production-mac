@@ -20,7 +20,6 @@ class MailTemplate(models.Model):
         string='Aeroo Reports',
         domain="[('model', '=', model), ('report_type', '=', 'aeroo'), ('multi', '=', False)]")
 
-    @api.multi
     def generate_email(self, res_ids, fields=None):
         """Add aeroo reports to the generated emails."""
         results = super().generate_email(res_ids, fields=fields)

@@ -4,16 +4,13 @@
 
 from odoo import fields, models
 
-
 class ResPartnerRestrictedField(models.Model):
-    _name = 'res.partner.restricted.field'
-    _description = 'Partner Restricted Field'
+  _name = 'res.partner.restricted.field'
+  _description = 'Partner Restricted Field'
 
-    field_id = fields.Many2one(
-        'ir.model.fields', string='Field',
-        domain="[('model_id.model', '=', 'res.partner')]", required=True)
-    active = fields.Boolean('Active', default=True)
+  field_id = fields.Many2one('ir.model.fields', string='Field', domain="[('model_id.model', '=', 'res.partner')]", required=True, ondelete='cascade')
+  active = fields.Boolean('Active', default=True)
 
-    _sql_constraints = [
-        ('field_id_unique', 'UNIQUE(field_id)', "This field is already restricted")
-    ]
+  _sql_constraints = [
+    ('field_id_unique', 'UNIQUE(field_id)', "This field is already restricted")
+  ]
