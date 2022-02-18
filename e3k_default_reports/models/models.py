@@ -144,8 +144,8 @@ class SaleOrderLine(models.Model):
             result.append((so_line.id, name))
         return result
 
-    def get_sale_order_line_multiline_description_sale(self, product):
-        return product.name
+    # def get_sale_order_line_multiline_description_sale(self, product):
+    #     return product.name
 
 
 class PurchaseOrderLine(models.Model):
