@@ -5,7 +5,7 @@
 import json
 import time
 from odoo import api, http, _
-from odoo.modules import registry
+# from odoo.modules import registry
 from odoo.http import request, content_disposition
 from odoo.tools.safe_eval import safe_eval
 from odoo.addons.web.controllers.main import serialize_exception
