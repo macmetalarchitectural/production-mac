@@ -9,6 +9,10 @@
       <xpath expr="//field[@name='signature']" position="after">
         <field name="customer_delivery_date" readonly="1"/>
       </xpath>
+
+      <xpath expr="//tree/field[@name='name']" position="attributes">
+        <attribute name="widget"></attribute>
+      </xpath>
     </field>
   </record>
 

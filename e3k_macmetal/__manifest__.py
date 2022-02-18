@@ -12,11 +12,14 @@
   "depends" : [
     'sale',
     'calendar',
+    'stock',
   ],
   "data" : [
     'views/res_config_settings_views.xml',
     'views/sale_portal_templates.xml',
     'views/sale_views.xml',
+    'views/stock_quant_views.xml',
+    'views/stock_move_line_views.xml',
     'views/calendar_views.xml',
   ],
   'assets': {
