@@ -29,9 +29,9 @@ Automatic backup for all such configured databases can then be scheduled as foll
 
     # always loaded
     'data': [
-        'security/user_groups.xml',
-        'security/ir.model.access.csv',
-        'views/backup_view.xml',
-        'data/backup_data.xml',
+        # 'security/user_groups.xml',
+        # 'security/ir.model.access.csv',
+        # 'views/backup_view.xml',
+        # 'data/backup_data.xml',
     ],
 }
