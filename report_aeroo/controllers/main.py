@@ -54,7 +54,7 @@ class AerooReportController(http.Controller):
         else:
             file_name = '%s.%s' % (report.name, out_format)
 
-        report_mimetype = MIMETYPES_MAPPING.get(out_format, DEFAULT_MIMETYPE)
+        # report_mimetype = MIMETYPES_MAPPING.get(out_format, DEFAULT_MIMETYPE)
 
         response = request.make_response(
             content,
