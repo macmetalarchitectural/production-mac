@@ -15,7 +15,7 @@
         'web',
     ],
     'data': [
-        'views/assets.xml',
+        # 'views/assets.xml',
     ],
     'installable': True,
 }
