@@ -35,17 +35,17 @@ class WebCustomLabel(models.Model):
     When the user refreshes his page, he sees the new labels automatically.
     """
     new_record = super().create(vals)
-    modules.registry.Registry(self.env.cr.dbname).clear_caches()
+    # modules.registry.Registry(self.env.cr.dbname).clear_caches()
     return new_record
 
   def write(self, vals):
     super().write(vals)
-    modules.registry.Registry(self.env.cr.dbname).clear_caches()
+    # modules.registry.Registry(self.env.cr.dbname).clear_caches()
     return True
 
   def unlink(self):
     super().unlink()
-    modules.registry.Registry(self.env.cr.dbname).clear_caches()
+    # modules.registry.Registry(self.env.cr.dbname).clear_caches()
     return True
 
   @tools.ormcache('model', 'lang')

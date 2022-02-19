@@ -216,8 +216,8 @@ class AuditlogRule(models.Model):
                     model_model._revert_method(method)
                     delattr(type(model_model), "auditlog_ruled_%s" % method)
                     updated = True
-        if updated:
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        # if updated:
+        #     modules.registry.Registry(self.env.cr.dbname).signal_changes()
 
     @api.model
     def create(self, vals):
@@ -227,8 +227,8 @@ class AuditlogRule(models.Model):
         model = self.env["ir.model"].browse(vals["model_id"])
         vals.update({"model_name": model.name, "model_model": model.model})
         new_record = super().create(vals)
-        if new_record._register_hook():
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        # if new_record._register_hook():
+        #     modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
 
     def write(self, vals):
@@ -239,8 +239,8 @@ class AuditlogRule(models.Model):
             model = self.env["ir.model"].browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
-        if self._register_hook():
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        # if self._register_hook():
+        #     modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return res
 
     def unlink(self):
