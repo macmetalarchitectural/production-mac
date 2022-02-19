@@ -25,7 +25,6 @@ class AuditlogLog(models.Model):
         [("full", "Full log"), ("fast", "Fast log")], string="Type"
     )
 
-    @api.model_create_multi
     def create(self, vals_list):
         """ Insert model_name and model_model field values upon creation. """
         for vals in vals_list:
@@ -74,7 +73,6 @@ class AuditlogLogLine(models.Model):
     http_request_id = fields.Many2one(related="log_id.http_request_id", store=True)
     log_type = fields.Selection(related="log_id.log_type", store=True)
 
-    @api.model_create_multi
     def create(self, vals_list):
         """Ensure field_id is not empty on creation and store field_name and
         field_description."""
