@@ -1,0 +1,311 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* e3k_custom_cheque
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-17 10:25+0000\n"
+"PO-Revision-Date: 2020-03-17 10:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_check
+msgid "***Annulé***"
+msgstr ""
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_check
+msgid "***VOID***"
+msgstr "NULL"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table_width
+msgid "100: Check table: width"
+msgstr "100: Tableau du Chèque : largeur"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table1_top
+msgid "105: Check table 1: Top distance"
+msgstr "105: Tableau du Chèque 1: distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__date_format
+msgid "10: Date Format "
+msgstr "10: Foramat du date "
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table1_left
+msgid "110: Check table 1: Left distance"
+msgstr "110: Tableau du Chèque 1: distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table2_top
+msgid "115: Check table 2: Top distance"
+msgstr "115: Tableau du Chèque 2: distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table2_left
+msgid "120: Check table 2: Left distance"
+msgstr "120: Tableau du Chèque 2: distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_partner_name_top
+msgid "125: Table-1 Partner name: Top distance"
+msgstr "125: Tableau-1 Nom : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_partner_name_left
+msgid "130: Table-1 Partner name: Left distance"
+msgstr "130: Tableau-1 Nom : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_payment_date_top
+msgid "135: Table-1 Payment date: Top distance"
+msgstr "135: Tableau-1 date du paiement : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_payment_date_left
+msgid "140: Table-1 Payment date: Left distance"
+msgstr "140: Tableau-1 date du paiement : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_amount_top
+msgid "145: Table-1 Amount: Top distance"
+msgstr "145: Tableau-1 Montant : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_amount_left
+msgid "150: Table-1 Amount: Left distance"
+msgstr "150: Tableau-1 Montant : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_partner_name_top
+msgid "155: Table-2 Partner name: Top distance"
+msgstr "155: Tableau-2 Nom : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__payment_date_top
+msgid "15: Payment date : Top distance"
+msgstr "15: Date du paiement : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_partner_name_left
+msgid "160: Table-2 Partner name: Left distance"
+msgstr "160: Tableau-2 Nom : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_payment_date_top
+msgid "165: Table-2 Payment date: Top distance"
+msgstr "165: Tableau-2 Date du paiement : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_payment_date_left
+msgid "170: Table-2 Payment date: Left distance"
+msgstr "170: Tableau-2 date du paiement : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_amount_top
+msgid "175: Table-2 Amount: Top distance"
+msgstr "175: Tableau-2 Montant : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_amount_left
+msgid "180: Table-2 Amount: Left distance"
+msgstr "180: Tableau-2 Montant : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_check_number_top
+msgid "185: Table-1 Check number: Top distance"
+msgstr "185: Tableau-1 Numéro de chèque: distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_1_check_number_left
+msgid "190: Table-1 Check number: Left distance"
+msgstr "190: Tableau-1 Numéro de chèque: distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_check_number_top
+msgid "195: Table-2 Check number: Top distance"
+msgstr "195: Tableau-2 Numéro de chèque: distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__table_2_check_number_left
+msgid "200: Table-2 Check number: Left distance"
+msgstr "200: Tableau-2 Numéro de chèque: distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__payment_date_left
+msgid "20: Payment date : Left distance"
+msgstr "20: Date du paiement : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__is_currency
+msgid "25: Add currency in field Payment amount 2"
+msgstr "25: Ajouter une devise dans le champ Montant du paiement 2"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__display_date_format
+msgid "30: Display date format text"
+msgstr "30: Afficher texte format de date"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__display_date_format_top
+msgid "35: Date format text : Top distance"
+msgstr "35: texte format de date : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__display_date_format_left
+msgid "40: Date format text : Left distance"
+msgstr "40: texte format de date : distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__display_date_format_font_size
+msgid "45: Date format text : font size"
+msgstr "45: texte format de date : taille de police"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__amount1_top
+msgid "50: Payment amount 1 : Top distance"
+msgstr "50: Montant du paiement 1 : Distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__amount1_left
+msgid "55: Payment amount 1 : Left distance"
+msgstr "55: Montant du paiement 1 : Distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_inv_line_per_page
+msgid "5: Number of invoices lines in check page"
+msgstr "5: Nombre de lignes de factures dans la page du chèque"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__amount2_top
+msgid "60: Payment amount 2 : Top distance"
+msgstr "60: Montant du paiement 2 : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__amount2_right
+msgid "65: Payment amount 2 : Right distance"
+msgstr "65: Montant du paiement 2 : distance à droite"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__address_top
+msgid "70: Address : Top distance"
+msgstr "70: Adresse: distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__address_left
+msgid "75: Address : Left distance"
+msgstr "75: Adresse: distance à gauche"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__amount_in_world_font_size
+msgid "80: Amount in world font size"
+msgstr "80: montant en lettre taille de police"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_font_size
+msgid "85: Check: font size"
+msgstr "85: Chèque : taille de police"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_area_width
+msgid "90: Check in the middle: width"
+msgstr "90: Le chèque au milieu: largeur"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_table_font_size
+msgid "95: Check table: font size"
+msgstr "95: Tableau du Chèque : taille de police"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__check_background
+msgid "Background"
+msgstr "Font"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Balance"
+msgstr "Balance"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Check Amount:"
+msgstr "Montant du chèque"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.company_form_view
+msgid "Cheque Position"
+msgstr "Position du Chèque"
+
+#. module: e3k_custom_cheque
+#: model:ir.model,name:e3k_custom_cheque.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Document date"
+msgstr "Date du document"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields.selection,name:e3k_custom_cheque.selection__res_company__check_background__hidden
+msgid "Hide check background"
+msgstr "Masquer le fond de chèque"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__image_top
+msgid "Image : Top distance"
+msgstr "Image : distance en haut"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__image_height
+msgid "Image : height"
+msgstr "Image : Hauteur"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__image_width
+msgid "Image : width"
+msgstr "Image : largeur"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Invoice Amount"
+msgstr "Montant de la facture"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_account_payment__is_e3k_partial_payment_installed
+msgid "Is E3K Partial Payment Installed"
+msgstr "Le paiement partiel E3K est-il installé?"
+
+#. module: e3k_custom_cheque
+#: model_terms:ir.ui.view,arch_db:e3k_custom_cheque.ckca_stub
+msgid "Payment"
+msgstr "Paiement"
+
+#. module: e3k_custom_cheque
+#: model:ir.model,name:e3k_custom_cheque.model_account_payment
+msgid "Payments"
+msgstr "Paiements"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields,field_description:e3k_custom_cheque.field_res_company__print_check_number
+msgid "Print Check Number"
+msgstr "Imprimer numéro du chèque"
+
+#. module: e3k_custom_cheque
+#: model:ir.model.fields.selection,name:e3k_custom_cheque.selection__res_company__check_background__show
+msgid "Show check background"
+msgstr "Afficher le fond de chèque"

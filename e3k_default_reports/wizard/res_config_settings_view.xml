@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_account_view_form_add_print_config" model="ir.ui.view">
+        <field name="name">res.config.settings.account.view.form.add.print.config</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='default_setting_options']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="info_print">
+                    <div class="o_setting_left_pane">
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Invoice Format options</span>
+                        <div class="mt16">
+                            <div class="content-group" id="info_print_report">
+                                <div class="row">
+                                    <field name="add_ordered_qty_in_report" class="col-lg-1 ml16"/>
+                                    <label for="add_ordered_qty_in_report"/>
+                                    <span class="fa fa-lg fa-building-o" title="Print Ordered Quantity"/>
+                                </div>
+                                <div class="row">
+                                    <field name="add_qty_delivered_in_report" class="col-lg-1 ml16"/>
+                                    <label for="add_qty_delivered_in_report"/>
+                                    <span class="fa fa-lg fa-building-o" title="Print Delivered Quantity"/>
+                                </div>
+                                <div class="row">
+                                    <field name="add_default_code_report" class="col-lg-1 ml16"/>
+                                    <label for="add_default_code_report"/>
+                                    <span class="fa fa-lg fa-building-o" title="Print Internal reference"/>
+                                </div>
+                                <div class="row">
+                                    <field name="add_default_sale_description" class="col-lg-1 ml16"/>
+                                    <label for="add_default_sale_description"/>
+                                    <span class="fa fa-lg fa-building-o" title="Print Sale description"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="res_config_settings_sale_view_form_add_sale_terms" model="ir.ui.view">
+        <field name="name">res.config.settings.sale.view.form.add.sale.terms</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='proforma_configuration']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="sale_order_terms_id">
+                    <div class="o_setting_left_pane">
+                        <field name="use_sale_order_terms"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="use_sale_order_terms"/>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                              aria-label="Values set here are company-specific." groups="base.group_multi_company"
+                              role="img"/>
+                        <div class="text-muted">
+                            Show standard terms &amp; conditions on Orders
+                        </div>
+                        <div class="content-group" attrs="{'invisible': [('use_sale_order_terms','=',False)]}">
+                            <div class="mt16">
+                                <field name="sale_order_terms"
+                                       placeholder="Insert your terms &amp; conditions here..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
