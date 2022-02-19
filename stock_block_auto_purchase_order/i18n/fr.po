@@ -2,55 +2,39 @@
 # This file contains the translation of the following modules:
 # 	* stock_block_auto_purchase_order
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 12:36+0000\n"
-"PO-Revision-Date: 2021-08-30 08:36-0400\n"
+"POT-Creation-Date: 2018-08-21 10:36-0400\n"
+"PO-Revision-Date: 2018-08-21 14:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: stock_block_auto_purchase_order
-#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_product_product__block_auto_purchase_order
-#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_product_template__block_auto_purchase_order
-#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_purchase_order__block_auto_purchase_order
+#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_res_partner_block_auto_purchase_order
+#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_res_users_block_auto_purchase_order
+msgid "Block Automatic Products On PO"
+msgstr "Bloquer ajout auto sur PO"
+
+#. module: stock_block_auto_purchase_order
+#: model:ir.model.fields,field_description:stock_block_auto_purchase_order.field_purchase_order_block_auto_purchase_order
 msgid "Block Automatic Product Add"
 msgstr "Bloquer ajout produit auto"
 
 #. module: stock_block_auto_purchase_order
-#: model:ir.model,name:stock_block_auto_purchase_order.model_product_category
-msgid "Product Category"
-msgstr ""
+#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_res_partner_block_auto_purchase_order
+#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_res_users_block_auto_purchase_order
+msgid "This field is automatically propagated to the PO. When checked on the PO, it prevents products from being automatically added to the PO by the system."
+msgstr "Ce champ est automatiquement propagé sur le PO. Lorsque coché sur le PO, il prévient l'ajout automatique d'articles par le système."
 
 #. module: stock_block_auto_purchase_order
-#: model:ir.model,name:stock_block_auto_purchase_order.model_product_template
-msgid "Product Template"
-msgstr ""
-
-#. module: stock_block_auto_purchase_order
-#: model:ir.model,name:stock_block_auto_purchase_order.model_purchase_order
-msgid "Purchase Order"
-msgstr ""
-
-#. module: stock_block_auto_purchase_order
-#: model:ir.model,name:stock_block_auto_purchase_order.model_stock_rule
-msgid "Stock Rule"
-msgstr ""
-
-#. module: stock_block_auto_purchase_order
-#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_product_product__block_auto_purchase_order
-#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_product_template__block_auto_purchase_order
-#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_purchase_order__block_auto_purchase_order
-msgid ""
-"When checked, this field prevents products from being automatically added to "
-"the PO by the system."
-msgstr ""
-"Lorsque coché, ce champ prévient l'ajout automatique d'articles par le "
-"système."
+#: model:ir.model.fields,help:stock_block_auto_purchase_order.field_purchase_order_block_auto_purchase_order
+msgid "When checked, this field prevents products from being automatically added by the system."
+msgstr "Lorsque coché, ce champ prévient l'ajout automatique d'articles par le système."

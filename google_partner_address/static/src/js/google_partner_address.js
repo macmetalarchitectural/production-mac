@@ -54,7 +54,7 @@ var CountryRegistry = Class.extend({
             args:[[], ["id", "code"]],
         }).then(function(result) {
             result.forEach(function(el){
-                var code = el.code.toString().toLowerCase();
+                var code = el.code.toLowerCase();
                 self._countriesById.set(el.id, code);
                 self._countriesByCode.set(code, el.id);
             });
@@ -73,7 +73,7 @@ var CountryRegistry = Class.extend({
         }).then(function(result) {
             result.forEach(function(el){
                 var countryId = el.country_id[0];
-                var code = el.code.toString().toLowerCase();
+                var code = el.code.toLowerCase();
                 if (!self._statesByCountry.get(countryId)){
                     self._statesByCountry.set(countryId, new Map());
                 }

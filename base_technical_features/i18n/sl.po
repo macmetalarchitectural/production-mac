@@ -20,22 +20,12 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_base
-msgid "Base"
-msgstr ""
-
-#. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_ir_ui_menu
-msgid "Menu"
-msgstr ""
-
-#. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users__show_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
 msgid "Show field Technical Features"
 msgstr "Prikaži polje \"Tehnične funkcije\""
 
 #. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_res_users__technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
 #, fuzzy
 msgid "Technical Features"
 msgstr "Tehnične funkcije"
@@ -46,7 +36,7 @@ msgid "Technical Features (w/o debug mode)"
 msgstr "Tehnične funkcije (brez razhroščevalnika)"
 
 #. module: base_technical_features
-#: code:addons/base_technical_features/models/res_users.py:0
+#: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
 msgstr "Uporabnik nima dostopa do tehničnih finkcij"
@@ -57,10 +47,17 @@ msgid "Users"
 msgstr "Uporabniki"
 
 #. module: base_technical_features
-#: model:ir.model.fields,help:base_technical_features.field_res_users__show_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr "Ali naj se prikaže polje tehnične funkcije v uporabniških nastavitvah."
 
-#~ msgid "ir.ui.menu"
-#~ msgstr "ir.ui.menu"
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "ir.ui.menu"
+msgstr "ir.ui.menu"

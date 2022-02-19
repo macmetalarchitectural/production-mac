@@ -26,6 +26,7 @@ class BaseConfigSettingsWithGoogleMapsAPI(models.TransientModel):
     google_maps_api_key = fields.Char(
         default=_default_google_maps_api_key)
 
+
     def set_values(self):
         super().set_values()
         self.env['ir.config_parameter'].set_param('google_maps_api_key', self.google_maps_api_key)
