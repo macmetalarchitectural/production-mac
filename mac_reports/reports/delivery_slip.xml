@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_baleco_mac" inherit_id="e3k_default_reports.report_delivery_st_baleco">
+        <xpath expr="//div[hasclass('page')]/div" position="inside">
+            <div t-if="o.picking_type_id.code == 'outgoing' and o.carrier_id" class="col-auto">
+                <strong>Delivery method:</strong>
+                <p t-field="o.carrier_id"/>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
