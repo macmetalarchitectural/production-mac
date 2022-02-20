@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_delivery_baleco_mac" inherit_id="e3k_default_reports.report_delivery_st_baleco">
+    <template id="report_delivery_baleco_mac2" inherit_id="stock.report_delivery_document">
         <xpath expr="//table[@name='stock_move_table']" position="before">
             <table class="table" style="font-weight: bold; !important">
                 <tr>
@@ -17,7 +17,7 @@
                 <tr>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
                         ORDER COMMENT:
-                       
+
                     </td>
                 </tr>
             </table>
