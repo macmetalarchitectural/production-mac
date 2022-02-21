@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_baleco_mac2" inherit_id="stock.report_delivery_document">
+        <xpath expr="//table[@name='stock_move_table']" position="before">
+            <table class="table">
+                <tr>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold ; width:150px">
+                        DELIVERY COMMENT:
+                    </td>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                        <span t-field="o.note"/>
+
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+
+        <xpath expr="//table[@name='stock_move_table']" position="after">
+            <table class="table" style="font-weight: bold; !important">
+                <tr>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+                        ORDER COMMENT:
+
+                    </td>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+        <xpath expr="//div[@name='div_sched_date']" position="replace">
+            <div t-if="o.state" class="col-auto" name="div_sched_date">
+                <strong>Shipping Date:</strong>
+                <t t-if="o.state == 'done'">
+                    <p t-field="o.date_done" t-options='{"format": "MM/dd/yyyy"}'/>
+                </t>
+                <t t-if="o.state != 'done'">
+                    <p t-field="o.scheduled_date" t-options='{"format": "MM/dd/yyyy"}'/>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//th[@name='th_sm_quantity']" position="after">
+            <th name="th_sm_quantity">
+                <strong>Qty exp.</strong>
+            </th>
+
+        </xpath>
+        <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[3]" position="after">
+            <td>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>

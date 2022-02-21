@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="sale_order_inherited_add_ndelivery_notes" model="ir.ui.view">
+        <field name="name">sale_order_form_view_add_delivery_notes</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="e3k_default_reports.sale_order_form_view_inherited_add_notes"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='note']" position="before">
+                <field name="delivery_note" nolabel="1"
+                        placeholder="Set the delivery note that will be printed in the delivery slip report"/>
+            </xpath>
+
+         </field>
+     </record>
+</odoo>

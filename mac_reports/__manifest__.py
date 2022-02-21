@@ -13,6 +13,8 @@
     'data': [
         'reports/sale_report.xml',
         'reports/invoice_report.xml',
+        'reports/delivery_slip.xml',
+        'views/sale_order.xml',
     ],
     'demo': [
     ],
