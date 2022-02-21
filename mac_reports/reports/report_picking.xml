@@ -4,7 +4,7 @@
         <xpath expr="//div[@name='div_sched_date']" position="after">
             <div class="col-auto" name="div_sched_date">
                 <strong>Order Date:</strong>
-                <p t-field="o.sale_id.date_order"/>
+                <p t-field="o.sale_id.date_order" t-options='{"format": "yyyy-MM-dd"}'/>
             </div>
         </xpath>
         <xpath expr="//div[@name='div_sched_date']" position="replace">
@@ -13,5 +13,46 @@
                 <p t-field="o.scheduled_date" t-options='{"format": "yyyy-MM-dd"}'/>
             </div>
         </xpath>
+        <xpath expr="//th[@name='th_product']" position="after">
+            <th name="th_po">
+                <strong>PO</strong>
+            </th>
+        </xpath>
+
+        <xpath expr="//table[1]/thead/tbody/tr/td[1]" position="after">
+            <td>
+                <span t-field="ml.purchase_line_id.order_id.name"/>
+                <br/>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[1]" position="before">
+            <table class="table">
+                <tr>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold ; width:150px">
+                        DELIVERY COMMENT:
+                    </td>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                        <span t-field="o.note"/>
+
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+
+        <xpath expr="//table[2]" position="after">
+            <table class="table" style="font-weight: bold; !important">
+                <tr>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+                        ORDER COMMENT:
+
+                    </td>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+
     </template>
 </odoo>
