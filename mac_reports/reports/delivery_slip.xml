@@ -39,6 +39,16 @@
                 </t>
             </div>
         </xpath>
+        <xpath expr="//th[@name='th_sm_quantity']" position="after">
+            <th name="th_sm_quantity">
+                <strong>Qty exp.</strong>
+            </th>
+
+        </xpath>
+        <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[3]" position="after">
+            <td>
+            </td>
+        </xpath>
 
     </template>
 </odoo>

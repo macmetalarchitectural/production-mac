@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-{
+views{
     'name': "Mac Reports",
     'summary': """
         """,
@@ -14,6 +14,7 @@
         'reports/sale_report.xml',
         'reports/invoice_report.xml',
         'reports/delivery_slip.xml',
+        'views/sale_order.xml',
     ],
     'demo': [
     ],
