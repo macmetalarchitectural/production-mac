@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-views{
+{
     'name': "Mac Reports",
     'summary': """
         """,
