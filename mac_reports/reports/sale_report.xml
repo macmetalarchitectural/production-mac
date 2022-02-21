@@ -4,7 +4,6 @@
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
             <br/>
             <br/>
-            <br/>
             <table class="table">
                 <tr>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
@@ -12,6 +11,15 @@
                     </td>
                 </tr>
             </table>
+        </xpath>
+        <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
+            <th name="th_description" class="text-left">Description</th>
+
+        </xpath>
+
+        <xpath expr="//table[1]/thead/tr//th[@name='th_ref']" position="replace">
+            <th name="th_ref" class="text-left" t-if="check_is_default_code">Product No.</th>
+
         </xpath>
 
         <xpath expr="//div[@id='total']" position="replace">
