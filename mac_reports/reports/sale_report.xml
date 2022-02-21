@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
-       <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
-            <table class="table">
-                <tr>
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                        <p t-field="doc.sale_note_termes"/>
-                    </td>
-                </tr>
-            </table>
-        </xpath>
+<!--        <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">-->
+<!--            <table class="table">-->
+<!--                <tr>-->
+<!--                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">-->
+<!--                        <p t-field="doc.sale_note_termes"/>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </xpath>-->
 
         <xpath expr="//div[@id='total']" position="replace">
             <div id="total" class="row" name="total">
@@ -17,8 +17,9 @@
 
                     <div class="col-8">
                         <table class="table" style="font-weight: bold; !important">
-                            <tr >
-                                <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;" colspan="2">
+                            <tr>
+                                <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
+                                    colspan="2">
                                     ATTENTION PLEASE VERIFY YOUR MEASUREMENTS.
                                     NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED.
                                 </td>
@@ -40,7 +41,7 @@
                                     COMMENTS :
                                 </td>
                                 <td style="background-color:#FFFFFF; color: black; height: 60px">
-                                     <p t-field="doc.delivery_note"/>
+                                    <p t-field="doc.delivery_note"/>
                                 </td>
                             </tr>
                         </table>
@@ -58,7 +59,9 @@
         </xpath>
         <xpath expr="//p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
         </xpath>
-        <xpath expr="//div[@name='expiration_date']" position="replace"/>
+        <xpath expr="//div[@t-if='doc.commitment_date']" position="replace">
+        </xpath>
+
 
     </template>
 </odoo>
