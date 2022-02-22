@@ -58,15 +58,20 @@
         </xpath>
 
         <xpath expr="//th[@name='th_sml_quantity']" position="after">
-            <th name="th_sm_quantity">
+            <th name="th_sml_quantity">
                 <strong>Qty exp.</strong>
             </th>
 
         </xpath>
-        <xpath expr="//table[@name='stock_move_line_table']/tbody/tr/td[3]" position="after">
+
+
+    </template>
+    <template id="stock_report_delivery_aggregated_move_mac"
+              inherit_id="stock.stock_report_delivery_aggregated_move_lines">
+        <xpath expr="//tr/td[3]" position="after">
             <td>
             </td>
         </xpath>
-
     </template>
+
 </odoo>
