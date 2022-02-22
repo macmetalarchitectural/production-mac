@@ -15,7 +15,7 @@
             </table>
         </xpath>
 
-        <xpath expr="//table[@name='stock_move_table']" position="after">
+        <xpath expr="//table[@name='stock_move_line_table']" position="after">
             <table class="table" style="font-weight: bold; !important">
                 <tr>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
