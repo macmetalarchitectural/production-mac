@@ -127,11 +127,11 @@
                                 </td>
                                 <td>
                                     <span t-field="ml.product_uom_qty"/>
-                                    <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+                                    <span t-field="ml.product_uom" groups="uom.group_uom"/>
                                 </td>
                                 <td>
                                     0,00
-                                    <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+                                    <span t-field="ml.product_uom" groups="uom.group_uom"/>
                                 </td>
                                 <td>
 
