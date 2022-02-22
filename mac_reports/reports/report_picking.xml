@@ -91,9 +91,7 @@
                                     groups="stock.group_stock_multi_locations">
                                     <div>
                                         <span t-field="ml.location_dest_id"/>
-                                        <t t-if="ml.result_package_id">
-                                            <span t-field="ml.result_package_id"/>
-                                        </t>
+                                       
                                     </div>
                                 </td>
                                 <td class=" text-center h6" t-if="has_serial_number">
