@@ -72,7 +72,7 @@
             <td>
             </td>
         </xpath>
-        <xpath expr="//tr/td[2]" position="replace">
+        <xpath expr="//tr/td[3]" position="replace">
             <td name="move_line_aggregated_qty_done">
             </td>
         </xpath>
