@@ -39,6 +39,13 @@
                 </t>
             </div>
         </xpath>
+        <xpath expr="//div[@name='div_sched_date']" position="after">
+            <div t-if="not is_html_empty(o.sale_id.payment_term_id.note)" class="col-auto" name="div_payment_term_id">
+                <strong>Terms:</strong>
+                <span t-field="o.sale_id.payment_term_id.note"/>
+            </div>
+        </xpath>
+
         <xpath expr="//th[@name='th_sm_quantity']" position="after">
             <th name="th_sm_quantity">
                 <strong>Qty exp.</strong>
