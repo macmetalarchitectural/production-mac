@@ -67,14 +67,14 @@
                                 <br/>
                             </td>
                             <td>
-                                <span t-field="ml.product_uom_qty"/>
-                                <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
-                            </td>
-                           <td>
                                 <span t-field="ml.move_id.product_uom_qty"/>
                                 <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
                             </td>
-                           <td>
+                            <td>
+                                <span t-field="ml.product_uom_qty"/>
+                                <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+                            </td>
+                            <td>
 
                             </td>
                             <td t-if="o.picking_type_id.code != 'incoming'" groups="stock.group_stock_multi_locations">
@@ -138,6 +138,26 @@
                     </td>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
 
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+
+        <xpath expr="//table[2]" position="after">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <table class="table" style="font-weight: bold; !important">
+                <tr>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; ">
+                        Prepared by: ................................................
+
+                    </td>
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                        Date: ......................................................
                     </td>
                 </tr>
             </table>
