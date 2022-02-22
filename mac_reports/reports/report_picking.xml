@@ -20,6 +20,10 @@
                 <t t-set="has_serial_number"
                    t-value="any(move_line.lot_id or move_line.lot_name for move_line in o.move_line_ids)"
                    groups="stock.group_production_lot"/>
+                <t t-if="not o.move_line_ids">
+                    <t t-set="has_barcode"
+                       t-value="any(move_line.product_id and move_line.product_id.sudo().barcode  for move_line in o.move_ids_without_package)"/>
+                </t>
                 <thead>
                     <tr>
                         <th name="th_product">
@@ -91,7 +95,7 @@
                                     groups="stock.group_stock_multi_locations">
                                     <div>
                                         <span t-field="ml.location_dest_id"/>
-                                       
+
                                     </div>
                                 </td>
                                 <td class=" text-center h6" t-if="has_serial_number">
@@ -112,6 +116,8 @@
                         </t>
                     </t>
                     <t t-else="">
+                        <t t-set="has_barcode"
+                           t-value="any(move_line.product_id and move_line.product_id.sudo().barcode  for move_line in o.move_ids_without_package)"/>
                         <t t-foreach="o.move_ids_without_package" t-as="ml">
                             <tr>
                                 <td>
