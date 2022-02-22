@@ -72,6 +72,10 @@
             <td>
             </td>
         </xpath>
+        <xpath expr="//tr/td[2]" position="replace">
+            <td name="move_line_aggregated_qty_done">
+            </td>
+        </xpath>
     </template>
 
 </odoo>
