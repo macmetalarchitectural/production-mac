@@ -14,6 +14,7 @@
         'reports/sale_report.xml',
         'reports/invoice_report.xml',
         'reports/delivery_slip.xml',
+        'reports/report_picking.xml',
         'views/sale_order.xml',
     ],
     'demo': [
