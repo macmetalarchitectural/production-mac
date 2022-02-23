@@ -79,7 +79,7 @@
             <br/>
             <br/>
 
-            <table class="table" style="font-weight: bold; !important">
+            <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
                 <tr>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
                         Shipped by:..........................................
