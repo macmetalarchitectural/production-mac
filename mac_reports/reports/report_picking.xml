@@ -13,6 +13,9 @@
                 <p t-field="o.scheduled_date" t-options='{"format": "yyyy-MM-dd"}'/>
             </div>
         </xpath>
+        <xpath expr="//p[@t-field='o.note']" position="replace">
+           
+        </xpath>
         <xpath expr="//table[1]" position="replace">
             <table class="table table-sm" t-if="o.move_ids_without_package">
                 <t t-set="has_barcode"
