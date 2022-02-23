@@ -145,9 +145,9 @@
                                 <td t-if="o.picking_type_id.code != 'incoming'"
                                     groups="stock.group_stock_multi_locations">
                                     <span t-esc="ml.location_id.display_name"/>
-                                    <t t-if="ml.package_id">
-                                        <span t-field="ml.package_id"/>
-                                    </t>
+<!--                                    <t t-if="ml.package_id">-->
+<!--                                        <span t-field="ml.package_id"/>-->
+<!--                                    </t>-->
                                 </td>
                                 <td t-if="o.picking_type_id.code != 'outgoing'"
                                     groups="stock.group_stock_multi_locations">
