@@ -117,10 +117,7 @@
                                     <span t-field="ml.product_id.description_picking"/>
                                 </td>
                                 <td>
-<!--                                    <t t-foreach="ml.move_id.sale_id.purchase_line_ids" t-as="purchase">-->
-<!--                                        <span t-field="purchase.name"/>-->
-<!--                                        <br/>-->
-<!--                                    </t>-->
+                                        <span t-esc="ml.get_po()"/>
                                 </td>
                                 <td>
                                     <span t-field="ml.move_id.product_uom_qty"/>
@@ -177,7 +174,7 @@
                                     <span t-field="ml.product_id.description_picking"/>
                                 </td>
                                 <td>
-                                    <span t-field="ml.purchase_line_id.order_id.name"/>
+                                    <span t-esc="ml.get_po()"/>
                                     <br/>
                                 </td>
                                 <td>
