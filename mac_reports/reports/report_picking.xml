@@ -118,7 +118,6 @@
                                 </td>
                                 <td>
                                         <span t-field="ml.get_po()"/>
-                                        <br/>
                                 </td>
                                 <td>
                                     <span t-field="ml.move_id.product_uom_qty"/>
@@ -175,7 +174,7 @@
                                     <span t-field="ml.product_id.description_picking"/>
                                 </td>
                                 <td>
-                                    <span t-field="ml.purchase_line_id.order_id.name"/>
+                                    <span t-field="ml.get_po()"/>
                                     <br/>
                                 </td>
                                 <td>
