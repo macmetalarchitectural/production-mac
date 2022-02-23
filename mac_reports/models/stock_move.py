@@ -3,6 +3,9 @@
 
 from odoo import fields, models, api
 from odoo.exceptions import UserError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class StockMove(models.Model):
@@ -11,11 +14,12 @@ class StockMove(models.Model):
     def get_po(self):
         for rec in self:
             purchases = " "
-            for purchase in rec.sale_line_id.order_id._get_purchase_orders():
+            for purchase in rec.picking_id.sale_id._get_purchase_orders():
+                _logger.info(purchase.order_line.mapped('product_id'))
                 if rec.product_id in purchase.order_line.mapped('product_id'):
+                    _logger.info(rec.product_id)
                     purchases = purchases + " " + purchase.name
-
-
+            return purchases
 
 
 class StockMoveLine(models.Model):
@@ -23,7 +27,10 @@ class StockMoveLine(models.Model):
 
     def get_po(self):
         for rec in self:
-            purchases = ""
-            for purchase in rec.move_id.sale_line_id.order_id._get_purchase_orders():
+            purchases = " "
+            for purchase in rec.move_id.picking_id.sale_id._get_purchase_orders():
+                _logger.info(purchase.order_line.mapped('product_id'))
                 if rec.product_id in purchase.order_line.mapped('product_id'):
-                    purchases += purchase.name
+                    _logger.info(rec.product_id)
+                    purchases = purchases + " " + purchase.name
+            return purchases

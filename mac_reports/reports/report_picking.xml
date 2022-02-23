@@ -117,7 +117,7 @@
                                     <span t-field="ml.product_id.description_picking"/>
                                 </td>
                                 <td>
-                                        <span t-field="ml.get_po()"/>
+                                        <span t-esc="ml.get_po()"/>
                                 </td>
                                 <td>
                                     <span t-field="ml.move_id.product_uom_qty"/>
@@ -174,7 +174,7 @@
                                     <span t-field="ml.product_id.description_picking"/>
                                 </td>
                                 <td>
-                                    <span t-field="ml.get_po()"/>
+                                    <span t-esc="ml.get_po()"/>
                                     <br/>
                                 </td>
                                 <td>
