@@ -9,3 +9,4 @@ class SaleOrderNote(models.Model):
     _inherit = 'sale.order'
 
     delivery_note = fields.Text('Delivery Note')
+    sale_note_termes = fields.Text('Terms and conditions', default=_default_sale_note_terms, translate=True)
