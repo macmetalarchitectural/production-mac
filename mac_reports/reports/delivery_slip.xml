@@ -20,7 +20,7 @@
             </div>
         </xpath>
         <xpath expr="//div[@t-if='o.shipping_weight']" position="replace">
-            <div t-if="o.shipping_weight" class="col-auto">
+            <div  class="col-auto">
                 <strong>Total Weight:</strong>
                 <br/>
 
