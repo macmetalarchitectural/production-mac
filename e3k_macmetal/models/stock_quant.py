@@ -91,3 +91,9 @@ class StockQuant(models.Model):
       quant.inventory_date = date_by_location[quant.location_id]
     self.write({'inventory_quantity': 0, 'user_id': False, 'note': ''})
     self.write({'inventory_diff_quantity': 0})
+
+  @api.model
+  def action_view_inventory(self):
+    action = super(StockQuant, self).action_view_inventory()
+    action['context']['search_default_displayable_loc'] = True
+    return action

@@ -317,3 +317,14 @@ msgstr ""
 #, python-format
 msgid "Your name"
 msgstr "Votre Nom"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_location__show_loc_inv_adj
+msgid "Show Location in Inventory Adjustments"
+msgstr "Afficher l'Emplacements dans l'Ajustement de Stocks"
+
+#. module: e3k_macmetal
+#: model:ir.actions.act_window,name:e3k_macmetal.location_open_quants
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.quant_search_view
+msgid "Displayable Locations"
+msgstr "Emplacements Affichables"
