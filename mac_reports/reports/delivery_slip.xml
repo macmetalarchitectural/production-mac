@@ -23,7 +23,7 @@
 
                     </td>
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-
+                        <span t-field="o.sale_id.delivery_note"/>
                     </td>
                 </tr>
             </table>
