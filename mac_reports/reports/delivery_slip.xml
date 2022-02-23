@@ -88,9 +88,9 @@
         <br/>
         <br/>
 
-        <table class="table" style="font-weight: bold; !important" name="order_comment">
+        <table class="table" style="font-weight: bold; !important" >
             <tr>
-                <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+                <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
                     Shipped by:..........................................
 
                 </td>
@@ -113,7 +113,7 @@
                     Time : .........................................................
                 </td>
             </tr>
-            <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold à">
+            <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
                 Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des frais
                 supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
             </tr>
