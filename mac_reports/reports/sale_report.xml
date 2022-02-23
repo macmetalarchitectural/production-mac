@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="document_tax_totals_e3k" inherit_id="account.document_tax_totals">
+        <xpath expr="//tr[hasclass('o_total')]/td[2]" position="attributes">
+            <attribute name="style">width:150px;</attribute>
+        </xpath>
+    </template>
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
             <br/>
