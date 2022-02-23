@@ -100,33 +100,50 @@
                     </td>
                 </tr>
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
-                    Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des frais
-                    supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+                        Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des
+                        frais
+                        supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
+                    </td>
                 </tr>
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
-                    commandes
-                    qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
-                    <br/>
-                    MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs
-                    commandes
-                    pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou Textural
-                    III
-                    Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client opte
-                    pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la décoloration
-                    due
-                    aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.
-                    MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés, selon
-                    les
-                    échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage
-                    d’intérêts
-                    et de frais supplémentaires causés par des délais prolongés de livraison.
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+                        MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
+                        commandes
+                        qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
+                        <br/>
+                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs
+                        commandes
+                        pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou
+                        Textural
+                        III
+                        Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client
+                        opte
+                        pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la
+                        décoloration
+                        due
+                        aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.
+                        MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,
+                        selon
+                        les
+                        échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage
+                        d’intérêts
+
+                        et de frais supplémentaires causés par des délais prolongés de livraison.
+                    </td>
                 </tr>
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+
+                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
+                    </td>
                 </tr>
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA FABRICATION.
+                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; width:150px">
+
+                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA
+                        FABRICATION.
+                    </td>
                 </tr>
             </table>
         </xpath>
