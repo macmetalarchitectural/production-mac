@@ -141,7 +141,7 @@
                             <t t-if="not stub_line.get('header')">
                                 <tr>
                                     <td class="text-left">
-                                        <t t-if="stub_line['due_date']" t-esc="stub_line['due_date']"/>
+                                        <t t-if="stub_line['invoice_date']" t-esc="stub_line['invoice_date']"/>
                                     </td>
                                     <td class="text-left text-truncate" style="max-width: 500px;">
                                         <t t-esc="stub_line['number']"/>
@@ -194,7 +194,7 @@
                             <t t-if="not stub_line.get('header')">
                                 <tr>
                                     <td class="text-left">
-                                        <t t-if="stub_line['due_date']" t-esc="stub_line['due_date']"/>
+                                        <t t-if="stub_line['invoice_date']" t-esc="stub_line['invoice_date']"/>
                                     </td>
                                     <td class="text-left text-truncate" style="max-width: 500px;">
                                         <t t-esc="stub_line['number']"/>
