@@ -28,50 +28,64 @@
         </xpath>
 
         <xpath expr="//div[@id='total']" position="replace">
-            <div id="total" class="row" name="total">
-                <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+            <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                <div id="total" class="row" name="total">
+                    <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
 
-                    <div class="col-8" t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-                        <table class="table" style="font-weight: bold; !important">
-                            <tr>
-                                <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
-                                    colspan="2">
-                                    ATTENTION PLEASE VERIFY YOUR MEASUREMENTS.
-                                    NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="background-color:#FFFFFF; color: black" colspan="2">
-                                    Signature to start production :
-                                    ................................................
-                                </td>
-                            </tr>
+                        <div class="col-8">
+                            <table class="table" style="font-weight: bold; !important">
+                                <tr>
+                                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
+                                        colspan="2">
+                                        ATTENTION PLEASE VERIFY YOUR MEASUREMENTS.
+                                        NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="background-color:#FFFFFF; color: black" colspan="2">
+                                        Signature to start production :
+                                        ................................................
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td style="background-color:#FFFFFF; color: black" colspan="2">
-                                    Date : ................................................
-                                </td>
-                            </tr>
-                            <tr style="border-top: 1px solid black; font-size: 11px !important;">
-                                <td style="background-color:#FFFFFF; color: black; height: 60px; width: 100px">
-                                    COMMENTS :
-                                </td>
-                                <td style="background-color:#FFFFFF; color: black; height: 60px">
-                                    <p t-field="doc.delivery_note"/>
-                                </td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <td style="background-color:#FFFFFF; color: black" colspan="2">
+                                        Date : ................................................
+                                    </td>
+                                </tr>
+                                <tr style="border-top: 1px solid black; font-size: 11px !important;">
+                                    <td style="background-color:#FFFFFF; color: black; height: 60px; width: 100px">
+                                        COMMENTS :
+                                    </td>
+                                    <td style="background-color:#FFFFFF; color: black; height: 60px">
+                                        <p t-field="doc.delivery_note"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4">
+                            <table class="table table-sm">
+                                <!-- Tax totals -->
+                                <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                <t t-call="account.document_tax_totals"/>
+                            </table>
+                        </div>
+
                     </div>
-                    <div class="col-4">
+                </div>
+            </t>
+            <t t-else="">
+                <div id="total" class="row" name="total">
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
                         <table class="table table-sm">
                             <!-- Tax totals -->
                             <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
                             <t t-call="account.document_tax_totals"/>
                         </table>
                     </div>
-
                 </div>
-            </div>
+
+            </t>
         </xpath>
         <xpath expr="//p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
         </xpath>
@@ -79,7 +93,8 @@
         </xpath>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
-            <div t-if="doc.user_id.name and (not (env.context.get('proforma', False) or is_pro_forma)" class="col-auto col-3 mw-100 mb-2">
+            <div t-if="doc.user_id.name and (not (env.context.get('proforma', False) or is_pro_forma)"
+                 class="col-auto col-3 mw-100 mb-2">
                 <strong>Salesperson:</strong>
                 <p class="m-0" t-field="doc.user_id"/>
             </div>
