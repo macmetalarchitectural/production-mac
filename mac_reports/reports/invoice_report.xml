@@ -24,6 +24,16 @@
             </div>
         </xpath>
         <xpath expr="//div[@id='qrcode']" position="after">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
