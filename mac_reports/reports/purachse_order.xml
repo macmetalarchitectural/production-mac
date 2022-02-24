@@ -7,29 +7,29 @@
                 <p t-field="o.origin" class="m-0"/>
             </div>
         </xpath>
-        <xpath expr="//t[@t-set='address']" position="replace">
-            <t t-if="o.dest_address_id">
-                <t t-set="address">
-                    <strong>Shipping address:</strong>
-                    <div t-if="o.dest_address_id">
-                        <div t-field="o.dest_address_id"
-                             t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'
-                             name="purchase_shipping_address"/>
-                    </div>
+<!--        <xpath expr="//t[@t-set='address']" position="replace">-->
+<!--            <t t-if="o.dest_address_id">-->
+<!--                <t t-set="address">-->
+<!--                    <strong>Shipping address:</strong>-->
+<!--                    <div t-if="o.dest_address_id">-->
+<!--                        <div t-field="o.dest_address_id"-->
+<!--                             t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'-->
+<!--                             name="purchase_shipping_address"/>-->
+<!--                    </div>-->
 
-                </t>
-            </t>
-        </xpath>
-        <xpath expr="//t[@t-set='information_block']" position="replace">
-            <t t-set="information_block">
-                <strong>Supplier:</strong>
-                <div t-field="o.partner_id"
-                     t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
-                    <span t-field="o.partner_id.vat"/>
-                </p>
-            </t>
-        </xpath>
+<!--                </t>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//t[@t-set='information_block']" position="replace">-->
+<!--            <t t-set="information_block">-->
+<!--                <strong>Supplier:</strong>-->
+<!--                <div t-field="o.partner_id"-->
+<!--                     t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
+<!--                <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:-->
+<!--                    <span t-field="o.partner_id.vat"/>-->
+<!--                </p>-->
+<!--            </t>-->
+<!--        </xpath>-->
 
 
     </template>
