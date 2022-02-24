@@ -24,7 +24,7 @@
             </div>
         </xpath>
         <xpath expr="//div[@id='qrcode']" position="after">
-           
+
             <br/>
             <br/>
             <br/>
