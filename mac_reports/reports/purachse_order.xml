@@ -20,7 +20,7 @@
                 </t>
             </t>
         </xpath>
-        <xpath expr="//t[@t-set='address']" position="replace">
+        <xpath expr="//t[@t-set='information_block']" position="replace">
             <t t-set="information_block">
                 <strong>Supplier:</strong>
                 <div t-field="o.partner_id"
