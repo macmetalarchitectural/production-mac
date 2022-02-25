@@ -46,4 +46,26 @@
             </t>
         </xpath>
     </template>
+    <template id="report_purchase_quotation_mac" inherit_id="e3k_default_reports.report_purchase_quotation_baleco">
+        <xpath expr="//h2" position="after">
+            <div id="informations" class="row mt32 mb32">
+                <div t-if="o.date_approve" class="col-3 bm-2">
+                    <strong>Order:</strong>
+                    <p t-field="o.date_approve" class="m-0"/>
+                </div>
+                <div t-if="o.partner_ref" class="col-3 bm-2">
+                    <strong>Reference:</strong>
+                    <p t-field="o.partner_ref" class="m-0"/>
+                </div>
+                <div t-if="o.origin" class="col-3 bm-2">
+                <strong>Origin:</strong>
+                <p t-field="o.origin" class="m-0"/>
+            </div>
+
+            </div>
+
+        </xpath>
+
+    </template>
+
 </odoo>
