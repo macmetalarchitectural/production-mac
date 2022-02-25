@@ -46,7 +46,7 @@
             </t>
         </xpath>
     </template>
-     <template id="report_purchase_mac2" inherit_id="purchase_stock.report_purchasequotation_document">
+     <template id="report_purchase_quotation_mac2" inherit_id="purchase_stock.report_purchasequotation_document">
         <xpath expr="//t[@t-else='']//t[@t-set='information_block']" position="replace">
             <t t-set="information_block">
                 <strong>Supplier:</strong>
