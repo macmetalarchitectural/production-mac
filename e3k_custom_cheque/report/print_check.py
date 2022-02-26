@@ -54,46 +54,28 @@ class report_print_check(models.Model):
 
     def _check_build_page_info(self, i, p):
         page = super(report_print_check, self)._check_build_page_info(i, p)
-        payment_date_1 = fields.Date.from_string(self.date)
-        payment_date = datetime.strftime(payment_date_1, str(self.company_id.date_format))
-        date_format_text = self.company_id.date_format
-        date_format_text = re.sub(r'[^a-zA-Z ]', "", date_format_text)
-        date_format_text = date_format_text.upper()
-        if 'fr_' in self.partner_id.lang:
-            date_format_text = date_format_text.replace('D', 'J' * 2)
-            date_format_text = date_format_text.replace('M', 'M' * 2)
-            date_format_text = date_format_text.replace('Y', 'A' * 4)
-        if 'fr_' not in self.partner_id.lang:
-            date_format_text = date_format_text.replace('D', 'D' * 2)
-            date_format_text = date_format_text.replace('M', 'M' * 2)
-            date_format_text = date_format_text.replace('Y', 'Y' * 4)
-
-        payment_date_str = ''
-        for lettre in payment_date:
-            payment_date_str += lettre + ' '
-
-        if len(payment_date_str) and (payment_date_str[len(payment_date_str) - 1] == ' '):
-            payment_date_str = payment_date_str[0:len(payment_date_str) - 1]
-            if self.company_id.is_currency:
-                amount = formatLang(self.env, self.amount, currency_obj=self.currency_id) if i == 0 else 'VOID'
-            else:
-                amount = formatLang(self.env, self.amount, currency_obj=False) if i == 0 else 'VOID'
-
+        if len(str(self.date.month)) == 1:
+            month = '0' + str(self.date.month)
+        else:
+            month = str(self.date.month)
+        if len(str(self.date.day)) == 1:
+            day = '0' + str(self.date.day)
+        else:
+            day = str(self.date.day)
+        if 'en' in self.partner_id.lang:
+            payment_date_2 = month + day + str(self.date.year)
+        else:
+            payment_date_2 = day + month + str(self.date.year)
         page.update({
             'payment_amount_2': formatLang(self.env, self.amount, currency_obj=self.currency_id) if i == 0 else 'VOID',
-            'amount': amount,
             'company_id': self.company_id,
             'partner_street1': self.partner_id.street,
             'partner_street2': self.partner_id.street2,
             'partner_city': self.partner_id.city,
             'partner_zip': self.partner_id.zip,
             'partner_state': self.partner_id.state_id and self.partner_id.state_id.name or False,
-            'payment_date': payment_date,
-            'payment_date_2': payment_date_str,
-            'payment_date_canada': format_date(self.env, self.date, str(self.company_id.date_format)),
-            'partner_lang': self.partner_id.lang,
-            'date_format_text': date_format_text,
             'check_number': self.check_number,
+            'payment_date': payment_date_2,
         })
         return page
 
