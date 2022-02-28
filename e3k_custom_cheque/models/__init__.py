@@ -2,3 +2,4 @@
 
 from . import company
 from . import currency
+from . import journal

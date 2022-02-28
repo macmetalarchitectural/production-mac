@@ -62,10 +62,14 @@ class report_print_check(models.Model):
             day = '0' + str(self.date.day)
         else:
             day = str(self.date.day)
-        if 'en' in self.partner_id.lang:
+        if self.journal_id.date_format == 'en_format':
             payment_date_2 = month + day + str(self.date.year)
         else:
             payment_date_2 = day + month + str(self.date.year)
+        # if 'en' in self.partner_id.lang:
+        #     payment_date_2 = month + day + str(self.date.year)
+        # else:
+        #     payment_date_2 = day + month + str(self.date.year)
         page.update({
             'payment_amount_2': formatLang(self.env, self.amount, currency_obj=self.currency_id) if i == 0 else 'VOID',
             'company_id': self.company_id,
