@@ -9,7 +9,7 @@ class AccountCurrency(models.Model):
 
     date_format = fields.Selection([('en_format', 'mm/dd/YYYY'), ('fr_format', 'dd/mm/YYYY')],
                                    string='Checks date format', default='fr_format')
-    date_format_str = fields.Char('Format custom')
+    date_format_str = fields.Char('Format custom', default='dd/mm/YYYY')
 
     @api.onchange('date_format')
     def onchange_date_format(self):
