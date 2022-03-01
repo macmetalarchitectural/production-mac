@@ -309,3 +309,9 @@ msgstr "Imprimer numéro du chèque"
 #: model:ir.model.fields.selection,name:e3k_custom_cheque.selection__res_company__check_background__show
 msgid "Show check background"
 msgstr "Afficher le fond de chèque"
+
+#. module: e3k_custom_cheque
+#: code:addons/e3k_custom_cheque/models/journal.py:137
+#, python-format
+msgid "Please respect the date format example dd/mm/YYYY"
+msgstr "Veuillez respecter le format de la date exemple dd/mm/YYYY"
