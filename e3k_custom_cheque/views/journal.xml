@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_account_journal_form_inherited_date_format" model="ir.ui.view">
+            <field name="name">account.journal.form.inherited.date.format</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account_check_printing.view_account_journal_form_inherited" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@id='outbound_payment_settings']//group[@name='outgoing_payment']/group" position="inside">
+                    <field name="date_format"/>
+                    <field name="date_format_str"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

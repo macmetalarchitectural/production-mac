@@ -12,7 +12,6 @@
                             <field name="check_inv_line_per_page"/>
                             <separator/>
                             <separator/>
-                            <field name="date_format"/>
                             <field name="payment_date_top"/>
                             <field name="payment_date_left"/>
                             <field name="is_currency"/>

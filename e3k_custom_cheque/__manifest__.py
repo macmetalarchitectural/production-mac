@@ -5,9 +5,11 @@
     'description': 'Custom Payment Cheque',
     'version': '15.0.1',
     'category': 'account',
+    'author': "E3k Solutions",
     'depends': ['account', 'l10n_ca_check_printing'],
     'data': [
         'views/company.xml',
+        'views/journal.xml',
         'report/print_check_top.xml',
         'report/report_payment_receipt_templates.xml',
     ],
