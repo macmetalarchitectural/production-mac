@@ -112,12 +112,18 @@
                         <t t-foreach="o.move_line_ids_without_package" t-as="ml">
                             <tr>
                                 <td>
-                                    <span t-field="ml.product_id.display_name"/>
-                                    <br/>
-                                    <span t-field="ml.product_id.description_picking"/>
+                                    <t t-if="ml.move_id.sale_line_id">
+                                        <span t-field="ml.move_id.sale_line_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="ml.product_id.display_name"/>
+                                        <br/>
+                                        <span t-field="ml.product_id.description_picking"/>
+
+                                    </t>
                                 </td>
                                 <td>
-                                        <span t-esc="ml.get_po()"/>
+                                    <span t-esc="ml.get_po()"/>
                                 </td>
                                 <td>
                                     <span t-field="ml.move_id.product_uom_qty"/>
@@ -168,10 +174,16 @@
                            t-value="any(move_line.product_id and move_line.product_id.sudo().barcode  for move_line in o.move_ids_without_package)"/>
                         <t t-foreach="o.move_ids_without_package" t-as="ml">
                             <tr>
-                                <td>
-                                    <span t-field="ml.product_id.display_name"/>
-                                    <br/>
-                                    <span t-field="ml.product_id.description_picking"/>
+                                 <td>
+                                    <t t-if="ml.sale_line_id">
+                                        <span t-field="ml.sale_line_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="ml.product_id.display_name"/>
+                                        <br/>
+                                        <span t-field="ml.product_id.description_picking"/>
+
+                                    </t>
                                 </td>
                                 <td>
                                     <span t-esc="ml.get_po()"/>
