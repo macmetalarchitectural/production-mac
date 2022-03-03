@@ -140,6 +140,8 @@ font-weight: bold" colspan="3">
         </xpath>
         <xpath expr="//div[@t-if='doc.commitment_date']" position="replace">
         </xpath>
+        <xpath expr="//p[@t-field='doc.note']" position="replace">
+        </xpath>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
             <div t-if="doc.user_id.name"
