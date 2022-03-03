@@ -7,6 +7,12 @@
     </template>
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
            <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
