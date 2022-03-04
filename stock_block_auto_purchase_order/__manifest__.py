@@ -15,5 +15,6 @@
   "data": [
     "views/product_template.xml",
     "views/purchase_order.xml",
+    "views/res_partner.xml",
   ],
 }
