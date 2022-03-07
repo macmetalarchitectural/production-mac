@@ -15,9 +15,7 @@ class StockMove(models.Model):
         for rec in self:
             purchases = " "
             for purchase in rec.picking_id.sale_id._get_purchase_orders():
-                _logger.info(purchase.order_line.mapped('product_id'))
                 if rec.product_id in purchase.order_line.mapped('product_id'):
-                    _logger.info(rec.product_id)
                     purchases = purchases + " " + purchase.name
             return purchases
 
@@ -31,6 +29,12 @@ class StockMoveLine(models.Model):
             for purchase in rec.move_id.picking_id.sale_id._get_purchase_orders():
                 _logger.info(purchase.order_line.mapped('product_id'))
                 if rec.product_id in purchase.order_line.mapped('product_id'):
-                    _logger.info(rec.product_id)
                     purchases = purchases + " " + purchase.name
             return purchases
+
+    def _get_aggregated_product_quantities(move_line=False, move=False):
+
+        res = super(StockMoveLine, self)._get_aggregated_product_quantities(move_line,move)
+        line_key, name, description, uom = get_aggregated_properties(move_line=self)
+        res[line_key]['description'] = self.move_id.sale_line_id.name
+        return res
