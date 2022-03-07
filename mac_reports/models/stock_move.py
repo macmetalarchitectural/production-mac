@@ -39,6 +39,7 @@ class StockMoveLine(models.Model):
         if self.move_id.sale_line_id:
             line_key, name, description, uom = get_aggregated_properties(move_line=self)
             res[line_key]['description'] = self.move_id.sale_line_id.name
+            res[line_key]['sale_line_id'] = self.move_id.sale_line_id
         return res
 
     def get_po(self):
