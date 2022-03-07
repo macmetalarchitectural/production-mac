@@ -229,19 +229,20 @@ font-weight: bold" colspan="3">
     <template id="stock_report_delivery_aggregated_move_mac"
               inherit_id="stock.stock_report_delivery_aggregated_move_lines">
         <xpath expr="//tr/td[1]" position="replace">
-<!--            <t t-if="line.sale_line_id">-->
-<!--                <span t-esc="line.sale_line_id.name"/>-->
 
-<!--            </t>-->
-<!--            <t t-else="">-->
+            <t t-if="line.sale_line_id">
+                <p t-if="aggregated_lines[line]['description']">
+                    <span t-esc="aggregated_lines[line]['description']"/>
+                </p>
+            </t>
+            <t t-else="">
                 <td>
-                    <span t-esc="line"/>
                     <span t-esc="aggregated_lines[line]['name']"/>
                     <p t-if="aggregated_lines[line]['description']">
                         <span t-esc="aggregated_lines[line]['description']"/>
                     </p>
                 </td>
-<!--            </t>-->
+            </t>
         </xpath>
         <xpath expr="//tr/td[3]" position="after">
             <td>
