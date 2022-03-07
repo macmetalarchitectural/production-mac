@@ -230,10 +230,13 @@ font-weight: bold" colspan="3">
               inherit_id="stock.stock_report_delivery_aggregated_move_lines">
         <xpath expr="//tr/td[1]" position="replace">
 
-            <t  t-if="aggregated_lines[line]['sale_line_id']">
-                <p t-if="aggregated_lines[line]['description']">
-                    <span t-esc="aggregated_lines[line]['description']"/>
-                </p>
+            <t t-if="aggregated_lines[line]['sale_line_id']">
+                <td>
+                    <p t-if="aggregated_lines[line]['description']">
+                        <span t-esc="aggregated_lines[line]['description']"/>
+                    </p>
+                </td>
+
             </t>
             <t t-else="">
                 <td>
