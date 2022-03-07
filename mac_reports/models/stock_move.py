@@ -23,6 +23,13 @@ class StockMove(models.Model):
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
 
+    def _get_aggregated_product_quantities(self, **kwargs):
+
+        res = super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
+        line_key, name, description, uom = get_aggregated_properties(move_line=self)
+        res[line_key]['description'] = self.move_id.sale_line_id.name
+        return res
+
     def get_po(self):
         for rec in self:
             purchases = " "
@@ -32,9 +39,4 @@ class StockMoveLine(models.Model):
                     purchases = purchases + " " + purchase.name
             return purchases
 
-    def _get_aggregated_product_quantities(move_line=False, move=False):
 
-        res = super(StockMoveLine, self)._get_aggregated_product_quantities(move_line,move)
-        line_key, name, description, uom = get_aggregated_properties(move_line=self)
-        res[line_key]['description'] = self.move_id.sale_line_id.name
-        return res
