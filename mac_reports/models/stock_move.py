@@ -36,10 +36,15 @@ class StockMoveLine(models.Model):
             return (line_key, name, description, uom)
 
         res = super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
-        if self.move_id.sale_line_id:
-            line_key, name, description, uom = get_aggregated_properties(move_line=self)
-            res[line_key]['description'] = self.move_id.sale_line_id.name
-            res[line_key]['sale_line_id'] = self.move_id.sale_line_id
+        for rec in self:
+            line_key, name, description, uom = get_aggregated_properties(move_line=rec)
+
+            if self.move_id.sale_line_id:
+
+                res[line_key]['description'] = rec.move_id.sale_line_id.name
+                res[line_key]['sale_line_id'] = rec.move_id.sale_line_id
+            else:
+                res[line_key]['sale_line_id'] = False
         return res
 
     def get_po(self):
