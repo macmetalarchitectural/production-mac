@@ -9,7 +9,7 @@
     'website': "http://www.e3k.co",
     'category': 'Sale',
     'version': '15.1',
-    'depends': ['e3k_default_reports'],
+    'depends': ['e3k_default_reports', 'account'],
     'data': [
         'reports/sale_report.xml',
         'reports/invoice_report.xml',
