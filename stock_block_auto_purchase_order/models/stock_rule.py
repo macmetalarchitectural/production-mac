@@ -1,7 +1,7 @@
 # © 2018 - today Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models
+from odoo import models, fields
 
 class StockRule(models.Model):
   _inherit = "stock.rule"
@@ -9,5 +9,5 @@ class StockRule(models.Model):
   def _make_po_get_domain(self, company_id, values, partner):
     domain = super(StockRule, self)._make_po_get_domain(company_id, values, partner)
     if partner.block_auto_purchase_order:
-      return domain + (("block_auto_purchase_order", "=", True),)
+      return domain + (("block_auto_purchase_order", "=", True), ("write_date", "=", fields.Datetime.now()),)
     return domain + (("block_auto_purchase_order", "=", False),)
