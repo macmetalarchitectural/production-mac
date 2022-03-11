@@ -13,7 +13,7 @@
       </xpath>
 
       <xpath expr="//main[@id='sign-dialog']/p/ul" position="after">
-        <label>Customer Reference</label> : <span t-field="sale_order.client_order_ref"/>
+        <label>Customer Reference:</label> <span t-field="sale_order.client_order_ref"/>
       </xpath>
 
     </template>

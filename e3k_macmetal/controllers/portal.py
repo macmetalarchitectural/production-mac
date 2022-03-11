@@ -2,6 +2,8 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import binascii
+from datetime import datetime, timedelta
+from pytz import timezone, UTC
 
 from odoo import fields, http, SUPERUSER_ID, _
 from odoo.exceptions import AccessError, MissingError, ValidationError
@@ -29,11 +31,19 @@ class CustomerPortal(portal.CustomerPortal):
       return {'error': _('The order is not in a state requiring customer signature.')}
     if not signature:
       return {'error': _('Signature is missing.')}
+    if not name:
+      return {'error': _('Name is missing.')}
+    if not delivery:
+      return {'error': _('Delivery is missing.')}
+
+    tz = request.env.user.tz
+    naive = datetime.strptime(delivery, "%Y-%m-%d %H:%M:%S")
+    naive_delivery = timezone(tz).localize(naive).astimezone(UTC)
 
     try:
       order_sudo.write({
-        'commitment_date': delivery,
-        'customer_delivery_date': delivery,
+        'commitment_date': naive_delivery.strftime("%Y-%m-%d %H:%M:%S"),
+        'customer_delivery_date': naive_delivery.strftime("%Y-%m-%d %H:%M:%S"),
         'signed_by': name,
         'signed_on': fields.Datetime.now(),
         'signature': signature,
