@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="email_template_payment_notification" model="mail.template">
+        <field name="name">Payment Notification</field>
+        <field name="email_from">{{object.write_uid.email_formatted}}</field>
+        <field name="subject">Electronic payment</field>
+        <field name="partner_to">{{object.notif_partner.id}}</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">{{object.partner_id.lang}}</field>
+        <field name="body_html" type="html">
+
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    The purpose of this communication is to inform you that a transfer has been made to your account in the amount of:<strong t-out="format_amount(object.amount, object.currency_id) or ''" contenteditable="false"> </strong>
+                    <br/>
+                    which pays the following invoices:
+                    </p>
+                    <br/>
+
+
+                <table style="width:100%;border-top:1px solid #000;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center; white-space:nowrap;">Numéro</th>
+                            <th style="text-align:center; white-space:nowrap;" >Date de facturation</th>
+                            <th style="text-align:center; white-space:nowrap;">Montant</th>
+                            <th style="text-align:center; white-space:nowrap;">Escompte</th>
+                            <th style="text-align:center; white-space:nowrap;">Net</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="object.payment_partial_ids" t-as="line">
+                            <tr>
+                                <td style="text-align:center; white-space:nowrap;" t-out="line.invoice_id.ref or ''"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="line.invoice_id.invoice_date"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.invoice_id.amount_total, object.currency_id) or ''"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.done_discount_amount, object.currency_id) or ''"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.partial_payment, object.currency_id) or ''"></td>
+                            </tr>
+
+                        </t>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+</field>
+    </record>
+</odoo>
+ 
+
