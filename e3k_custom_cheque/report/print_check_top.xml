@@ -246,7 +246,7 @@
                 </div>
                 <div t-attf-style="position: absolute; top: {{ page['company_id'].amount1_top }}px; left: {{ page['company_id'].amount1_left }}px;">
                     <div class="ckca_amount_in_word"
-                         t-attf-style="font-size:  {{ page['company_id'].amount_in_world_font_size }}px;width:700px;">
+                         t-attf-style="font-size:  {{ page['company_id'].amount_in_world_font_size }}px;width:{{ page['company_id'].amount_in_world_width }}px;">
 
                         ***
                         <span t-esc="page['amount_in_word'].replace('*','')"/>

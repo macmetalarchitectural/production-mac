@@ -19,7 +19,6 @@ class AccountPayment(models.Model):
                                            compute='_compute_payment_amount_total', track_visibility='always')
     difference_amount = fields.Monetary(string='Difference Amount', readonly=True,
                                         compute='_compute_payment_difference_amount', track_visibility='always')
-    check_amount_in_words = fields.Char(string="Amount in Words", compute='_compute_payment_difference_amount')
     discount_move_id = fields.Many2one('account.move', string='Discount Entries', store=True, readonly=True)
     child_partner_ids = fields.Many2many('res.partner', 'payment_child_partner_rel', 'payment_id', 'child_partner_id',
                                          string='Partner Contacts')
@@ -133,20 +132,20 @@ class AccountPayment(models.Model):
             else:
                 payment.difference_amount = 0.0
 
-            if payment.amount:
-                # remplacer lang=payment.partner_id.lang or 'en' ##
-                check_amount_in_words = payment.currency_id.with_context(
-                    lang=payment.partner_id.lang or 'es_ES').amount_to_text(
-                    math.floor(payment.amount))
-
-                check_amount_in_words = check_amount_in_words.replace(' and Zero Cent', '')  # Ugh
-                decimals = payment.amount % 1
-                if decimals >= 10 ** -2:
-                    check_amount_in_words += _(' and %s/100') % str(
-                        int(round(float_round(decimals * 100, precision_rounding=1))))
-                payment.check_amount_in_words = check_amount_in_words
-            else:
-                payment.check_amount_in_words = 'Zero'
+            # if payment.amount:
+            #     # remplacer lang=payment.partner_id.lang or 'en' ##
+            #     check_amount_in_words = payment.currency_id.with_context(
+            #         lang=payment.partner_id.lang or 'es_ES').amount_to_text(
+            #         math.floor(payment.amount))
+            #
+            #     check_amount_in_words = check_amount_in_words.replace(' and Zero Cent', '')  # Ugh
+            #     decimals = payment.amount % 1
+            #     if decimals >= 10 ** -2:
+            #         check_amount_in_words += _(' and %s/100') % str(
+            #             int(round(float_round(decimals * 100, precision_rounding=1))))
+            #     payment.check_amount_in_words = check_amount_in_words
+            # else:
+            #     payment.check_amount_in_words = 'Zero'
 
     @api.onchange('partner_type')
     def _onchange_partner_type(self):
