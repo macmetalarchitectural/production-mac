@@ -5,6 +5,7 @@ from odoo.tools.misc import formatLang, format_date
 from datetime import datetime
 import re
 import logging
+import math
 
 INV_LINES_PER_STUB = 9
 
@@ -35,7 +36,7 @@ class report_print_check(models.Model):
         for pay in self:
             if pay.currency_id:
                 pay.check_amount_in_words = pay.currency_id.with_context(
-                    lang=pay.partner_id.lang or 'es_ES').amount_to_text(pay.amount)
+                    lang=pay.partner_id.lang or 'fr_FR').amount_to_text(math.floor(pay.amount))
             else:
                 pay.check_amount_in_words = False
 
