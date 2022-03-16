@@ -32,7 +32,7 @@ class ResCompany(models.Model):
     amount2_right = fields.Integer('65: Payment amount 2 : Right distance', default=90)
 
     amount_in_world_font_size = fields.Integer('80: Amount in world font size', default=20)
-    amount_in_world_width = fields.Integer('80: Amount in world width', default=700)
+    amount_in_world_width = fields.Integer('80: Montant en lettres taille', default=700)
 
     address_top = fields.Integer('70: Address : Top distance', default=175)
     address_left = fields.Integer('75: Address : Left distance', default=100)
