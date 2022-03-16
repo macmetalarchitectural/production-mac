@@ -34,7 +34,8 @@ class report_print_check(models.Model):
     def _compute_check_amount_in_words(self):
         for pay in self:
             if pay.currency_id:
-                pay.check_amount_in_words = pay.currency_id.amount_to_text(pay.amount, pay.partner_id.lang)
+                pay.check_amount_in_words = pay.currency_id.with_context(
+                    lang=pay.partner_id.lang or 'es_ES').amount_to_text(pay.amount)
             else:
                 pay.check_amount_in_words = False
 
