@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Mac Reports",
+    'name': "E3k Mac Reports",
     'summary': """
         """,
     'description': """
