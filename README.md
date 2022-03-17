@@ -1,6 +1,7 @@
 #   M.A.C Métal Architectural Inc. (macmetalarchitectural/production-mac)
 
 ## Branches :
+## Branches :
 - SH Production Branch  : **_production_**
 - Sh Staging  (You can only have three staging branches):
    - 1st staging Brnach :  **_sandbox_**
