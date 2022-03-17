@@ -5,7 +5,6 @@ from odoo.tools.misc import formatLang, format_date
 from datetime import datetime
 import re
 import logging
-import math
 
 INV_LINES_PER_STUB = 9
 
