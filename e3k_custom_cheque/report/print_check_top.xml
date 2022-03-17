@@ -257,7 +257,7 @@
 
                 </div>
 
-                <div t-attf-style="position: absolute; text-align: right; top: {{ page['company_id'].amount2_top }}px; right: {{ page['company_id'].amount2_right }}px;">
+                <div t-attf-style="position: absolute; text-align: right; top: {{ page['company_id'].amount2_top }}px; right: {{ page['company_id'].amount2_right }}px;width:300px;">
                     <span t-esc="page['amount']"/>
                 </div>
 
