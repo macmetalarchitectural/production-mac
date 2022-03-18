@@ -91,6 +91,7 @@ font-weight: bold" colspan="3">
             <t t-set="lang" t-value="o.partner_id.lang"/>
         </xpath>
     </template>
+<!--    payment2-->
     <template id="report_invoice_mac_with_payments2" inherit_id="account.report_invoice_with_payments">
         <xpath expr="//t[@t-set='lang']" position="replace">
             <t t-set="lang" t-value="o.partner_id.lang"/>

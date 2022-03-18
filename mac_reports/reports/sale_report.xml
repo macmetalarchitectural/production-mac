@@ -9,22 +9,14 @@
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-           <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
+            <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
 font-weight: bold" colspan="3">
                         Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des
                         frais
                         supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
-                    </td>
-                </tr>
-                <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;"
-                        colspan="3">
+                        <br/>
                         MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
                         commandes
                         qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
@@ -47,21 +39,12 @@ font-weight: bold" colspan="3">
                         d’intérêts
 
                         et de frais supplémentaires causés par des délais prolongés de livraison.
-                    </td>
-                </tr>
-                <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;"
-                        colspan="3">
-
+                        <br/>
                         AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
-                    </td>
-                </tr>
-                <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; border-top: 1px solid black;"
-                        colspan="3">
-
+                        <br/>
                         CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA
                         FABRICATION.
+
                     </td>
                 </tr>
             </table>
