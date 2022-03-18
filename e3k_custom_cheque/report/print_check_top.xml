@@ -77,7 +77,7 @@
                     <br/>
                     <span t-esc="page['payment_date']"
                           t-attf-style=" position: absolute; top: {{ page['company_id'].table_2_payment_date_top }}px;
-				            left: {{ page['company_id'].table_2_payment_date_left }}px;"/>
+				            left: {{ page['company_id'].table_2_payment_date_left }}px;width: 170px;"/>
                 </div>
                 <div class="col-xs-6 text-right" t-if="page['company_id'].print_check_number">
                     <br/>
