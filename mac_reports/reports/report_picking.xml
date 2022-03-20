@@ -9,12 +9,12 @@
                 <h1 t-field="o.name" class="mt0 float-left"/>
             </t>
         </xpath>
-<!--        test-->
+        <!--        test-->
         <xpath expr="//div[@name='div_origin']" position="replace">
             <div t-if="o.origin" class="col-auto" name="div_origin">
                 <strong>Order:</strong>
 
-                    <p t-field="o.name"/>
+                <p t-field="o.name"/>
 
             </div>
         </xpath>
@@ -303,6 +303,17 @@
                 </tr>
             </table>
         </xpath>
+
+    </template>
+
+    <template id="report_picking_mac2" inherit_id="delivery.report_shipping2">
+        <xpath expr="//div[@t-if='o.picking_type_id.code == 'outgoing' and o.carrier_id']" position="replace">
+            <div t-if="o.carrier_id" class="col-auto">
+                <strong>Carrier:</strong>
+                <p t-field="o.carrier_id"/>
+            </div>
+        </xpath>
+
 
     </template>
 </odoo>
