@@ -105,11 +105,11 @@
                         <th>
                             <strong>Prepared Quantity</strong>
                         </th>
-                        <th name="th_from" t-if="o.picking_type_id.code in ['incoming', 'internal']" align="left"
+                        <th name="th_from" t-if="o.picking_type_id.code not in ['incoming', 'internal']" align="left"
                             groups="stock.group_stock_multi_locations">
                             <strong>From</strong>
                         </th>
-                        <th name="th_to" t-if="o.picking_type_id.code  in ['incoming', 'internal']"
+                        <th name="th_to" t-if="o.picking_type_id.code not in ['incoming', 'internal']"
                             groups="stock.group_stock_multi_locations">
                             <strong>To</strong>
                         </th>
@@ -153,14 +153,14 @@
                                 <td>
 
                                 </td>
-                                <td t-if="o.picking_type_id.code in ['incoming',  'internal']"
+                                <td t-if="o.picking_type_id.code not in ['incoming',  'internal']"
                                     groups="stock.group_stock_multi_locations">
                                     <span t-esc="ml.location_id.display_name"/>
                                     <t t-if="ml.package_id">
                                         <span t-field="ml.package_id"/>
                                     </t>
                                 </td>
-                                <td t-if="o.picking_type_id.code in ['incoming', 'internal']"
+                                <td t-if="o.picking_type_id.code not in ['incoming', 'internal']"
                                     groups="stock.group_stock_multi_locations">
                                     <div>
                                         <span t-field="ml.location_dest_id"/>
