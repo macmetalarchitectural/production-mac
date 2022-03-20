@@ -13,6 +13,7 @@
                 </h2>
             </t>
         </xpath>
+<!--        test-->
         <xpath expr="//div[@name='div_origin']" position="replace">
             <div t-if="o.origin" class="col-auto" name="div_origin">
                 <strong>Order:</strong>
