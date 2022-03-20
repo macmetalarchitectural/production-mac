@@ -236,11 +236,11 @@ font-weight: bold" colspan="3">
 
             <t t-if="aggregated_lines[line]['sale_line_id']">
                 <td>
-                    <p t-if="aggregated_lines[line]['description']">
-                        <span t-esc="aggregated_lines[line]['description']"/>
-                    </p>
-                </td>
+                    <t t-if="aggregated_lines[line]['description']">
+                        <span t-field="aggregated_lines[line]['sale_line_id'].name"/>
 
+                    </t>
+                </td>
             </t>
             <t t-else="">
                 <td>
