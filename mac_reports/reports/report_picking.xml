@@ -306,17 +306,11 @@
 
     </template>
 
-    <template id="delivery.report_shipping2">
-        <xpath expr="//div[@name='div_sched_date']" position="after">
+    <template id="report_picking_mac2" inherit_id="delivery.report_shipping2">
+        <xpath expr="//div[5]" position="replace">
             <div t-if="o.carrier_id" class="col-auto">
                 <strong>Carrier:</strong>
                 <p t-field="o.carrier_id"/>
-            </div>
-            <div t-if="o.weight" class="col-auto">
-                <strong>Weight:</strong>
-                <br/>
-                <span t-field="o.weight"/>
-                <span t-field="o.weight_uom_name"/>
             </div>
         </xpath>
 
