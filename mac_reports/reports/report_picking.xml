@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_picking_mac" inherit_id="stock.report_picking">
+        <xpath expr="//h1" position="replace">
+            <t t-if="o.picking_type_id.code=='outgoing' and o.origin ">
+                <h1 t-field="o.origin" class="mt0 float-left"/>
+            </t>
+            <t t-else="">
+                <h1 t-field="o.name" class="mt0 float-left"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[@name='div_origin']" position="replace">
+            <div t-if="o.origin" class="col-auto" name="div_origin">
+                <strong>Order:</strong>
+                <t t-if="o.picking_type_id.code=='outgoing'">
+
+                    <p t-field="o.name"/>
+                </t>
+                <t t-else="">
+
+                    <p t-field="o.origin"/>
+
+                </t>
+            </div>
+        </xpath>
         <xpath expr="//div[@name='div_sched_date']" position="after">
             <div class="col-auto" name="div_sched_date">
                 <strong>Order Date:</strong>
@@ -174,7 +196,7 @@
                            t-value="any(move_line.product_id and move_line.product_id.sudo().barcode  for move_line in o.move_ids_without_package)"/>
                         <t t-foreach="o.move_ids_without_package" t-as="ml">
                             <tr>
-                                 <td>
+                                <td>
                                     <t t-if="ml.sale_line_id">
                                         <span t-field="ml.sale_line_id.name"/>
                                     </t>

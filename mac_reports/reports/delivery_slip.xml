@@ -227,8 +227,6 @@ font-weight: bold" colspan="3">
                 </tr>
             </table>
         </xpath>
-
-
     </template>
     <template id="stock_report_delivery_aggregated_move_mac"
               inherit_id="stock.stock_report_delivery_aggregated_move_lines">
