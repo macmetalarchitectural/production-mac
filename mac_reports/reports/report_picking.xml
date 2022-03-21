@@ -76,7 +76,7 @@
         <xpath expr="//p[@t-field='o.note']" position="replace">
 
         </xpath>
-        
+
 
         <xpath expr="//table[1]" position="replace">
             <table class="table table-sm" t-if="o.move_ids_without_package">
@@ -266,6 +266,8 @@
             </table>
         </xpath>
     </template>
+    <xpath expr="//p[1]" position="replace"/>
+
     <template id="report_picking_mac2" inherit_id="delivery.report_shipping2">
         <xpath expr="//div[5]" position="replace">
             <div t-if="o.carrier_id" class="col-auto">
