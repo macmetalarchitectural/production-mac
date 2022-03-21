@@ -13,16 +13,16 @@
                 </h2>
             </t>
         </xpath>
-<!--        test-->
+        <!--        test-->
         <xpath expr="//div[@name='div_origin']" position="replace">
             <div t-if="o.origin" class="col-auto" name="div_origin">
-                <strong>Order:</strong>
-                <t t-if="o.picking_type_id.code=='outgoing'">
 
+                <t t-if="o.picking_type_id.code=='outgoing'">
+                    <strong>Delivery slip:</strong>
                     <p t-field="o.name"/>
                 </t>
                 <t t-else="">
-
+                    <strong>Order:</strong>
                     <p t-field="o.origin"/>
 
                 </t>
