@@ -76,9 +76,7 @@
         <xpath expr="//p[@t-field='o.note']" position="replace">
 
         </xpath>
-         <xpath expr="//p[@t-field='o.note']" position="replace">
-
-        </xpath>
+        
 
         <xpath expr="//table[1]" position="replace">
             <table class="table table-sm" t-if="o.move_ids_without_package">
