@@ -25,3 +25,8 @@ class PurchaseOrder(models.Model):
     auto_block = products.filtered("block_auto_purchase_order")
     if auto_block:
       self.block_auto_purchase_order = True
+
+  @api.onchange("partner_id")
+  def onchange_partner_set_automatic_block(self):
+    if self.partner_id.block_auto_purchase_order:
+      self.block_auto_purchase_order = True
