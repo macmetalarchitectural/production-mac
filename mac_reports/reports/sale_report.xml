@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="document_tax_totals_e3k" inherit_id="account.document_tax_totals">
-        <xpath expr="//tr[hasclass('o_total')]/td[2]" position="attributes">
-            <attribute name="style">width:150px;</attribute>
+        <xpath expr="//tr[hasclass('o_total')]" position="replace">
+            <tr class="border-black o_total">
+
+                <td class="text-left" colspan='2'>
+                    <strong>Total:</strong>
+                    <span t-esc="tax_totals['formatted_amount_total']"/>
+                </td>
+            </tr>
         </xpath>
     </template>
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
@@ -64,7 +70,7 @@ font-weight: bold" colspan="3">
                 <div id="total" class="row" name="total">
                     <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
 
-                        <div class="col-8">
+                        <div class="col-7">
                             <table class="table" style="font-weight: bold; !important">
                                 <tr>
                                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
@@ -95,7 +101,7 @@ font-weight: bold" colspan="3">
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <table class="table table-sm">
                                 <!-- Tax totals -->
                                 <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
