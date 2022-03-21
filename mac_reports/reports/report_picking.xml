@@ -11,7 +11,7 @@
         </xpath>
         <xpath expr="//div[@name='div_origin']" position="replace">
             <div t-if="o.origin" class="col-auto" name="div_origin">
-                <strong>Order:</strong>
+                <strong>Preparation order:</strong>
 
                 <p t-field="o.name"/>
 
@@ -105,14 +105,7 @@
                         <th>
                             <strong>Prepared Quantity</strong>
                         </th>
-                        <th name="th_from" t-if="o.picking_type_id.code not in ['incoming', 'internal']" align="left"
-                            groups="stock.group_stock_multi_locations">
-                            <strong>From</strong>
-                        </th>
-                        <th name="th_to" t-if="o.picking_type_id.code not in ['incoming', 'internal']"
-                            groups="stock.group_stock_multi_locations">
-                            <strong>To</strong>
-                        </th>
+
                         <th name="th_serial_number" class="text-center" t-if="has_serial_number">
                             <strong>Lot/Serial Number</strong>
                         </th>
@@ -153,22 +146,7 @@
                                 <td>
 
                                 </td>
-                                <td t-if="o.picking_type_id.code not in ['incoming',  'internal']"
-                                    groups="stock.group_stock_multi_locations">
-                                    <span t-esc="ml.location_id.display_name"/>
-                                    <t t-if="ml.package_id">
-                                        <span t-field="ml.package_id"/>
-                                    </t>
-                                </td>
-                                <td t-if="o.picking_type_id.code not in ['incoming', 'internal']"
-                                    groups="stock.group_stock_multi_locations">
-                                    <div>
-                                        <span t-field="ml.location_dest_id"/>
-                                        <t t-if="ml.result_package_id">
-                                            <span t-field="ml.result_package_id"/>
-                                        </t>
-                                    </div>
-                                </td>
+
                                 <td class=" text-center h6" t-if="has_serial_number">
                                     <div t-if="has_serial_number and (ml.lot_id or ml.lot_name)"
                                          t-esc="ml.lot_id.name or ml.lot_name"
