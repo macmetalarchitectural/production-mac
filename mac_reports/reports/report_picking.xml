@@ -76,6 +76,9 @@
         <xpath expr="//p[@t-field='o.note']" position="replace">
 
         </xpath>
+         <xpath expr="//p[@t-field='o.note']" position="replace">
+
+        </xpath>
 
         <xpath expr="//table[1]" position="replace">
             <table class="table table-sm" t-if="o.move_ids_without_package">
@@ -191,20 +194,6 @@
                                 </td>
                                 <td>
 
-                                </td>
-                                <td t-if="o.picking_type_id.code != 'incoming'"
-                                    groups="stock.group_stock_multi_locations">
-                                    <span t-esc="ml.location_id.display_name"/>
-                                    <!--                                    <t t-if="ml.package_id">-->
-                                    <!--                                        <span t-field="ml.package_id"/>-->
-                                    <!--                                    </t>-->
-                                </td>
-                                <td t-if="o.picking_type_id.code != 'outgoing'"
-                                    groups="stock.group_stock_multi_locations">
-                                    <div>
-                                        <span t-field="ml.location_dest_id"/>
-
-                                    </div>
                                 </td>
                                 <td class=" text-center h6" t-if="has_serial_number">
                                     <div t-if="has_serial_number and (ml.lot_id or ml.lot_name)"
