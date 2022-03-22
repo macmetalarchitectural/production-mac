@@ -33,7 +33,7 @@ NameAndSignature.include({
   _initDateTimePicker: function ($dateGroup) {
     var disabledDates = [];
     var dateType = "datetime";
-    var minDateData = moment(new Date().setDate(new Date().getDate() + 7)).format("YYYY-MM-DD");
+    var minDateData = moment(new Date().setDate(new Date().getDate() + 7));
     var maxDateData = "";
 
     var datetimepickerFormat = dateType === 'datetime' ? time.getLangDatetimeFormat() : time.getLangDateFormat();
