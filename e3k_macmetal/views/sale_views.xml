@@ -17,6 +17,10 @@
       <xpath expr="//tree/field[@name='name']" position="attributes">
         <attribute name="widget"></attribute>
       </xpath>
+
+      <xpath expr="//page[@name='customer_signature']" position="attributes">
+        <attribute name="groups"></attribute>
+      </xpath>
     </field>
   </record>
 
