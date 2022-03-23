@@ -32,20 +32,20 @@ NameAndSignature.include({
 
   _initDateTimePicker: function ($dateGroup) {
     var disabledDates = [];
-    var dateType = "date";
-    var minDateData = moment(new Date().setDate(new Date().getDate() + 7)).format("YYYY-MM-DD");;
+    var dateType = "datetime";
+    var minDateData = moment(new Date().setDate(new Date().getDate() + 7));
     var maxDateData = "";
-    
+
     var datetimepickerFormat = dateType === 'datetime' ? time.getLangDatetimeFormat() : time.getLangDateFormat();
-    
+
     var minDate = minDateData
-    ? this._formatDateTime(minDateData, datetimepickerFormat)
-    : moment({ y: 1000 });
-    
+      ? this._formatDateTime(minDateData, datetimepickerFormat)
+      : moment({ y: 1000 });
+
     var maxDate = maxDateData
-    ? this._formatDateTime(maxDateData, datetimepickerFormat)
-    : moment().add(200, "y");
-    
+      ? this._formatDateTime(maxDateData, datetimepickerFormat)
+      : moment().add(200, "y");
+
     if (dateType === 'date') {
       // Include min and max date in selectable values
       maxDate = moment(maxDate).add(1, "d");
@@ -88,7 +88,20 @@ NameAndSignature.include({
   },
 
   _formatDateTime: function (datetimeValue, format){
-    return moment(field_utils.format.datetime(moment(datetimeValue), null, {timezone: true}), format);
+    return moment(field_utils.format.datetime(moment(datetimeValue), null, {timezone: false}), format);
+  },
+
+  validateSignature: function () {
+    console.log('validateSignature');
+    var deliveryDate = this.getDeliveryDate();
+    var name = this.getName();
+    var isSignatureEmpty = this.isSignatureEmpty();
+    this.$nameInput.parent().toggleClass('o_has_error', !name)
+      .find('.form-control, .custom-select').toggleClass('is-invalid', !name);
+    this.$deliveryDateInput.parent().toggleClass('o_has_error', !deliveryDate)
+      .find('.form-control, .custom-select').toggleClass('is-invalid', !deliveryDate);
+    this.$signatureGroup.toggleClass('border-danger', isSignatureEmpty);
+    return deliveryDate && name && !isSignatureEmpty;
   },
 
 });
