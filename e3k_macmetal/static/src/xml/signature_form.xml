@@ -4,10 +4,10 @@
   <t t-name="web.sign_name_and_signature">
     <div class="o_web_sign_name_and_signature">
       <div class="o_web_sign_name_group form-group">
-        <label class="col-form-label" t-att-for="'o_web_sign_delivery_input_' + widget.htmlId">Delivery Date</label>
+        <label class="col-form-label" t-att-for="'o_web_sign_delivery_input_' + widget.htmlId">Desired Date:</label>
         <div class="input-group o_sign_form_date" t-attf-id="datetimepicker_delivery_#{widget.htmlId}" data-target-input="nearest">
           <input type="text" class="form-control datetimepicker-input o_web_sign_delivery_date"
-            t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}" name="delivery"/>
+            t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}" name="delivery" required=""/>
           <div class="input-group-append position-absolute" data-toggle="datetimepicker" t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}"
             style="right: 10px; bottom: 10px;">
             <div class="input-group-text text-primary border-0 bg-transparent p-0"><i class="fa fa-calendar"></i></div>
@@ -16,8 +16,8 @@
       </div>
 
       <div class="o_web_sign_name_group form-group">
-        <label class="col-form-label" t-att-for="'o_web_sign_name_input_' + widget.htmlId">Full Name</label>
-        <input type="text" name="signer" t-att-id="'o_web_sign_name_input_' + widget.htmlId" class="o_web_sign_name_input form-control" t-att-value="widget.defaultName" placeholder="Your name" required=""/>
+        <label class="col-form-label" t-att-for="'o_web_sign_name_input_' + widget.htmlId">Full Name:</label>
+        <input type="text" name="signer" t-att-id="'o_web_sign_name_input_' + widget.htmlId" class="o_web_sign_name_input form-control" t-att-value="widget.defaultName" placeholder="Your name " required=""/>
       </div>
 
       <!--
@@ -29,29 +29,19 @@
         <div class="card-header">
           <div class="row no-gutters">
             <div class="col-auto">
-              <a role="button" href="#" t-attf-class="o_web_sign_draw_button mr-2 btn btn-light {{ widget.signMode === 'draw' ? 'active': '' }}">
-                Draw
-              </a>
+              <a role="button" href="#" t-attf-class="o_web_sign_draw_button mr-2 btn btn-light {{ widget.signMode === 'draw' ? 'active': '' }}">Draw </a>
             </div>
             <div class="col-auto">
-              <a role="button" href="#" t-attf-class="o_web_sign_auto_button mr-2 btn btn-light {{ widget.signMode === 'auto' ? 'active': '' }}">
-                Auto
-              </a>
+              <a role="button" href="#" t-attf-class="o_web_sign_auto_button mr-2 btn btn-light {{ widget.signMode === 'auto' ? 'active': '' }}">Auto </a>
             </div>
             <div class="col-auto">
-              <a role="button" href="#" t-attf-class="o_web_sign_load_button mr-2 btn btn-light {{ widget.signMode === 'load' ? 'active': '' }}">
-                Load
-              </a>
+              <a role="button" href="#" t-attf-class="o_web_sign_load_button mr-2 btn btn-light {{ widget.signMode === 'load' ? 'active': '' }}">Load </a>
             </div>
             <div t-attf-class="o_web_sign_draw_clear col-auto ml-auto {{ widget.signMode !== 'draw' ? 'd-none' : '' }}">
-              <a role="button" href="#" class="btn btn-link">
-                Clear
-              </a>
+              <a role="button" href="#" class="btn btn-link">Clear </a>
             </div>
             <div t-attf-class="o_web_sign_auto_select_style col-auto ml-auto {{ widget.signMode !== 'auto' ? 'd-none' : '' }}">
-              <a role="button" href="#" class="btn btn-link">
-                Style
-              </a>
+              <a role="button" href="#" class="btn btn-link">Style </a>
             </div>
             <div t-attf-class="o_web_sign_load_file col-auto {{ widget.signMode !== 'load' ? 'd-none' : '' }}">
               <input type="file" role="button" name="files[]" class="btn btn-link py-0"/>

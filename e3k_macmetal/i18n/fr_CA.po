@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e-20220204\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 18:15+0000\n"
-"PO-Revision-Date: 2022-02-18 18:15+0000\n"
+"POT-Creation-Date: 2022-03-11 22:14+0000\n"
+"PO-Revision-Date: 2022-03-11 22:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
@@ -25,21 +26,21 @@ msgstr ""
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_order_portal_template
 msgid "<span>With delivery terms:</span>"
-msgstr "<span>Avec les conditions de livraison:</span>"
+msgstr "<span>Avec les conditions de livraison :</span>"
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Auto"
-msgstr "Automatique"
+msgid "Auto "
+msgstr "Automatique "
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Clear"
-msgstr "Effacer"
+msgid "Clear "
+msgstr "Effacer "
 
 #. module: e3k_macmetal
 #: model:ir.model,name:e3k_macmetal.model_res_company
@@ -53,8 +54,8 @@ msgstr "Paramètres de config"
 
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_order_portal_template
-msgid "Customer Reference"
-msgstr "Référence Client"
+msgid "Customer Reference:"
+msgstr "Référence Client :"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_res_config_settings__delivery_terms
@@ -63,11 +64,17 @@ msgstr "Termes & Conditions de Livraison par Défaut"
 
 #. module: e3k_macmetal
 #. openerp-web
-#: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__customer_delivery_date
 #, python-format
-msgid "Delivery Date"
-msgstr "Date de Livraison"
+msgid "Desired Date"
+msgstr "Date Désirée"
+
+#. module: e3k_macmetal
+#. openerp-web
+#: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
+#, python-format
+msgid "Desired Date:"
+msgstr "Date Désirée :"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_res_config_settings__use_delivery_terms
@@ -85,28 +92,34 @@ msgid "Delivery Route"
 msgstr "Route de Livraison"
 
 #. module: e3k_macmetal
+#: code:addons/e3k_macmetal/controllers/portal.py:0
+#, python-format
+msgid "Delivery is missing."
+msgstr "La date de livraison est manquante."
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_calendar_event_tree_inherited
 msgid "Description"
 msgstr "Description"
 
 #. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Destination Package"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.quant_search_view
+msgid "Displayable Locations"
+msgstr "Emplacements Affichables"
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Draw"
-msgstr "Dessiner"
+msgid "Draw "
+msgstr "Dessiner "
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Full Name"
-msgstr "Nom Complet"
+msgid "Full Name:"
+msgstr "Nom Complet :"
 
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
@@ -117,20 +130,25 @@ msgstr "Insérez vos termes & conditions ici..."
 #: code:addons/e3k_macmetal/controllers/portal.py:0
 #, python-format
 msgid "Invalid order."
-msgstr "Commande invalide"
+msgstr "Commande invalide."
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
 #, python-format
 msgid "Invalid signature data."
-msgstr "Données de signature invalides."
+msgstr "Signature invalide."
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_stock_location
+msgid "Inventory Locations"
+msgstr "Emplacements de stock"
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Load"
-msgstr "Charger"
+msgid "Load "
+msgstr "Charger "
 
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_calendar_event_tree_inherited
@@ -143,9 +161,10 @@ msgid "Meetings"
 msgstr "Rendez-vous"
 
 #. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Move Lines"
-msgstr ""
+#: code:addons/e3k_macmetal/controllers/portal.py:0
+#, python-format
+msgid "Name is missing."
+msgstr "La nom est manquant."
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_stock_move_line__note
@@ -157,18 +176,13 @@ msgstr "Note"
 #: code:addons/e3k_macmetal/models/stock_quant.py:0
 #, python-format
 msgid "Only a stock manager can validate an inventory adjustment."
-"Seul le gestionnaire des stocks peut valider l'ajustement d'un inventaire."
+msgstr "Seul le gestionnaire des stocks peut valider l'ajustement d'un inventaire."
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
 #, python-format
 msgid "Order signed by %s"
-msgstr "Ordre signé par %s"
-
-#. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Owner"
-msgstr ""
+msgstr "Commande signée par %s"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,help:e3k_macmetal.field_sale_order__delivery_route
@@ -184,7 +198,7 @@ msgstr "Mouvements d'article (Ligne de mouvement de stock)"
 #: code:addons/e3k_macmetal/models/stock_quant.py:0
 #, python-format
 msgid "Product Quantity Confirmed"
-msgstr "Quantité d'Article Confirmée"
+msgstr "Quantité d'article confirmée"
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/models/stock_quant.py:0
@@ -193,24 +207,9 @@ msgid "Product Quantity Updated"
 msgstr "Quantité d'article mise à jour"
 
 #. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Quantity Done"
-msgstr "Quantité traitée"
-
-#. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Quantity Reserved"
-msgstr "Quantité réservée"
-
-#. module: e3k_macmetal
 #: model:ir.model,name:e3k_macmetal.model_stock_quant
 msgid "Quants"
 msgstr "Quants"
-
-#. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Reference"
-msgstr "Référence"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields.selection,name:e3k_macmetal.selection__sale_order__delivery_route__route1
@@ -238,9 +237,19 @@ msgid "Sales Order"
 msgstr "Bon de vente"
 
 #. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_calendar_event_tree_inherited
 msgid "Sales Rep"
 msgstr "Représentant"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_location__show_loc_inv_adj
+msgid "Show Location in Inventory Adjustments"
+msgstr "Afficher l'Emplacements dans l'Ajustement de Stocks"
 
 #. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
@@ -254,11 +263,6 @@ msgstr ""
 #, python-format
 msgid "Signature is missing."
 msgstr "La signature est manquante."
-
-#. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Source Package"
-msgstr "Colis source"
 
 #. module: e3k_macmetal
 #. openerp-web
@@ -279,14 +283,14 @@ msgstr "Styles"
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is greater than the maximum date: "
-msgstr "La date que vous avez sélectionnée est supérieure à la date maximale: "
+msgstr "La date que vous avez sélectionnée est supérieure à la date maximale : "
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is lower than the minimum date: "
-msgstr "La date que vous avez sélectionnée est inférieure à la date minimale: "
+msgstr "La date que vous avez sélectionnée est inférieure à la date minimale : "
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/controllers/portal.py:0
@@ -304,27 +308,11 @@ msgstr "Le fichier n'est pas valide. S'il vous plait choisissez une image."
 #. module: e3k_macmetal
 #: model:ir.model.fields,help:e3k_macmetal.field_sale_order__customer_delivery_date
 msgid "This is the delivery date selected by the customer."
-msgstr "C'est la date de livraison choisie par au client"
-
-#. module: e3k_macmetal
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.view_move_line_form
-msgid "Unit of Measure"
-msgstr ""
+msgstr "C'est la date de livraison choisie par au client."
 
 #. module: e3k_macmetal
 #. openerp-web
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
-msgid "Your name"
-msgstr "Votre Nom"
-
-#. module: e3k_macmetal
-#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_location__show_loc_inv_adj
-msgid "Show Location in Inventory Adjustments"
-msgstr "Afficher l'Emplacements dans l'Ajustement de Stocks"
-
-#. module: e3k_macmetal
-#: model:ir.actions.act_window,name:e3k_macmetal.location_open_quants
-#: model_terms:ir.ui.view,arch_db:e3k_macmetal.quant_search_view
-msgid "Displayable Locations"
-msgstr "Emplacements Affichables"
+msgid "Your name "
+msgstr "Votre Nom "
