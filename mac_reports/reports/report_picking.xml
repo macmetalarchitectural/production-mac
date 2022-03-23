@@ -76,7 +76,7 @@
         <xpath expr="//p[@t-field='o.note']" position="replace">
 
         </xpath>
-        
+
         <xpath expr="//table[1]" position="replace">
             <table class="table table-sm" t-if="o.move_ids_without_package">
                 <t t-set="has_barcode"
@@ -140,7 +140,7 @@
                                     <span t-field="ml.product_uom" groups="uom.group_uom"/>
                                 </td>
                                 <td>
-                                    <span t-field="ml.product_uom_qty"/>
+                                    <span t-field="ml.reserved_availability"/>
                                     <span t-field="ml.product_uom" groups="uom.group_uom"/>
                                 </td>
                                 <td>
