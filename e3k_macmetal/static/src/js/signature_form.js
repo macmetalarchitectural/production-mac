@@ -1,5 +1,4 @@
 /** @odoo-module **/
-
 import Dialog from 'web.Dialog';
 import core from 'web.core';
 import time from 'web.time';
@@ -38,13 +37,8 @@ NameAndSignature.include({
 
     var datetimepickerFormat = dateType === 'datetime' ? time.getLangDatetimeFormat() : time.getLangDateFormat();
 
-    var minDate = minDateData
-      ? this._formatDateTime(minDateData, datetimepickerFormat)
-      : moment({ y: 1000 });
-
-    var maxDate = maxDateData
-      ? this._formatDateTime(maxDateData, datetimepickerFormat)
-      : moment().add(200, "y");
+    var minDate = minDateData ? this._formatDateTime(minDateData, datetimepickerFormat) : moment({ y: 1000 });
+    var maxDate = maxDateData ? this._formatDateTime(maxDateData, datetimepickerFormat) : moment().add(200, "y");
 
     if (dateType === 'date') {
       // Include min and max date in selectable values
@@ -55,11 +49,11 @@ NameAndSignature.include({
 
     $dateGroup.datetimepicker({
       format : datetimepickerFormat,
-      minDate: minDate,
-      maxDate: maxDate,
+      minDate: minDate.toISOString(),
+      maxDate: maxDate.toISOString(),
       disabledDates: disabledDates,
       useCurrent: false,
-      viewDate: moment(new Date()).hours(minDate.hours()).minutes(minDate.minutes()).seconds(minDate.seconds()).milliseconds(minDate.milliseconds()),
+      viewDate: moment(new Date().toISOString()),
       calendarWeeks: true,
       icons: {
         time: 'fa fa-clock-o',
@@ -69,7 +63,7 @@ NameAndSignature.include({
         up: 'fa fa-chevron-up',
         down: 'fa fa-chevron-down',
       },
-      locale : moment.locale(),
+      locale: moment.locale(),
       allowInputToggle: true,
     });
 
@@ -88,11 +82,10 @@ NameAndSignature.include({
   },
 
   _formatDateTime: function (datetimeValue, format){
-    return moment(field_utils.format.datetime(moment(datetimeValue), null, {timezone: false}), format);
+    return moment(field_utils.format.datetime(moment(datetimeValue), null, {timezone: true}), format);
   },
 
   validateSignature: function () {
-    console.log('validateSignature');
     var deliveryDate = this.getDeliveryDate();
     var name = this.getName();
     var isSignatureEmpty = this.isSignatureEmpty();
@@ -116,7 +109,7 @@ patch(SignatureForm.prototype, 'e3k_macmetal.signature_form', {
       return;
     }
 
-    var delivery = this.nameAndSignature.getDeliveryDate();
+    var delivery = this._prepareSubmitDates(this.nameAndSignature.getDeliveryDate(), true);
     var name = this.nameAndSignature.getName();
     var signature = this.nameAndSignature.getSignatureImage()[1];
 
@@ -145,6 +138,12 @@ patch(SignatureForm.prototype, 'e3k_macmetal.signature_form', {
         return new Promise(function () { });
       }
     });
+  },
+
+  _prepareSubmitDates: function (value, isDateTime) {
+    var momentDate = isDateTime ? field_utils.parse.datetime(value, null, {timezone: true}) : field_utils.parse.date(value);
+    var formattedDate = momentDate ? momentDate.toJSON() : '';
+    return formattedDate;
   },
 
 });
