@@ -8,7 +8,7 @@
   "author" : "e3k Solutions",
   "license" : "Other proprietary",
   "website" : "https://e3k.co",
-  "version" : "15.0.1.0.3",
+  "version" : "15.0.1.1.0",
   "depends" : [
     'sale',
     'crm',
@@ -25,7 +25,7 @@
     'views/stock_location_views.xml',
   ],
   'assets': {
-    'web.assets_frontend': [
+    'e3k_macmetal.sale_assets': [
       'web/static/src/legacy/js/fields/field_utils.js',
       'e3k_macmetal/static/src/js/signature_form.js',
     ],

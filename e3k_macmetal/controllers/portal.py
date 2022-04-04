@@ -10,8 +10,6 @@ from odoo.exceptions import AccessError, MissingError, ValidationError
 from odoo.fields import Command
 from odoo.http import request
 
-from odoo.addons.payment.controllers import portal as payment_portal
-from odoo.addons.payment import utils as payment_utils
 from odoo.addons.portal.controllers.mail import _message_post_helper
 from odoo.addons.portal.controllers import portal
 from odoo.addons.portal.controllers.portal import pager as portal_pager, get_records_pager
@@ -36,14 +34,10 @@ class CustomerPortal(portal.CustomerPortal):
     if not delivery:
       return {'error': _('Delivery is missing.')}
 
-    tz = request.env.user.tz
-    naive = datetime.strptime(delivery, "%Y-%m-%d %H:%M:%S")
-    naive_delivery = timezone(tz).localize(naive).astimezone(UTC)
-
     try:
       order_sudo.write({
-        'commitment_date': naive_delivery.strftime("%Y-%m-%d %H:%M:%S"),
-        'customer_delivery_date': naive_delivery.strftime("%Y-%m-%d %H:%M:%S"),
+        'commitment_date': delivery,
+        'customer_delivery_date': delivery,
         'signed_by': name,
         'signed_on': fields.Datetime.now(),
         'signature': signature,

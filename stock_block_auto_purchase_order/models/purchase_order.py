@@ -8,7 +8,6 @@ BLOCK_AUTO_HELP = (
   "When checked, this field prevents products from being automatically added to the PO by the system."
 )
 
-
 class PurchaseOrder(models.Model):
   _inherit = "purchase.order"
 
@@ -30,3 +29,10 @@ class PurchaseOrder(models.Model):
   def onchange_partner_set_automatic_block(self):
     if self.partner_id.block_auto_purchase_order:
       self.block_auto_purchase_order = True
+
+  @api.model
+  def create(self, vals):
+    if 'partner_id' in vals:
+      partner = self.env['res.partner'].browse(vals['partner_id'])
+      vals['block_auto_purchase_order'] = partner.block_auto_purchase_order
+    return super(PurchaseOrder, self).create(vals)
