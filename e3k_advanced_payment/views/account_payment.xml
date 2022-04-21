@@ -11,10 +11,11 @@
                     <field name="payment_id" invisible="1"/>
                     <field name="partner_id" invisible="1"/>
                     <field name="str_child_partner_list" invisible="1"/>
+                    <field name="rel_child_partner_ids" invisible="1"/>
                     <field name="type_invoice" invisible="1"/>
                     <field name="type_refund" invisible="1"/>
                     <field name="invoice_ids"
-                           domain="[('partner_id', 'in', str_child_partner_list), ('state', '=', 'posted'), ('payment_state', 'in', ['not_paid','partial']),('move_type', 'in', [type_invoice,type_refund])]"
+                           domain="[('partner_id', 'in', rel_child_partner_ids), ('state', '=', 'posted'), ('payment_state', 'in', ['not_paid','partial']),('move_type', 'in', [type_invoice,type_refund])]"
                     />
                 </group>
                 <footer>

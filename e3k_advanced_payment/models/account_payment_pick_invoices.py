@@ -48,7 +48,8 @@ class account_payment_pick_invoices(models.TransientModel):
             ('out_refund', 'Avoir Client'),
         ], string='Type Refund',default=_default_type_refund)
 
-
+    rel_child_partner_ids = fields.Many2many('res.partner',related="payment_id.child_partner_ids",
+                                         string='Partner Contacts')
 
 
     def edit_invoice_ids(self):
