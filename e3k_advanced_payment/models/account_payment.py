@@ -588,7 +588,7 @@ class AccountPayment(models.Model):
 
     def process_payment(self):
         if self.discount_move_id:
-            self.discount_move_id.action_post()
+            self.discount_move_id._post(soft=False)
         if self.payment_partial_ids:
             exit_bc = True
             filter_liste = []
