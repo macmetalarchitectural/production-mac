@@ -21,12 +21,15 @@ class AccountMove(models.Model):
     date_discount = fields.Date(string='Discount End Date', compute='_get_date_discount', readonly=True)
 
     def _get_date_discount(self):
+
         for move in self:
-            move.date_discount = move.invoice_date
-            if move.invoice_payment_term_id and move.invoice_payment_term_id.number_discount_days:
-                # invoice_date = datetime.strptime(move.invoice_date, DEFAULT_SERVER_DATE_FORMAT)
-                move.date_discount = move.invoice_date + timedelta(
-                    days=move.invoice_payment_term_id.number_discount_days)
+            move.date_discount = False
+            if move.invoice_date:
+                move.date_discount = move.invoice_date
+                if move.invoice_payment_term_id and move.invoice_payment_term_id.number_discount_days:
+                    # invoice_date = datetime.strptime(move.invoice_date, DEFAULT_SERVER_DATE_FORMAT)
+                    move.date_discount = move.invoice_date + timedelta(
+                        days=move.invoice_payment_term_id.number_discount_days)
 
     def _compute_payment_discount_amount(self):
         for move in self:
