@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_purchase_mac" inherit_id="e3k_default_reports.report_purchase_baleco">
-        <xpath expr="//div[@t-if='o.date_order']" position="after">
+        <xpath expr="//td[@id='product']/span"  position="attributes">
+            <attribute name="t-options">{'widget': 'text'}</attribute>
+        </xpath>
+        <xpath expr="//div[@t-if='o.date_order']"  position="after">
             <div t-if="o.origin" class="col-3 bm-2">
                 <strong>Origin:</strong>
                 <p t-field="o.origin" class="m-0"/>
