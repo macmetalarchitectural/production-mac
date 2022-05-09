@@ -49,6 +49,9 @@
         </xpath>
     </template>
     <template id="report_purchase_quotation_mac" inherit_id="e3k_default_reports.report_purchase_quotation_baleco">
+         <xpath expr="//td[@id='product']/span"  position="attributes">
+            <attribute name="t-options">{'widget': 'text'}</attribute>
+        </xpath>
         <xpath expr="//h2" position="after">
             <div id="informations" class="row mt32 mb32">
                 <div t-if="o.date_approve" class="col-3 bm-2">
