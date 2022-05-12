@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <group name="group_general" position="inside">
                 <field name="block_auto_purchase_order"/>
+                <field name="unique_purchase_order"/>
             </group>
         </field>
     </record>
