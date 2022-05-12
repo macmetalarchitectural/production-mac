@@ -16,6 +16,10 @@
         <label>Customer Reference:</label> <span t-field="sale_order.client_order_ref"/>
       </xpath>
 
+      <xpath expr="//li[@t-if='sale_order.payment_term_id']" position="replace">
+        <li t-if="sale_order.payment_term_id"><span>With payment terms:</span> <b t-field="sale_order.payment_term_id"/></li>
+      </xpath>
+
     </template>
 
   </data>
