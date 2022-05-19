@@ -2,7 +2,7 @@
 <odoo>
 
 
-    <template id="report_invoice_document_discount" inherit_id="account.report_invoice_document">
+    <template id="report_invoice_document_discount" inherit_id="account.report_invoice_document" active="False">
 
         <xpath expr="//t[@t-call='account.document_tax_totals']" position="after">
         

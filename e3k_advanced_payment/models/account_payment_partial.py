@@ -111,7 +111,7 @@ class account_payment_partial(models.Model):
             partial_payment = self.invoice_id.currency_id._convert(
                 amount_residual,
                 payment_currency,
-                self.payment_id.company_id,
+                payment_id.company_id,
                 payment_date)
 
             due_payment_discount_amount = self.invoice_id.due_payment_discount_amount
@@ -208,7 +208,7 @@ class account_payment_partial(models.Model):
             # amount_residual_signed = self.invoice_id.amount_residual_signed
             amount_residual_signed = self.invoice_id.amount_residual_signed
             total_partial_payment = self.invoice_id.currency_id._convert(amount_residual_signed, payment_currency,
-                                                                         self.payment_id.company_id, payment_date)
+                                                                         payment_id.company_id, payment_date)
             # print('amount_residual_signed', amount_residual_signed)
             # print('total_partial_payment',total_partial_payment)
             # print('partial_payment', partial_payment)
