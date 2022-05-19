@@ -8,6 +8,8 @@ from odoo.tools import float_round
 # from odoo.tools.float_utils import float_round
 from odoo.tools import float_utils
 import json
+import logging
+_logger = logging.getLogger(__name__)
 
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
@@ -378,6 +380,12 @@ class AccountPayment(models.Model):
                         liquidity_line_currency_id = currency_id
                         liquidity_amount = conterpart_partial_discount_amount
 
+                    if  partial.invoice_id.move_type  in ['in_refund','out_refund'] :
+                        new_debit = credit
+                        new_credit = debit
+                        credit = new_credit
+                        debit = new_debit
+
                     if discount_move:
                         counterpart_aml_dict = {
                             'amount_currency': -partial.done_discount_amount if currency_id else 0.0,
@@ -402,6 +410,12 @@ class AccountPayment(models.Model):
                         amount_currency_liquidity_amount = abs(liquidity_amount)
                     if credit:
                         amount_currency_liquidity_amount = - abs(liquidity_amount)
+
+                    if  partial.invoice_id.move_type  in ['in_refund','out_refund'] :
+                        new_debit = credit
+                        new_credit = debit
+                        credit = new_credit
+                        debit = new_debit
 
                     liquidity_aml_dict = {
                         'amount_currency': amount_currency_liquidity_amount if liquidity_line_currency_id else 0.0,
@@ -480,6 +494,12 @@ class AccountPayment(models.Model):
                         liquidity_line_currency_id = currency_id
                         liquidity_amount = conterpart_partial_discount_amount
 
+                    if  partial.invoice_id.move_type  in ['in_refund','out_refund'] :
+                        new_debit = credit
+                        new_credit = debit
+                        credit = new_credit
+                        debit = new_debit
+
                     if discount_move:
                         counterpart_aml_dict = {
                             'amount_currency': partial.done_discount_amount if currency_id else 0.0,
@@ -504,6 +524,12 @@ class AccountPayment(models.Model):
                         amount_currency_liquidity_amount = abs(liquidity_amount)
                     if credit:
                         amount_currency_liquidity_amount = - abs(liquidity_amount)
+
+                    if  partial.invoice_id.move_type  in ['in_refund','out_refund'] :
+                        new_debit = credit
+                        new_credit = debit
+                        credit = new_credit
+                        debit = new_debit
 
                     liquidity_aml_dict = {
                         'amount_currency': amount_currency_liquidity_amount if liquidity_line_currency_id else 0.0,
@@ -595,27 +621,39 @@ class AccountPayment(models.Model):
             invoices_ids = self.payment_partial_ids.mapped('invoice_id').filtered(lambda r: r.move_type not in ['in_refund', 'out_refund']).ids
             reconciled = []
             for partial_payment in self.payment_partial_ids:
-                if partial_payment.invoice_id.move_type not in ['in_refund', 'out_refund']:
-                    if self.discount_move_id:
-                        to_reconcile_payments_widget_vals = json.loads(
-                            partial_payment.invoice_id.invoice_outstanding_credits_debits_widget)
+                # if partial_payment.invoice_id.move_type not in ['in_refund', 'out_refund']:
+                if self.discount_move_id:
+                    to_reconcile_payments_widget_vals = json.loads(
+                        partial_payment.invoice_id.invoice_outstanding_credits_debits_widget)
+                    print('to_reconcile_payments_widget_vals',to_reconcile_payments_widget_vals)
 
-                        if to_reconcile_payments_widget_vals:
-                            check_move = [self.discount_move_id.id,self.move_id.id]
-                            current_amounts = {}
-                            for vals in to_reconcile_payments_widget_vals['content']:
-                                if vals['move_id'] == self.discount_move_id.id:# check_move: #and vals['move_id'] :##not in filter_liste:
-                                    filter_liste.append(vals['move_id'])
-                                    current_amounts.update({vals['move_id']: vals['amount']})
-                            pay_term_lines = partial_payment.invoice_id.line_ids \
-                                .filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
-                            to_reconcile = self.env['account.move'].browse(list(current_amounts.keys())) \
-                                .line_ids \
-                                .filtered(lambda line: line.account_id == pay_term_lines.account_id)
-                            for line in to_reconcile:
-                                #if line not in self.move_id.line_ids:
-                                if not line.reconciled:
-                                    partial_payment.invoice_id.js_assign_outstanding_line(line.id)
+                    if to_reconcile_payments_widget_vals:
+
+                        check_move = [self.discount_move_id.id,self.move_id.id]
+                        print('check_move',check_move)
+                        current_amounts = {}
+                        for vals in to_reconcile_payments_widget_vals['content']:
+                            if vals['move_id'] == self.discount_move_id.id:# check_move: #and vals['move_id'] :##not in filter_liste:
+                                print('vals', vals)
+                                move_line = self.env['account.move.line'].search([('id','=',vals['id'])])
+                                if move_line:
+                                    if partial_payment.invoice_id.name in move_line[0].name:
+                                        print('vals new', vals)
+                                        if not move_line.reconciled:
+                                            partial_payment.invoice_id.js_assign_outstanding_line(move_line.id)
+
+                            #         current_amounts.update({vals['move_id']: vals['amount']})
+                            # print('current_amounts',current_amounts)
+                            #
+                            # pay_term_lines = partial_payment.invoice_id.line_ids \
+                            #     .filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
+                            # to_reconcile = self.env['account.move'].browse(list(current_amounts.keys())) \
+                            #     .line_ids \
+                            #     .filtered(lambda line: line.account_id == pay_term_lines.account_id)
+                            # for line in to_reconcile:
+                            #     #if line not in self.move_id.line_ids:
+                            #     if not line.reconciled:
+                            #         partial_payment.invoice_id.js_assign_outstanding_line(line.id)
 
             for partial_payment in self.payment_partial_ids:
                 if partial_payment.invoice_id.move_type  in ['in_refund', 'out_refund']:
@@ -666,6 +704,58 @@ class AccountPayment(models.Model):
                                 (payment_lines + lines) \
                                     .filtered_domain([('account_id', '=', account.id), ('reconciled', '=', False)]) \
                                     .reconcile()
+
+
+
+            # for partial_payment in self.payment_partial_ids:
+            #     if partial_payment.invoice_id.move_type  in ['in_refund', 'out_refund']:
+            #         to_reconcile_payments_widget_vals = json.loads(
+            #             partial_payment.invoice_id.invoice_outstanding_credits_debits_widget)
+            #
+            #         current_amounts = {}
+            #         if to_reconcile_payments_widget_vals:
+            #             for vals in to_reconcile_payments_widget_vals['content']:
+            #                 if vals['move_id'] in invoices_ids :#and vals['move_id']  :#not in reconciled:
+            #                     #reconciled.append(vals['move_id'])
+            #                     current_amounts.update({vals['move_id']: vals['amount']})
+            #             teste = self.env['account.move'].browse(list(current_amounts.keys()))
+            #             pay_term_lines = partial_payment.invoice_id.line_ids\
+            #                      .filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
+            #             to_reconcile  =teste.line_ids.filtered(lambda line: line.account_id == pay_term_lines.account_id)
+            #             for line in to_reconcile:
+            #                 if  partial_payment.invoice_id.amount_residual != 0:
+            #                     if not line.reconciled:
+            #                         partial_payment.invoice_id.js_assign_outstanding_line(line.id)
+            #
+            # for partial_payment in self.payment_partial_ids:
+            #     if partial_payment.invoice_id.move_type  not in ['in_refund', 'out_refund']:
+            #         to_reconcile_payments_widget_vals = json.loads(
+            #             partial_payment.invoice_id.invoice_outstanding_credits_debits_widget)
+            #         #partial_payment.invoice_id._compute_payments_widget_reconciled_info()
+            #         if to_reconcile_payments_widget_vals:
+            #             current_amounts = {}
+            #             for vals in to_reconcile_payments_widget_vals['content']:
+            #                 if vals['move_id'] == self.move_id.id:
+            #                     current_amounts.update({vals['move_id']: vals['amount']})
+            #             teste = self.env['account.move'].browse(list(current_amounts.keys()))
+            #             pay_term_lines = partial_payment.invoice_id.line_ids\
+            #                      .filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
+            #             to_reconcile  = teste.line_ids.filtered(lambda line: line.account_id == pay_term_lines.account_id)
+            #             for line in to_reconcile:
+            #                 if not line.reconciled:
+            #                     partial_payment.invoice_id.js_assign_outstanding_line(line.id)
+            #         else:
+            #             to_reconcile = [
+            #                 partial_payment.invoice_id.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))]
+            #             domain = [('account_internal_type', 'in', ('receivable', 'payable')), ('reconciled', '=', False)]
+            #             payments = self
+            #             for payment, lines in zip(payments, to_reconcile):
+            #                 payment_lines = payment.line_ids.filtered_domain(domain)
+            #                 for account in payment_lines.account_id:
+            #                     rec1 = payment_lines + lines
+            #                     (payment_lines + lines) \
+            #                         .filtered_domain([('account_id', '=', account.id), ('reconciled', '=', False)]) \
+            #                         .reconcile()
 
 
             # for partial_payment in self.payment_partial_ids:
@@ -728,3 +818,12 @@ class AccountPayment(models.Model):
             if not payment.amount >= 0.0:
                 pass
                 raise ValidationError('The payment amount must be strictly positive.')
+
+    def correct_partial_link_invoice(self):
+        for line in self.payment_partial_in_ids:
+            _logger.warn('\n\n number -----> %s \n\n',line.number)
+            invoice = self.env['account.move'].search([('name','=',line.number)],limit=1)
+            _logger.warn('\n\n fake invoice -----> %s \n\n',line.invoice_id)
+            _logger.warn('\n\n real invoice -----> %s \n\n',invoice)
+            if line.invoice_id != invoice and invoice:
+                line.invoice_id = invoice
