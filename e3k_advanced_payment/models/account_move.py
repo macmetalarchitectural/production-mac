@@ -135,7 +135,32 @@ class AccountMoveLine(models.Model):
 
     payment_invoice_id = fields.Many2one('account.move', string='Payment for invoice', readonly=True)
     partial_payment_line_id = fields.Many2one('account.payment.partial', string="Partial Payment Line")
-
+    _sql_constraints = [
+        (
+            'check_credit_debit',
+            'CHECK(credit + debit>=0 AND credit * debit=0)',
+            'Wrong credit or debit value in accounting entry !'
+        ),
+        (
+            'check_accountable_required_fields',
+             "CHECK(COALESCE(display_type IN ('line_section', 'line_note'), 'f') OR account_id IS NOT NULL)",
+             "Missing required account on accountable invoice line."
+        ),
+        (
+            'check_non_accountable_fields_null',
+             "CHECK(display_type NOT IN ('line_section', 'line_note') OR (amount_currency = 0 AND debit = 0 AND credit = 0 AND account_id IS NULL))",
+             "Forbidden unit price, account and quantity on non-accountable invoice line"
+        ),
+        (
+            'check_amount_currency_balance_sign',
+            '''CHECK(
+                1=1
+            )''',
+            "The amount expressed in the secondary currency must be positive when account is debited and negative when "
+            "account is credited. If the currency is the same as the one from the company, this amount must strictly "
+            "be equal to the balance."
+        ),
+    ]
     def _update_check(self):
         """
         Raise Warning to cause rollback if the move is posted,
