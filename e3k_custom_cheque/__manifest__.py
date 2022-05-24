@@ -3,10 +3,10 @@
 {
     'name': 'Custom Payment Cheque',
     'description': 'Custom Payment Cheque',
-    'version': '15.0.1',
+    'version': '15.0.0.0.0',
     'category': 'account',
-    'author': "E3k Solutions",
-    'depends': ['account', 'l10n_ca_check_printing'],
+    'author': "E3K",
+    'depends': ['account', 'l10n_ca_check_printing','e3k_advanced_payment'],
     'data': [
         'views/company.xml',
         'views/journal.xml',
