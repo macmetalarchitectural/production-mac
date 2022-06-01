@@ -29,6 +29,9 @@
       'web/static/src/legacy/js/fields/field_utils.js',
       'e3k_macmetal/static/src/js/signature_form.js',
     ],
+    'web.assets_qweb': [
+      'e3k_macmetal/static/src/xml/**/*.xml',
+    ],
   },
   "images" : [],
   "application" : False,
