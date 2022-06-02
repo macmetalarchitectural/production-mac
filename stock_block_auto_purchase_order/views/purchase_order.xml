@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']/.." position="inside">
                 <field name="block_auto_purchase_order"/>
+                <field name="unique_purchase_order"/>
             </xpath>
         </field>
     </record>
