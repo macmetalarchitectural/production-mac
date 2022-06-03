@@ -102,6 +102,7 @@ class StockMoveLine(models.Model):
             else:
                 aggregated_move_lines[line_key]['qty_ordered'] += empty_move.product_uom_qty
 
+
         #j'ai gardé l'ancien dev effectuer par Assia
         for move_line in self:
             line_key, name, description, uom = get_aggregated_properties(move_line=move_line)
