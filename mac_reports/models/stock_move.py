@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models, api
-from odoo.exceptions import UserError
+from collections import Counter, defaultdict
+
+from odoo import _, api, fields, tools, models
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import OrderedSet, groupby
+from odoo.tools.float_utils import float_compare, float_is_zero, float_round
+from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
+
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -35,7 +41,11 @@ class StockMoveLine(models.Model):
                 description = False
             product = move.product_id
             #j'ai ajouté move_line.id (id est unique pour chaque ligne pour empêcher de fusionner le même produits dans le BL
-            line_key = f'{product.id}_{product.display_name}_{description or ""}_{uom.id}_{move_line.id}'
+            if move_line:
+                line_key = f'{product.id}_{product.display_name}_{description or ""}_{uom.id}_move_line{move_line.id}'
+            else:
+                line_key = f'{product.id}_{product.display_name}_{description or ""}_{uom.id}_move{move.id}'
+
             return (line_key, name, description, uom)
 
         # Loops to get backorders, backorders' backorders, and so and so...
@@ -98,6 +108,8 @@ class StockMoveLine(models.Model):
                     'qty_ordered': qty_ordered,
                     'product_uom': uom.name,
                     'product': empty_move.product_id,
+                    'description': '',
+                    'sale_line_id': False
                 }
             else:
                 aggregated_move_lines[line_key]['qty_ordered'] += empty_move.product_uom_qty
