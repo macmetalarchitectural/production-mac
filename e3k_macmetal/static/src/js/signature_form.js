@@ -6,6 +6,7 @@ import field_utils from 'web.field_utils';
 import { patch } from "web.utils";
 
 var _t = core._t;
+var QWeb = core.qweb;
 
 import { NameAndSignature } from 'web.name_and_signature';
 import { SignatureForm } from 'portal.signature_form';
@@ -123,9 +124,9 @@ patch(SignatureForm.prototype, 'e3k_macmetal.signature_form', {
     }).then(function (data) {
       if (data.error) {
         self.$('.o_portal_sign_error_msg').remove();
-        self.$controls.prepend(qweb.render('portal.portal_signature_error', {widget: data}));
+        self.$controls.prepend(QWeb.render('portal.portal_signature_error', {widget: data}));
       } else if (data.success) {
-        var $success = qweb.render('portal.portal_signature_success', {widget: data});
+        var $success = QWeb.render('portal.portal_signature_success', {widget: data});
         self.$el.empty().append($success);
       }
       if (data.force_refresh) {
