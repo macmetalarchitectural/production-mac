@@ -241,6 +241,7 @@ class StockRule(models.Model):
 
     def _run_buy(self, procurements):
         result = False
+        errors = []
 
         vals = {}
 
