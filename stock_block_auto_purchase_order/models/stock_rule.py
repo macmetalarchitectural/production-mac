@@ -246,6 +246,7 @@ class StockRule(models.Model):
         vals = {}
 
         for procurement, rule in procurements:
+            group_id = procurement.values.get('group_id')
 
             # Get the schedule date in order to find a valid seller
             procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
@@ -274,28 +275,55 @@ class StockRule(models.Model):
 
             partner = supplier.name
 
+            # sale_order_line = self.env['sale.order.line'].search([('order_id', '=', group_id.sale_id.id), ('product_id', '=', procurement.product_id.id)])
+            # sale_order_line.filtered(lambda sol: sol.old_product_uom_qty != sol.product_uom_qty and sol.product_id == procurement.product_id.id)
+
+            #sale_order_line = group_id.sale_id.order_line.filtered(lambda sol: sol.old_product_uom_qty != sol.product_uom_qty and sol.product_id == procurement.product_id.id)
+
             if partner.id in vals:
+                vals[partner.id]['block_auto_purchase_order'] = partner.block_auto_purchase_order
+                vals[partner.id]['unique_purchase_order'] = partner.unique_purchase_order
+                vals[partner.id]['new_sale_order'] = False if group_id.sale_id.purchase_order_count else True
+                vals[partner.id]['sale_order_id'] = group_id.sale_id
+                #vals[partner.id]['old_product_uom_qty'] = sale_order_line.old_product_uom_qty
                 vals[partner.id]['values'].append((procurement, rule))
             else:
                 procurement_by_partner = []
                 procurement_by_partner.append((procurement, rule))
                 vals[partner.id] = {'block_auto_purchase_order': partner.block_auto_purchase_order,
                                     'unique_purchase_order': partner.unique_purchase_order,
+                                    'new_sale_order': False if group_id.sale_id.purchase_order_count else True,
+                                    'sale_order_id': group_id.sale_id,
+                                    #'old_product_uom_qty': sale_order_line.old_product_uom_qty,
                                     'values': procurement_by_partner
                                     }
 
-        # raise UserError('vals to produ %s' % str(vals['res.partner(108,)']['block_auto_purchase_order']))
         for val_key in vals.keys():
             partner_id = self.env['res.partner'].search([('id', '=', val_key)])
 
+            result = False
+
             if partner_id.block_auto_purchase_order:
                 # appliquer le scenario block_po
-                result = self.block_po_purchaceorder(vals[val_key]['values'])
+                if vals[val_key]['new_sale_order']:
+                    result = self.block_po_purchaceorder(vals[val_key]['values'])
             elif partner_id.unique_purchase_order:
                 # appliquer le scenario unique_po
-                result = self.unique_po_purchaceorder(vals[val_key]['values'])
+                if vals[val_key]['new_sale_order']:
+                    result = self.unique_po_purchaceorder(vals[val_key]['values'])
             else:
                 # appliquer le scenario natif odoo
                 result = super(StockRule, self)._run_buy(vals[val_key]['values'])
 
         return result
+
+# class SaleOrder(models.Model):
+#     _inherit = "sale.order.line"
+#
+#     old_product_uom_qty = fields.Float(string='Old Quantity', digits='Product Unit of Measure', default=1.0)
+#
+#     def write(self, vals):
+#         if 'product_uom_qty' in vals:
+#             vals['old_product_uom_qty'] = self.product_uom_qty
+#
+#         return super(SaleOrder, self).write(vals)
