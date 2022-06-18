@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 15.0+e-20220609\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-01 18:07+0000\n"
-"PO-Revision-Date: 2022-06-01 18:07+0000\n"
+"POT-Creation-Date: 2022-06-18 01:10+0000\n"
+"PO-Revision-Date: 2022-06-18 01:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,11 @@ msgid ""
 msgstr ""
 
 #. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Default Padding Delivery Days</span>"
+msgstr "<span class=\"o_form_label\">Délayage des Jours de Livraison par Défaut</span>"
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_order_portal_template
 msgid "<span>With delivery terms:</span>"
 msgstr "<span>Avec les conditions de livraison :</span>"
@@ -31,6 +36,12 @@ msgstr "<span>Avec les conditions de livraison :</span>"
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_order_portal_template
 msgid "<span>With payment terms:</span>"
 msgstr "<span>Avec les conditions de paiement :</span>"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_res_company__padding_delivery_days
+#: model:ir.model.fields,help:e3k_macmetal.field_res_config_settings__padding_delivery_days
+msgid "Amount of days"
+msgstr "Nombre de jours"
 
 #. module: e3k_macmetal
 #. openerp-web
@@ -187,6 +198,12 @@ msgid "Order signed by %s"
 msgstr ""
 
 #. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_company__padding_delivery_days
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_config_settings__padding_delivery_days
+msgid "Padding Delivery Days"
+msgstr "Délayage des Jours de Livraison"
+
+#. module: e3k_macmetal
 #: model:ir.model.fields,help:e3k_macmetal.field_sale_order__delivery_route
 msgid "Preferred delivery route."
 msgstr "Route de livraison préférée"
@@ -194,7 +211,7 @@ msgstr "Route de livraison préférée"
 #. module: e3k_macmetal
 #: model:ir.model,name:e3k_macmetal.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
 
 #. module: e3k_macmetal
 #: code:addons/e3k_macmetal/models/stock_quant.py:0
@@ -320,3 +337,8 @@ msgstr "C'est la date de livraison choisie par au client"
 #, python-format
 msgid "Your name"
 msgstr "Votre nom"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
+msgid "days"
+msgstr "jours"

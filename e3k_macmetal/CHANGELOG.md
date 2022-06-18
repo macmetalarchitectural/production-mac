@@ -22,6 +22,10 @@ Adjustment Release.
 
 Adjustment Release.
 
-## [1.1.0] - 2022-04-2
+## [1.1.0] - 2022-04-22
+
+Adjustment Release.
+
+## [1.2.0] - 2022-06-17
 
 Adjustment Release.

@@ -7,7 +7,7 @@
         <label class="col-form-label" t-att-for="'o_web_sign_delivery_input_' + widget.htmlId">Desired Date</label>
         <div class="input-group o_sign_form_date" t-attf-id="datetimepicker_delivery_#{widget.htmlId}" data-target-input="nearest">
           <input type="text" class="form-control datetimepicker-input o_web_sign_delivery_date"
-            t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}" name="delivery" required=""/>
+            t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}" t-att-data-paddingdays="widget.paddingDeliveryDays" name="delivery" required=""/>
           <div class="input-group-append position-absolute" data-toggle="datetimepicker" t-attf-data-target="#datetimepicker_delivery_#{widget.htmlId}"
             style="right: 10px; bottom: 10px;">
             <div class="input-group-text text-primary border-0 bg-transparent p-0"><i class="fa fa-calendar"></i></div>
