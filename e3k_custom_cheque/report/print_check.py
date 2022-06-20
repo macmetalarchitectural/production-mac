@@ -6,7 +6,7 @@ from datetime import datetime
 import re
 import logging
 
-INV_LINES_PER_STUB = 9
+INV_LINES_PER_STUB = 7
 
 # import inflect  # to installe withe python3 => pip install inflect
 _logger = logging.getLogger(__name__)
@@ -34,8 +34,7 @@ class report_print_check(models.Model):
     def _compute_check_amount_in_words(self):
         for pay in self:
             if pay.currency_id:
-                pay.check_amount_in_words = pay.currency_id.with_context(
-                    lang=pay.partner_id.lang or 'fr_FR').amount_to_text(pay.amount)
+                pay.check_amount_in_words = pay.currency_id.amount_to_text(pay.amount, pay.partner_id.lang)
             else:
                 pay.check_amount_in_words = False
 
@@ -99,7 +98,18 @@ class report_print_check(models.Model):
             else:
                 amount_residual_str = formatLang(self.env, invoice_sign * invoice.amount_residual,
                                                  currency_obj=invoice.currency_id)
+            disc = 0.0
+            if self.payment_partial_ids:
+                disc_mapped = self.payment_partial_ids.filtered(lambda r: r.invoice_id == invoice)
+                disc = disc_mapped[0].done_discount_amount_in_out_refund
 
+            if self.payment_partial_ids:
+                mapped_p_payment = self.payment_partial_ids.filtered(lambda r:r.invoice_id == invoice)
+                amount_paid = formatLang(self.env, invoice_sign * (mapped_p_payment[0].partial_payment),
+                                            currency_obj=self.currency_id)
+            else:
+                amount_paid = formatLang(self.env, invoice_sign * (invoice.amount_total - invoice.amount_residual),
+                                            currency_obj=self.currency_id)
             return {
                 'invoice_date': format_date(self.env, invoice.invoice_date),
                 'number': number,
@@ -108,6 +118,10 @@ class report_print_check(models.Model):
                 'amount_residual': amount_residual_str,
                 'amount_paid': formatLang(self.env, invoice_sign * sum(partials.mapped(partial_field)),
                                           currency_obj=self.currency_id),
+                'disc': formatLang(self.env, disc,
+                                            currency_obj=self.currency_id),
+
+                'p_amount_paid': amount_paid,
                 'currency': invoice.currency_id,
             }
 
@@ -116,6 +130,8 @@ class report_print_check(models.Model):
         invoices = (
                     term_lines.matched_debit_ids.debit_move_id.move_id + term_lines.matched_credit_ids.credit_move_id.move_id) \
             .filtered(lambda x: x.is_outbound())
+        if self.payment_partial_ids:
+            invoices = self.payment_partial_ids.mapped('invoice_id')
         invoices = invoices.sorted(lambda x: x.invoice_date_due or x.date)
 
         # Group partials by invoices.
@@ -130,15 +146,15 @@ class report_print_check(models.Model):
                 invoice_map[invoice] |= partial
 
         # Prepare stub_lines.
-        if 'out_refund' in invoices.mapped('move_type'):
-            stub_lines = [{'header': True, 'name': "Bills"}]
+        if 'out_refund' in invoices.mapped('move_type') or 'in_refund' in invoices.mapped('move_type'):
+            stub_lines = []
             stub_lines += [prepare_vals(invoice, partials)
                            for invoice, partials in invoice_map.items()
                            if invoice.move_type == 'in_invoice']
-            stub_lines += [{'header': True, 'name': "Refunds"}]
+            # stub_lines += [{'header': True, 'name': "Refunds"}]
             stub_lines += [prepare_vals(invoice, partials)
                            for invoice, partials in invoice_map.items()
-                           if invoice.move_type == 'out_refund']
+                           if invoice.move_type in ['out_refund', 'in_refund']]
         else:
             stub_lines = [prepare_vals(invoice, partials)
                           for invoice, partials in invoice_map.items()
@@ -154,10 +170,11 @@ class report_print_check(models.Model):
             i = 0
             while i < len(stub_lines):
                 # Make sure we don't start the credit section at the end of a page
-                if len(stub_lines) >= i + INV_LINES_PER_STUB and stub_lines[i + INV_LINES_PER_STUB - 1].get('header'):
-                    num_stub_lines = INV_LINES_PER_STUB - 1 or INV_LINES_PER_STUB
+                line_per_stub = self.company_id.check_inv_line_per_page
+                if len(stub_lines) >= i + line_per_stub and stub_lines[i + line_per_stub - 1].get('header'):
+                    num_stub_lines = line_per_stub - 1 or line_per_stub
                 else:
-                    num_stub_lines = INV_LINES_PER_STUB
+                    num_stub_lines = line_per_stub
                 stub_pages.append(stub_lines[i:i + num_stub_lines])
                 i += num_stub_lines
 

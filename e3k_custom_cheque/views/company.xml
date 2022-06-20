@@ -36,7 +36,6 @@
                             <separator/>
                             <separator/>
                             <field name="amount_in_world_font_size"/>
-                            <field name="amount_in_world_width"/>
                             <field name="check_font_size"/>
                             <field name="check_area_width"/>
                             <separator/>
