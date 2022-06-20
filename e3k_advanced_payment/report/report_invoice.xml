@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="report_invoice_document_discount" inherit_id="account.report_invoice_document" active="False">
+
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="after">
+        
+    	  <t t-if="o.due_payment_discount_amount" name="due_payment_discount_amount">
+    	
+             <td colspan="2" style='background-color:LightGray; font-size:10px; text-align: center;'>
+	          <strong>if paid before <span t-field="o.invoice_payment_term_id.number_discount_days"/> days</strong>
+	     </td>
+	     
+
+
+             
+               <tr class="o_discount">
+	                <td><strong>Discount:</strong></td>
+		        <td class="text-right">
+		            <span class="text-nowrap" t-field="o.due_payment_discount_amount"/>
+		        </td>
+    	       </tr>
+		                    	
+                <tr>
+		        <td><strong>Total if paid before
+		           <span t-field="o.invoice_payment_term_id.number_discount_days"/> days:</strong>
+		        </td>
+		        <td class="text-right">
+		            <span class="text-nowrap" t-esc="o.amount_total - o.due_payment_discount_amount"
+		                  t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+		        </td>
+            	</tr>
+   	</t>
+           
+        </xpath>
+      
+    </template>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form2" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.vtm2</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_type']" position="replace">
+                <field name="move_type"
+                       attrs="{ 'readonly': [('payment_state', 'in', ['not_paid','paid'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="date_discount"
+                       attrs="{ 'invisible': [('date_discount', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+     <record id="view_move_tree_e3k" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit.vtm2</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_residual_signed" position="after">
+                <field invisible="0" name="amount_total" widget="monetary" />
+            </field>
+        </field>
+    </record>
+</odoo>
+

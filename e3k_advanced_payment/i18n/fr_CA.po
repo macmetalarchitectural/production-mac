@@ -1,0 +1,644 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* e3k_advanced_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20201001\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-06 00:15+0000\n"
+"PO-Revision-Date: 2021-03-06 00:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: e3k_advanced_payment
+#: model:mail.template,body_html:e3k_advanced_payment.email_template_payment_notification
+msgid ""
+"\n"
+"<p> The purpose of this communication is to inform you that a transfer has been made to your account in the amount of: <strong>${\"%.2f\" | format(object.amount)}  ${object.currency_id.name}</strong>\n"
+"<br/>\n"
+"which pays the following invoices:\n"
+"</p>\n"
+"<br/>\n"
+" <table style=\"width:100%;border-top:1px solid #000;text-align: left;\">\n"
+"                <thead>\n"
+"                    <tr>  \n"
+"                        <th class=\"text-left\">Numéro</th>\n"
+"                        <th class=\"text-left\">Date de facturation</th>\n"
+"                        <th class=\"text-left\">Montant</th>\n"
+"                        <th class=\"text-left\">Escompte</th>\n"
+"                        <th class=\"text-left\">Net</th>\n"
+"                    </tr>\n"
+"                </thead>\n"
+"    </table>  \n"
+"    \n"
+"% for line in object.payment_partial_ids:      \n"
+"    <table style=\"width:100%;border-top:1px solid #000;text-align: left;\">\n"
+"                <tbody>\n"
+"\n"
+"                    <tr>\n"
+"                        <td>${line.invoice_id.ref or ''| safe}</td>\n"
+"                        <td>${line.invoice_id.invoice_date | safe}</td>\n"
+"                        <td class=\"text-right\">${\"%.2f\" | format(line.invoice_id.amount_total) | safe}  ${line.invoice_id.currency_id.name}</td>\n"
+"                        <td class=\"text-right\">${\"%.2f\" | format(line.done_discount_amount)| safe} ${object.currency_id.name}</td>\n"
+"                        <td class=\"text-right\">${\"%.2f\" | format(line.partial_payment) | safe} ${object.currency_id.name}</td>\n"
+"                    </tr>\n"
+"\n"
+"                 \n"
+"                </tbody>\n"
+"\n"
+"    </table>\n"
+"% endfor\n"
+"\n"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#, python-format
+msgid " and %s/100"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.actions.act_window,name:e3k_advanced_payment.account_journal_discount_action
+#: model:ir.ui.menu,name:e3k_advanced_payment.account_journal_discount_menu
+msgid "Account Journal Discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_journal_discount_tree_view
+msgid "Account journal discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_residual
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_residual_signed
+msgid "Amount Due"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__check_amount_in_words
+msgid "Amount in Words"
+msgstr "Montant en toutes lettres"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_payment_pick_invoices_wizard_view
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.send_payment_notification_view
+msgid "Cancel"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__company_id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__company_id
+msgid "Company"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#, python-format
+msgid "Compose Email"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__create_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__create_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__create_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__create_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__create_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__create_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__create_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__create_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__payment_discount_account
+msgid "Customer Disc Account"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.actions.act_window,name:e3k_advanced_payment.action_account_partial_payment_in
+#: model:ir.ui.menu,name:e3k_advanced_payment.menu_partial_payment_in
+msgid "Customer Partial Payment"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__customer_default_analytic_compte
+msgid "Customer default analytic account"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__difference_amount
+msgid "Difference Amount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__done_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__done_discount_amount_signed
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__payment_term_discount_ids
+msgid "Discount Accounts"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_bank_statement_line__payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__payment_discount_amount
+msgid "Discount Amount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_bank_statement_line__date_discount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__date_discount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__date_discount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__date_discount
+msgid "Discount Date"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__discount_move_id
+msgid "Discount Entries"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__done_discount_amount_invisible
+msgid "Discount invisible"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__display_name
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__invoice_date_due
+msgid "Due Date"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_bank_statement_line__due_payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__due_payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__due_payment_discount_amount
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__due_payment_discount_amount
+msgid "Due Discount Amount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:mail.template,subject:e3k_advanced_payment.email_template_payment_notification
+msgid "Electronic payment"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__product_category_ids
+msgid "Excluded Product Categories"
+msgstr "Catégorie Des produit Exclus"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,help:e3k_advanced_payment.field_account_bank_statement_line__payment_sequence
+#: model:ir.model.fields,help:e3k_advanced_payment.field_account_move__payment_sequence
+#: model:ir.model.fields,help:e3k_advanced_payment.field_account_payment__payment_sequence
+msgid "Gives the sequence of this invoice during the payment process."
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move_line__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__invoice_id
+#, python-format
+msgid "Invoice"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__invoice_date
+msgid "Invoice Date"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__invoice_ids
+msgid "Invoices"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__journal_discount_client_id
+msgid "Journal Client Discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#: model:ir.model,name:e3k_advanced_payment.model_account_move
+#, python-format
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__journal_discount_supplier_id
+msgid "Journal Supplier Discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount____last_update
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__write_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__write_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__write_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__write_uid
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_journal_discount__write_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__write_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__write_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__write_date
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__acc_move_line_ids
+msgid "Move lines"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Move name (id): %s (%s)"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__partial_payment
+msgid "Net"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_bank_statement_line__net_amount_invoice
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__net_amount_invoice
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__net_amount_invoice
+msgid "Net Amount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Notification"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__notif_partner
+msgid "Notifie partner"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__number
+msgid "Number"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__number_discount_days
+msgid "Number of days to get discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move_line__partial_payment_line_id
+msgid "Partial Payment Line"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_payment_partial
+msgid "Partial Payments"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__child_partner_ids
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__str_child_partner_list
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__str_child_partner_list
+msgid "Partner Contacts"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__partner_ids
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.send_payment_notification_view
+msgid "Partners"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__payment_id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__payment_in_id
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__payment_id
+msgid "Payment"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__total_partial_amount
+msgid "Payment Amount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__payment_partial_ids
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__payment_partial_in_ids
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Payment Lines"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Payment Move"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__payment_term_id
+msgid "Payment Term"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_payment_term
+msgid "Payment Terms"
+msgstr "Conditions de paiement"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move_line__payment_invoice_id
+msgid "Payment for invoice"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_bank_statement_line__payment_sequence
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_move__payment_sequence
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__payment_sequence
+msgid "Payment sequence"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_payment
+msgid "Payments"
+msgstr "Paiements"
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__payment_discount_percent
+msgid "Percent Discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.actions.act_window,name:e3k_advanced_payment.account_payment_pick_invoices_wizard_action
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_payment_pick_invoices_wizard_view
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Pick Invoices"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_payment_pick_invoices_wizard_view
+msgid "Pick invoices"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Purchase Receipt"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Refund"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Sales Receipt"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.send_payment_notification_view
+msgid "Send"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.actions.act_window,name:e3k_advanced_payment.action_send_payment_notification
+#: model:ir.model,name:e3k_advanced_payment.model_send_payment_notification
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.send_payment_notification_view
+msgid "Send Payment Notification"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__invoice_origin
+msgid "Source Document"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__state
+msgid "Status"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__payment_supplier_discount_account
+msgid "Supplier Disc Account"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.actions.act_window,name:e3k_advanced_payment.action_account_partial_payment_out
+#: model:ir.ui.menu,name:e3k_advanced_payment.menu_partial_payment_out
+msgid "Supplier Partial Payment"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term_discount__supplier_default_analytic_compte
+msgid "Supplier default analytic account"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,help:e3k_advanced_payment.field_account_payment_partial__invoice_origin
+msgid "The document(s) that generated the invoice."
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/wizard/send_payment_notification.py:0
+#, python-format
+msgid ""
+"These partners do not have an email address: \n"
+" "
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_in_tree
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_out_tree
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "To Pay"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_total
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_total_signed
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_in_tree
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_out_tree
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Total"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Vendor Bill"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__ref
+msgid "Vendor Reference"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid "Vendor Refund"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Void"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.constraint,message:e3k_advanced_payment.constraint_account_payment_term_discount_number_uniq
+msgid "You can't create many lines for the same company !"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model.constraint,message:e3k_advanced_payment.constraint_account_journal_discount_number_uniq
+msgid "You can't create many lines for the same company!"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#, python-format
+msgid "You can't create many lines with the same invoice"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot do this modification on a posted journal entry, you can just change some non legal fields. You must revert the journal entry to cancel it.\n"
+"%s."
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_move.py:0
+#, python-format
+msgid ""
+"You cannot do this modification on a reconciled entry. You can just change some non legal fields or you must unreconcile first.\n"
+"%s."
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#: code:addons/e3k_advanced_payment/models/account_payment.py:0
+#, python-format
+msgid ""
+"You need to set an discount account for the payment term related to the invoice : \n"
+" and the company: "
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_journal_discount
+msgid "account.journal.discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_payment_pick_invoices
+msgid "account.payment.pick.invoices"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model:ir.model,name:e3k_advanced_payment.model_account_payment_term_discount
+msgid "account.payment.term.discount"
+msgstr ""
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.report_invoice_document_discount
+msgid "<strong>Discount:</strong>"
+msgstr "<strong>Remise:</strong>"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.report_invoice_document_discount
+msgid "Total if paid before"
+msgstr "Total si payé avant"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.report_invoice_document_discount
+msgid "days"
+msgstr "jours"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.report_invoice_document_discount
+msgid "days:"
+msgstr "jours:"
+
+#. module: e3k_advanced_payment
+#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.report_invoice_document_discount
+msgid "if paid before"
+msgstr "si payé avant"

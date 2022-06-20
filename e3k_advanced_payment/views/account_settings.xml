@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- ********************************  account.journal.discount  *************************************  -->
+    <record id="account_journal_discount_tree_view" model="ir.ui.view">
+        <field name="name">account.journal.discount.tree</field>
+        <field name="model">account.journal.discount</field>
+        <field name="arch" type="xml">
+            <tree string="Account journal discount" editable="bottom">
+                <field name="company_id"/>
+                <field name="journal_discount_client_id"/>
+                <field name="journal_discount_supplier_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_journal_discount_action" model="ir.actions.act_window">
+        <field name="name">Account Journal Discount</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.journal.discount</field>
+        <field name="view_id" ref="account_journal_discount_tree_view"/>
+    </record>
+
+    <menuitem id="account_journal_discount_menu"
+              action="account_journal_discount_action"
+              parent="account.menu_finance_configuration"
+              sequence="100"
+              groups="account.group_account_invoice"/>
+</odoo>

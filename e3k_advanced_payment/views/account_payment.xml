@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Pick invoices wizard -->
+    <record id="account_payment_pick_invoices_wizard_view" model="ir.ui.view">
+        <field name="name">Pick invoices</field>
+        <field name="model">account.payment.pick.invoices</field>
+        <field name="arch" type="xml">
+            <form string="Pick invoices">
+                <!-- payment_id.str_child_partner_list -->
+                <group>
+                    <field name="payment_id" invisible="1"/>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="str_child_partner_list" invisible="1"/>
+                    <field name="rel_child_partner_ids" invisible="1"/>
+                    <field name="type_invoice" invisible="1"/>
+                    <field name="type_refund" invisible="1"/>
+                    <field name="invoice_ids"
+                           domain="[('partner_id', 'in', rel_child_partner_ids), ('state', '=', 'posted'), ('payment_state', 'in', ['not_paid','partial']),('move_type', 'in', [type_invoice,type_refund])]"
+                    />
+                </group>
+                <footer>
+                    <button string="Pick Invoices" name="edit_invoice_ids" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_payment_pick_invoices_wizard_action" model="ir.actions.act_window">
+        <field name="name">Pick Invoices</field>
+        <field name="res_model">account.payment.pick.invoices</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="vtm2_view_account_payment_form" model="ir.ui.view">
+        <field name="name">payment.cancel.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+
+<!--            <xpath expr="//group/group[@name='group3']" position="after">-->
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+                <group>
+                    <field name="move_id" string="Payment Move" required="0"/>
+                    <field name="discount_move_id"/>
+                    <field name="notif_partner" invisible="1"/>
+                    <field name="show_write_off" invisible="1"/>
+                    <field name="partial_writeoff_account_id"
+                           attrs="{'invisible': [('show_write_off', '=', False)]}"/>
+                </group>
+            </xpath>
+
+
+            <xpath expr="//button[@name='action_post']" position="after">
+
+                <button name="pay_totality" string="Confirm" type="object" class="oe_highlight"
+                        attrs="{'invisible': [('|'),('state', '!=', 'draft'),('partial_writeoff_account_id','=',False)]}"/>
+                <button class="oe_stat_button" type="action" string="Pick Invoices"
+                        attrs="{'invisible': ['|',('partner_id', '=', False),('state','!=','draft')]}"
+                        name="%(e3k_advanced_payment.account_payment_pick_invoices_wizard_action)d"/>
+
+                <button name="cancel_void" states="draft" string="Void" type="object"/>
+                <button name="get_payment_notification_message_view" string="Notification" type="object"/>
+<!--                <button name="correct_partial_link_invoice" string="Correction" type="object"/>-->
+            </xpath>
+            <xpath expr="//button[@name='action_post']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('state', '!=', 'draft'),('partial_writeoff_account_id','!=',False)]}</attribute>
+            </xpath>
+
+
+
+            <xpath expr="//sheet/group" position="after">
+                <notebook colspan="4">
+                    <page string="Payment Lines">
+                        <field name="child_partner_ids" invisible="1"/>
+                        <field name="str_child_partner_list" invisible="1"/>
+                        <field name="total_partial_amount" readonly="1" invisible="1"/>
+                        <!--    payment_type "outbound" "inbound" -->
+                        <field name="payment_partial_ids"
+                               attrs="{'invisible': [('payment_type', 'not in', ( 'outbound'))], 'readonly': [('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="invoice_id"
+                                       domain="[('partner_id', 'in', parent.str_child_partner_list), ('move_type', 'in', ['in_invoice','in_refund']), ('state', '=', 'posted'), ('payment_state', '=', 'not_paid')]"/>
+                                <field name="invoice_date"/>
+                                <field name="date_discount"/>
+                                <field name="number"/>
+                                <field name="ref"/>
+                                <field name="invoice_date_due"/>
+                                <field name="invoice_origin"/>
+                                <!--                                <field name="amount_total_signed" sum="Total"/>-->
+                                <!--                                <field name="amount_residual_signed" string="To Pay" sum="Total"/>-->
+
+                                <field name="amount_total" sum="Total"/>
+                                <field name="amount_residual" string="To Pay" sum="Total"/>
+
+                                <field name="done_discount_amount_invisible" invisible="1"/>
+                                <field name="done_discount_amount" sum="Discount" invisible="1"/>
+                                <field name="done_discount_amount_in_out_refund" sum="Discount"/>
+                                <field name="partial_payment" sum="Total"/>
+                                <field name="currency_id"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                        <!--    payment_type "outbound" "inbound" -->
+                        <field name="payment_partial_in_ids"
+                               attrs="{'invisible': [('payment_type', 'not in', ( 'inbound'))], 'readonly': [('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="invoice_id"
+                                       domain="[
+                                                       ('move_type', 'in', ['out_invoice','out_refund']),
+                                                       ('state', '=', 'posted'), ('payment_state', '=', 'not_paid'),
+                                                       ]"
+                                />
+                                <field name="invoice_date"/>
+                                <field name="date_discount"/>
+                                <field name="number"/>
+                                <field name="ref"/>
+                                <field name="invoice_date_due"/>
+                                <field name="invoice_origin"/>
+
+                                <!--                                <field name="amount_total_signed" sum="Total"/>-->
+                                <!--                                <field name="amount_residual_signed" string="To Pay" sum="Total"/>-->
+
+                                <field name="amount_total" sum="Total"/>
+                                <field name="amount_residual" string="To Pay" sum="Total"/>
+
+                                <field name="done_discount_amount_invisible" invisible="1"/>
+                                <field name="done_discount_amount" sum="Discount" invisible="1"/>
+                                <field name="done_discount_amount_in_out_refund" sum="Discount"/>
+                                <field name="partial_payment" sum="Total"/>
+                                <field name="currency_id"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="vtm2_view_account_payment_tree" model="ir.ui.view">
+        <field name="name">payment.cancel.tree.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="move_id"/>
+                <field name="check_number"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
