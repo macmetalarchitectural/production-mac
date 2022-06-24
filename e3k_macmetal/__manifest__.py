@@ -8,7 +8,7 @@
   "author" : "e3k Solutions",
   "license" : "Other proprietary",
   "website" : "https://e3k.co",
-  "version" : "15.0.1.1.0",
+  "version" : "15.0.1.3.0",
   "depends" : [
     'sale',
     'crm',
@@ -26,6 +26,7 @@
   ],
   'assets': {
     'e3k_macmetal.sale_assets': [
+      'e3k_macmetal/static/src/lib/moment-weekday-calc.min.js',
       'web/static/src/legacy/js/fields/field_utils.js',
       'e3k_macmetal/static/src/js/signature_form.js',
     ],

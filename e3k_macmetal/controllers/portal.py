@@ -64,3 +64,8 @@ class CustomerPortal(portal.CustomerPortal):
       'force_refresh': True,
       'redirect_url': order_sudo.get_portal_url(query_string=query_string),
     }
+
+  @http.route(['/get_padding_delivery_days'], type='json', auth="public",) #website=True)
+  def get_padding_delivery_days(self):
+    company = request.env.company
+    return company.padding_delivery_days

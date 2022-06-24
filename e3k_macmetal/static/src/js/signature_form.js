@@ -16,6 +16,16 @@ NameAndSignature.include({
     ["/e3k_macmetal/static/src/xml/signature_form.xml"]
   ),
 
+  willStart: function() {
+    var self = this;
+    return this._super().then(async function() {
+        self.paddingDeliveryDays = await self._rpc({
+            route: '/get_padding_delivery_days',
+            params: {}
+        });
+    });
+  },
+
   start: function () {
     var self = this;
     return this._super.apply(this, arguments).then(function () {
@@ -33,7 +43,15 @@ NameAndSignature.include({
   _initDateTimePicker: function ($dateGroup) {
     var disabledDates = [];
     var dateType = "datetime";
-    var minDateData = moment(new Date().setDate(new Date().getDate() + 7));
+    var paddingDeliveryDays = $dateGroup.find('input').data('paddingdays');
+
+    // var minDateData = moment(new Date().setDate(new Date().getDate() + paddingDeliveryDays));
+    // EXCLUDE Weekends (0=Sun & 6=Sat)
+    var minDateData = moment(new Date()).isoAddWeekdaysFromSet(
+      paddingDeliveryDays,
+      [1,2,3,4,5], // weekdays Mon to Fri
+      [] // public holidays if needed (dates)
+    );
     var maxDateData = "";
 
     var datetimepickerFormat = dateType === 'datetime' ? time.getLangDatetimeFormat() : time.getLangDateFormat();

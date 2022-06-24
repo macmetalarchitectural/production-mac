@@ -19,4 +19,5 @@ Contient tous les ajustements du client MacMétal.
 ### Utilisation
 
 [CHANGELOG]: ./CHANGELOG.md
-[version-badge]: https://img.shields.io/badge/version-1.1.0-blue.svg
+
+[version-badge]: https://img.shields.io/badge/version-1.3.0-blue.svg
