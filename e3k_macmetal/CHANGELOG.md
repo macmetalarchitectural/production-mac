@@ -6,15 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Release]
 
-## [1.0.0] - 2022-02-13
+## [1.3.0] - 2022-06-21
 
-Initial Release.
+- Task #12906: Exclude Weekends form "Desired Delivery Date".
 
-## [1.0.1] - 2022-02-14
+## [1.2.0] - 2022-06-17
 
-Adjustment Release.
+- Task #12905: Add "Padding Delivery Days" for "Desired Delivery Date".
 
-## [1.0.2] - 2022-02-18
+## [1.1.0] - 2022-04-22
 
 Adjustment Release.
 
@@ -22,6 +22,14 @@ Adjustment Release.
 
 Adjustment Release.
 
-## [1.1.0] - 2022-04-2
+## [1.0.2] - 2022-02-18
 
 Adjustment Release.
+
+## [1.0.1] - 2022-02-14
+
+Adjustment Release.
+
+## [1.0.0] - 2022-02-13
+
+Initial Release.
