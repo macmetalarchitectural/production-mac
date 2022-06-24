@@ -62,7 +62,7 @@
 
                 <button name="cancel_void" states="draft" string="Void" type="object"/>
                 <button name="get_payment_notification_message_view" string="Notification" type="object"/>
-<!--                <button name="correct_partial_link_invoice" string="Correction" type="object"/>-->
+                <button name="correct_partial_link_invoice" string="Correction" type="object" invisible="1"/>
             </xpath>
             <xpath expr="//button[@name='action_post']" position="attributes">
                 <attribute name="attrs">{'invisible': ['|',('state', '!=', 'draft'),('partial_writeoff_account_id','!=',False)]}</attribute>

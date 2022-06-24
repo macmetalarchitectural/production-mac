@@ -627,20 +627,20 @@ class AccountPayment(models.Model):
                 if self.discount_move_id:
                     to_reconcile_payments_widget_vals = json.loads(
                         partial_payment.invoice_id.invoice_outstanding_credits_debits_widget)
-                    print('to_reconcile_payments_widget_vals',to_reconcile_payments_widget_vals)
+
 
                     if to_reconcile_payments_widget_vals:
 
                         check_move = [self.discount_move_id.id,self.move_id.id]
-                        print('check_move',check_move)
+
                         current_amounts = {}
                         for vals in to_reconcile_payments_widget_vals['content']:
                             if vals['move_id'] == self.discount_move_id.id:# check_move: #and vals['move_id'] :##not in filter_liste:
-                                print('vals', vals)
+
                                 move_line = self.env['account.move.line'].search([('id','=',vals['id'])])
                                 if move_line:
                                     if partial_payment.invoice_id.name in move_line[0].name:
-                                        print('vals new', vals)
+
                                         if not move_line.reconciled:
                                             partial_payment.invoice_id.js_assign_outstanding_line(move_line.id)
 
@@ -693,7 +693,10 @@ class AccountPayment(models.Model):
                         to_reconcile  = teste.line_ids.filtered(lambda line: line.account_id == pay_term_lines.account_id)
                         for line in to_reconcile:
                             if not line.reconciled:
-                                partial_payment.invoice_id.js_assign_outstanding_line(line.id)
+                                if partial_payment.partial_payment <= partial_payment.invoice_id.amount_residual:
+                                    partial_payment.invoice_id.with_context(default_amount = partial_payment.partial_payment).js_assign_outstanding_line(line.id)
+                                else:
+                                    partial_payment.invoice_id.js_assign_outstanding_line(line.id)  
                     else:
                         to_reconcile = [
                             partial_payment.invoice_id.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))]

@@ -33,8 +33,8 @@
                             <tr t-foreach="object.payment_partial_ids" t-as="line">
                                 <td style="text-align:center; white-space:nowrap;" t-out="line.invoice_id.ref or ''"></td>
                                 <td style="text-align:center; white-space:nowrap;" t-out="line.invoice_id.invoice_date"></td>
-                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.invoice_id.amount_total, object.currency_id) or ''"></td>
-                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.done_discount_amount, object.currency_id) or ''"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.amount_total, object.currency_id) or ''"></td>
+                                <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.done_discount_amount_in_out_refund, object.currency_id) or ''"></td>
                                 <td style="text-align:center; white-space:nowrap;" t-out="format_amount(line.partial_payment, object.currency_id) or ''"></td>
                             </tr>
 
