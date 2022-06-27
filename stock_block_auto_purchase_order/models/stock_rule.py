@@ -316,14 +316,3 @@ class StockRule(models.Model):
                 result = super(StockRule, self)._run_buy(vals[val_key]['values'])
 
         return result
-
-# class SaleOrder(models.Model):
-#     _inherit = "sale.order.line"
-#
-#     old_product_uom_qty = fields.Float(string='Old Quantity', digits='Product Unit of Measure', default=1.0)
-#
-#     def write(self, vals):
-#         if 'product_uom_qty' in vals:
-#             vals['old_product_uom_qty'] = self.product_uom_qty
-#
-#         return super(SaleOrder, self).write(vals)
