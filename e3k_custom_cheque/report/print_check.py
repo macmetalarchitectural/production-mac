@@ -64,6 +64,9 @@ class report_print_check(models.Model):
             day = str(self.date.day)
         format = self.journal_id.date_format_str
         payment_date_2 = format.replace('dd', day).replace('mm', month).replace('YYYY', str(self.date.year))
+        if not self.company_id.is_currency:
+            amount = float(self.amount)
+            page.update({'amount': amount})
         page.update({
             'payment_amount_2': formatLang(self.env, self.amount, currency_obj=self.currency_id) if i == 0 else 'VOID',
             'company_id': self.company_id,
@@ -74,6 +77,8 @@ class report_print_check(models.Model):
             'partner_state': self.partner_id.state_id and self.partner_id.state_id.name or False,
             'check_number': self.check_number,
             'payment_date': payment_date_2,
+            'date_format_str': self.journal_id.date_format_str,
+            'display_date_format_str_top': self.company_id.display_date_format_top + 20,
         })
         return page
 

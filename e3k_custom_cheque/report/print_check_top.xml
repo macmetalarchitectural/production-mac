@@ -253,10 +253,10 @@
                 </div>
                 <div t-if="page['company_id'].display_date_format"
                      t-attf-style="position: absolute;
-				    			   top: {{ page['company_id'].display_date_format_top }}px;
+				    			   top: {{ page['display_date_format_str_top'] }}px;
 				    			   left: {{ page['company_id'].display_date_format_left }}px;
 				    			   font-size: {{ page['company_id'].display_date_format_font_size }}px;">
-                    <div class="ckca_date" t-esc="page['payment_date_canada']"/>
+                    <div class="ckca_date" t-esc="page['date_format_str']"/>
                 </div>
                 <div t-attf-style="position: absolute; top: {{ page['company_id'].amount1_top }}px; left: {{ page['company_id'].amount1_left }}px;">
                     <div class="ckca_amount_in_word"
