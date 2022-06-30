@@ -7,7 +7,7 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     check_inv_line_per_page = fields.Integer('5: Number of invoices lines in check page', default=7)
-    is_currency = fields.Boolean('25: Add currency in field Payment amount 2', default=True)
+    is_currency = fields.Boolean('25: Add currency in field Payment amount', default=True)
 
     image_top = fields.Integer('Image : Top distance', default=350)
     image_width = fields.Integer('Image : width', default=1000)
