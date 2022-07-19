@@ -16,5 +16,6 @@
     "views/product_template.xml",
     "views/purchase_order.xml",
     "views/res_partner.xml",
+    "views/stock_picking.xml",
   ],
 }
