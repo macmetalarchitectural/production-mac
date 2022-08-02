@@ -7,4 +7,4 @@ class SaleOrderLine(models.Model):
 
   def get_sale_order_line_multiline_description_sale(self, product):
     description = super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(product)
-    return product.display_name
+    return product.display_name + ' ' + product.description_sale
