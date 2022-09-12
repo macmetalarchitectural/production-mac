@@ -149,7 +149,7 @@
                                     <span t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/>
                                 </td>
                                 <td name="account_invoice_line_name">
-                                    <span t-field="line.product_id.name"/>
+                                    <span t-field="line.name"/>
                                 </td>
                                 <t t-if="o.print_ordered_qty">
                                     <td class="text-right">

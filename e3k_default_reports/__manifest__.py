@@ -11,7 +11,7 @@
     'license': 'LGPL-3',
     'website': "http://www.e3k.co",
     'category': 'Uncategorized',
-    'version': '1.0.2',
+    'version': '1.0.3',
     'depends': ['account', 'sale', 'sale_stock', 'purchase'],
     'data': [
         'wizard/res_config_settings_view.xml',
