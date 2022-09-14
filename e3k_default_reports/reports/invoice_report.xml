@@ -145,11 +145,22 @@
 
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                             <t t-if="not line.display_type" name="account_invoice_line_accountable">
+
                                 <td name="account_invoice_line_code" t-if="check_is_default_code">
                                     <span t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/>
                                 </td>
+
                                 <td name="account_invoice_line_name">
-                                    <span t-field="line.name"/>
+                                    <!--                                    <span t-esc="line.get_name_no_ref()" t-options="{'widget': 'text'}"/>-->
+                                    <span t-esc="line.name" t-options="{'widget': 'text'}"/>
+                                    <t t-if="check_sale_description">
+                                        <br/>
+                                        <span style="font-size: 14px; color:gray" t-if="o.partner_id.lang"
+                                              t-field="line.product_id.with_context(lang=o.partner_id.lang).description_sale"/>
+                                        <span style="font-size: 14px; color:gray" t-else=""
+                                              t-field="line.product_id.description_sale"/>
+                                    </t>
+
                                 </td>
                                 <t t-if="o.print_ordered_qty">
                                     <td class="text-right">
