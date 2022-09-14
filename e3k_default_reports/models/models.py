@@ -79,7 +79,7 @@ class AccountMoveLine(models.Model):
         else:
             product = self.product_id
 
-        values = [product]
+        values = []
         # if product.partner_ref:
         #     values.append(product.partner_ref)
         if product:
