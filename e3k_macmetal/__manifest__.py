@@ -23,6 +23,7 @@
     'views/stock_move_line_views.xml',
     'views/calendar_views.xml',
     'views/stock_location_views.xml',
+    'views/picking_form_view.xml',
   ],
   'assets': {
     'e3k_macmetal.sale_assets': [
