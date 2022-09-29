@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>
+</head>
+<body>
+<table width="100%">
+
+    <tr>
+        <td>
+            <table width="100%"
+                   style="background-color: #e6252f; background-image: url(img/header-bg.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                <tr height="35"></tr>
+                <tr>
+                    <td align="center">
+                        <img src="img/header.png" style="width: 600px; margin: 0 auto; display: block;"
+                             alt="E3K | Partenaire Technologique | Odoo">
+                    </td>
+                </tr>
+                <tr height="35"></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr style="background-image: url('img/pattern.jpg');">
+        <td>
+
+            <table width="100%">
+
+                <tr height="40"></tr>
+
+                <tr>
+                    <td width="100%" align="center">
+                        <table width="600"
+                               style="margin: 0 auto; background-color: #F4F5F5; border-bottom: 15px solid #2D2F3C;">
+                            <tr width="20"></tr>
+                            <tr>
+                                <td width="20"></td>
+                                <td>
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="text-center"
+                                                   style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 36px; line-height: 1; margin: 10px 0;">
+                                                    Stock Block Auto Purchase Order</p>
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                                                Résumé </p></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Le module permet de créer un purchace order pour chaque
+                                                                ligne du sale order sauf si l’option « Bloquer ajout
+                                                                produit auto » l’article est cochée, dans le cas
+                                                                contraire le comportement natif odoo sera exécuté.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                                                Module(s) requis </p></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><p style="margin: 5px 0; color: #707593; font-weight: 500; font-size: 21px;
+                                                font-family: 'Roboto', arial; font-weight: 500;">purchase_stock</p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                                                Étapes de mise en place / configuration du module
+                                                            </p>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <ol>
+                                                                <li><p>Installer le module</p></li>
+                                                                <li>
+                                                                    <p>Configurer les articles qui sont censés être
+                                                                        séparé dans les purchace order</p></li>
+                                                            </ol>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                                                Fonctionnement du module </p></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><p>1. Pour chaque article on a deux options à définir</p>
+                                                            <p>- Bloquer ajout produit auto</p>
+                                                            <p>- Unique Purchase Order</p>
+                                                            <p>Si l’option « Bloquer ajout produit auto » est cochée,
+                                                                l’article sera mis dans un purchace order a part (même
+                                                                si ce produit existe déjà dans un autre PO)</p>
+                                                            <p>Si l’option « Unique Purchase Order » est cochée, et si
+                                                                l’article sera vendu plusieurs fois dans le même SO, les
+                                                                quantités de l’article seront regroupés dans un seul
+                                                                PO</p>
+                                                            <p><img
+                                                                    style="margin: 16px 0; display: block; max-width: 100%; width: 100%;"
+                                                                    src="img/contenu1.jpg"><br></p>
+
+                                                            <p>2. Si l’option « Bloquer ajout produit auto » est cochée,
+                                                                et l’article est ajouté dans purchace order
+                                                                l’information sera affichée dans le PO</p>
+
+                                                            <p><img
+                                                                    style="margin: 16px 0; display: block; max-width: 100%; width: 100%;"
+                                                                    src="img/contenu2.png"><br></p>
+                                                            <p><img
+                                                                    style="margin: 16px 0; display: block; max-width: 100%; width: 100%;"
+                                                                    src="img/contenu3.png"><br></p>
+                                                        </td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="20"></td>
+                                        </tr>
+                                        <tr height="40"></tr>
+                                        <tr>
+                                            <td>
+                                                <p style="text-align: center; margin: 0;">
+                                                    <a href="#0"><img src="img/btn.png" width="260"></a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr height="40"></tr>
+                                    </table>
+                                </td>
+                                <td width="20"></td>
+                            </tr>
+                            <tr width="20"></tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr height="40"></tr>
+            </table>
+        </td>
+    </tr>
+    <tr bgcolor="#F4F5F5">
+        <td bgcolor="#F4F5F5" align="center">
+
+            <table style="max-width: 600px; margin: 0 auto; width: 100%; font-family: Arial; text-align: center;">
+                <tr height="40"></tr>
+                <tr>
+                    <td>
+                        <p
+                                style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 36px; line-height: 1; margin: 0;">
+                            Nos services</p>
+                    </td>
+                </tr>
+                <tr height="40"></tr>
+                <tr>
+                    <td>
+                        <table width="100%" style="text-align: center;">
+                            <tr>
+                                <td width="33%" align="center">
+                                    <img src="img/service-01.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Personnalisation</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-02.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Intégration</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-03.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Installation</span>
+                                </td>
+                            </tr>
+                            <tr height="40"></tr>
+                            <tr>
+                                <td width="33%" align="center">
+                                    <img src="img/service-04.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Création
+                                            et mise à jour</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-05.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Migration</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-06.png" height="60px">
+                                    <span
+                                            style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Soutien
+                                            technique</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr height="40"></tr>
+            </table>
+
+        </td>
+    </tr>
+
+    <tr bgcolor="#2D2F3C">
+        <td bgcolor="#2D2F3C" align="center">
+            <table width="100%">
+                <tr height="60"></tr>
+                <tr>
+                    <td align="center">
+                        <img src="img/logo.png" width="340" style="display: block; margin: 0 auto;"
+                             alt="E3K | Partenaire Technologique | Odoo">
+                    </td>
+                </tr>
+                <tr height="40">
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; color: #fff;">
+                        <p
+                                style="margin: 0; padding: 0; font-size: 21px; font-family: 'Lato', arial; font-weight: bold;">
+                            Contactez-nous</p>
+                        <p style="margin: 10px 0 0; padding: 0; font-family: 'Roboto', arial; font-weight: 400;"><a
+                                style="color: #fff; text-decoration: none;"
+                                href="mailto:support-erp@e3k.co">support-erp@e3k.co</a> | <a
+                                style="color: #fff; text-decoration: none;" href="https://www.e3k.co">www.e3k.co</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr height="60">
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>
