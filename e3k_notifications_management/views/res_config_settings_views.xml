@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_mail_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.mail</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mail.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <!-- Followers -->
+                <div id="emails" position='inside'>
+                    <!-- Quotations Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Quotations Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="quo_creator_follow"/>
+                            <field name="quo_salerep_follow"/>
+                            <field name="quo_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="quo_creator_follow"/>
+                            <br/>
+                            <label for="quo_salerep_follow"/>
+                            <br/>
+                            <label for="quo_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Request For Quotation Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Request For Quotation Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="req_quo_creator_follow"/>
+                            <field name="req_quo_purrep_follow"/>
+                            <field name="req_quo_vendor_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="req_quo_creator_follow"/>
+                            <br/>
+                            <label for="req_quo_purrep_follow"/>
+                            <br/>
+                            <label for="req_quo_vendor_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Sale Orders Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Sale Orders Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="so_creator_follow"/>
+                            <field name="so_seller_follow"/>
+                            <field name="so_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="so_creator_follow"/>
+                            <br/>
+                            <label for="so_seller_follow"/>
+                            <br/>
+                            <label for="so_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Purchase Orders Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Purchase Orders Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="po_creator_follow"/>
+                            <field name="po_purrep_follow"/>
+                            <field name="po_vendor_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="po_creator_follow"/>
+                            <br/>
+                            <label for="po_purrep_follow"/>
+                            <br/>
+                            <label for="po_vendor_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Invoices Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Invoices Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="inv_creator_follow"/>
+                            <field name="inv_seller_follow"/>
+                            <field name="inv_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="inv_creator_follow"/>
+                            <br/>
+                            <label for="inv_seller_follow"/>
+                            <br/>
+                            <label for="inv_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Bills Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Bills Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="bill_creator_follow"/>
+                            <field name="bill_purrep_follow"/>
+                            <field name="bill_vendor_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="bill_creator_follow"/>
+                            <br/>
+                            <label for="bill_purrep_follow"/>
+                            <br/>
+                            <label for="bill_vendor_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Contact Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Contact Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="cont_creator_follow"/>
+                            <field name="cont_salerep_follow"/>
+                            <field name="cont_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="cont_creator_follow"/>
+                            <br/>
+                            <label for="cont_salerep_follow"/>
+                            <br/>
+                            <label for="cont_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Transfer Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Transfer Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="picking_creator_follow"/>
+                            <field name="picking_salerep_follow"/>
+                            <field name="picking_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="picking_creator_follow"/>
+                            <br/>
+                            <label for="picking_salerep_follow"/>
+                            <br/>
+                            <label for="picking_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Journal Entries Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Journal Entries Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="entry_creator_follow"/>
+                            <field name="entry_salerep_follow"/>
+                            <field name="entry_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="entry_creator_follow"/>
+                            <br/>
+                            <label for="entry_salerep_follow"/>
+                            <br/>
+                            <label for="entry_customer_follow"/>
+                        </div>
+                    </div>
+
+                    <!-- Tasks Followers -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Tasks Followers</span>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="task_creator_follow"/>
+                            <field name="task_assignee_follow"/>
+                            <field name="task_customer_follow"/>
+                        </div>
+                        <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                            <label for="task_creator_follow"/>
+                            <br/>
+                            <label for="task_assignee_follow"/>
+                            <br/>
+                            <label for="task_customer_follow"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div id="emails" position='after'>
+                    <h2>Notifications</h2>
+                    <div class="row mt16 o_settings_container" id="e3k_notifications">
+                        <!-- Quotations Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Quotations Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="quo_creator_notify"/>
+                                <field name="quo_salerep_notify"/>
+                                <field name="quo_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="quo_creator_notify"/>
+                                <br/>
+                                <label for="quo_salerep_notify"/>
+                                <br/>
+                                <label for="quo_customer_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Request For Quotation Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Request For Quotation Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="req_quo_creator_notify"/>
+                                <field name="req_quo_purrep_notify"/>
+                                <field name="req_quo_vendor_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="req_quo_creator_notify"/>
+                                <br/>
+                                <label for="req_quo_purrep_notify"/>
+                                <br/>
+                                <label for="req_quo_vendor_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Sale Orders Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Sale Orders Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="so_creator_notify"/>
+                                <field name="so_seller_notify"/>
+                                <field name="so_customer_notify"/>
+                                <field name="so_vendor_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="so_creator_notify"/>
+                                <br/>
+                                <label for="so_seller_notify"/>
+                                <br/>
+                                <label for="so_customer_notify"/>
+                                <label for="so_vendor_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Purchase Orders Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Purchase Orders Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="po_creator_notify"/>
+                                <field name="po_purrep_notify"/>
+                                <field name="po_vendor_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="po_creator_notify"/>
+                                <br/>
+                                <label for="po_purrep_notify"/>
+                                <br/>
+                                <label for="po_vendor_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Invoices Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Invoices Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="inv_creator_notify"/>
+                                <field name="inv_seller_notify"/>
+                                <field name="inv_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="inv_creator_notify"/>
+                                <br/>
+                                <label for="inv_seller_notify"/>
+                                <br/>
+                                <label for="inv_customer_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Bills Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Bills Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="bill_creator_notify"/>
+                                <field name="bill_purrep_notify"/>
+                                <field name="bill_vendor_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="bill_creator_notify"/>
+                                <br/>
+                                <label for="bill_purrep_notify"/>
+                                <br/>
+                                <label for="bill_vendor_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Contact Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Contact Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="cont_creator_notify"/>
+                                <field name="cont_salerep_notify"/>
+                                <field name="cont_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="cont_creator_notify"/>
+                                <br/>
+                                <label for="cont_salerep_notify"/>
+                                <br/>
+                                <label for="cont_customer_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Transfer Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Transfer Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="picking_creator_notify"/>
+                                <field name="picking_salerep_notify"/>
+                                <field name="picking_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="picking_creator_notify"/>
+                                <br/>
+                                <label for="picking_salerep_notify"/>
+                                <br/>
+                                <label for="picking_customer_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Journal Entries Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Journal Entries Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="entry_creator_notify"/>
+                                <field name="entry_salerep_notify"/>
+                                <field name="entry_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="entry_creator_notify"/>
+                                <br/>
+                                <label for="entry_salerep_notify"/>
+                                <br/>
+                                <label for="entry_customer_notify"/>
+                            </div>
+                        </div>
+
+                        <!-- Tasks Notifications -->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Tasks Notifications</span>
+                            </div>
+                            <div class="o_setting_left_pane">
+                                <field name="task_creator_notify"/>
+                                <field name="task_assignee_notify"/>
+                                <field name="task_customer_notify"/>
+                            </div>
+                            <div class="o_setting_right_pane o_light_label" style="line-height: 24px;">
+                                <label for="task_creator_notify"/>
+                                <br/>
+                                <label for="task_assignee_notify"/>
+                                <br/>
+                                <label for="task_customer_notify"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
