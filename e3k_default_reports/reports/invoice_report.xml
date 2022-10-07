@@ -155,7 +155,9 @@
                                     <span t-esc="line.name" t-options="{'widget': 'text'}"/>
                                     <t t-if="check_sale_description">
                                         <br/>
-                                        <span style="font-size: 14px; color:gray"
+                                        <span style="font-size: 14px; color:gray" t-if="o.partner_id.lang"
+                                              t-field="line.product_id.with_context(lang=o.partner_id.lang).description_sale"/>
+                                        <span style="font-size: 14px; color:gray" t-else=""
                                               t-field="line.product_id.description_sale"/>
                                     </t>
 
