@@ -82,17 +82,15 @@ class AccountMoveLine(models.Model):
         values = []
         # if product.partner_ref:
         #     values.append(product.partner_ref)
-        if self.product_id:
-            values.append(self.product_id.name)
+        if product:
+            values.append(product.name)
         # if self.journal_id.type == 'sale':
         #     if product.description_sale:
         #         print(product.description_sale)
         #         values.append(product.description_sale)
         elif self.journal_id.type == 'purchase':
             if product.description_purchase:
-                print(product.description_purchase)
                 values.append(product.description_purchase)
-        print('\n'.join(values))
         return '\n'.join(values)
 
     def ge_commanded_qty_delivered_received(self):
