@@ -17,6 +17,7 @@
         'reports/report_picking.xml',
         'reports/purachse_order.xml',
         'views/sale_order.xml',
+        'views/picking_form_view.xml',
     ],
     'demo': [
     ],
