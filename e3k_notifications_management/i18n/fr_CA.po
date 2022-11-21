@@ -1,0 +1,519 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* e3k_notifications_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-12 19:34+0000\n"
+"PO-Revision-Date: 2022-07-12 19:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Bills Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Bills Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Contact Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Contact Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Invoices Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Invoices Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Journal Entries Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Journal Entries Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Purchase Orders Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Purchase Orders Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Quotations Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Quotations Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Request For Quotation Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Request For Quotation Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Sale Orders Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Sale Orders Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Tasks Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Tasks Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Transfer Followers</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "<span class=\"o_form_label\">Transfer Notifications</span>"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_creator_follow
+msgid "Bill Followed By the Creator "
+msgstr "Facture Fournisseur suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_purrep_follow
+msgid "Bill Followed By the Purchase Representative "
+msgstr "Facture Fournisseur suivie par le Responsable Achats "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_vendor_follow
+msgid "Bill Followed By the Vendor "
+msgstr "Facture Fournisseur suivie par le fournisseur "
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_creator_follow
+msgid "Contact Followed By the Creator "
+msgstr "Contact suivie par le créateur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_customer_follow
+msgid "Contact Followed By the Customer "
+msgstr "Contact suivie par le client "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_salerep_follow
+msgid "Contact Followed By the Sale Representative "
+msgstr "Contact suivie par le vendeur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_account_move__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_mail_thread__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_project_task__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_partner__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_sale_order__display_name
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par email"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_creator_follow
+msgid "Entry Followed By the Creator "
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_customer_follow
+msgid "Entry Followed By the Customer "
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_salerep_follow
+msgid "Entry Followed By the Seller "
+msgstr ""
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_account_move__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_mail_thread__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_project_task__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_purchase_order__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_partner__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_sale_order__id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_stock_picking__id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_creator_follow
+msgid "Invoice Followed By the Creator "
+msgstr "Facture suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_customer_follow
+msgid "Invoice Followed By the Customer "
+msgstr "Facture suivie par le client "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_seller_follow
+msgid "Invoice Followed By the Seller "
+msgstr "Facture suivie par le vendeur"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_account_move____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_mail_thread____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_project_task____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_partner____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_sale_order____last_update
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: e3k_notifications_management
+#: model_terms:ir.ui.view,arch_db:e3k_notifications_management.res_config_settings_view_form_mail_inherit
+msgid "Notifications"
+msgstr "Notifications"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_customer_notify
+msgid "Notify Customer of Quotation assignation"
+msgstr "Notifier le client de l'assignation de soumission"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_salerep_notify
+msgid "Notify Sale Representative of Quotation assignation"
+msgstr "Notifier le responsable des ventes de l'assignation de soumission"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_assignee_notify
+msgid "Notify assignees of task assignation"
+msgstr "Notifier les utilisateurs assignées de la tâche"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_creator_notify
+msgid "Notify creator of Contact assignation"
+msgstr "Notifier le créateur de l'assignation de la tâche"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_creator_notify
+msgid "Notify creator of PO assignation"
+msgstr "Notifier le créateur de l'assignation de PO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_creator_notify
+msgid "Notify creator of Quotation assignation"
+msgstr "Notifier le créateur de l'assignation de la soumission"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_creator_notify
+msgid "Notify creator of Sale Order assignation"
+msgstr "Notifier le créateur de l'assignation du SO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_creator_notify
+msgid "Notify creator of bill assignation"
+msgstr "Notifier le créateur de l'assignation de la facture fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_creator_notify
+msgid "Notify creator of entry assignation"
+msgstr "Notifier le créateur de l'assignation de la pièce comptable"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_creator_notify
+msgid "Notify creator of invoice assignation"
+msgstr "Notifier le créateur de l'assignation de la facture"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_creator_notify
+msgid "Notify creator of rfq assignation"
+msgstr "Notifier le créateur de l'assignation de la demande de prix"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_creator_notify
+msgid "Notify creator of stock picking assignation"
+msgstr "Notifier le créateur de l'assignation du transfert du stock"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_creator_notify
+msgid "Notify creator of task assignation"
+msgstr "Notifier le créateur de l'assignation de la tâche"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_customer_notify
+msgid "Notify customer of Contact assignation"
+msgstr "Notifier le client de l'assignation du contact"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_customer_notify
+msgid "Notify customer of Sale Order assignation"
+msgstr "Notifier le client de l'assignation du SO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_customer_notify
+msgid "Notify customer of entry assignation"
+msgstr "Notifier le client de l'assignation de la pièce comptable"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_customer_notify
+msgid "Notify customer of invoice assignation"
+msgstr "Notifier le client de l'assignation de la facutre"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_customer_notify
+msgid "Notify customer of stock picking assignation"
+msgstr "Notifier le client de l'assignation du transfert de stock"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_customer_notify
+msgid "Notify customer of task assignation"
+msgstr "Notifier le client de l'assignation de la tâche"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_purrep_notify
+msgid "Notify purchase responsive of PO assignation"
+msgstr "Notifier le responsable des achats de l'assignation du PO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_purrep_notify
+msgid "Notify purchase responsive of bill assignation"
+msgstr "Notifier le responsable des achats de l'assignation du facutre fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_purrep_notify
+msgid "Notify purchase responsive of rfq assignation"
+msgstr "Notifier le responsable des achats de l'assignation du demande de prix"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__cont_salerep_notify
+msgid "Notify sale responsive of Contact assignation"
+msgstr "Notifier le responsable des ventes de l'assignation du contact"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__entry_salerep_notify
+msgid "Notify sale responsive of entry assignation"
+msgstr "Notifier le responsable des ventes de l'assignation du pièce comptable"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_salerep_notify
+msgid "Notify sale responsive of stock picking assignation"
+msgstr "Notifier le responsable des ventes de l'assignation du transfert de stock"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_seller_notify
+msgid "Notify seller of Sale Order assignation"
+msgstr "Notifier le vendeur de l'assignation du SO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__inv_seller_notify
+msgid "Notify seller of invoice assignation"
+msgstr "Notifier le vendeur de l'assignation du facture"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_vendor_notify
+msgid "Notify vendor of PO assignation"
+msgstr "Notifier le fournisseur de l'assignation du PO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_vendor_notify
+msgid "Notify vendor of Sale Order assignation"
+msgstr "Notifier le vendeur de l'assignation  du SO"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__bill_vendor_notify
+msgid "Notify vendor of bill assignation"
+msgstr "Notifier le fournisseur de l'assignation du facture fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_vendor_notify
+msgid "Notify vendor of rfq assignation "
+msgstr "Notifier le fournisseur de l'assignation du demande de prix"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_purrep_follow
+msgid "Purchase Order Followed By Purchase Representative "
+msgstr "Bon de Commande Achat suivie par l'acheteur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_creator_follow
+msgid "Purchase Order Followed By the Creator "
+msgstr "Bon de Commande Achat suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__po_vendor_follow
+msgid "Purchase Order Followed By the Vendor "
+msgstr "Bon de Commande Achat suivie par le fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_creator_follow
+msgid "Quotation Followed By the Creator "
+msgstr "Soumissions suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_customer_follow
+msgid "Quotation Followed By the Customer "
+msgstr "Soumissions suivie par le client "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__quo_salerep_follow
+msgid "Quotation Followed By the Sale Representative "
+msgstr "Soumissions suivie par le vendeur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_purrep_follow
+msgid "Request For Quotation Followed By Purchase Representative "
+msgstr "Demande de prix suivie par le l'acheteur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_creator_follow
+msgid "Request For Quotation Followed By the Creator "
+msgstr "Demande de prix suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__req_quo_vendor_follow
+msgid "Request For Quotation Followed By the Vendor "
+msgstr "Demande de prix suivie par le fournisseur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_creator_follow
+msgid "Sale Order Followed By the Creator "
+msgstr "Bon de Commande suivie par le créateur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_customer_follow
+msgid "Sale Order Followed By the Customer "
+msgstr "Bon de Commande suivie par le client "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_seller_follow
+msgid "Sale Order Followed By the Seller "
+msgstr "Bon de Commande suivie par le vendeur "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__so_vendor_follow
+msgid "Sale Order Followed By the Vendor "
+msgstr "Bon de vente suivie par le fournisseur"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de vente"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_partner__user_id
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_users__user_id
+msgid "Salesperson"
+msgstr "Vendeur"
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_project_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_assignee_follow
+msgid "Task Followed By the Assignees"
+msgstr "Tâche suivie par les utilisateurs assignées"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_creator_follow
+msgid "Task Followed By the Creator"
+msgstr "Tâche suivie par le créateur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__task_customer_follow
+msgid "Task Followed By the Customer"
+msgstr "Tâche suivie par le client"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,help:e3k_notifications_management.field_res_partner__user_id
+#: model:ir.model.fields,help:e3k_notifications_management.field_res_users__user_id
+msgid "The internal user in charge of this contact."
+msgstr "L'utilisateur interne en charge de ce contact."
+
+#. module: e3k_notifications_management
+#: model:ir.model,name:e3k_notifications_management.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_creator_follow
+msgid "Transfer Followed By the Creator "
+msgstr "Transfert suivie par le créateur"
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_customer_follow
+msgid "Transfer Followed By the Customer "
+msgstr "Transfert suivie par le client "
+
+#. module: e3k_notifications_management
+#: model:ir.model.fields,field_description:e3k_notifications_management.field_res_config_settings__picking_salerep_follow
+msgid "Transfer Followed By the Sale Representative "
+msgstr "Transfert suivie par le vendeur "
