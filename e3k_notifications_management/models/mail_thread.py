@@ -21,6 +21,6 @@ class E3KMailThread(models.AbstractModel):
                 mail_auto_subscribe_no_notify=False,
                 e3k_user_name=partner.name,
             )._message_auto_subscribe_notify(
-                [partner_id], 'e3k_notifications_management.message_user_assigned'
+                partner_id, 'e3k_notifications_management.message_user_assigned'
             )
 
