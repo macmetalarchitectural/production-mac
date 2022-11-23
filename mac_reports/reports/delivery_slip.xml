@@ -86,7 +86,7 @@
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold ; width:150px">
                         DELIVERY COMMENT:
                     </td>
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                    <td style="background-color:#FFFFFF; color: black; !important;">
                         <span t-field="o.note"/>
 
                     </td>
