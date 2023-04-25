@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="e3k_report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[hasclass('page')]/div[@class='row mt32 mb32']" position="before">
+            <div class="row">
+              <div class="col-3 offset-9">
+                <img t-if="o.sale_id.client_order_ref" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.sale_id.client_order_ref.encode('iso-8859-1'), 250, 40)" alt="Code128"/>
+              </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
