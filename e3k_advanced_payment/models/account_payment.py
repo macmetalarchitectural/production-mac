@@ -592,7 +592,7 @@ class AccountPayment(models.Model):
                     for rec in invoice_payments_widget_teste['content']:
                         if rec['move_id'] == self.discount_move_id.id:
                             partial.js_remove_outstanding_partial(rec['partial_id'])
-            self.discount_move_id.button_draft()
+            # self.discount_move_id.button_draft()
             self.discount_move_id.button_cancel()
             self.discount_move_id = False
 
