@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="e3k_report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//t[@t-else=''][1]" position="replace"/>
+        <xpath expr="//t[@t-if=&quot;o.picking_type_id.code=='outgoing' and o.origin &quot;]" position="replace">
+            <div class="row mt-2 mb-2">
+              <div class="col-6">
+                <t t-if="o.picking_type_id.code=='outgoing' and o.origin ">
+                    <h2>
+                        <span t-field="o.origin"/>
+                    </h2>
+                </t>
+                <t t-else="">
+                    <h2>
+                        <span t-field="o.name"/>
+                    </h2>
+                </t>
+              </div>
+              <div class="col-6">
+                  <img t-if="o.sale_id.client_order_ref" class="pull-right" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.sale_id.client_order_ref, 60, 60)"/>
+              </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
