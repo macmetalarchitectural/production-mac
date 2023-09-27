@@ -17,7 +17,7 @@
                 </t>
               </div>
               <div class="col-6">
-                  <img t-if="o.sale_id.client_order_ref" class="pull-right" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.sale_id.client_order_ref, 60, 60)"/>
+                  <img t-if="o.sale_id.client_order_ref" class="pull-right" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.sale_id.client_order_ref.replace('#', '%23'), 60, 60)"/>
               </div>
             </div>
         </xpath>
