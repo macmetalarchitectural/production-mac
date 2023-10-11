@@ -23,6 +23,7 @@
         </xpath>
     </template>
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
+
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
             <br/>
             <br/>
@@ -151,13 +152,10 @@ font-weight: bold" colspan="3">
                     <p class="m-0" t-field="doc.user_id"/>
                 </t>
             </div>
+            <div t-if="doc.x_studio_inside_sales_rep" class="col-auto col-3 mw-100 mb-2">
+                    <strong class="text-nowrap">Inside sales rep:</strong>
+                    <p class="m-0" t-field="doc.x_studio_inside_sales_rep"/>
+            </div>
         </xpath>
-
-
     </template>
 </odoo>
-
-
-
-
-
