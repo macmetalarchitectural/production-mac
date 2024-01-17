@@ -125,9 +125,8 @@ class AccountMove(models.Model):
         for inv in self:
             if inv.payment_reference != inv.name:
                 payment_reference = inv.payment_reference
-            name = "%s %s %s" % (inv.ref or '', inv.name or TYPES[inv.move_type], payment_reference or '')
-            name = name.replace("\n", " ").strip()
-            result.append((inv.id, name))
+            result.append(
+                (inv.id, "%s %s %s" % (inv.ref or '', inv.name or TYPES[inv.move_type], payment_reference or '')))
         return result
 
 
@@ -159,8 +158,14 @@ class AccountMoveLine(models.Model):
 
     def _prepare_reconciliation_partials(self):
         res = super(AccountMoveLine, self)._prepare_reconciliation_partials()
+        if 'default_type' in self._context:
+            move_type = self._context['default_type']
         if 'default_amount' in self._context:
             pp_amount = self._context['default_amount']
+            convert_amount = self._context['default_amount']
+            if 'default_amount_total' in self._context:
+                convert_amount = self._context['default_amount_total']
+
             debit_lines = iter(self.filtered(lambda line: line.balance > 0.0 or line.amount_currency > 0.0))
 
             credit_lines = iter(self.filtered(lambda line: line.balance < 0.0 or line.amount_currency < 0.0))
@@ -176,7 +181,7 @@ class AccountMoveLine(models.Model):
 
             partials_vals_list = []
             i = 0
-            while True:
+            while i == 0:
 
                 # Move to the next available debit line.
                 if not debit_line:
@@ -267,18 +272,19 @@ class AccountMoveLine(models.Model):
                 debit_amount_residual_currency -= min_debit_amount_residual_currency
                 credit_amount_residual += min_amount_residual
                 credit_amount_residual_currency += min_credit_amount_residual_currency
+
                 partials_vals_list.append({
-                    'amount': min_amount_residual,
+                    'amount': convert_amount,
                     'debit_amount_currency': min_debit_amount_residual_currency,
                     'credit_amount_currency': min_credit_amount_residual_currency,
                     'debit_move_id': debit_line.id,
                     'credit_move_id': credit_line.id,
                 })
-
+                if move_type in ['in_invoice']:
+                    i = 1
 
             return partials_vals_list
 
         else:
             return res
-
 
