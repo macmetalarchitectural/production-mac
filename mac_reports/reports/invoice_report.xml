@@ -28,45 +28,10 @@
             <br/>
             <br/>
             <br/>
-             <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
-                <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
-font-weight: bold" colspan="3">
-                        Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des
-                        frais
-                        supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
-                        <br/>
-                        MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
-                        commandes
-                        qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
-                        <br/>
-                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs
-                        commandes
-                        pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou
-                        Textural
-                        III
-                        Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client
-                        opte
-                        pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la
-                        décoloration
-                        due
-                        aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.
-                        MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,
-                        selon
-                        les
-                        échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage
-                        d’intérêts
-
-                        et de frais supplémentaires causés par des délais prolongés de livraison.
-                        <br/>
-                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
-                        <br/>
-                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA
-                        FABRICATION.
-
-                    </td>
-                </tr>
-            </table>
+            <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
+font-weight: bold; page-break-inside: avoid;">
+                <p t-field="o.invoice_note_terms"/>
+            </div>
         </xpath>
     </template>
 
@@ -75,7 +40,7 @@ font-weight: bold" colspan="3">
             <t t-set="lang" t-value="o.partner_id.lang"/>
         </xpath>
     </template>
-<!--    payment2-->
+    <!--    payment2-->
     <template id="report_invoice_mac_with_payments2" inherit_id="account.report_invoice_with_payments">
         <xpath expr="//t[@t-set='lang']" position="replace">
             <t t-set="lang" t-value="o.partner_id.lang"/>

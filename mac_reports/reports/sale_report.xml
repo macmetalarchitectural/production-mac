@@ -27,45 +27,10 @@
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
             <br/>
             <br/>
-            <table class="table" style="font-weight: bold; !important; page-break-inside: avoid;">
-                <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
-                    <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
-font-weight: bold" colspan="3">
-                        Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des
-                        frais
-                        supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
-                        <br/>
-                        MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
-                        commandes
-                        qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
-                        <br/>
-                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs
-                        commandes
-                        pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou
-                        Textural
-                        III
-                        Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client
-                        opte
-                        pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la
-                        décoloration
-                        due
-                        aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.
-                        MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,
-                        selon
-                        les
-                        échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage
-                        d’intérêts
-
-                        et de frais supplémentaires causés par des délais prolongés de livraison.
-                        <br/>
-                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
-                        <br/>
-                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA
-                        FABRICATION.
-
-                    </td>
-                </tr>
-            </table>
+            <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
+font-weight: bold; page-break-inside: avoid;">
+                <p t-field="doc.sale_note_termes"/>
+            </div>
         </xpath>
         <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
             <th name="th_description" class="text-left">Description</th>
@@ -153,8 +118,8 @@ font-weight: bold" colspan="3">
                 </t>
             </div>
             <div t-if="doc.x_studio_inside_sales_rep" class="col-auto col-3 mw-100 mb-2">
-                    <strong class="text-nowrap">Inside sales rep:</strong>
-                    <p class="m-0" t-field="doc.x_studio_inside_sales_rep"/>
+                <strong class="text-nowrap">Inside sales rep:</strong>
+                <p class="m-0" t-field="doc.x_studio_inside_sales_rep"/>
             </div>
         </xpath>
     </template>
