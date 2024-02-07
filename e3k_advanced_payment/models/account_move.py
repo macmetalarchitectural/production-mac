@@ -125,8 +125,9 @@ class AccountMove(models.Model):
         for inv in self:
             if inv.payment_reference != inv.name:
                 payment_reference = inv.payment_reference
-            result.append(
-                (inv.id, "%s %s %s" % (inv.ref or '', inv.name or TYPES[inv.move_type], payment_reference or '')))
+            name = "%s %s %s" % (inv.ref or '', inv.name or TYPES[inv.move_type], payment_reference or '')
+            name = name.replace("\n", " ").strip()
+            result.append((inv.id, name))
         return result
 
 
