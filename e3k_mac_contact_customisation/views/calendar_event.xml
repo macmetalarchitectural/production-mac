@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]" position="replace">
+                    <div class="oe_title mb-3">
+                        <div>
+                            <label for="meeting_type_id" string="Meeting type: "/>
+                            <field name="meeting_type_id" class="oe_inline"/>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='start']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='stop']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

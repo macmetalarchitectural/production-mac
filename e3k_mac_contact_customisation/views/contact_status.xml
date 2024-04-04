@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="view_contact_status_form">
+        <field name="name">contact status</field>
+        <field name="model">contact.status</field>
+        <field name="arch" type="xml">
+            <form string="contact Status">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_contact_status_tree">
+        <field name="name">contact Status</field>
+        <field name="model">contact.status</field>
+        <field name="arch" type="xml">
+            <tree string="contact status">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_contact_status">
+        <field name="name">contact Status</field>
+        <field name="res_model">contact.status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a status
+            </p>
+        </field>
+    </record>
+    <menuitem
+            id="menu_contact_status"
+            name="Status"
+            action="action_contact_status"
+            parent="contacts.res_partner_menu_config"
+            sequence="4"/>
+</odoo>
