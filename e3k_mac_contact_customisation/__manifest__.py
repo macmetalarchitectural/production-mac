@@ -19,6 +19,7 @@
         'views/contact_status.xml',
         'views/calendar_event.xml',
         'data/contact_status.xml',
+        'data/ir_sequence.xml',
     ],
     'assets': {
         'web.assets_backend': [
