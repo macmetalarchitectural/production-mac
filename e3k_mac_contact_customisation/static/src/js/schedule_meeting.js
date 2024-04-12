@@ -16,7 +16,6 @@ registerInstancePatchModel("mail.chatter", "voip/static/src/models/chatter/chatt
      onClickScheduleMeeting(ev) {
      console.log("onClickScheduleMeeting");
      console.log(this);
-
             const action = {
                 type: 'ir.actions.act_window',
                 name: this.env._t("Schedule activity"),
@@ -28,6 +27,7 @@ registerInstancePatchModel("mail.chatter", "voip/static/src/models/chatter/chatt
                     default_res_id: this.thread.id,
                     default_res_model: this.thread.model,
                     default_partner_ids: [this.thread.id],
+                    default_activity_ids: false,
 
                 },
                 res_id: false,

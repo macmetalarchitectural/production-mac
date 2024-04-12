@@ -32,6 +32,7 @@
             <field name="model">calendar.event</field>
             <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
             <field name="arch" type="xml">
+
                 <xpath expr="//field[@name='user_id']" position="before">
                     <field name="team_id" optional="show"/>
                 </xpath>
@@ -57,7 +58,7 @@
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="company_partner_id" string="Company name"/>
                     <field name="partner_id" string="Contact"/>
-                        <field name="customer_state" string="status"/>
+                    <field name="customer_state" string="status"/>
                     <field name="function"/>
                     <field name="meeting_type_id"/>
 
@@ -67,13 +68,13 @@
 
                     <filter string="Company name" name="company_partner_id" domain="[]"
                             context="{'group_by':'company_partner_id'}"/>
-                     <filter string="Contact" name="partner_id" domain="[]"
+                    <filter string="Contact" name="partner_id" domain="[]"
                             context="{'group_by':'partner_id'}"/>
-                      <filter string="Customer state" name="customer_state" domain="[]"
+                    <filter string="Customer state" name="customer_state" domain="[]"
                             context="{'group_by':'customer_state'}"/>
                     <filter string="Industry type" name="function" domain="[]"
                             context="{'group_by':'function'}"/>
-                      <filter string="Meeting type" name="meeting_type_id" domain="[]"
+                    <filter string="Meeting type" name="meeting_type_id" domain="[]"
                             context="{'group_by':'meeting_type_id'}"/>
                 </xpath>
             </field>
@@ -86,12 +87,14 @@
                 <xpath expr="//pivot" position="inside">
                     <field name="company_partner_id"/>
                     <field name="function" string="Industry type"/>
-               <field name="customer_state"/>
+                    <field name="customer_state"/>
                 </xpath>
             </field>
 
 
         </record>
+
+
 
     </data>
 </odoo>
