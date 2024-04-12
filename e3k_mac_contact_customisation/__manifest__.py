@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'views/res_partner.xml',
         'views/contact_status.xml',
+        'views/reprentative_team.xml',
         'views/calendar_event.xml',
         'data/contact_status.xml',
         'data/ir_sequence.xml',
