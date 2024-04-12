@@ -37,6 +37,24 @@ class CalendarEvent(models.Model):
             res.partner_ids = [(4, res.user_id.partner_id.id)]
         return res
 
+    @api.depends('description')
+    def _compute_display_description(self):
+        for event in self:
+            event.display_description = False
+
+    def name_get(self):
+        """Hide private events' name for events which don't belong to the current user
+        """
+        result = []
+        for event in self:
+            name = event.meeting_type_id.name if event.meeting_type_id else _("Unknown Meeting Type")
+            if event.privacy == 'private' and event.user_id.id != self.env.uid and self.env.user.partner_id not in event.partner_ids:
+                result.append((event.id, _('Busy')))
+            else:
+                result.append((event.id, name))
+        return result
+
+
 
 class CalendarEventType(models.Model):
     _inherit = 'calendar.event.type'
