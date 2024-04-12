@@ -38,14 +38,15 @@
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="company_partner_id" optional="show" string="Company name"/>
                     <field name="partner_id" optional="show" string="Contact"/>
-                    <field name="attendee_status" optional="show" string="status"/>
+                    <!--                    <field name="customer_state" optional="show" string="status"/>-->
                     <field name="meeting_type_id" optional="show"/>
+                    <field name="function" optional="show"/>
 
                 </xpath>
             </field>
         </record>
 
-         <record id="view_calendar_event_search_inherited" model="ir.ui.view">
+        <record id="view_calendar_event_search_inherited" model="ir.ui.view">
             <field name="name">calendar.event.search.contact.info</field>
             <field name="model">calendar.event</field>
             <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
@@ -54,13 +55,43 @@
                     <field name="team_id" optional="show"/>
                 </xpath>
                 <xpath expr="//field[@name='user_id']" position="after">
-                    <field name="company_partner_id" optional="show" string="Company name"/>
-                    <field name="partner_id" optional="show" string="Contact"/>
-                    <field name="attendee_status" optional="show" string="status"/>
-                    <field name="meeting_type_id" optional="show"/>
+                    <field name="company_partner_id" string="Company name"/>
+                    <field name="partner_id" string="Contact"/>
+                        <field name="customer_state" string="status"/>
+                    <field name="function"/>
+                    <field name="meeting_type_id"/>
 
+                </xpath>
+                <xpath expr="//filter[@name='recurrent']" position="after">
+
+
+                    <filter string="Company name" name="company_partner_id" domain="[]"
+                            context="{'group_by':'company_partner_id'}"/>
+                     <filter string="Contact" name="partner_id" domain="[]"
+                            context="{'group_by':'partner_id'}"/>
+                      <filter string="Customer state" name="customer_state" domain="[]"
+                            context="{'group_by':'customer_state'}"/>
+                    <filter string="Industry type" name="function" domain="[]"
+                            context="{'group_by':'function'}"/>
+                      <filter string="Meeting type" name="meeting_type_id" domain="[]"
+                            context="{'group_by':'meeting_type_id'}"/>
                 </xpath>
             </field>
         </record>
+        <record id="view_calendar_pivot_inherited" model="ir.ui.view">
+            <field name="name">calendar.event.pivot.contact.info</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="e3k_macmetal.view_calendar_event_pivot"/>
+            <field name="arch" type="xml">
+                <xpath expr="//pivot" position="inside">
+                    <field name="company_partner_id"/>
+                    <field name="function" string="Industry type"/>
+               <field name="customer_state"/>
+                </xpath>
+            </field>
+
+
+        </record>
+
     </data>
 </odoo>

@@ -11,8 +11,8 @@
     'author': "My Company",
     'website': "http://www.yourcompany.com",
     'category': 'Uncategorized',
-    'version': '15.0.0.0',
-    'depends': ['l10n_ca', 'mail'],
+    'version': '15.0.0.1',
+    'depends': ['l10n_ca', 'mail','e3k_macmetal','partner_validation_sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_partner.xml',
