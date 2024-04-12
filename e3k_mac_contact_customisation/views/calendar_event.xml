@@ -35,9 +35,12 @@
                 <xpath expr="//field[@name='user_id']" position="before">
                     <field name="team_id" optional="show"/>
                 </xpath>
-                 <xpath expr="//field[@name='user_id']" position="after">
+                <xpath expr="//field[@name='user_id']" position="after">
                     <field name="company_partner_id" optional="show" string="Company name"/>
-                    <field name="attendee_status" optional="show"/>
+                    <field name="partner_id" optional="show" string="Contact"/>
+                    <field name="attendee_status" optional="show" string="status"/>
+                    <field name="meeting_type_id" optional="show"/>
+
                 </xpath>
             </field>
         </record>
