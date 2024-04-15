@@ -7,7 +7,7 @@ class CalendarEvent(models.Model):
     meeting_type_id = fields.Many2one('calendar.event.type', string='Meeting Type', required=True)
     name = fields.Char(default=lambda self: _('New'), translate=True)
     team_id = fields.Many2one('representative.team', string='Team', compute='_compute_team_rep_id')
-    team_name = fields.Char(related='team_id.name', string='Team Name', store=True)
+    team_name = fields.Char(string='Team Name', store=True)
     company_partner_id = fields.Many2one('res.partner', string='Company name', compute='_compute_company_partner_id', store=True)
     customer_state = fields.Selection(related='partner_id.customer_state', string='Status', store=True)
     rep = fields.Char(string='Representative', related='user_id.partner_id.name', store=True)
@@ -34,6 +34,7 @@ class CalendarEvent(models.Model):
             if rec.user_id:
                 team = self.env['representative.team'].search([('member_ids', 'in', rec.user_id.id)], limit=1)
                 rec.team_id = team.id if team else False
+                rec.team_name = team.name if team else ''
             else:
                 rec.team_id = False
 
