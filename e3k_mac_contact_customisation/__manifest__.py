@@ -25,9 +25,13 @@
     'assets': {
         'web.assets_backend': [
             'e3k_mac_contact_customisation/static/src/js/schedule_meeting.js',
+            'e3k_mac_contact_customisation/static/src/js/activity_dashboard.js',
+            'e3k_mac_contact_customisation/static/src/css/style.css',
+
         ],
         'web.assets_qweb': [
             'e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml',
+            'e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml',
         ],
     },
 }
