@@ -105,7 +105,7 @@
                 name="Activity analysis"
                 parent="calendar.mail_menu_calendar"
                 action="action_activity_dashboard"
-                sequence="2"
+                sequence="100"
         />
 
     </data>
