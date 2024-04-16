@@ -41,18 +41,20 @@
                                             <p id="closed_down" style="font-size:15px; display: none;"><b>Closed  &#9660;</b></p>
                                         </div>
                                         <div class="tile wide invoice box-4" id="hiddenDiv3">
-                                        <div>
-                                            <input type="checkbox" id="open_closed" name="open_closed"/>
-                                            <label for="yes">Select all</label>
+                                            <div id="open_closed">
+                                                <div>
+                                                <input type="checkbox" id="all" name="all"/>
+                                                    <label for="yes">Select all</label>
                                             </div>
-                                            <div>
+                                                <div>
                                                 <input type="checkbox" id="yes" name="yes"/>
-                                                <label for="yes">Yes</label>
+                                                    <label for="yes">Yes</label>
                                             </div>
-                                            <div>
-                                            <input type="checkbox" id="no" name="no"/>
-                                                <label for="no">No</label>
-                                         </div>
+                                                <div>
+                                                <input type="checkbox" id="no" name="no"/>
+                                                    <label for="no">No</label>
+                                            </div>
+                                            </div>
                                         </div>
                                     </h3>
                                     <h3 id="filter1" class="custom-h3 card-title">
