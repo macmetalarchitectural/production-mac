@@ -81,11 +81,13 @@ class CalendarEvent(models.Model):
 
     @api.model
     def get_rep(self):
-        """Get the list of representative for the activity dashboard"""
-        self._cr.execute('''SELECT t.user_id, p.name FROM representative_team t, res_users r, res_partner p WHERE t.user_id = r.id AND r.partner_id = p.id''')
+        """Get the list of representatives for the activity dashboard"""
+        self._cr.execute('''
+            SELECT DISTINCT t.user_id, p.name FROM calendar_event t, res_users r, res_partner p WHERE t.user_id = r.id AND r.partner_id = p.id
+            ''')
 
-        record = self._cr.dictfetchall()
-        return record
+        records = self._cr.dictfetchall()
+        return records
 
     @api.model
     def get_meeting_type(self):
@@ -100,10 +102,10 @@ class CalendarEvent(models.Model):
         """Get the details of the activity for the activity dashboard
         """
         self._cr.execute(
-            '''select count(t) as activity_quantity,c.team_name as team_name, c.rep as rep ,c.meeting_type_id as meeting_type_id, t.name as meeting_type, p.parent_id as parent_id,p.contact_status_id as contact_status_id, s.name as status ,r.industry_id as industry_id, i.name as customer_type, 
-            r.name as company_name, e.contact_id as contact_id, p.name as contact FROM calendar_event c, res_partner p, res_partner r, calendar_event_type t, calendar_event_contact_id e, res_partner_industry i, contact_status s WHERE p.id = e.contact_id AND s.id= p.contact_status_id AND
-            e.calendar_event_id = c.id AND t.id= c.meeting_type_id AND r.id = p.parent_id  AND i.id = r.industry_id GROUP BY e.contact_id, c.meeting_type_id, t.name, p.name, c.rep, c.contact_name, c.team_name, p.name, r.name, p.parent_id, 
-            r.industry_id, i.name, p.contact_status_id, s.name''')
+            '''select count(t) as activity_quantity,c.team_name as team_name, c.rep as rep ,c.meeting_type_id as meeting_type_id, t.name as meeting_type, p.parent_id as parent_id,p.contact_status_id as contact_status_id, s.name as status ,
+            r.industry_id as industry_id, i.name as customer_type, r.name as company_name, e.contact_id as contact_id, p.name as contact FROM calendar_event c, res_partner p, res_partner r, calendar_event_type t, calendar_event_contact_id e, 
+            res_partner_industry i, contact_status s WHERE p.id = e.contact_id AND s.id= p.contact_status_id AND e.calendar_event_id = c.id AND t.id= c.meeting_type_id AND r.id = p.parent_id  AND i.id = r.industry_id GROUP BY e.contact_id, 
+            c.meeting_type_id, t.name, p.name, c.rep, c.contact_name, c.team_name, p.name, r.name, p.parent_id, r.industry_id, i.name, p.contact_status_id, s.name''')
         record = self._cr.dictfetchall()
         return record
 

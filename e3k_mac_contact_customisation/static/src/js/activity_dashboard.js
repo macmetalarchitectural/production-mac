@@ -64,7 +64,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
 
         onclick_hoverDiv3: function (ev) {
              $("#hiddenDiv3").toggle();
-             if ($("#mclosed_up").is(":visible"))
+             if ($("#closed_up").is(":visible"))
                 {
                     $("#closed_up").hide();
                     $("#closed_down").show();
@@ -82,6 +82,12 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             var self = this;
             $.when(this._super())
                 .then(function (ev) {
+
+                $('#hoverDiv').trigger('click');
+                $('#hoverDiv1').trigger('click');
+                $('#hoverDiv2').trigger('click');
+                $('#hoverDiv3').trigger('click');
+
 
 
                  rpc.query({
