@@ -34,7 +34,7 @@
                                             </h3>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-2">
                                         <div class="tile wide invoice box-4">
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv3">
@@ -58,20 +58,34 @@
                                                 <div class="tile wide invoice box-4" id="hiddenDiv4" style="display: none;">
                                                     <div id="open_closed">
                                                         <div>
-                                                        <input type="checkbox" id="all" name="all"/>
+                                                            <input type="checkbox" id="all" name="all"/>
                                                             <label for="yes">Select all</label>
-                                                    </div>
+                                                        </div>
                                                         <div>
-                                                        <input type="checkbox" id="yes" name="yes"/>
+                                                            <input type="checkbox" id="yes" name="yes"/>
                                                             <label for="yes">Yes</label>
-                                                    </div>
+                                                        </div>
                                                         <div>
-                                                        <input type="checkbox" id="no" name="no"/>
+                                                            <input type="checkbox" id="no" name="no"/>
                                                             <label for="no">No</label>
-                                                    </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv5">
+                                                    <p id="status_up" style="font-size:15px;"><b>Status &#9650;</b></p>
+                                                    <p id='status_down' style="font-size:15px; display: none;"><b>Status  &#9660;</b></p>
+                                                </div>
+                                                <div class="tile wide invoice box-4" id="hiddenDiv5" style="display: none;">
+                                                    <div id="activity_status" style="font-size:15px;"/>
+                                                </div>
+                                            </h3>
+
                                         </div>
                                     </div>
                                     <div class="col-2">
