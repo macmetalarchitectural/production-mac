@@ -14,18 +14,19 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
         contentTemplate: 'ActivityDashboard',
 
         events: {
-            'click #hoverDiv': 'onclick_hoverDiv',
             'click #hoverDiv1': 'onclick_hoverDiv1',
             'click #hoverDiv2': 'onclick_hoverDiv2',
             'click #hoverDiv3': 'onclick_hoverDiv3',
+            'click #hoverDiv4': 'onclick_hoverDiv4',
             'change #activity_team': 'onclick_activity_team',
             'change #activity_rep': 'onclick_activity_rep',
             'change #activity_meeting_type': 'onclick_activity_meeting_type',
             'change #open_closed': 'onclick_open_closed',
         },
 
-        onclick_hoverDiv: function (ev) {
-             $("#hiddenDiv").toggle();
+
+        onclick_hoverDiv1: function (ev) {
+             $("#hiddenDiv1").toggle();
              if ($("#team_up").is(":visible"))
                 {
                     $("#team_up").hide();
@@ -38,8 +39,8 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 }
         },
 
-        onclick_hoverDiv1: function (ev) {
-             $("#hiddenDiv1").toggle();
+        onclick_hoverDiv2: function (ev) {
+             $("#hiddenDiv2").toggle();
              if ($("#rep_up").is(":visible"))
                 {
                     $("#rep_up").hide();
@@ -52,8 +53,8 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 }
         },
 
-        onclick_hoverDiv2: function (ev) {
-             $("#hiddenDiv2").toggle();
+        onclick_hoverDiv3: function (ev) {
+             $("#hiddenDiv3").toggle();
              if ($("#meeting_type_up").is(":visible"))
                 {
                     $("#meeting_type_up").hide();
@@ -66,8 +67,8 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 }
         },
 
-        onclick_hoverDiv3: function (ev) {
-             $("#hiddenDiv3").toggle();
+        onclick_hoverDiv4: function (ev) {
+             $("#hiddenDiv4").toggle();
              if ($("#closed_up").is(":visible"))
                 {
                     $("#closed_up").hide();
@@ -317,6 +318,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             var self = this;
             $.when(this._super())
                 .then(function (ev) {
+
 
                  rpc.query({
                         model: "calendar.event",

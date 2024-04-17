@@ -3,74 +3,95 @@
     <t t-name="ActivityDashboard">
         <div class="accounts-dashboard-wrap">
             <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12" style="background-color: #e1e1e1; !important; ">
-                <div class="row" style="margin:0px">
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
-                                    <h3 class="custom-h3 card-title frame-container">
-                                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv">
-                                            <p id="team_up" style="font-size:15px;"><b>Team &#9650;</b></p>
-                                            <p id="team_down" style="font-size:15px; display: none;"><b>Team &#9660;</b></p>
+                <div class="navbar sticky-top navbar-light bg-light" style="z-index:999">
+                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                            <div class="filter-class">
+                                <div class="row" style="margin:0px">
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv1">
+                                                    <p id="team_up" style="font-size:15px;"><b>Team &#9650;</b></p>
+                                                    <p id="team_down" style="font-size:15px; display: none;"><b>Team &#9660;</b></p>
+                                                </div>
+                                                <div class="navbar-light bg-light tile wide invoice box-4" id="hiddenDiv1" style="display: none;">
+                                                <div id="activity_team" style="font-size:15px;"/>
+                                                </div>
+                                            </h3>
                                         </div>
-                                        <div class="tile wide invoice box-4" id="hiddenDiv">
-                                            <div id="activity_team" style="font-size:15px;"/>
+
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv2">
+                                                    <p id="rep_up" style="font-size:15px;"><b>Rep &#9650;</b></p>
+                                                    <p id="rep_down" style="font-size:15px; display: none;"><b>Rep  &#9660;</b></p>
+                                                </div>
+                                                <div class="tile wide invoice box-4" id="hiddenDiv2" style="display: none;">
+                                                    <div id="activity_rep" style="font-size:15px;"/>
+                                                </div>
+                                            </h3>
                                         </div>
-                                    </h3>
-                                    <h3 class="custom-h3 card-title frame-container">
-                                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv1">
-                                            <p id="rep_up" style="font-size:15px;"><b>Rep &#9650;</b></p>
-                                            <p id="rep_down" style="font-size:15px; display: none;"><b>Rep  &#9660;</b></p>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv3">
+                                                    <p id="meeting_type_up" style="font-size:15px;"><b>Meeting type &#9650;</b></p>
+                                                    <p id='meeting_type_down' style="font-size:15px; display: none;"><b>Meeting type  &#9660;</b></p>
+                                                </div>
+                                                <div class="tile wide invoice box-4" id="hiddenDiv3" style="display: none;">
+                                                    <div id="activity_meeting_type" style="font-size:15px;"/>
+                                                </div>
+                                            </h3>
+
                                         </div>
-                                        <div class="tile wide invoice box-4" id="hiddenDiv1">
-                                            <div id="activity_rep" style="font-size:15px;"/>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv4">
+                                                    <p id="closed_up" style="font-size:15px;"><b>Closed &#9650;</b></p>
+                                                    <p id="closed_down" style="font-size:15px; display: none;"><b>Closed  &#9660;</b></p>
+                                                </div>
+                                                <div class="tile wide invoice box-4" id="hiddenDiv4" style="display: none;">
+                                                    <div id="open_closed">
+                                                        <div>
+                                                        <input type="checkbox" id="all" name="all"/>
+                                                            <label for="yes">Select all</label>
+                                                    </div>
+                                                        <div>
+                                                        <input type="checkbox" id="yes" name="yes"/>
+                                                            <label for="yes">Yes</label>
+                                                    </div>
+                                                        <div>
+                                                        <input type="checkbox" id="no" name="no"/>
+                                                            <label for="no">No</label>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </h3>
                                         </div>
-                                    </h3>
-                                    <h3 class="custom-h3 card-title frame-container">
-                                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv2">
-                                            <p id="meeting_type_up" style="font-size:15px;"><b>Meeting type &#9650;</b></p>
-                                            <p id='meeting_type_down' style="font-size:15px; display: none;"><b>Meeting type  &#9660;</b></p>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4">
+                                            <h3 id="filter1" class="custom-h3 card-title">
+                                                <label>From:<input type="datetime-local" id="from_date" name="from"/></label>
+                                                <br/>
+                                                <label>To:<input type="datetime-local" id="to_date" name="to"/></label>
+                                            </h3>
                                         </div>
-                                        <div class="tile wide invoice box-4" id="hiddenDiv2">
-                                            <div id="activity_meeting_type" style="font-size:15px;"/>
-                                        </div>
-                                    </h3>
-                                    <h3 class="custom-h3 card-title frame-container">
-                                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12" id="hoverDiv3">
-                                            <p id="closed_up" style="font-size:15px;"><b>Closed &#9650;</b></p>
-                                            <p id="closed_down" style="font-size:15px; display: none;"><b>Closed  &#9660;</b></p>
-                                        </div>
-                                        <div class="tile wide invoice box-4" id="hiddenDiv3">
-                                            <div id="open_closed">
-                                                <div>
-                                                <input type="checkbox" id="all" name="all"/>
-                                                    <label for="yes">Select all</label>
-                                            </div>
-                                                <div>
-                                                <input type="checkbox" id="yes" name="yes"/>
-                                                    <label for="yes">Yes</label>
-                                            </div>
-                                                <div>
-                                                <input type="checkbox" id="no" name="no"/>
-                                                    <label for="no">No</label>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </h3>
-                                    <h3 id="filter1" class="custom-h3 card-title">
-                                        <label>From:<input type="datetime-local" id="from_date" name="from"/></label>
-                                        <br/>
-                                        <label>To:<input type="datetime-local" id="to_date" name="to"/></label>
-                                    </h3>
-                                </div>
-                                <div>
-                                    <div class="users-list clearfix" id="activity_details"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div><br/></div>
+
                 </div>
+                <div>
+                    <div class="users-list clearfix" id="activity_details"></div>
+                </div>
+
             </div>
         </div>
     </t>

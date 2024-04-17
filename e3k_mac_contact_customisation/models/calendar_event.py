@@ -170,11 +170,7 @@ class CalendarEvent(models.Model):
     @api.model
     def get_activity_details_by_team(self, *args):
         team_ids = args[0]
-        if not team_ids:
-            self._cr.execute(''' select id FROM representative_team ''')
-            records = self._cr.dictfetchall()
-            team_ids = [record['id'] for record in records]
-        self._cr.execute('''
+        query = '''
             SELECT
                 COUNT(c.id) AS activity_quantity,
                 c.team_id AS team_id,
@@ -210,8 +206,15 @@ class CalendarEvent(models.Model):
                 representative_team m ON m.id = c.team_id
             LEFT JOIN
                 res_partner a ON a.id = c.rep_id
-            WHERE
-                c.team_id IN %s 
+            '''
+
+        params = ()
+
+        if team_ids:
+            query += 'WHERE c.team_id IN %s '
+            params = (tuple(team_ids),)
+
+        query += '''
             GROUP BY
                 c.team_id,
                 m.name,
@@ -230,21 +233,162 @@ class CalendarEvent(models.Model):
                 c.completed
             ORDER BY
                  COUNT(c.id) DESC
-        ''', (tuple(team_ids),))
+        '''
 
+        self._cr.execute(query, params)
         record = self._cr.dictfetchall()
         return record
 
     @api.model
     def get_activity_details_by_rep(self, *args):
         rep_ids = args[0]
-        if not rep_ids:
-            self._cr.execute('''
-                SELECT DISTINCT t.user_id, p.id FROM calendar_event t, res_users r, res_partner p WHERE t.user_id = r.id AND r.partner_id = p.id
-            ''')
-            records = self._cr.dictfetchall()
-            rep_ids = [record['id'] for record in records]
-        self._cr.execute('''
+        query = '''
+            SELECT
+                COUNT(c.id) AS activity_quantity,
+                c.team_id AS team_id,
+                m.name AS team_name,
+                c.rep_id AS rep_id,
+                a.name AS rep,
+                c.meeting_type_id AS meeting_type_id,
+                t.name AS meeting_type,
+                p.parent_id AS parent_id,
+                p.contact_status_id AS contact_status_id,
+                s.name AS status,
+                r.industry_id AS industry_id,
+                i.name AS customer_type,
+                r.name AS company_name,
+                e.contact_id AS contact_id,
+                p.name AS contact,
+                c.completed AS completed
+            FROM
+                calendar_event c
+            LEFT JOIN
+                calendar_event_contact_id e ON e.calendar_event_id = c.id
+            LEFT JOIN
+                res_partner p ON p.id = e.contact_id
+            LEFT JOIN
+                calendar_event_type t ON t.id = c.meeting_type_id
+            LEFT JOIN
+                res_partner r ON r.id = p.parent_id
+            LEFT JOIN
+                res_partner_industry i ON i.id = r.industry_id
+            LEFT JOIN
+                contact_status s ON s.id = p.contact_status_id
+            LEFT JOIN
+                representative_team m ON m.id = c.team_id
+            LEFT JOIN
+                res_partner a ON a.id = c.rep_id
+            '''
+
+        params = ()
+
+        if rep_ids:
+            query += 'WHERE c.rep_id IN %s '
+            params = (tuple(rep_ids),)
+
+        query += '''
+            GROUP BY
+                c.team_id,
+                m.name,
+                c.rep_id,
+                a.name,
+                c.meeting_type_id,
+                t.name,
+                p.parent_id,
+                p.contact_status_id,
+                s.name,
+                r.industry_id,
+                i.name,
+                r.name,
+                e.contact_id,
+                p.name,
+                c.completed
+            ORDER BY
+                 COUNT(c.id) DESC
+        '''
+
+        self._cr.execute(query, params)
+        record = self._cr.dictfetchall()
+        return record
+
+    @api.model
+    def get_activity_details_by_meeting_type(self, *args):
+        meeting_type_ids = args[0]
+        query = '''
+            SELECT
+                COUNT(c.id) AS activity_quantity,
+                c.team_id AS team_id,
+                m.name AS team_name,
+                c.rep_id AS rep_id,
+                a.name AS rep,
+                c.meeting_type_id AS meeting_type_id,
+                t.name AS meeting_type,
+                p.parent_id AS parent_id,
+                p.contact_status_id AS contact_status_id,
+                s.name AS status,
+                r.industry_id AS industry_id,
+                i.name AS customer_type,
+                r.name AS company_name,
+                e.contact_id AS contact_id,
+                p.name AS contact,
+                c.completed AS completed
+            FROM
+                calendar_event c
+            LEFT JOIN
+                calendar_event_contact_id e ON e.calendar_event_id = c.id
+            LEFT JOIN
+                res_partner p ON p.id = e.contact_id
+            LEFT JOIN
+                calendar_event_type t ON t.id = c.meeting_type_id
+            LEFT JOIN
+                res_partner r ON r.id = p.parent_id
+            LEFT JOIN
+                res_partner_industry i ON i.id = r.industry_id
+            LEFT JOIN
+                contact_status s ON s.id = p.contact_status_id
+            LEFT JOIN
+                representative_team m ON m.id = c.team_id
+            LEFT JOIN
+                res_partner a ON a.id = c.rep_id
+        '''
+
+        params = ()
+
+        if meeting_type_ids:
+            query += 'WHERE c.meeting_type_id IN %s '
+            params = (tuple(meeting_type_ids),)
+
+        query += '''
+            GROUP BY
+                c.team_id,
+                m.name,
+                c.rep_id,
+                a.name,
+                c.meeting_type_id,
+                t.name,
+                p.parent_id,
+                p.contact_status_id,
+                s.name,
+                r.industry_id,
+                i.name,
+                r.name,
+                e.contact_id,
+                p.name,
+                c.completed
+            ORDER BY
+                COUNT(c.id) DESC
+        '''
+
+        self._cr.execute(query, params)
+        record = self._cr.dictfetchall()
+        return record
+
+    @api.model
+    def get_activity_details_completed_filter(self, *args):
+        completed = args[0]
+        if 'all' in completed:
+            completed = ['yes', 'no']
+        query = '''
                     SELECT
                         COUNT(c.id) AS activity_quantity,
                         c.team_id AS team_id,
@@ -280,8 +424,15 @@ class CalendarEvent(models.Model):
                         representative_team m ON m.id = c.team_id
                     LEFT JOIN
                         res_partner a ON a.id = c.rep_id
-                    WHERE
-                        c.rep_id IN %s 
+                '''
+
+        params = ()
+
+        if completed:
+            query += 'WHERE c.completed IN %s '
+            params = (tuple(completed),)
+
+        query += '''
                     GROUP BY
                         c.team_id,
                         m.name,
@@ -299,142 +450,10 @@ class CalendarEvent(models.Model):
                         p.name,
                         c.completed
                     ORDER BY
-                         COUNT(c.id) DESC
-                ''', (tuple(rep_ids),))
+                        COUNT(c.id) DESC
+                '''
 
-        record = self._cr.dictfetchall()
-        return record
-
-    @api.model
-    def get_activity_details_by_meeting_type(self, *args):
-        meeting_type_ids = args[0]
-        if not meeting_type_ids:
-            self._cr.execute(''' select id FROM calendar_event_type ''')
-            records = self._cr.dictfetchall()
-            meeting_type_ids = [record['id'] for record in records]
-        self._cr.execute('''
-            SELECT
-                COUNT(c.id) AS activity_quantity,
-                c.team_id AS team_id,
-                m.name AS team_name,
-                c.rep_id AS rep_id,
-                a.name AS rep,
-                c.meeting_type_id AS meeting_type_id,
-                t.name AS meeting_type,
-                p.parent_id AS parent_id,
-                p.contact_status_id AS contact_status_id,
-                s.name AS status,
-                r.industry_id AS industry_id,
-                i.name AS customer_type,
-                r.name AS company_name,
-                e.contact_id AS contact_id,
-                p.name AS contact,
-                c.completed AS completed
-            FROM
-                calendar_event c
-            LEFT JOIN
-                calendar_event_contact_id e ON e.calendar_event_id = c.id
-            LEFT JOIN
-                res_partner p ON p.id = e.contact_id
-            LEFT JOIN
-                calendar_event_type t ON t.id = c.meeting_type_id
-            LEFT JOIN
-                res_partner r ON r.id = p.parent_id
-            LEFT JOIN
-                res_partner_industry i ON i.id = r.industry_id
-            LEFT JOIN
-                contact_status s ON s.id = p.contact_status_id
-            LEFT JOIN
-                representative_team m ON m.id = c.team_id
-            LEFT JOIN
-                res_partner a ON a.id = c.rep_id
-            WHERE
-                c.meeting_type_id IN %s 
-            GROUP BY
-                c.team_id,
-                m.name,
-                c.rep_id,
-                a.name,
-                c.meeting_type_id,
-                t.name,
-                p.parent_id,
-                p.contact_status_id,
-                s.name,
-                r.industry_id,
-                i.name,
-                r.name,
-                e.contact_id,
-                p.name,
-                c.completed
-            ORDER BY
-                 COUNT(c.id) DESC
-        ''', (tuple(meeting_type_ids),))
-
-        record = self._cr.dictfetchall()
-        return record
-
-    @api.model
-    def get_activity_details_completed_filter(self, *args):
-        completed = args[0]
-        if 'all' in completed:
-            completed = ['yes', 'no']
-        self._cr.execute('''
-            SELECT
-                COUNT(c.id) AS activity_quantity,
-                c.team_id AS team_id,
-                m.name AS team_name,
-                c.rep_id AS rep_id,
-                a.name AS rep,
-                c.meeting_type_id AS meeting_type_id,
-                t.name AS meeting_type,
-                p.parent_id AS parent_id,
-                p.contact_status_id AS contact_status_id,
-                s.name AS status,
-                r.industry_id AS industry_id,
-                i.name AS customer_type,
-                r.name AS company_name,
-                e.contact_id AS contact_id,
-                p.name AS contact,
-                c.completed AS completed
-            FROM
-                calendar_event c
-            LEFT JOIN
-                calendar_event_contact_id e ON e.calendar_event_id = c.id
-            LEFT JOIN
-                res_partner p ON p.id = e.contact_id
-            LEFT JOIN
-                calendar_event_type t ON t.id = c.meeting_type_id
-            LEFT JOIN
-                res_partner r ON r.id = p.parent_id
-            LEFT JOIN
-                res_partner_industry i ON i.id = r.industry_id
-            LEFT JOIN
-                contact_status s ON s.id = p.contact_status_id
-            LEFT JOIN
-                representative_team m ON m.id = c.team_id
-            LEFT JOIN
-                res_partner a ON a.id = c.rep_id
-            WHERE
-                c.completed IN %s 
-            GROUP BY
-                c.team_id,
-                m.name,
-                c.rep_id,
-                a.name,
-                c.meeting_type_id,
-                t.name,
-                p.parent_id,
-                p.contact_status_id,
-                s.name,
-                r.industry_id,
-                i.name,
-                r.name,
-                e.contact_id,
-                p.name,
-                c.completed
-            ORDER BY
-                 COUNT(c.id) DESC
-        ''', (tuple(completed),))
+        self._cr.execute(query, params)
         record = self._cr.dictfetchall()
         return record
 
