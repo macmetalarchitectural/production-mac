@@ -24,7 +24,7 @@
                     <field name="contact_status_id" placeholder="Status..."
                            options="{'no_open': True, 'no_create': True}" string="Status"/>
 
-                    <field name="industry_id" attrs="{'invisible': [('is_company', '=', False)]}"
+                    <field name="industry_id"
                            options="{'no_create': True}" string="Customer type"/>
                 </xpath>
 
