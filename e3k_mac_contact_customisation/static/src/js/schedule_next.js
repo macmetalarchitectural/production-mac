@@ -1,6 +1,3 @@
-/** @odoo-module **/
-import core from 'web.core';
-
 odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (require) {
     "use strict";
 
