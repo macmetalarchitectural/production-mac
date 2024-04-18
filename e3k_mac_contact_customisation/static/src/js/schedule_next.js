@@ -1,6 +1,3 @@
-/** @odoo-module **/
-import core from 'web.core';
-
 odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (require) {
     "use strict";
 
@@ -8,6 +5,7 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
     var CalendarView = require('web.CalendarView');
     var viewRegistry = require('web.view_registry');
     const CalendarPopover = require('@calendar/js/calendar_renderer')[Symbol.for("default")].AttendeeCalendarPopover;
+    var core = require('web.core');
 
     var AttendeeCalendarPopover = CalendarPopover.include({
         events: _.extend({}, CalendarPopover.prototype.events, {
