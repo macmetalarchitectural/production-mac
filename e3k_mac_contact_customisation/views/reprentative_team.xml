@@ -117,7 +117,7 @@
             <field name="view_mode">tree,form,kanban</field>
             <field name="view_id" ref="representative_team_view_tree"/>
         </record>
-        <menuitem id="menu_representative_team" name="Representative Team" parent="contacts.res_partner_menu_config"
+        <menuitem id="menu_representative_team" name="Representative Team" parent="calendar.mail_menu_calendar"
                   action="representative_team_action" sequence="10"/>
 
 

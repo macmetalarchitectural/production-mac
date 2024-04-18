@@ -11,7 +11,7 @@
                 <xpath expr="//field[@name='category_id']" position="replace"/>
                 <xpath expr="//field[@name='industry_id']" position="replace"/>
                 <xpath expr="//field[@name='function']" position="attributes">
-                    <attribute name="attrs">{'invisible': [('company_type','=', 'person')]}</attribute>
+                    <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//group[@name='accounting_entries']" position="inside">
                     <field name="vat"/>
@@ -43,7 +43,7 @@
                                         <field name="email"/>
                                         <field name="parent_id"/>
                                         <field name="is_company"/>
-                                        <field name="function"/>
+                                        <field name="function" invisible="1"/>
                                         <field name="phone"/>
                                         <field name="street"/>
                                         <field name="street2"/>
@@ -71,7 +71,7 @@
                                                                 title="open" type="object" name="open_record"/>
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
-                                                            <field name="function"/>
+                                                            <field name="function" invisible="1"/>
                                                         </div>
                                                         <div t-if="record.email.raw_value">
                                                             <field name="email" widget="email"/>
