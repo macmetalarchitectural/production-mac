@@ -16,7 +16,7 @@
                     <div class="oe_title mb-3">
                         <div>
                             <label for="meeting_type_id" string="Meeting type: "/>
-                            <field name="meeting_type_id" class="oe_inline" options="{'no_create': True}"/>
+                            <field name="meeting_type_id" class="oe_inline" options="{'no_create': True,'no_open':True}"/>
                             <field name="completed" class="oe_inline" widget="boolean_button"/>
                         </div>
                     </div>
