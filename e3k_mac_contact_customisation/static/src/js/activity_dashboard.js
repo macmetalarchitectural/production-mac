@@ -226,7 +226,17 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     }).then(function (result) {
                         $('#activity_details').empty();
                         var inner ='<table class="table table-sm table-sm">';
-                        inner+= "<thread><tr style='background-color: silver;'><th><strong>Team</strong></th><th><strong>Rep</strong></th><th><strong>Company name</strong></th><th><strong>Contact</strong></th><th><strong>Customer type</strong></th><th><strong>Status</strong></th><th><strong>Meeting type</strong></th><th><strong>Activity quantity</strong></th><th><strong>Closed</strong></th></tr></thread>";
+                        var team =  _t('Team');
+                        var rep =  _t('Rep');
+                        var company =  _t('Company name');
+                        var contact =  _t('Contact');
+                        var customer_type =  _t('Customer type');
+                        var status =  _t('Status');
+                        var meeting_type =  _t('Meeting type');
+                        var activity_quantity =  _t('Activity quantity');
+                        var closed =  _t('Closed');
+                        var inner = '<table class="table table-sm table-sm">';
+                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
                         inner+='<tbody>';
                         for (var k = 0; k < result.length; k++) {
                             var team = result[k].team_name ? result[k].team_name : '';
@@ -239,11 +249,11 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             var status = result[k].status ? result[k].status : '';
                             if (result[k].completed == 'yes')
                                 {
-                                var completed = 'Yes'
+                                var completed = _t('Yes');
                                     }
                             else
                                 {
-                                    var completed = 'No'
+                                    var completed = _t('No');
                                 }
                            inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
                             }
@@ -265,9 +275,18 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                         model: "calendar.event",
                         method: "get_activity_details",
                     }).then(function (result) {
-                        var inner ='<table class="table table-sm table-sm">';
-                        inner+= "<thread><tr style='background-color: silver;'><th><strong>Team</strong></th><th><strong>Rep</strong></th><th><strong>Company name</strong></th><th><strong>Contact</strong></th><th><strong>Customer type</strong></th><th><strong>Status</strong></th><th><strong>Meeting type</strong></th><th><strong>Activity quantity</strong></th><th><strong>Closed</strong></th></tr></thread>";
-                        inner+='<tbody>';
+                        var team =  _t('Team');
+                        var rep =  _t('Rep');
+                        var company =  _t('Company name');
+                        var contact =  _t('Contact');
+                        var customer_type =  _t('Customer type');
+                        var status =  _t('Status');
+                        var meeting_type =  _t('Meeting type');
+                        var activity_quantity =  _t('Activity quantity');
+                        var closed =  _t('Closed');
+                        var inner = '<table class="table table-sm table-sm">';
+                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
+                       inner+='<tbody>';
                         for (var k = 0; k < result.length; k++) {
                             var team = result[k].team_name ? result[k].team_name : '';
                             var rep = result[k].rep ? result[k].rep : '';
@@ -279,11 +298,11 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             var status = result[k].status ? result[k].status : '';
                             if (result[k].completed == 'yes')
                                 {
-                                var completed = 'Yes'
+                                var completed = _t('Yes');
                                     }
                             else
                                 {
-                                    var completed = 'No'
+                                    var completed = _t('No');
                                 }
                            inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
                             }
@@ -299,6 +318,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_team");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -309,7 +329,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -343,6 +363,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_rep");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -353,7 +374,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -387,6 +408,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_meeting_type");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -397,7 +419,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -431,6 +453,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_status");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -441,7 +464,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
