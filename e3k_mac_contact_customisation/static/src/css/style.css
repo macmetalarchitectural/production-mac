@@ -1,0 +1,5 @@
+
+.frame-container {
+    border: 1px solid #000; /* Add your desired border style here */
+    padding: 10px; /* Add padding to create space between content and the border */
+}
