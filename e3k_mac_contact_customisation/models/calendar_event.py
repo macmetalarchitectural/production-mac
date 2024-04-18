@@ -9,20 +9,35 @@ class CalendarEvent(models.Model):
     meeting_type_id = fields.Many2one('calendar.event.type', string='Meeting Type', required=True)
     name = fields.Char(default=lambda self: _('New'), translate=True)
     team_id = fields.Many2one('representative.team', string='Team', compute='_compute_team_rep_id', store=True)
-    company_partner_id = fields.Many2one('res.partner', string='Company name', compute='_compute_company_partner_id', store=True)
+    company_partner_id = fields.Many2one('res.partner', string='Company name', compute='_compute_company_partner_id',
+                                         store=True)
     customer_state = fields.Selection(related='partner_id.customer_state', string='Status', store=True)
     rep_id = fields.Many2one('res.partner', string='Representative', related='user_id.partner_id', store=True)
-    contact_ids = fields.Many2many('res.partner', string='Contacts', relation='calendar_event_contact_id', column1='calendar_event_id',
+    contact_ids = fields.Many2many('res.partner', string='Contacts', relation='calendar_event_contact_id',
+                                   column1='calendar_event_id',
                                    column2='contact_id', compute='compute_contact_id', store=True)
     contact_name = fields.Char(related='partner_id.name', string='Contact Name', store=True)
     function = fields.Char(related='partner_id.function', string='Customer type', store=True)
-    completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Completed', default='no')
+    completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Done', default='no')
+    start = fields.Datetime(
+        'Start', required=True, tracking=True, default=False,
+        help="Start date of an event, without time for full days events")
+    stop = fields.Datetime(
+        'Stop', required=True, tracking=True, default=False,
+        compute='_compute_stop', readonly=False, store=True,
+        help="Stop date of an event, without time for full days events")
+
+    contact_id = fields.Many2one('res.partner', string='Contact', store=True , compute='_compute_company_partner_id')
+
+    @api.onchange('duration')
+    def _onchange_duration(self):
+        if self.start:
+            self.stop = self.start + timedelta(hours=self.duration)
 
     def action_done_schedule_next(self):
-        print("action_done_schedule_next_test+++++++++++++++++++++++++++++++++++++++")
         self.ensure_one()
         self.action_done()
-        return{
+        return {
             'name': _('Schedule Next Test'),
             'type': 'ir.actions.act_window',
             'res_model': 'calendar.event',
@@ -51,19 +66,26 @@ class CalendarEvent(models.Model):
         print(self.completed)
         return True
 
-
     @api.depends('partner_ids')
     def compute_contact_id(self):
         for rec in self:
             rec.contact_ids = rec.partner_ids - rec.partner_id
 
-    @api.depends('partner_id')
+    @api.depends('partner_id','partner_ids')
     def _compute_company_partner_id(self):
         for rec in self:
-            if rec.partner_id and rec.partner_id.parent_id:
-                rec.company_partner_id = rec.partner_id.parent_id.id
+            if rec.partner_ids:
+                partners= rec.partner_ids.filtered(lambda x: x!=rec.partner_id)
+                if partners:
+                    rec.contact_id = partners[0].id
+                    rec.company_partner_id = partners[0].parent_id.id if partners[0].parent_id else partners[0].id
+                else:
+                    rec.contact_id = False
+                    rec.company_partner_id = False
             else:
-                rec.company_partner_id = rec.partner_id.id
+                rec.contact_id = False
+                rec.company_partner_id = False
+
 
     @api.depends('user_id')
     def _compute_team_rep_id(self):
@@ -322,5 +344,7 @@ class CalendarEvent(models.Model):
 
 class CalendarEventType(models.Model):
     _inherit = 'calendar.event.type'
+    _order = 'name'
 
     name = fields.Char('Name', translate=True, required=True)
+    active=fields.Boolean(default=True)
