@@ -25,6 +25,7 @@
     'assets': {
         'web.assets_backend': [
             'e3k_mac_contact_customisation/static/src/js/schedule_meeting.js',
+            'e3k_mac_contact_customisation/static/src/js/schedule_next.js',
         ],
         'web.assets_qweb': [
             'e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml',

@@ -28,3 +28,16 @@ class ResPartner(models.Model):
         }
         action['domain'] = ['|', ('id', 'in', self._compute_meeting()[self.id]), ('partner_ids', 'in', self.ids)]
         return action
+
+
+    def open_record(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'res.partner',
+            'name': 'Record name',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'current',
+        }

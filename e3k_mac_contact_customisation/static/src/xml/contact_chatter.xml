@@ -3,18 +3,39 @@
     <t t-inherit="mail.ChatterTopbar" t-inherit-mode="extension">
         <xpath expr="//t[@t-if='chatter.hasActivities']" position="replace">
             <t t-if="chatter.hasActivities">
-                <button class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonScheduleActivity" type="button" t-att-disabled="chatter.isDisabled" t-on-click="chatter.onClickScheduleActivity" title="Schedule an activity"
+                <button class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonScheduleActivity" type="button"
+                        t-att-disabled="chatter.isDisabled" t-on-click="chatter.onClickScheduleActivity"
+                        title="Schedule an activity"
                         data-hotkey="shift+a">
                     <i class="fa fa-clock-o"/>
                     <t t-if="chatter.thread.model === 'res.partner'">To do</t>
                     <t t-else="">Schedule activity</t>
                 </button>
-                <button class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonScheduleActivity" type="button" t-att-disabled="chatter.isDisabled" t-on-click="chatter.onClickScheduleMeeting" title="Schedule an activity"
+                <button t-if="chatter.thread.model === 'res.partner'"
+                        class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonScheduleActivity" type="button"
+                        t-att-disabled="chatter.isDisabled" t-on-click="chatter.onClickScheduleMeeting"
+                        title="Schedule an activity"
                         data-hotkey="shift+a">
                     <i class="fa fa-clock-o"/>
                     <t t-if="chatter.thread.model === 'res.partner'">Schedule activity</t>
                 </button>
             </t>
         </xpath>
+
+
     </t>
+
+
+    <t t-extend="Calendar.attendee.status.popover">
+        <t t-jquery=".o_cw_body" t-operation="after">
+            <div t-attf-class="card-footer border-top #{ !widget.isEventEditable() &amp;&amp;!widget.isEventDeletable() ? 'o_footer_shrink' : '' }">
+                <a t-if="widget.isEventEditable()" href="#" class="btn btn-primary o_cw_event_done">Mark as Done</a>
+                <a t-if="widget.isEventDeletable()" href="#" class="btn btn-secondary o_cw_event_done_schedule_next  ml-2">Done
+                    &amp; Schedule Next
+                </a>
+            </div>
+        </t>
+    </t>
+
+
 </templates>

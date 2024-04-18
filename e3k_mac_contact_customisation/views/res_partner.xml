@@ -63,9 +63,12 @@
                                                 <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
                                                 <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Contact image" t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                                        <img alt="Contact image"
+                                                             t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
                                                     </div>
                                                     <div class="oe_kanban_details">
+                                                        <button style="pointer-events:auto; position:absolute; width:100%; height:100%;right: 0px;  top: 0px;  background:none; border:none;"
+                                                                title="open" type="object" name="open_record"/>
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
                                                             <field name="function"/>
@@ -124,11 +127,15 @@
                                         <templates>
                                             <t t-name="kanban-box">
                                                 <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+
                                                 <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Contact image" t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                                        <img alt="Contact image"
+                                                             t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
                                                     </div>
                                                     <div class="oe_kanban_details">
+                                                        <button style="pointer-events:auto; position:absolute; width:100%; height:100%;right: 0px;  top: 0px;  background:none; border:none;"
+                                                                title="open" type="object" name="open_record"/>
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
                                                             <field name="function"/>
@@ -189,13 +196,21 @@
                                                 <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
                                                 <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Contact image" t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                                        <img alt="Contact image"
+                                                             t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+
+
                                                     </div>
                                                     <div class="oe_kanban_details">
+                                                        <button style="pointer-events:auto; position:absolute; width:100%; height:100%;right: 0px;  top: 0px;  background:none; border:none;"
+                                                                title="open" type="object" name="open_record"/>
+
+
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
                                                             <field name="function"/>
                                                         </div>
+
                                                         <div t-if="record.email.raw_value">
                                                             <field name="email" widget="email"/>
                                                         </div>
@@ -213,6 +228,7 @@
                                                         <div t-if="record.mobile.raw_value">Mobile:
                                                             <t t-esc="record.mobile.value"/>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </t>
@@ -253,9 +269,12 @@ _id': user_id, 'default_type': 'invoice', 'default_company_type': 'person'}">
                                                 <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
                                                 <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Contact image" t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                                        <img alt="Contact image"
+                                                             t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
                                                     </div>
                                                     <div class="oe_kanban_details">
+                                                        <button style="pointer-events:auto; position:absolute; width:100%; height:100%;right: 0px;  top: 0px;  background:none; border:none;"
+                                                                title="open" type="object" name="open_record"/>
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
                                                             <field name="function"/>
@@ -316,9 +335,12 @@ _id': user_id, 'default_type': 'invoice', 'default_company_type': 'person'}">
                                                 <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
                                                 <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
                                                     <div class="o_kanban_image">
-                                                        <img alt="Contact image" t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                                        <img alt="Contact image"
+                                                             t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
                                                     </div>
                                                     <div class="oe_kanban_details">
+                                                        <button style="pointer-events:auto; position:absolute; width:100%; height:100%;right: 0px;  top: 0px;  background:none; border:none;"
+                                                                title="open" type="object" name="open_record"/>
                                                         <field name="name"/>
                                                         <div t-if="record.function.raw_value">
                                                             <field name="function"/>

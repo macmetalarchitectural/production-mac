@@ -11,6 +11,42 @@ class CalendarEvent(models.Model):
                                          store=True)
     customer_state = fields.Selection(related='partner_id.customer_state', string='Status', store=True)
     function = fields.Char(related='partner_id.function', string='Customer type', store=True)
+    completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Completed', default='no')
+
+    def action_done_schedule_next(self):
+        print("action_done_schedule_next_test+++++++++++++++++++++++++++++++++++++++")
+        self.ensure_one()
+        self.action_done()
+        return{
+            'name': _('Schedule Next Test'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'calendar.event',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': self.id,
+            'target': 'new',
+            'context': {
+                'default_partner_ids': [(4, self.partner_id.id)],
+                'default_user_id': self.user_id.id,
+                'default_meeting_type_id': self.meeting_type_id.id,
+                'default_start': False,
+                'default_stop': False,
+                'default_name': self.name,
+                'default_description': self.description,
+                'default_location': self.location,
+                'default_team_id': self.team_id.id,
+                'default_completed': 'yes',
+            }
+        }
+
+    def action_done(self):
+        self.ensure_one()
+        print(self)
+        self.completed = 'yes'
+        print(self.completed)
+        return True
+
+
 
     @api.depends('partner_id')
     def _compute_company_partner_id(self):
