@@ -32,74 +32,70 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
 
 
         onclick_hoverDiv1: function (ev) {
-             $("#hiddenDiv1").toggle();
-             if ($("#team_up").is(":visible"))
-                {
-                    $("#team_up").hide();
-                    $("#team_down").show();
-                }
-             else
-                {
-                    $("#team_up").show();
-                    $("#team_down").hide();
-                }
+            var hiddenDiv1 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv1");
+            if (hiddenDiv1.is(":visible")) {
+                hiddenDiv1.slideUp();
+                $("#team_up").show();
+                $("#team_down").hide();
+            } else {
+                hiddenDiv1.slideDown();
+                $("#team_up").hide();
+                $("#team_down").show();
+            }
         },
 
         onclick_hoverDiv2: function (ev) {
-             $("#hiddenDiv2").toggle();
-             if ($("#rep_up").is(":visible"))
-                {
-                    $("#rep_up").hide();
-                    $("#rep_down").show();
-                }
-             else
-                {
-                    $("#rep_up").show();
-                    $("#rep_down").hide();
-                }
+            var hiddenDiv2 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv2");
+            if (hiddenDiv2.is(":visible")) {
+                hiddenDiv2.slideUp();
+                $("#rep_up").show();
+                $("#rep_down").hide();
+            } else {
+                hiddenDiv2.slideDown();
+                $("#rep_up").hide();
+                $("#rep_down").show();
+            }
         },
 
         onclick_hoverDiv3: function (ev) {
-             $("#hiddenDiv3").toggle();
-             if ($("#meeting_type_up").is(":visible"))
-                {
-                    $("#meeting_type_up").hide();
-                    $("#meeting_type_down").show();
-                }
-             else
-                {
-                    $("#meeting_type_up").show();
-                    $("#meeting_type_down").hide();
-                }
+            var hiddenDiv3 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv3");
+            if (hiddenDiv3.is(":visible")) {
+                hiddenDiv3.slideUp();
+                $("#meeting_type_up").show();
+                $("#meeting_type_down").hide();
+            } else {
+                hiddenDiv3.slideDown();
+                $("#meeting_type_up").hide();
+                $("#meeting_type_down").show();
+            }
         },
 
         onclick_hoverDiv4: function (ev) {
-             $("#hiddenDiv4").toggle();
-             if ($("#closed_up").is(":visible"))
-                {
-                    $("#closed_up").hide();
-                    $("#closed_down").show();
-                }
-             else
-                {
-                    $("#closed_up").show();
-                    $("#closed_down").hide();
-                }
+            var hiddenDiv4 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv4");
+            if (hiddenDiv4.is(":visible")) {
+                hiddenDiv4.slideUp();
+                $("#closed_up").show();
+                $("#closed_down").hide();
+            } else {
+                hiddenDiv4.slideDown();
+                $("#closed_up").hide();
+                $("#closed_down").show();
+            }
         },
 
         onclick_hoverDiv5: function (ev) {
-             $("#hiddenDiv5").toggle();
-             if ($("#status_up").is(":visible"))
-                {
-                    $("#status_up").hide();
-                    $("#status_down").show();
-                }
-             else
-                {
-                    $("#status_up").show();
-                    $("#status_down").hide();
-                }
+            var hiddenDiv5 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv5");
+            if (hiddenDiv5.is(":visible")) {
+                hiddenDiv5.slideUp();
+                $("#status_up").show();
+                $("#status_down").hide();
+            } else {
+                hiddenDiv5.slideDown();
+                $("#status_up").hide();
+                $("#status_down").show();
+            }
         },
+
 
         onclick_from_date: function (ev) {
             if (!document.getElementById("from_date").value) {
