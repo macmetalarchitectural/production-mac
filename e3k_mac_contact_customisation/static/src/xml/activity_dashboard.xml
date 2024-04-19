@@ -2,13 +2,13 @@
 <templates id="template" xml:space="preserve">
     <t t-name="ActivityDashboard">
         <div class="accounts-dashboard-wrap">
-            <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12" style="background-color: #e1e1e1; !important; ">
-                <div class="navbar sticky-top navbar-light bg-light" style="z-index:999">
-                        <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12">
+            <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="navbar sticky-top navbar-light bg-light" style="z-index:999; border: 1px solid gray;">
+                    <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12">
                             <div class="filter-class">
                                 <div class="row" style="margin:0px">
                                     <div class="col-2">
-                                        <div class="tile wide invoice box-4">
+                                        <div class="tile wide invoice box-4" style="background-color: #e1e1e1; !important;">
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv1">
                                                     <p id="team_up" style="font-size:15px;"><b>Team &#9650;</b></p>
@@ -21,7 +21,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <div class="tile wide invoice box-4">
+                                        <div class="tile wide invoice box-4" style="background-color: #e1e1e1; !important;">
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv2">
                                                     <p id="rep_up" style="font-size:15px;"><b>Rep &#9650;</b></p>
@@ -34,7 +34,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <div class="tile wide invoice box-4">
+                                        <div class="tile wide invoice box-4" style="background-color: #e1e1e1; !important;">
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv3">
                                                     <p id="meeting_type_up" style="font-size:15px;"><b>Meeting type &#9650;</b></p>
@@ -48,33 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <div class="tile wide invoice box-4">
-                                            <h3 class="custom-h3 card-title frame-container">
-                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv4">
-                                                    <p id="closed_up" style="font-size:15px;"><b>Closed &#9650;</b></p>
-                                                    <p id="closed_down" style="font-size:15px; display: none;"><b>Closed  &#9660;</b></p>
-                                                </div>
-                                                <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv4" style="display: none;">
-                                                    <div id="open_closed">
-                                                        <div>
-                                                            <input type="checkbox" id="all" name="all"/>
-                                                            <label for="yes">Select all</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" id="yes" name="yes"/>
-                                                            <label for="yes">Yes</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" id="no" name="no"/>
-                                                            <label for="no">No</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="tile wide invoice box-4">
+                                        <div class="tile wide invoice box-4" style="background-color: #e1e1e1; !important;">
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv5">
                                                     <p id="status_up" style="font-size:15px;"><b>Status &#9650;</b></p>
@@ -85,6 +59,32 @@
                                                 </div>
                                             </h3>
 
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="tile wide invoice box-4" style="background-color: #e1e1e1; !important;">
+                                            <h3 class="custom-h3 card-title frame-container">
+                                                <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv4">
+                                                    <p id="closed_up" style="font-size:15px;"><b>Closed &#9650;</b></p>
+                                                    <p id="closed_down" style="font-size:15px; display: none;"><b>Closed  &#9660;</b></p>
+                                                </div>
+                                                <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv4" style="display: none;">
+                                                    <div id="open_closed"  style="font-size:15px;">
+                                                        <div>
+                                                            <input type="checkbox" id="all" name="completed"/>
+                                                            <label for="yes">Select all</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" id="yes" name="completed"/>
+                                                            <label for="yes">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" id="no" name="completed"/>
+                                                            <label for="no">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -99,10 +99,10 @@
                                 </div>
                             </div>
                         </div>
-
                 </div>
-                <div>
-                    <div class="users-list clearfix" id="activity_details" style="position: relative;"></div>
+                <br/>
+                <div style="border: 1px solid gray;">
+                    <div id="activity_details" style="position: relative;"></div>
                 </div>
 
             </div>

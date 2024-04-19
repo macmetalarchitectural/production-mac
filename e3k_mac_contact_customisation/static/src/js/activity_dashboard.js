@@ -125,94 +125,208 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             }
         },
 
+        get_rep_by_team: function (ev, teams) {
+            rpc.query({
+                        model: "calendar.event",
+                        method: "get_rep_by_team",
+                        args: [teams],
+                    })
+                    .then(function (result) {
+                        if (result[0]) {
+                            var select_all= _t('Select all');
+                            var container = document.getElementById("activity_rep");
+                            container.innerHTML = ""; // Clear any previous content
+                            var checkbox = document.createElement("input");
+                            checkbox.type = "checkbox";
+                            checkbox.name = "rep";
+                            checkbox.value = "all";
+
+                            // Create a label for the checkbox
+                            var label = document.createElement("label");
+                            label.appendChild(checkbox);
+                            label.appendChild(document.createTextNode(select_all));
+
+                            // Append the label to the container
+                            container.appendChild(label);
+                            container.appendChild(document.createElement("br"));
+
+                            for (var k = 0; k < result.length; k++) {
+                                var item = result[k].name;
+                                var value = result[k].id;
+
+                                // Create a checkbox element
+                                var checkbox = document.createElement("input");
+                                checkbox.type = "checkbox";
+                                checkbox.name = "rep";
+                                checkbox.value = value;
+
+                                // Create a label for the checkbox
+                                var label = document.createElement("label");
+                                label.appendChild(checkbox);
+                                label.appendChild(document.createTextNode(item));
+
+                                // Append the label to the container
+                                container.appendChild(label);
+                                container.appendChild(document.createElement("br"));
+                            }
+                        }
+                    })
+        },
+
 
         onclick_activity_details: function (ev) {
             ev.preventDefault();
             //get selected teams
-            var x = document.getElementById("activity_team");
+            var activity_team = document.getElementById("activity_team");
             var teams = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=team]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            teams.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+
+            function toggleAllTeams(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+
+                }
+            }
+            // Find the "all" checkbox element
+            var allTeams = document.querySelector("input[type=checkbox][name=team][value='all']");
+            // Attach event listener to the "all" checkbox
+            allTeams.addEventListener("change", function() {
+                toggleAllTeams(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allTeams.checked) {
+                toggleAllTeams(true);
+            }
+            else {
+                for (var k = 0; k < activity_team.children.length; k++) {
+                    var checkbox = activity_team.children[k].querySelector("input[type=checkbox][name=team]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         teams.push(checkbox.value);
                     }
                 }
             }
 
+            // If teams are selected, get reps for those teams
+            if (teams.length != 0) {
+                this.get_rep_by_team(ev, teams);
+            }
+
             //get selected reps
-            var x = document.getElementById("activity_rep");
+            var activity_rep = document.getElementById("activity_rep");
             var reps = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=rep]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            reps.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+
+            function toggleAllReps(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+             // Find the "all" checkbox element
+            var allReps = document.querySelector("input[type=checkbox][name=rep][value='all']");
+            // Attach event listener to the "all" checkbox
+            allReps.addEventListener("change", function() {
+                toggleAllReps(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allReps.checked) {
+                toggleAllReps(true);
+            }
+            else {
+                for (var k = 0; k < activity_rep.children.length; k++) {
+                    var checkbox = activity_rep.children[k].querySelector("input[type=checkbox][name=rep]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         reps.push(checkbox.value);
                     }
                 }
             }
 
             //get selected meeting types
-            var x = document.getElementById("activity_meeting_type");
+            var activity_meeting_type = document.getElementById("activity_meeting_type");
             var meeting_types = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=meeting_type]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            meeting_types.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+            function toggleAllMeetingTypes(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+            // Find the "all" checkbox element
+            var allMeetingTypes = document.querySelector("input[type=checkbox][name=meeting_type][value='all']");
+            // Attach event listener to the "all" checkbox
+            allMeetingTypes.addEventListener("change", function() {
+                toggleAllMeetingTypes(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allMeetingTypes.checked) {
+                toggleAllMeetingTypes(true);
+            }
+            else {
+                for (var k = 0; k < activity_meeting_type.children.length; k++) {
+                    var checkbox = activity_meeting_type.children[k].querySelector("input[type=checkbox][name=meeting_type]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         meeting_types.push(checkbox.value);
                     }
                 }
             }
 
             //get selected status
-            var x = document.getElementById("activity_status");
+            var activity_status = document.getElementById("activity_status");
             var status = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=status]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            status.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+            function toggleAllStatus(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+             // Find the "all" checkbox element
+            var allStatus = document.querySelector("input[type=checkbox][name=status][value='all']");
+            // Attach event listener to the "all" checkbox
+            allStatus.addEventListener("change", function() {
+                toggleAllStatus(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allStatus.checked) {
+                toggleAllStatus(true);
+            }
+            else {
+                for (var k = 0; k < activity_status.children.length; k++) {
+                    var checkbox = activity_status.children[k].querySelector("input[type=checkbox][name=status]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         status.push(checkbox.value);
                     }
                 }
             }
 
             //get selected state of open/closed
-            var x = document.getElementById("open_closed");
-            var checkedValues = [];
-            var checkboxes = x.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    checkedValues.push(checkbox.id);
+            var open_closed = document.getElementById("open_closed");
+            var completed = [];
+            function toggleAllCompleted(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type='checkbox'][name=completed]:not([id='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
                 }
+            }
+
+            // Find the "all" checkbox element
+            var allCompleted = document.querySelector("input[type=checkbox][name=completed][id='all']");
+            // Attach event listener to the "all" checkbox
+            allCompleted.addEventListener("change", function() {
+                toggleAllCompleted(this.checked);
             });
+            // Trigger the checked checkbox
+            if (allCompleted.checked) {
+                toggleAllCompleted(true);
+            }
+            else {
+                for (var k = 0; k < open_closed.children.length; k++) {
+                    var checkbox = open_closed.children[k].querySelector("input[type=checkbox][name=completed]");
+                    if (checkbox && checkbox.checked) {
+                        completed.push(checkbox.id);
+                    }
+                }
+            }
 
             //get selected dates
             var from_date = document.getElementById("from_date").value;
@@ -222,7 +336,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             rpc.query({
                         model: "calendar.event",
                         method: "get_activity_details_by_filter",
-                        args: [teams, reps, meeting_types, checkedValues, status, dates],
+                        args: [teams, reps, meeting_types, completed, status, dates],
                     }).then(function (result) {
                         $('#activity_details').empty();
                         var inner ='<table class="table table-sm table-sm">';

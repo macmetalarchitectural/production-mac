@@ -20,8 +20,6 @@ class RepresentativeTeam(models.Model):
     _order = "sequence ASC, create_date DESC, id DESC"
     _check_company_auto = True
 
-
-
     # description
     name = fields.Char('Representative Team', required=True, translate=True)
     sequence = fields.Integer('Sequence', default=10)
@@ -31,6 +29,5 @@ class RepresentativeTeam(models.Model):
         default=lambda self: self.env.company)
     user_id = fields.Many2one('res.users', string='Responsible', check_company=True)
     member_ids = fields.Many2many(
-        'res.users', string='Team Members', check_company=True,
+        'res.users', string='Team Members', relation='representative_team_res_users_rel',  check_company=True,
         help="Users assigned to this team.")
-
