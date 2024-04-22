@@ -47,6 +47,8 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
 
                         default_activity_ids: false,
                         default_partner_ids: partner_ids,
+                        default_activity_ids: false,
+
 
 
                     },
@@ -55,10 +57,12 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
                 return core.bus.trigger('do-action', {
                     action,
                     options: {
-                        on_close: () => {
+                       on_close: () => {
+                        console.log("&&&&&&&&&&&&&&&&&&on_close");
+                        console.log(self);
+                        core.bus.trigger('reload', { keepChanges: true });
 
-
-                        },
+                    },
                     },
                 });
 
