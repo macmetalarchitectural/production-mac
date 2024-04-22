@@ -61,9 +61,7 @@ class CalendarEvent(models.Model):
 
     def action_done(self):
         self.ensure_one()
-        print(self)
         self.completed = 'yes'
-        print(self.completed)
         return True
 
     @api.depends('partner_ids')
@@ -141,8 +139,18 @@ class CalendarEvent(models.Model):
     def get_rep(self):
         """Get the list of representatives for the activity dashboard"""
         self._cr.execute('''
-            SELECT DISTINCT t.user_id, p.id, p.name FROM calendar_event t, res_users r, res_partner p WHERE t.user_id = r.id AND r.partner_id = p.id ORDER BY p.name ASC
+            SELECT DISTINCT t.res_users_id, p.id, p.name FROM representative_team_res_users_rel t, res_users r, res_partner p WHERE t.res_users_id = r.id AND r.partner_id = p.id ORDER BY p.name ASC
             ''')
+
+        records = self._cr.dictfetchall()
+        return records
+
+    @api.model
+    def get_rep_by_team(self, *args):
+        team_ids = args[0]
+        self._cr.execute('''
+            SELECT DISTINCT t.res_users_id, p.id, p.name FROM representative_team_res_users_rel t, res_users r, res_partner p WHERE t.res_users_id = r.id AND r.partner_id = p.id AND t.representative_team_id IN %s ORDER BY p.name ASC
+            ''', (tuple(team_ids),))
 
         records = self._cr.dictfetchall()
         return records
@@ -227,7 +235,15 @@ class CalendarEvent(models.Model):
                 p.name,
                 c.completed
             ORDER BY
-                 COUNT(c.id) DESC
+                m.name ASC,
+                a.name ASC,
+                r.name ASC,
+                p.name ASC,
+                i.name ASC,
+                s.name ASC, 
+                t.name ASC,
+                COUNT(c.id) DESC
+                    
                 
         ''')
         record = self._cr.dictfetchall()
@@ -239,6 +255,8 @@ class CalendarEvent(models.Model):
         rep_ids = args[1]
         meeting_type_ids = args[2]
         open_closed = args[3]
+        if 'all' in open_closed:
+            open_closed = ['yes', 'no']
         status = args[4]
         dates = args[5]
         date_from = dates[0].replace('T', ' ') if dates[0] else '1800-01-01 00:00'
@@ -335,7 +353,15 @@ class CalendarEvent(models.Model):
                 p.name,
                 c.completed
             ORDER BY
+                m.name ASC,
+                a.name ASC,
+                r.name ASC,
+                p.name ASC,
+                i.name ASC,
+                s.name ASC, 
+                t.name ASC,
                 COUNT(c.id) DESC
+                    
         '''
         self._cr.execute(query, params)
         record = self._cr.dictfetchall()

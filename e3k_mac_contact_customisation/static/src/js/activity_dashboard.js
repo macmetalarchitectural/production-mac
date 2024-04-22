@@ -32,74 +32,70 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
 
 
         onclick_hoverDiv1: function (ev) {
-             $("#hiddenDiv1").toggle();
-             if ($("#team_up").is(":visible"))
-                {
-                    $("#team_up").hide();
-                    $("#team_down").show();
-                }
-             else
-                {
-                    $("#team_up").show();
-                    $("#team_down").hide();
-                }
+            var hiddenDiv1 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv1");
+            if (hiddenDiv1.is(":visible")) {
+                hiddenDiv1.slideUp();
+                $("#team_up").show();
+                $("#team_down").hide();
+            } else {
+                hiddenDiv1.slideDown();
+                $("#team_up").hide();
+                $("#team_down").show();
+            }
         },
 
         onclick_hoverDiv2: function (ev) {
-             $("#hiddenDiv2").toggle();
-             if ($("#rep_up").is(":visible"))
-                {
-                    $("#rep_up").hide();
-                    $("#rep_down").show();
-                }
-             else
-                {
-                    $("#rep_up").show();
-                    $("#rep_down").hide();
-                }
+            var hiddenDiv2 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv2");
+            if (hiddenDiv2.is(":visible")) {
+                hiddenDiv2.slideUp();
+                $("#rep_up").show();
+                $("#rep_down").hide();
+            } else {
+                hiddenDiv2.slideDown();
+                $("#rep_up").hide();
+                $("#rep_down").show();
+            }
         },
 
         onclick_hoverDiv3: function (ev) {
-             $("#hiddenDiv3").toggle();
-             if ($("#meeting_type_up").is(":visible"))
-                {
-                    $("#meeting_type_up").hide();
-                    $("#meeting_type_down").show();
-                }
-             else
-                {
-                    $("#meeting_type_up").show();
-                    $("#meeting_type_down").hide();
-                }
+            var hiddenDiv3 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv3");
+            if (hiddenDiv3.is(":visible")) {
+                hiddenDiv3.slideUp();
+                $("#meeting_type_up").show();
+                $("#meeting_type_down").hide();
+            } else {
+                hiddenDiv3.slideDown();
+                $("#meeting_type_up").hide();
+                $("#meeting_type_down").show();
+            }
         },
 
         onclick_hoverDiv4: function (ev) {
-             $("#hiddenDiv4").toggle();
-             if ($("#closed_up").is(":visible"))
-                {
-                    $("#closed_up").hide();
-                    $("#closed_down").show();
-                }
-             else
-                {
-                    $("#closed_up").show();
-                    $("#closed_down").hide();
-                }
+            var hiddenDiv4 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv4");
+            if (hiddenDiv4.is(":visible")) {
+                hiddenDiv4.slideUp();
+                $("#closed_up").show();
+                $("#closed_down").hide();
+            } else {
+                hiddenDiv4.slideDown();
+                $("#closed_up").hide();
+                $("#closed_down").show();
+            }
         },
 
         onclick_hoverDiv5: function (ev) {
-             $("#hiddenDiv5").toggle();
-             if ($("#status_up").is(":visible"))
-                {
-                    $("#status_up").hide();
-                    $("#status_down").show();
-                }
-             else
-                {
-                    $("#status_up").show();
-                    $("#status_down").hide();
-                }
+            var hiddenDiv5 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv5");
+            if (hiddenDiv5.is(":visible")) {
+                hiddenDiv5.slideUp();
+                $("#status_up").show();
+                $("#status_down").hide();
+            } else {
+                hiddenDiv5.slideDown();
+                $("#status_up").hide();
+                $("#status_down").show();
+            }
         },
+
 
         onclick_from_date: function (ev) {
             if (!document.getElementById("from_date").value) {
@@ -129,94 +125,208 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             }
         },
 
+        get_rep_by_team: function (ev, teams) {
+            rpc.query({
+                        model: "calendar.event",
+                        method: "get_rep_by_team",
+                        args: [teams],
+                    })
+                    .then(function (result) {
+                        if (result[0]) {
+                            var select_all= _t('Select all');
+                            var container = document.getElementById("activity_rep");
+                            container.innerHTML = ""; // Clear any previous content
+                            var checkbox = document.createElement("input");
+                            checkbox.type = "checkbox";
+                            checkbox.name = "rep";
+                            checkbox.value = "all";
+
+                            // Create a label for the checkbox
+                            var label = document.createElement("label");
+                            label.appendChild(checkbox);
+                            label.appendChild(document.createTextNode(select_all));
+
+                            // Append the label to the container
+                            container.appendChild(label);
+                            container.appendChild(document.createElement("br"));
+
+                            for (var k = 0; k < result.length; k++) {
+                                var item = result[k].name;
+                                var value = result[k].id;
+
+                                // Create a checkbox element
+                                var checkbox = document.createElement("input");
+                                checkbox.type = "checkbox";
+                                checkbox.name = "rep";
+                                checkbox.value = value;
+
+                                // Create a label for the checkbox
+                                var label = document.createElement("label");
+                                label.appendChild(checkbox);
+                                label.appendChild(document.createTextNode(item));
+
+                                // Append the label to the container
+                                container.appendChild(label);
+                                container.appendChild(document.createElement("br"));
+                            }
+                        }
+                    })
+        },
+
 
         onclick_activity_details: function (ev) {
             ev.preventDefault();
             //get selected teams
-            var x = document.getElementById("activity_team");
+            var activity_team = document.getElementById("activity_team");
             var teams = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=team]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            teams.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+
+            function toggleAllTeams(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+
+                }
+            }
+            // Find the "all" checkbox element
+            var allTeams = document.querySelector("input[type=checkbox][name=team][value='all']");
+            // Attach event listener to the "all" checkbox
+            allTeams.addEventListener("change", function() {
+                toggleAllTeams(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allTeams.checked) {
+                toggleAllTeams(true);
+            }
+            else {
+                for (var k = 0; k < activity_team.children.length; k++) {
+                    var checkbox = activity_team.children[k].querySelector("input[type=checkbox][name=team]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         teams.push(checkbox.value);
                     }
                 }
             }
 
+            // If teams are selected, get reps for those teams
+            if (teams.length != 0) {
+                this.get_rep_by_team(ev, teams);
+            }
+
             //get selected reps
-            var x = document.getElementById("activity_rep");
+            var activity_rep = document.getElementById("activity_rep");
             var reps = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=rep]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            reps.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+
+            function toggleAllReps(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+             // Find the "all" checkbox element
+            var allReps = document.querySelector("input[type=checkbox][name=rep][value='all']");
+            // Attach event listener to the "all" checkbox
+            allReps.addEventListener("change", function() {
+                toggleAllReps(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allReps.checked) {
+                toggleAllReps(true);
+            }
+            else {
+                for (var k = 0; k < activity_rep.children.length; k++) {
+                    var checkbox = activity_rep.children[k].querySelector("input[type=checkbox][name=rep]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         reps.push(checkbox.value);
                     }
                 }
             }
 
             //get selected meeting types
-            var x = document.getElementById("activity_meeting_type");
+            var activity_meeting_type = document.getElementById("activity_meeting_type");
             var meeting_types = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=meeting_type]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            meeting_types.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+            function toggleAllMeetingTypes(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+            // Find the "all" checkbox element
+            var allMeetingTypes = document.querySelector("input[type=checkbox][name=meeting_type][value='all']");
+            // Attach event listener to the "all" checkbox
+            allMeetingTypes.addEventListener("change", function() {
+                toggleAllMeetingTypes(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allMeetingTypes.checked) {
+                toggleAllMeetingTypes(true);
+            }
+            else {
+                for (var k = 0; k < activity_meeting_type.children.length; k++) {
+                    var checkbox = activity_meeting_type.children[k].querySelector("input[type=checkbox][name=meeting_type]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         meeting_types.push(checkbox.value);
                     }
                 }
             }
 
             //get selected status
-            var x = document.getElementById("activity_status");
+            var activity_status = document.getElementById("activity_status");
             var status = [];
-            for (var k = 0; k < x.children.length; k++) {
-                var checkbox = x.children[k].querySelector("input[type=checkbox][name=status]");
-                if (checkbox) {
-                    if (checkbox.value === "all" && checkbox.checked) {
-                        // If the "all" checkbox is checked, check all other checkboxes
-                        var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
-                        for (var i = 0; i < allCheckboxes.length; i++) {
-                            allCheckboxes[i].checked = true;
-                            status.push(allCheckboxes[i].value);
-                        }
-                    } else if (checkbox.checked) {
+            function toggleAllStatus(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+                }
+            }
+
+             // Find the "all" checkbox element
+            var allStatus = document.querySelector("input[type=checkbox][name=status][value='all']");
+            // Attach event listener to the "all" checkbox
+            allStatus.addEventListener("change", function() {
+                toggleAllStatus(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allStatus.checked) {
+                toggleAllStatus(true);
+            }
+            else {
+                for (var k = 0; k < activity_status.children.length; k++) {
+                    var checkbox = activity_status.children[k].querySelector("input[type=checkbox][name=status]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
                         status.push(checkbox.value);
                     }
                 }
             }
 
             //get selected state of open/closed
-            var x = document.getElementById("open_closed");
-            var checkedValues = [];
-            var checkboxes = x.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    checkedValues.push(checkbox.id);
+            var open_closed = document.getElementById("open_closed");
+            var completed = [];
+            function toggleAllCompleted(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type='checkbox'][name=completed]:not([id='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
                 }
+            }
+
+            // Find the "all" checkbox element
+            var allCompleted = document.querySelector("input[type=checkbox][name=completed][id='all']");
+            // Attach event listener to the "all" checkbox
+            allCompleted.addEventListener("change", function() {
+                toggleAllCompleted(this.checked);
             });
+            // Trigger the checked checkbox
+            if (allCompleted.checked) {
+                toggleAllCompleted(true);
+            }
+            else {
+                for (var k = 0; k < open_closed.children.length; k++) {
+                    var checkbox = open_closed.children[k].querySelector("input[type=checkbox][name=completed]");
+                    if (checkbox && checkbox.checked) {
+                        completed.push(checkbox.id);
+                    }
+                }
+            }
 
             //get selected dates
             var from_date = document.getElementById("from_date").value;
@@ -226,11 +336,21 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             rpc.query({
                         model: "calendar.event",
                         method: "get_activity_details_by_filter",
-                        args: [teams, reps, meeting_types, checkedValues, status, dates],
+                        args: [teams, reps, meeting_types, completed, status, dates],
                     }).then(function (result) {
                         $('#activity_details').empty();
                         var inner ='<table class="table table-sm table-sm">';
-                        inner+= "<thread><tr style='background-color: silver;'><th><strong>Team</strong></th><th><strong>Rep</strong></th><th><strong>Company name</strong></th><th><strong>Contact</strong></th><th><strong>Customer type</strong></th><th><strong>Status</strong></th><th><strong>Meeting type</strong></th><th><strong>Activity quantity</strong></th><th><strong>Closed</strong></th></tr></thread>";
+                        var team =  _t('Team');
+                        var rep =  _t('Rep');
+                        var company =  _t('Company name');
+                        var contact =  _t('Contact');
+                        var customer_type =  _t('Customer type');
+                        var status =  _t('Status');
+                        var meeting_type =  _t('Meeting type');
+                        var activity_quantity =  _t('Activity quantity');
+                        var closed =  _t('Closed');
+                        var inner = '<table class="table table-sm table-sm">';
+                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
                         inner+='<tbody>';
                         for (var k = 0; k < result.length; k++) {
                             var team = result[k].team_name ? result[k].team_name : '';
@@ -243,11 +363,11 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             var status = result[k].status ? result[k].status : '';
                             if (result[k].completed == 'yes')
                                 {
-                                var completed = 'Yes'
+                                var completed = _t('Yes');
                                     }
                             else
                                 {
-                                    var completed = 'No'
+                                    var completed = _t('No');
                                 }
                            inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
                             }
@@ -269,9 +389,18 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                         model: "calendar.event",
                         method: "get_activity_details",
                     }).then(function (result) {
-                        var inner ='<table class="table table-sm table-sm">';
-                        inner+= "<thread><tr style='background-color: silver;'><th><strong>Team</strong></th><th><strong>Rep</strong></th><th><strong>Company name</strong></th><th><strong>Contact</strong></th><th><strong>Customer type</strong></th><th><strong>Status</strong></th><th><strong>Meeting type</strong></th><th><strong>Activity quantity</strong></th><th><strong>Closed</strong></th></tr></thread>";
-                        inner+='<tbody>';
+                        var team =  _t('Team');
+                        var rep =  _t('Rep');
+                        var company =  _t('Company name');
+                        var contact =  _t('Contact');
+                        var customer_type =  _t('Customer type');
+                        var status =  _t('Status');
+                        var meeting_type =  _t('Meeting type');
+                        var activity_quantity =  _t('Activity quantity');
+                        var closed =  _t('Closed');
+                        var inner = '<table class="table table-sm table-sm">';
+                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
+                       inner+='<tbody>';
                         for (var k = 0; k < result.length; k++) {
                             var team = result[k].team_name ? result[k].team_name : '';
                             var rep = result[k].rep ? result[k].rep : '';
@@ -283,11 +412,11 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             var status = result[k].status ? result[k].status : '';
                             if (result[k].completed == 'yes')
                                 {
-                                var completed = 'Yes'
+                                var completed = _t('Yes');
                                     }
                             else
                                 {
-                                    var completed = 'No'
+                                    var completed = _t('No');
                                 }
                            inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
                             }
@@ -303,6 +432,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_team");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -313,7 +443,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -347,6 +477,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_rep");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -357,7 +488,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -391,6 +522,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_meeting_type");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -401,7 +533,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);
@@ -435,6 +567,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                     })
                     .then(function (result) {
                         if (result[0]) {
+                            var select_all= _t('Select all');
                             var container = document.getElementById("activity_status");
                             container.innerHTML = ""; // Clear any previous content
                             var checkbox = document.createElement("input");
@@ -445,7 +578,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             // Create a label for the checkbox
                             var label = document.createElement("label");
                             label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode("Select all"));
+                            label.appendChild(document.createTextNode(select_all));
 
                             // Append the label to the container
                             container.appendChild(label);

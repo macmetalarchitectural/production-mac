@@ -17,7 +17,10 @@
                         <div>
                             <label for="meeting_type_id" string="Meeting type: "/>
                             <field name="meeting_type_id" class="oe_inline" options="{'no_create': True,'no_open':True}"/>
-                            <field name="completed" class="oe_inline" widget="boolean_button"/>
+                        </div>
+                        <div>
+                            <label for="completed" string="Completed: "/>
+                            <field name="completed" class="oe_inline" widget="boolean_button" readonly="1"/>
                         </div>
                     </div>
                 </xpath>
@@ -120,7 +123,7 @@
 
 
         <record id="action_activity_dashboard" model="ir.actions.client">
-            <field name="name">Dashboard</field>
+            <field name="name">Activity analysis</field>
             <field name="tag">activity_dashboard</field>
         </record>
         <menuitem
