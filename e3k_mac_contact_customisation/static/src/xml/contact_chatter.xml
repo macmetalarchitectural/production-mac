@@ -33,6 +33,7 @@
                 <a t-if="widget.isEventDeletable()" href="#" class="btn btn-secondary o_cw_event_done_schedule_next  ml-2">Done
                     &amp; Schedule Next
                 </a>
+
             </div>
         </t>
     </t>

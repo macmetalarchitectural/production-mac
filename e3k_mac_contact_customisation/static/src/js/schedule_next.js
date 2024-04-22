@@ -41,7 +41,7 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
                     res_model: 'calendar.event',
                     view_mode: 'form',
                     views: [[false, 'form']],
-                    target: 'new',
+                    target: 'current',
                     context: {
                         default_res_model: 'calendar.event',
 
@@ -58,9 +58,6 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
                     action,
                     options: {
                        on_close: () => {
-                        console.log("&&&&&&&&&&&&&&&&&&on_close");
-                        console.log(self);
-                        core.bus.trigger('reload', { keepChanges: true });
 
                     },
                     },

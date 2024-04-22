@@ -7,16 +7,22 @@
             <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
             <field name="arch" type="xml">
 
-                <xpath expr="//page[@name='page_invitations']" position="attributes">
+                <xpath expr="//page[@name='page_invitations']//button[@name='action_sendmail']" position="attributes">
                     <attribute name="invisible">1</attribute>
 
                 </xpath>
+                <xpath expr="//page[@name='page_invitations']" position="attributes">
+                    <attribute name="groups"></attribute>
+
+                </xpath>
+
 
                 <xpath expr="//div[hasclass('oe_title')]" position="replace">
                     <div class="oe_title mb-3">
                         <div>
                             <label for="meeting_type_id" string="Meeting type: "/>
-                            <field name="meeting_type_id" class="oe_inline" options="{'no_create': True,'no_open':True}"/>
+                            <field name="meeting_type_id" class="oe_inline"
+                                   options="{'no_create': True,'no_open':True}"/>
                         </div>
                         <div>
                             <label for="completed" string="Completed: "/>
@@ -33,15 +39,25 @@
                 <xpath expr="//field[@name='description']" position="attributes">
                     <attribute name="required">1</attribute>
                 </xpath>
-                <xpath expr="//form" position="inside">
-
+                <xpath expr="//sheet" position="before">
                     <header>
-                        <button string="Mark as Done" name="action_done"
-                                type="object"
-                        />
-                        <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
-                                type="object" class="btn-secondary"/>
+                    <field name="completed" invisible="1"/>
+                    <button string="Mark as Done" name="action_done"
+                            type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                    />
+                    <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                            type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                    />
+                    <button string="Mark as Done" name="action_done"
+                            type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+                    />
+                    <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                            type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+
+                    />
                     </header>
+
+
                 </xpath>
 
 
@@ -57,10 +73,10 @@
                 <xpath expr="//field[@name='user_id']" position="before">
                     <field name="team_id" optional="show"/>
                 </xpath>
-                   <xpath expr="//field[@name='name']" position="attributes">
+                <xpath expr="//field[@name='name']" position="attributes">
                     <attribute name="optional">hide</attribute>
                 </xpath>
-                 <xpath expr="//field[@name='categ_ids']" position="attributes">
+                <xpath expr="//field[@name='categ_ids']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//field[@name='user_id']" position="after">
@@ -70,7 +86,7 @@
                     <field name="meeting_type_id" optional="show"/>
                     <field name="function" optional="show"/>
                     <field name="completed" optional="show"/>
-                    <field name="contact_ids" widget="many2many_tags"/>
+                    <field name="contact_ids" widget="many2many_tags" optional="show"/>
 
                 </xpath>
             </field>
