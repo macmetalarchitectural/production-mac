@@ -27,7 +27,7 @@ class CalendarEvent(models.Model):
         compute='_compute_stop', readonly=False, store=True,
         help="Stop date of an event, without time for full days events")
 
-    contact_id = fields.Many2one('res.partner', string='Contact', store=True , compute='_compute_company_partner_id')
+    contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
 
     @api.onchange('duration')
     def _onchange_duration(self):
@@ -69,11 +69,11 @@ class CalendarEvent(models.Model):
         for rec in self:
             rec.contact_ids = rec.partner_ids - rec.partner_id
 
-    @api.depends('partner_id','partner_ids')
+    @api.depends('partner_id', 'partner_ids')
     def _compute_company_partner_id(self):
         for rec in self:
             if rec.partner_ids:
-                partners= rec.partner_ids.filtered(lambda x: x!=rec.partner_id)
+                partners = rec.partner_ids.filtered(lambda x: x != rec.partner_id)
                 if partners:
                     rec.contact_id = partners[0].id
                     rec.company_partner_id = partners[0].parent_id.id if partners[0].parent_id else partners[0].id
@@ -83,7 +83,6 @@ class CalendarEvent(models.Model):
             else:
                 rec.contact_id = False
                 rec.company_partner_id = False
-
 
     @api.depends('user_id')
     def _compute_team_rep_id(self):
@@ -133,6 +132,10 @@ class CalendarEvent(models.Model):
         """Get the list of teams for the activity dashboard"""
         self._cr.execute(''' select id, name FROM representative_team  ORDER BY name ASC ''')
         record = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for rec in record:
+                rec['name'] = self.env['representative.team'].with_context(lang=lang).browse(rec['id']).name
         return record
 
     @api.model
@@ -158,10 +161,18 @@ class CalendarEvent(models.Model):
     @api.model
     def get_status(self):
         """Get the list of status for the activity dashboard"""
-        self._cr.execute(''' select id, name FROM contact_status  ORDER BY name ASC''')
+        lang = self.env.user.lang or 'en_US'
+        self._cr.execute(''' 
+                SELECT id, name 
+                FROM contact_status 
+                ORDER BY name ASC
+            ''')
+        records = self._cr.dictfetchall()
+        if lang != 'en_US':
+            for record in records:
+                record['name'] = self.env['contact.status'].with_context(lang=lang).browse(record['id']).name
 
-        record = self._cr.dictfetchall()
-        return record
+        return records
 
     @api.model
     def get_meeting_type(self):
@@ -169,6 +180,10 @@ class CalendarEvent(models.Model):
         self._cr.execute(''' select id, name FROM calendar_event_type  ORDER BY name ASC''')
 
         record = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for rec in record:
+                rec['name'] = self.env['calendar.event.type'].with_context(lang=lang).browse(rec['id']).name
         return record
 
     def adjust_dates(self, args):
@@ -243,11 +258,17 @@ class CalendarEvent(models.Model):
                 s.name ASC, 
                 t.name ASC,
                 COUNT(c.id) DESC
-                    
-                
         ''')
-        record = self._cr.dictfetchall()
-        return record
+        records = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for record in records:
+                record['team_name'] = self.env['representative.team'].with_context(lang=lang).browse(record['team_id']).name
+                record['status'] = self.env['contact.status'].with_context(lang=lang).browse(record['contact_status_id']).name
+                record['customer_type'] = self.env['res.partner.industry'].with_context(lang=lang).browse(record['industry_id']).name
+                record['meeting_type'] = self.env['calendar.event.type'].with_context(lang=lang).browse(record['meeting_type_id']).name
+
+        return records
 
     @api.model
     def get_activity_details_by_filter(self, *args):
@@ -364,8 +385,16 @@ class CalendarEvent(models.Model):
                     
         '''
         self._cr.execute(query, params)
-        record = self._cr.dictfetchall()
-        return record
+        records = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for record in records:
+                record['team_name'] = self.env['representative.team'].with_context(lang=lang).browse(record['team_id']).name
+                record['status'] = self.env['contact.status'].with_context(lang=lang).browse(record['contact_status_id']).name
+                record['customer_type'] = self.env['res.partner.industry'].with_context(lang=lang).browse(record['industry_id']).name
+                record['meeting_type'] = self.env['calendar.event.type'].with_context(lang=lang).browse(record['meeting_type_id']).name
+
+        return records
 
 
 class CalendarEventType(models.Model):
@@ -373,4 +402,4 @@ class CalendarEventType(models.Model):
     _order = 'name'
 
     name = fields.Char('Name', translate=True, required=True)
-    active=fields.Boolean(default=True)
+    active = fields.Boolean(default=True)
