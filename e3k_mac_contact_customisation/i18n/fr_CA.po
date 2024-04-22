@@ -143,7 +143,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__contact_ids
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__contact_ids
 msgid "Contacts"
-msgstr ""
+msgstr "Invités"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca

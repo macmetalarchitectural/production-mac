@@ -6,6 +6,15 @@ import pytz
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
 
+    def _default_start_date(self):
+        print("inside defualt start")
+        now = datetime.now()
+        next_hour = now.replace(second=0, microsecond=0, minute=0, hour=now.hour + 1)
+        if next_hour.hour == 0:
+            next_hour += timedelta(days=1)
+
+        return next_hour
+
     meeting_type_id = fields.Many2one('calendar.event.type', string='Meeting Type', required=True)
     name = fields.Char(default=lambda self: _('New'), translate=True)
     team_id = fields.Many2one('representative.team', string='Team', compute='_compute_team_rep_id', store=True)
@@ -20,14 +29,15 @@ class CalendarEvent(models.Model):
     function = fields.Char(related='partner_id.function', string='Customer type', store=True)
     completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Done', default='no')
     start = fields.Datetime(
-        'Start', required=True, tracking=True, default=False,
-        help="Start date of an event, without time for full days events")
+        'Start', required=True, tracking=True,
+        help="Start date of an event, without time for full days events", default=_default_start_date)
     stop = fields.Datetime(
         'Stop', required=True, tracking=True, default=False,
         compute='_compute_stop', readonly=False, store=True,
         help="Stop date of an event, without time for full days events")
 
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
+    duration = fields.Float('Duration', default=1)
 
     @api.onchange('duration')
     def _onchange_duration(self):
@@ -37,25 +47,25 @@ class CalendarEvent(models.Model):
     def action_done_schedule_next(self):
         self.ensure_one()
         self.action_done()
+        default_partner_ids = [(4, partner.id) for partner in self.partner_ids]
+
         return {
             'name': _('Schedule Next Test'),
             'type': 'ir.actions.act_window',
             'res_model': 'calendar.event',
             'view_mode': 'form',
             'view_type': 'form',
-            'res_id': self.id,
-            'target': 'new',
+            'target': 'current',
             'context': {
-                'default_partner_ids': [(4, self.partner_id.id)],
+                'default_partner_ids': default_partner_ids,
                 'default_user_id': self.user_id.id,
-                'default_meeting_type_id': self.meeting_type_id.id,
-                'default_start': False,
+                'default_meeting_type_id': False,
+                'default_start': self._default_start_date(),
                 'default_stop': False,
-                'default_name': self.name,
-                'default_description': self.description,
-                'default_location': self.location,
-                'default_team_id': self.team_id.id,
-                'default_completed': 'yes',
+                'default_name': False,
+                'default_description': False,
+                'default_location': False,
+                'default_completed': 'no',
             }
         }
 
