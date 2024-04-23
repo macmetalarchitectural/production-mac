@@ -1,6 +1,22 @@
 from odoo import models, api, fields, _
 from datetime import datetime, timedelta, time
-import pytz
+import calendar
+from odoo.tools import format_date
+
+MONTH_NAME_MAPPING = {
+    'janvier': 'January',
+    'février': 'February',
+    'mars': 'March',
+    'avril': 'April',
+    'mai': 'May',
+    'juin': 'June',
+    'juillet': 'July',
+    'août': 'August',
+    'septembre': 'September',
+    'octobre': 'October',
+    'novembre': 'November',
+    'décembre': 'December'
+}
 
 
 class CalendarEvent(models.Model):
@@ -38,6 +54,13 @@ class CalendarEvent(models.Model):
 
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
     duration = fields.Float('Duration', default=1)
+
+    def check_event_completed(self):
+        for rec in self:
+            if rec.completed == 'yes':
+                return True
+            else:
+                return False
 
     @api.onchange('duration')
     def _onchange_duration(self):
@@ -196,13 +219,41 @@ class CalendarEvent(models.Model):
                 rec['name'] = self.env['calendar.event.type'].with_context(lang=lang).browse(rec['id']).name
         return record
 
-    def adjust_dates(self, args):
-        args = list(args)
-        if not args[0]:
-            args[0] = '1800-01-01 00:00'
-        if not args[1]:
-            args[1] = '2070-01-01 23:59'
-        return args
+    def get_period_name(self, period):
+        current_date = fields.Date.today()  # Get the current date
+        if period == 'this_month':
+            month_name = format_date(self.env, current_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return month_name.capitalize(), 'month'
+        elif period == 'last_month':
+            last_month_date = current_date - timedelta(days=30)
+            last_month_name = format_date(self.env, last_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return last_month_name.capitalize(), 'month'
+        elif period == 'last_2_month':
+            last_2_month_date = current_date - timedelta(days=90)
+            last_2_month_name = format_date(self.env, last_2_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return last_2_month_name.capitalize(), 'month'
+        elif period == 'this_year':
+            year_name = format_date(self.env, current_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return year_name, 'year'
+        elif period == 'last_year':
+            last_year_date = current_date - timedelta(days=365)
+            last_year_name = format_date(self.env, last_year_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return last_year_name, 'year'
+        elif period == 'last_2_year':
+            last_2_year_date = current_date - timedelta(days=730)
+            last_2_year_name = format_date(self.env, last_2_year_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return last_2_year_name, 'year'
+
+    @api.model
+    def get_period(self):
+        periods = [{'id': '', 'name': ''},
+                   {'id': 'this_month', 'name': self.get_period_name('this_month')[0]},
+                   {'id': 'last_month', 'name': self.get_period_name('last_month')[0]},
+                   {'id': 'last_2_month', 'name': self.get_period_name('last_2_month')[0]},
+                   {'id': 'this_year', 'name': self.get_period_name('this_year')[0]},
+                   {'id': 'last_year', 'name': self.get_period_name('last_year')[0]},
+                   {'id': 'last_2_year', 'name': self.get_period_name('last_2_year')[0]}]
+        return periods
 
     @api.model
     def get_activity_details(self):
@@ -280,6 +331,20 @@ class CalendarEvent(models.Model):
 
         return records
 
+    def get_first_and_last_date_of_month(self, year, month):
+        month = MONTH_NAME_MAPPING.get(month.lower(), month)
+        month = datetime.strptime(month, '%B').month
+        num_days_in_month = calendar.monthrange(year, month)[1]
+        first_date_of_month = datetime(year, month, 1)
+        last_date_of_month = datetime(year, month, num_days_in_month, 23, 59, 59)
+        return first_date_of_month, last_date_of_month
+
+    def get_first_and_last_date_of_year(self, year):
+        first_date_of_year = datetime(year, 1, 1)
+        last_date_of_year = datetime(year, 12, 31, 23, 59, 59)
+        return first_date_of_year, last_date_of_year
+
+    # Example usage:
     @api.model
     def get_activity_details_by_filter(self, *args):
         team_ids = args[0]
@@ -292,6 +357,16 @@ class CalendarEvent(models.Model):
         dates = args[5]
         date_from = dates[0].replace('T', ' ') if dates[0] else '1800-01-01 00:00'
         date_to = dates[1].replace('T', ' ') if dates[1] else '2070-01-01 23:59'
+        period = args[6]
+        if period:
+            period = self.get_period_name(period)
+            if period[1] == "month":
+                current_year = datetime.now().year
+                dates = self.get_first_and_last_date_of_month(current_year, period[0])
+            elif period[1] == "year":
+                dates = self.get_first_and_last_date_of_year(int(period[0]))
+            date_from = dates[0]
+            date_to = dates[1]
         query = '''
             SELECT
                 COUNT(c.id) AS activity_quantity,

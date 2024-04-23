@@ -19,6 +19,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             'click #hoverDiv3': 'onclick_hoverDiv3',
             'click #hoverDiv4': 'onclick_hoverDiv4',
             'click #hoverDiv5': 'onclick_hoverDiv5',
+            'click #hoverDiv6': 'onclick_hoverDiv6',
             'change #activity_team': 'onclick_activity_details',
             'change #activity_rep': 'onclick_activity_details',
             'change #activity_meeting_type': 'onclick_activity_details',
@@ -28,6 +29,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             'change #from_date': 'onclick_activity_details',
             'click #to_date': 'onclick_to_date',
             'change #to_date': 'onclick_activity_details',
+            'change #activity_period': 'onclick_activity_details',
         },
 
 
@@ -93,6 +95,19 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 hiddenDiv5.slideDown();
                 $("#status_up").hide();
                 $("#status_down").show();
+            }
+        },
+
+        onclick_hoverDiv6: function (ev) {
+            var hiddenDiv6 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv6");
+            if (hiddenDiv6.is(":visible")) {
+                hiddenDiv6.slideUp();
+                $("#period_up").show();
+                $("#period_down").hide();
+            } else {
+                hiddenDiv6.slideDown();
+                $("#period_up").hide();
+                $("#period_down").show();
             }
         },
 
@@ -328,6 +343,9 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 }
             }
 
+            //get selected period
+            var activity_period = document.getElementById("activity_period").value;
+
             //get selected dates
             var from_date = document.getElementById("from_date").value;
             var to_date = document.getElementById("to_date").value;
@@ -336,7 +354,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             rpc.query({
                         model: "calendar.event",
                         method: "get_activity_details_by_filter",
-                        args: [teams, reps, meeting_types, completed, status, dates],
+                        args: [teams, reps, meeting_types, completed, status, dates, activity_period],
                     }).then(function (result) {
                         $('#activity_details').empty();
                         var inner ='<table class="table table-sm table-sm">';
@@ -605,6 +623,27 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                             }
                         }
                     })
+
+
+            rpc.query({
+                        model: "calendar.event",
+                        method: "get_period",
+                    })
+                        .then(function (result) {
+
+                                if(result[0]){
+                                  var selectElem = document.getElementById("activity_period");
+                                  $(selectElem).empty();
+                                  for (var k = 0; k < result.length; k++) {
+                                  var item =result[k].name;
+                                  var value =result[k].id;
+                                  var element = document.createElement("option");
+                                  element.innerText = item;
+                                  element.value = value;
+                                  selectElem.append(element);
+                                    }
+                                }
+                                })
 
 
 
