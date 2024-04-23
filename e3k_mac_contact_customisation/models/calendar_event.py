@@ -55,13 +55,6 @@ class CalendarEvent(models.Model):
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
     duration = fields.Float('Duration', default=1)
 
-    def check_event_completed(self):
-        for rec in self:
-            if rec.completed == 'yes':
-                return True
-            else:
-                return False
-
     @api.onchange('duration')
     def _onchange_duration(self):
         if self.start:

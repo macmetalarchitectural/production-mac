@@ -13,6 +13,14 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
             'click .o_cw_event_done_schedule_next': '_onClickDoneScheduleNext',
         }),
 
+        isEventCompleted() {
+            if (this.event.extendedProps.record.completed === 'yes')
+            {
+                return true;
+            }
+            return false;
+        },
+
         _onClickDone: function (ev) {
             ev.preventDefault();
             var self = this;
