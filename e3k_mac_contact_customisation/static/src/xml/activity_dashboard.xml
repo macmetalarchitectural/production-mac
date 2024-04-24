@@ -15,7 +15,7 @@
                                                     <p id="team_down" style="font-size:15px; display: none;"><b>Team &#9660;</b></p>
                                                 </div>
                                                 <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv1" style="display: none;">
-                                                <div id="activity_team" style="font-size:15px;"/>
+                                                <div id="activity_team" style="font-size:15px;" class="divScroll"/>
                                                 </div>
                                             </h3>
                                         </div>
@@ -28,7 +28,7 @@
                                                     <p id="rep_down" style="font-size:15px; display: none;"><b>Rep  &#9660;</b></p>
                                                 </div>
                                                 <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv2" style="display: none;">
-                                                    <div id="activity_rep" style="font-size:15px;"/>
+                                                    <div id="activity_rep" style="font-size:15px;" class="divScroll"/>
                                                 </div>
                                             </h3>
                                         </div>
@@ -38,10 +38,10 @@
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv3">
                                                     <p id="meeting_type_up" style="font-size:15px;"><b>Meeting type &#9650;</b></p>
-                                                    <p id='meeting_type_down' style="font-size:15px; display: none;"><b>Meeting type  &#9660;</b></p>
+                                                    <p id="meeting_type_down" style="font-size:15px; display: none;"><b>Meeting type  &#9660;</b></p>
                                                 </div>
                                                 <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv3" style="display: none;">
-                                                    <div id="activity_meeting_type" style="font-size:15px;"/>
+                                                    <div id="activity_meeting_type" style="font-size:15px;" class="divScroll"/>
                                                 </div>
                                             </h3>
 
@@ -52,10 +52,10 @@
                                             <h3 class="custom-h3 card-title frame-container">
                                                 <div class="dash-header col-xs-12 col-sm-12 col-lg-12 col-md-12 hover-div" id="hoverDiv5">
                                                     <p id="status_up" style="font-size:15px;"><b>Status &#9650;</b></p>
-                                                    <p id='status_down' style="font-size:15px; display: none;"><b>Status  &#9660;</b></p>
+                                                    <p id="status_down" style="font-size:15px; display: none;"><b>Status  &#9660;</b></p>
                                                 </div>
                                                 <div class="tile wide invoice box-4 hidden-div" id="hiddenDiv5" style="display: none;">
-                                                    <div id="activity_status" style="font-size:15px;"/>
+                                                    <div id="activity_status" style="font-size:15px;" class="divScroll"/>
                                                 </div>
                                             </h3>
 
