@@ -26,8 +26,3 @@
     top: 100%; /* Slide the hidden div down when the hover div is hovered */
 }
 
-.divScroll {
-    overflow:scroll;
-    height:500px;
-    width:300px;
-}
