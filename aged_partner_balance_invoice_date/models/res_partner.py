@@ -34,6 +34,7 @@ class ResPartner(models.Model):
         return super(ResPartner, self).create(vals_list)
 
     def write(self, vals):
+
         vals_category = []
         if 'property_product_pricelist' in vals:
             if vals['property_product_pricelist']:

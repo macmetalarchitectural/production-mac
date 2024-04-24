@@ -28,7 +28,15 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
             ev.preventDefault();
             var self = this;
             var partner_ids=self.event.extendedProps.record.partner_ids;
-            console.log(partner_ids);
+            var record=self.event.extendedProps.record;
+            var completed=self.event.extendedProps.record.completed;
+
+            console.log("=========================================record");
+            console.log(record);
+            console.log(completed);
+            console.log("222222222222222222222222222222");
+
+            console.log(this);
 
             this._rpc({
                 model: 'calendar.event',
