@@ -177,6 +177,8 @@ class CalendarEvent(models.Model):
     @api.model
     def get_rep_by_team(self, *args):
         team_ids = args[0]
+        if not team_ids:
+            team_ids = self.env['representative.team'].search([]).ids
         self._cr.execute('''
             SELECT DISTINCT t.res_users_id, p.id, p.name FROM representative_team_res_users_rel t, res_users r, res_partner p WHERE t.res_users_id = r.id AND r.partner_id = p.id AND t.representative_team_id IN %s ORDER BY p.name ASC
             ''', (tuple(team_ids),))

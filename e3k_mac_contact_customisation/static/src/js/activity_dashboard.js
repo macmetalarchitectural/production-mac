@@ -20,7 +20,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             'click #hoverDiv4': 'onclick_hoverDiv4',
             'click #hoverDiv5': 'onclick_hoverDiv5',
             'click #hoverDiv6': 'onclick_hoverDiv6',
-            'change #activity_team': 'onclick_activity_details',
+            'change #activity_team': 'onclick_activity_team',
             'change #activity_rep': 'onclick_activity_details',
             'change #activity_meeting_type': 'onclick_activity_details',
             'change #open_closed': 'onclick_activity_details',
@@ -29,7 +29,7 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             'change #from_date': 'onclick_activity_details',
             'click #to_date': 'onclick_to_date',
             'change #to_date': 'onclick_activity_details',
-            'change #activity_period': 'onclick_activity_details',
+            'change #activity_period': 'onclick_activity_period',
         },
 
 
@@ -124,6 +124,8 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 var formattedDate = currentDate.toISOString().slice(0, -8);
                 document.getElementById("from_date").value = formattedDate;
                 }
+                // delete period value
+                document.getElementById("activity_period").value = '';
         },
 
         onclick_to_date: function (ev) {
@@ -138,6 +140,51 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                 var formattedDate = currentDate.toISOString().slice(0, -8);
                 document.getElementById("to_date").value = formattedDate;
             }
+             document.getElementById("activity_period").value = '';
+        },
+
+        onclick_activity_period: function (ev) {
+            if (document.getElementById("activity_period").value) {
+                document.getElementById("from_date").value = '';
+                document.getElementById("to_date").value = '';
+
+            }
+            this.onclick_activity_details(ev);
+        },
+
+        onclick_activity_team: function (ev) {
+        var activity_team = document.getElementById("activity_team");
+            var teams = [];
+
+            function toggleAllTeams(checked) {
+                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
+                for (var i = 0; i < allCheckboxes.length; i++) {
+                    allCheckboxes[i].checked = checked;
+
+                }
+            }
+            // Find the "all" checkbox element
+            var allTeams = document.querySelector("input[type=checkbox][name=team][value='all']");
+            // Attach event listener to the "all" checkbox
+            allTeams.addEventListener("change", function() {
+                toggleAllTeams(this.checked);
+            });
+            // Trigger the checked checkbox
+            if (allTeams.checked) {
+                toggleAllTeams(true);
+            }
+            else {
+                for (var k = 0; k < activity_team.children.length; k++) {
+                    var checkbox = activity_team.children[k].querySelector("input[type=checkbox][name=team]");
+                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
+                        teams.push(checkbox.value);
+                    }
+                }
+            }
+
+            this.get_rep_by_team(ev, teams);
+            this.onclick_activity_details(ev);
+
         },
 
         get_rep_by_team: function (ev, teams) {
@@ -219,11 +266,6 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
                         teams.push(checkbox.value);
                     }
                 }
-            }
-
-            // If teams are selected, get reps for those teams
-            if (teams.length != 0) {
-                this.get_rep_by_team(ev, teams);
             }
 
             //get selected reps
