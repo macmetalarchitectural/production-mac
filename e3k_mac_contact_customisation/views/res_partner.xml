@@ -27,7 +27,7 @@
 
 
                     <field name="industry_id"
-                           options="{'no_create': True}" string="Customer type"/>
+                           options="{'no_create': True}" string="Customer type" attrs="{'readonly': [('is_company', '=', False)]}"/>
                 </xpath>
 
                 <xpath expr="//page[1]" position="replace">
