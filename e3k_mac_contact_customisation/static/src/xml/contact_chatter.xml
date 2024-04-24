@@ -29,10 +29,20 @@
     <t t-extend="Calendar.attendee.status.popover">
         <t t-jquery=".o_cw_body" t-operation="after">
             <div t-attf-class="card-footer border-top #{ !widget.isEventEditable() &amp;&amp;!widget.isEventDeletable() ? 'o_footer_shrink' : '' }">
-                <a t-if="widget.isEventEditable()" href="#" class="btn btn-primary o_cw_event_done">Mark as Done</a>
-                <a t-if="widget.isEventDeletable()" href="#" class="btn btn-secondary o_cw_event_done_schedule_next  ml-2">Done
-                    &amp; Schedule Next
-                </a>
+                <t t-if="widget.isEventCompleted()">
+                    <a t-if="widget.isEventEditable()" href="#" style="font-size:11px;" class="btn btn-secondary o_cw_event_done">Mark as Done</a>
+                    <a t-if="widget.isEventDeletable()" href="#" style="font-size:11px;" class="btn btn-secondary o_cw_event_done_schedule_next  ml-2">Done
+                        &amp; Schedule Next
+                    </a>
+
+                </t>
+                <t t-else="">
+                    <a t-if="widget.isEventEditable()" href="#" style="font-size:11px;" class="btn btn-primary o_cw_event_done">Mark as Done</a>
+                    <a t-if="widget.isEventDeletable()" href="#" style="font-size:11px;" class="btn btn-primary o_cw_event_done_schedule_next  ml-2">Done
+                        &amp; Schedule Next
+                    </a>
+                </t>
+
 
             </div>
         </t>

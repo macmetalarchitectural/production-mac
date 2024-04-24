@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record id="view_calendar_event_calendar_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+            <field name="arch" type="xml">
+                <xpath expr="//calendar" position="inside">
+                    <field name="completed" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
         <record id="view_calendar_event_form_inherit" model="ir.ui.view">
             <field name="name">calendar.event.form</field>
             <field name="model">calendar.event</field>
@@ -12,8 +22,7 @@
 
                 </xpath>
                 <xpath expr="//page[@name='page_invitations']" position="attributes">
-                    <attribute name="groups"></attribute>
-
+                    <attribute name="groups"/>
                 </xpath>
 
 

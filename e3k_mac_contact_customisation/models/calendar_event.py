@@ -1,6 +1,22 @@
 from odoo import models, api, fields, _
 from datetime import datetime, timedelta, time
-import pytz
+import calendar
+from odoo.tools import format_date
+
+MONTH_NAME_MAPPING = {
+    'janvier': 'January',
+    'février': 'February',
+    'mars': 'March',
+    'avril': 'April',
+    'mai': 'May',
+    'juin': 'June',
+    'juillet': 'July',
+    'août': 'August',
+    'septembre': 'September',
+    'octobre': 'October',
+    'novembre': 'November',
+    'décembre': 'December'
+}
 
 
 class CalendarEvent(models.Model):
@@ -142,6 +158,10 @@ class CalendarEvent(models.Model):
         """Get the list of teams for the activity dashboard"""
         self._cr.execute(''' select id, name FROM representative_team  ORDER BY name ASC ''')
         record = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for rec in record:
+                rec['name'] = self.env['representative.team'].with_context(lang=lang).browse(rec['id']).name
         return record
 
     @api.model
@@ -157,6 +177,8 @@ class CalendarEvent(models.Model):
     @api.model
     def get_rep_by_team(self, *args):
         team_ids = args[0]
+        if not team_ids:
+            team_ids = self.env['representative.team'].search([]).ids
         self._cr.execute('''
             SELECT DISTINCT t.res_users_id, p.id, p.name FROM representative_team_res_users_rel t, res_users r, res_partner p WHERE t.res_users_id = r.id AND r.partner_id = p.id AND t.representative_team_id IN %s ORDER BY p.name ASC
             ''', (tuple(team_ids),))
@@ -167,10 +189,18 @@ class CalendarEvent(models.Model):
     @api.model
     def get_status(self):
         """Get the list of status for the activity dashboard"""
-        self._cr.execute(''' select id, name FROM contact_status  ORDER BY name ASC''')
+        lang = self.env.user.lang or 'en_US'
+        self._cr.execute(''' 
+                SELECT id, name 
+                FROM contact_status 
+                ORDER BY name ASC
+            ''')
+        records = self._cr.dictfetchall()
+        if lang != 'en_US':
+            for record in records:
+                record['name'] = self.env['contact.status'].with_context(lang=lang).browse(record['id']).name
 
-        record = self._cr.dictfetchall()
-        return record
+        return records
 
     @api.model
     def get_meeting_type(self):
@@ -178,15 +208,47 @@ class CalendarEvent(models.Model):
         self._cr.execute(''' select id, name FROM calendar_event_type  ORDER BY name ASC''')
 
         record = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for rec in record:
+                rec['name'] = self.env['calendar.event.type'].with_context(lang=lang).browse(rec['id']).name
         return record
 
-    def adjust_dates(self, args):
-        args = list(args)
-        if not args[0]:
-            args[0] = '1800-01-01 00:00'
-        if not args[1]:
-            args[1] = '2070-01-01 23:59'
-        return args
+    def get_period_name(self, period):
+        current_date = fields.Date.today()  # Get the current date
+        if period == 'this_month':
+            month_name = format_date(self.env, current_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return month_name.capitalize(), 'month'
+        elif period == 'last_month':
+            last_month_date = current_date - timedelta(days=30)
+            last_month_name = format_date(self.env, last_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return last_month_name.capitalize(), 'month'
+        elif period == 'last_2_month':
+            last_2_month_date = current_date - timedelta(days=90)
+            last_2_month_name = format_date(self.env, last_2_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
+            return last_2_month_name.capitalize(), 'month'
+        elif period == 'this_year':
+            year_name = format_date(self.env, current_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return year_name, 'year'
+        elif period == 'last_year':
+            last_year_date = current_date - timedelta(days=365)
+            last_year_name = format_date(self.env, last_year_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return last_year_name, 'year'
+        elif period == 'last_2_year':
+            last_2_year_date = current_date - timedelta(days=730)
+            last_2_year_name = format_date(self.env, last_2_year_date, date_format='YYYY', lang_code=self.env.user.lang or 'en_US')
+            return last_2_year_name, 'year'
+
+    @api.model
+    def get_period(self):
+        periods = [{'id': '', 'name': ''},
+                   {'id': 'this_month', 'name': self.get_period_name('this_month')[0]},
+                   {'id': 'last_month', 'name': self.get_period_name('last_month')[0]},
+                   {'id': 'last_2_month', 'name': self.get_period_name('last_2_month')[0]},
+                   {'id': 'this_year', 'name': self.get_period_name('this_year')[0]},
+                   {'id': 'last_year', 'name': self.get_period_name('last_year')[0]},
+                   {'id': 'last_2_year', 'name': self.get_period_name('last_2_year')[0]}]
+        return periods
 
     @api.model
     def get_activity_details(self):
@@ -252,12 +314,32 @@ class CalendarEvent(models.Model):
                 s.name ASC, 
                 t.name ASC,
                 COUNT(c.id) DESC
-                    
-                
         ''')
-        record = self._cr.dictfetchall()
-        return record
+        records = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for record in records:
+                record['team_name'] = self.env['representative.team'].with_context(lang=lang).browse(record['team_id']).name
+                record['status'] = self.env['contact.status'].with_context(lang=lang).browse(record['contact_status_id']).name
+                record['customer_type'] = self.env['res.partner.industry'].with_context(lang=lang).browse(record['industry_id']).name
+                record['meeting_type'] = self.env['calendar.event.type'].with_context(lang=lang).browse(record['meeting_type_id']).name
 
+        return records
+
+    def get_first_and_last_date_of_month(self, year, month):
+        month = MONTH_NAME_MAPPING.get(month.lower(), month)
+        month = datetime.strptime(month, '%B').month
+        num_days_in_month = calendar.monthrange(year, month)[1]
+        first_date_of_month = datetime(year, month, 1)
+        last_date_of_month = datetime(year, month, num_days_in_month, 23, 59, 59)
+        return first_date_of_month, last_date_of_month
+
+    def get_first_and_last_date_of_year(self, year):
+        first_date_of_year = datetime(year, 1, 1)
+        last_date_of_year = datetime(year, 12, 31, 23, 59, 59)
+        return first_date_of_year, last_date_of_year
+
+    # Example usage:
     @api.model
     def get_activity_details_by_filter(self, *args):
         team_ids = args[0]
@@ -270,6 +352,16 @@ class CalendarEvent(models.Model):
         dates = args[5]
         date_from = dates[0].replace('T', ' ') if dates[0] else '1800-01-01 00:00'
         date_to = dates[1].replace('T', ' ') if dates[1] else '2070-01-01 23:59'
+        period = args[6]
+        if period:
+            period = self.get_period_name(period)
+            if period[1] == "month":
+                current_year = datetime.now().year
+                dates = self.get_first_and_last_date_of_month(current_year, period[0])
+            elif period[1] == "year":
+                dates = self.get_first_and_last_date_of_year(int(period[0]))
+            date_from = dates[0]
+            date_to = dates[1]
         query = '''
             SELECT
                 COUNT(c.id) AS activity_quantity,
@@ -373,8 +465,16 @@ class CalendarEvent(models.Model):
                     
         '''
         self._cr.execute(query, params)
-        record = self._cr.dictfetchall()
-        return record
+        records = self._cr.dictfetchall()
+        lang = self.env.user.lang or 'en_US'
+        if lang != 'en_US':
+            for record in records:
+                record['team_name'] = self.env['representative.team'].with_context(lang=lang).browse(record['team_id']).name
+                record['status'] = self.env['contact.status'].with_context(lang=lang).browse(record['contact_status_id']).name
+                record['customer_type'] = self.env['res.partner.industry'].with_context(lang=lang).browse(record['industry_id']).name
+                record['meeting_type'] = self.env['calendar.event.type'].with_context(lang=lang).browse(record['meeting_type_id']).name
+
+        return records
 
 
 class CalendarEventType(models.Model):
