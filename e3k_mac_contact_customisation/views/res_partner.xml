@@ -22,7 +22,7 @@
 
                 <xpath expr="//div[hasclass('o_address_format')]" position="after">
                     <field name="contact_status_id" placeholder="Status..."
-                           options="{'no_open': True, 'no_create': True}" string="Status"/>
+                           options="{'no_open': True, 'no_create': True}" string="Status" attrs="{'readonly': [('is_company', '=', False)]"/>
 
                     <field name="industry_id"
                            options="{'no_create': True}" string="Customer type"/>
