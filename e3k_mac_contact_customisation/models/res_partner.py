@@ -46,9 +46,10 @@ class ResPartner(models.Model):
         # if contact_status_id is changed, update the contact_status_id of all contacts
         if 'contact_status_id' in vals:
             # search all contacts that has parent_id = self.id
-            contacts = self.env['res.partner'].search([('parent_id', '=', self.id)])
-            if contacts:
-                contacts.write({'contact_status_id': vals['contact_status_id']})
+            for rec in self:
+                contacts = self.env['res.partner'].search([('parent_id', '=', rec.id)])
+                if contacts:
+                    contacts.write({'contact_status_id': vals['contact_status_id']})
 
         return res
 
