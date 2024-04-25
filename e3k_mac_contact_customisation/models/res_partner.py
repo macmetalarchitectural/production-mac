@@ -4,7 +4,7 @@ from odoo import models, api, fields
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    contact_status_id = fields.Many2one('contact.status', string='Status',store=True)
+    contact_status_id = fields.Many2one('contact.status', string='Status', store=True)
     contact_ids = fields.One2many('res.partner', 'parent_id', string='Contacts',
                                   domain=[('active', '=', True), ('type', '=', 'contact')])
     delivery_address_ids = fields.One2many('res.partner', 'parent_id', string='Delivery Addresses',
@@ -63,7 +63,7 @@ class ResPartner(models.Model):
             contacts.write(values_to_update)
 
     @api.model
-    def create(self,vals):
+    def create(self, vals):
         res = super(ResPartner, self).create(vals)
         # if parent_id has industry_id and contact_status_id, update the industry_id and contact_status_id of this new contact
         if self.parent_id:
@@ -72,3 +72,18 @@ class ResPartner(models.Model):
             if self.parent_id.contact_status_id:
                 res.update({'contact_status_id': self.parent_id.contact_status_id.id})
         return res
+
+
+# inherit calendar.attendee
+class CalendarAttendee(models.Model):
+    _inherit = 'calendar.attendee'
+
+    def _send_mail_to_attendees(self, mail_template, force_send=False):
+        print("inside _send_mail_to_attendees my inherited method")
+        print("(fghjklmlkjh)", self._context)
+        # get context from the
+        context = self._context
+        if context.get('default_res_model') == 'res.partner':
+            return
+        else:
+            return super(CalendarAttendee, self)._send_mail_to_attendees(mail_template, force_send)
