@@ -478,6 +478,12 @@ class CalendarEvent(models.Model):
 
         return records
 
+    @api.model
+    def _get_public_fields(self):
+        public_fields = super()._get_public_fields()
+        public_fields |= {'meeting_type_id','industry_id','customer_state','function'}
+        return public_fields
+
 
 class CalendarEventType(models.Model):
     _inherit = 'calendar.event.type'
