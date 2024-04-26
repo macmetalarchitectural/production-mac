@@ -224,7 +224,7 @@ class CalendarEvent(models.Model):
             last_month_name = format_date(self.env, last_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
             return last_month_name.capitalize(), 'month'
         elif period == 'last_2_month':
-            last_2_month_date = current_date - timedelta(days=90)
+            last_2_month_date = current_date - timedelta(days=60)
             last_2_month_name = format_date(self.env, last_2_month_date, date_format='MMMM', lang_code=self.env.user.lang or 'en_US')
             return last_2_month_name.capitalize(), 'month'
         elif period == 'this_year':
