@@ -50,20 +50,20 @@
                 </xpath>
                 <xpath expr="//sheet" position="before">
                     <header>
-                    <field name="completed" invisible="1"/>
-                    <button string="Mark as Done" name="action_done"
-                            type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
-                    />
-                    <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
-                            type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
-                    />
-                    <button string="Mark as Done" name="action_done"
-                            type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
-                    />
-                    <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
-                            type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+                        <field name="completed" invisible="1"/>
+                        <button string="Mark as Done" name="action_done"
+                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                        />
+                        <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                        />
+                        <button string="Mark as Done" name="action_done"
+                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+                        />
+                        <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
 
-                    />
+                        />
                     </header>
 
 
@@ -115,8 +115,16 @@
                     <field name="customer_state" string="status"/>
                     <field name="function"/>
                     <field name="meeting_type_id"/>
+                    <field name="completed"/>
+
 
                 </xpath>
+                <xpath expr="//filter[@name='mymeetings']" position="after">
+
+                    <filter string="Done" name="completed" domain="[('completed', '=', 'yes')]"
+                            />
+                </xpath>
+
                 <xpath expr="//filter[@name='recurrent']" position="after">
 
 
