@@ -135,8 +135,7 @@
                             context="{'group_by':'partner_id'}"/>
                     <filter string="Status" name="customer_state" domain="[]"
                             context="{'group_by':'customer_state'}"/>
-                    <filter string="Customer status" name="customer_state" domain="[]"
-                            context="{'group_by':'customer_state'}"/>
+
                     <filter string="Customer Type" name="function" domain="[]"
                             context="{'group_by':'function'}"/>
                     <filter string="Meeting type" name="meeting_type_id" domain="[]"
