@@ -481,7 +481,7 @@ class CalendarEvent(models.Model):
     @api.model
     def _get_public_fields(self):
         public_fields = super()._get_public_fields()
-        public_fields |= {'meeting_type_id','industry_id','customer_state','function'}
+        public_fields |= {'meeting_type_id','industry_id','customer_state','function','company_partner_id'}
         return public_fields
 
 
