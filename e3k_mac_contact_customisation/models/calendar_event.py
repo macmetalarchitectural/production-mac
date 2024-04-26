@@ -54,6 +54,8 @@ class CalendarEvent(models.Model):
         compute='_compute_stop', readonly=False, store=True,
         help="Stop date of an event, without time for full days events")
 
+
+
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
     duration = fields.Float('Duration', default=1)
 

@@ -94,6 +94,7 @@
                     <!--                    <field name="customer_state" optional="show" string="status"/>-->
                     <field name="meeting_type_id" optional="show"/>
                     <field name="function" optional="show"/>
+                    <field name="customer_state" optional="show"/>
                     <field name="completed" optional="show"/>
                     <field name="contact_ids" widget="many2many_tags" optional="show"/>
 
@@ -122,7 +123,7 @@
                 <xpath expr="//filter[@name='mymeetings']" position="after">
 
                     <filter string="Done" name="completed" domain="[('completed', '=', 'yes')]"
-                            />
+                    />
                 </xpath>
 
                 <xpath expr="//filter[@name='recurrent']" position="after">
@@ -132,7 +133,9 @@
                             context="{'group_by':'company_partner_id'}"/>
                     <filter string="Contact" name="partner_id" domain="[]"
                             context="{'group_by':'partner_id'}"/>
-                    <filter string="Customer state" name="customer_state" domain="[]"
+                    <filter string="Status" name="customer_state" domain="[]"
+                            context="{'group_by':'customer_state'}"/>
+                    <filter string="Customer status" name="customer_state" domain="[]"
                             context="{'group_by':'customer_state'}"/>
                     <filter string="Customer Type" name="function" domain="[]"
                             context="{'group_by':'function'}"/>
