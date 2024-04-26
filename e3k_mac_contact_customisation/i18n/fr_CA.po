@@ -287,8 +287,8 @@ msgstr "Inactif"
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_pivot_inherited
-msgid "Industry type"
-msgstr ""
+msgid "Customer Type"
+msgstr "Type de client"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__invoice_address_ids

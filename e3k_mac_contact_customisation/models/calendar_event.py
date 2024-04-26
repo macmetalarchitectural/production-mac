@@ -44,6 +44,8 @@ class CalendarEvent(models.Model):
     contact_name = fields.Char(related='partner_id.name', string='Contact Name', store=True)
     function = fields.Char(related='partner_id.function', string='Customer type', store=True)
     completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Done', default='no')
+    partner_id = fields.Many2one(
+        'res.partner', string='Scheduled by', related='user_id.partner_id', readonly=True,store=True)
     start = fields.Datetime(
         'Start', required=True, tracking=True,
         help="Start date of an event, without time for full days events", default=_default_start_date)

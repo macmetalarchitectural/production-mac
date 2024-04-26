@@ -134,7 +134,7 @@
                             context="{'group_by':'partner_id'}"/>
                     <filter string="Customer state" name="customer_state" domain="[]"
                             context="{'group_by':'customer_state'}"/>
-                    <filter string="Industry type" name="function" domain="[]"
+                    <filter string="Customer Type" name="function" domain="[]"
                             context="{'group_by':'function'}"/>
                     <filter string="Meeting type" name="meeting_type_id" domain="[]"
                             context="{'group_by':'meeting_type_id'}"/>
@@ -148,7 +148,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//pivot" position="inside">
                     <field name="company_partner_id"/>
-                    <field name="function" string="Industry type"/>
+                    <field name="function" string="Customer Type"/>
                     <field name="customer_state"/>
                 </xpath>
             </field>
