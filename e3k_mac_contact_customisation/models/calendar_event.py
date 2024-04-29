@@ -57,6 +57,8 @@ class CalendarEvent(models.Model):
 
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
     function = fields.Char('Function', compute='_compute_company_partner_id', store=True)
+    contact_status_id = fields.Many2one('contact.status', string='Status', related='contact_id.contact_status_id',  store=True)
+
 
     duration = fields.Float('Duration', default=1)
 
