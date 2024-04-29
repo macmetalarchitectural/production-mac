@@ -169,6 +169,17 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             allTeams.addEventListener("change", function() {
                 toggleAllTeams(this.checked);
             });
+
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allTeams.checked = false;
+                    }
+                });
+            });
             // Trigger the checked checkbox
             if (allTeams.checked) {
                 toggleAllTeams(true);
@@ -255,6 +266,17 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             allTeams.addEventListener("change", function() {
                 toggleAllTeams(this.checked);
             });
+
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allTeams.checked = false;
+                    }
+                });
+            });
             // Trigger the checked checkbox
             if (allTeams.checked) {
                 toggleAllTeams(true);
@@ -285,6 +307,17 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             allReps.addEventListener("change", function() {
                 toggleAllReps(this.checked);
             });
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allReps.checked = false;
+                    }
+                });
+            });
+
             // Trigger the checked checkbox
             if (allReps.checked) {
                 toggleAllReps(true);
@@ -313,6 +346,16 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             // Attach event listener to the "all" checkbox
             allMeetingTypes.addEventListener("change", function() {
                 toggleAllMeetingTypes(this.checked);
+            });
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allMeetingTypes.checked = false;
+                    }
+                });
             });
             // Trigger the checked checkbox
             if (allMeetingTypes.checked) {
@@ -343,6 +386,16 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             allStatus.addEventListener("change", function() {
                 toggleAllStatus(this.checked);
             });
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allStatus.checked = false;
+                    }
+                });
+            });
             // Trigger the checked checkbox
             if (allStatus.checked) {
                 toggleAllStatus(true);
@@ -371,6 +424,16 @@ odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require
             // Attach event listener to the "all" checkbox
             allCompleted.addEventListener("change", function() {
                 toggleAllCompleted(this.checked);
+            });
+            // Attach event listener to individual checkboxes
+            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=completed]:not([id='all'])");
+            individualCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function() {
+                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
+                    if (!this.checked) {
+                        allCompleted.checked = false;
+                    }
+                });
             });
             // Trigger the checked checkbox
             if (allCompleted.checked) {
