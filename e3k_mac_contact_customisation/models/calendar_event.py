@@ -222,7 +222,7 @@ class CalendarEvent(models.Model):
     @api.model
     def get_meeting_type(self):
         """Get the list of meeting type for the activity dashboard"""
-        self._cr.execute(''' select id, name FROM calendar_event_type  ORDER BY name ASC''')
+        self._cr.execute(''' select id, name FROM calendar_event_type WHERE active is TRUE  ORDER BY name ASC''')
 
         record = self._cr.dictfetchall()
         lang = self.env.user.lang or 'en_US'
@@ -306,6 +306,8 @@ class CalendarEvent(models.Model):
                 representative_team m ON m.id = c.team_id
             LEFT JOIN
                 res_partner a ON a.id = c.rep_id
+            WHERE
+                c.team_id IS NOT NULL  
             GROUP BY
                 c.team_id,
                 m.name,
@@ -415,42 +417,29 @@ class CalendarEvent(models.Model):
                 representative_team m ON m.id = c.team_id
             LEFT JOIN
                 res_partner a ON a.id = c.rep_id
+            WHERE
+                c.team_id IS NOT NULL  
         '''
 
         params = ()
 
         if team_ids:
-            query += ' WHERE c.team_id IN %s '
+            query += ' AND c.team_id IN %s '
             params = (tuple(team_ids),)
         if rep_ids:
-            if team_ids:
-                query += ' AND c.rep_id IN %s '
-            else:
-                query += ' WHERE c.rep_id IN %s '
+            query += ' AND c.rep_id IN %s '
             params += (tuple(rep_ids),)
         if meeting_type_ids:
-            if team_ids or rep_ids:
-                query += ' AND c.meeting_type_id IN %s '
-            else:
-                query += ' WHERE c.meeting_type_id IN %s '
+            query += ' AND c.meeting_type_id IN %s '
             params += (tuple(meeting_type_ids),)
         if open_closed:
-            if team_ids or rep_ids or meeting_type_ids:
-                query += ' AND c.completed IN %s '
-            else:
-                query += ' WHERE c.completed IN %s '
+            query += ' AND c.completed IN %s '
             params += (tuple(open_closed),)
         if status:
-            if team_ids or rep_ids or meeting_type_ids or open_closed:
-                query += ' AND p.contact_status_id IN %s '
-            else:
-                query += ' WHERE p.contact_status_id IN %s '
+            query += ' AND p.contact_status_id IN %s '
             params += (tuple(status),)
         if dates:
-            if team_ids or rep_ids or meeting_type_ids or open_closed or status:
-                query += ' AND c.start >= %s AND c.stop <= %s '
-            else:
-                query += ' WHERE c.start >= %s AND c.stop <= %s '
+            query += ' AND c.start >= %s AND c.stop <= %s '
             params += (date_from, date_to)
 
         query += '''
