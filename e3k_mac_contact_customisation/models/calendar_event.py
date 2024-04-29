@@ -42,7 +42,6 @@ class CalendarEvent(models.Model):
                                    column1='calendar_event_id',
                                    column2='contact_id', compute='compute_contact_id', store=True)
     contact_name = fields.Char(related='partner_id.name', string='Contact Name', store=True)
-    function = fields.Char(related='partner_id.function', string='Customer type', store=True)
     completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Done', default='no')
     partner_id = fields.Many2one(
         'res.partner', string='Scheduled by', related='user_id.partner_id', readonly=True,store=True)
@@ -57,7 +56,18 @@ class CalendarEvent(models.Model):
 
 
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
+    function = fields.Char('Function', compute='_compute_company_partner_id', store=True)
+
     duration = fields.Float('Duration', default=1)
+
+    #compute function
+    @api.depends('contact_id')
+    def _compute_company_partner_id(self):
+        for rec in self:
+            if rec.contact_id:
+                rec.function = rec.contact_id.parent_id
+            else:
+                rec.function = False
 
     @api.onchange('duration')
     def _onchange_duration(self):
