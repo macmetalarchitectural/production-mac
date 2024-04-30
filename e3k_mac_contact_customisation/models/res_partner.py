@@ -79,8 +79,6 @@ class CalendarAttendee(models.Model):
     _inherit = 'calendar.attendee'
 
     def _send_mail_to_attendees(self, mail_template, force_send=False):
-        print("inside _send_mail_to_attendees my inherited method")
-        print("(fghjklmlkjh)", self._context)
         # get context from the
         context = self._context
         if context.get('default_res_model') == 'res.partner':

@@ -4,10 +4,11 @@
 import threading
 from odoo import api, models
 
-class ResPartner(models.Model):
-  _inherit = 'res.partner'
 
-  @api.model
-  def _should_check_partner_validation(self):
-    is_testing = getattr(threading.currentThread(), "testing", False)
-    return not is_testing or self._context.get("testing_partner_validation")
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    @api.model
+    def _should_check_partner_validation(self):
+        is_testing = getattr(threading.current_thread(), "testing", False)
+        return not is_testing or self._context.get("testing_partner_validation")

@@ -93,8 +93,8 @@
                     <field name="contact_id" optional="show" string="Contact"/>
                     <!--                    <field name="customer_state" optional="show" string="status"/>-->
                     <field name="meeting_type_id" optional="show"/>
-                    <field name="function" optional="show"/>
-                    <field name="customer_state" optional="show"/>
+                    <field name="contact_status_id" optional="show"/>
+                    <field name="industry_id" optional="show"/>
                     <field name="completed" optional="show"/>
                     <field name="contact_ids" widget="many2many_tags" optional="show"/>
 
