@@ -176,7 +176,7 @@ msgstr "Statut"
 #. openerp-web
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__function
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__industry_id
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 #, python-format
 msgid "Customer type"
