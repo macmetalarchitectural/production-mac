@@ -19,13 +19,10 @@
 
                 <xpath expr="//page[@name='page_invitations']//button[@name='action_sendmail']" position="attributes">
                     <attribute name="invisible">1</attribute>
-
                 </xpath>
                 <xpath expr="//page[@name='page_invitations']" position="attributes">
                     <attribute name="groups"/>
                 </xpath>
-
-
                 <xpath expr="//div[hasclass('oe_title')]" position="replace">
                     <div class="oe_title mb-3">
                         <div>
@@ -47,6 +44,9 @@
                 </xpath>
                 <xpath expr="//field[@name='description']" position="attributes">
                     <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="team_id" options="{'no_create': True,'no_open':True}"/>
                 </xpath>
                 <xpath expr="//sheet" position="before">
                     <header>
@@ -114,7 +114,6 @@
                     <field name="company_partner_id" string="Company name"/>
                     <field name="partner_id" string="Contact"/>
                     <field name="contact_status_id" string="status"/>
-                    <field name="function"/>
                     <field name="meeting_type_id"/>
                     <field name="completed"/>
 
@@ -132,12 +131,11 @@
                     <filter string="Company name" name="company_partner_id" domain="[]"
                             context="{'group_by':'company_partner_id'}"/>
                     <filter string="Contact" name="partner_id" domain="[]"
-                            context="{'group_by':'partner_id'}"/>
+                            context="{'group_by':'contact_id'}"/>
                     <filter string="Status" name="customer_state" domain="[]"
                             context="{'group_by':'contact_status_id'}"/>
-
                     <filter string="Customer Type" name="industry_id" domain="[]"
-                            context="{'group_by':'function'}"/>
+                            context="{'group_by':'industry_id'}"/>
                     <filter string="Meeting type" name="meeting_type_id" domain="[]"
                             context="{'group_by':'meeting_type_id'}"/>
                 </xpath>

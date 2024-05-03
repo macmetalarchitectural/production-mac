@@ -509,14 +509,14 @@ msgstr ""
 #: model:ir.ui.menu,name:e3k_mac_contact_customisation.menu_representative_team
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 msgid "Representative Team"
-msgstr "Équipe représentative"
+msgstr "Équipe des représentants"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_search
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_tree
 msgid "Representative team"
-msgstr "Équipe représentative"
+msgstr "Équipe des représentants"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__user_id

@@ -44,7 +44,7 @@ class CalendarEvent(models.Model):
     contact_name = fields.Char(related='partner_id.name', string='Contact Name', store=True)
     completed = fields.Selection([('yes', 'Yes'), ('no', 'No')], string='Done', default='no')
     partner_id = fields.Many2one(
-        'res.partner', string='Scheduled by', related='user_id.partner_id', readonly=True,store=True)
+        'res.partner', string='Scheduled by', related='user_id.partner_id', readonly=True, store=True)
     start = fields.Datetime(
         'Start', required=True, tracking=True,
         help="Start date of an event, without time for full days events", default=_default_start_date)
@@ -52,23 +52,10 @@ class CalendarEvent(models.Model):
         'Stop', required=True, tracking=True, default=False,
         compute='_compute_stop', readonly=False, store=True,
         help="Stop date of an event, without time for full days events")
-
-
-
     contact_id = fields.Many2one('res.partner', string='Contact', store=True, compute='_compute_company_partner_id')
-    function = fields.Char('Function', compute='_compute_company_partner_id', store=True)
-    contact_status_id = fields.Many2one('contact.status', string='Status', related='contact_id.contact_status_id',  store=True)
-    industry_id = fields.Many2one(related='contact_id.industry_id',  store=True, string='Customer type')
+    contact_status_id = fields.Many2one('contact.status', string='Status', related='contact_id.contact_status_id', store=True)
+    industry_id = fields.Many2one(related='contact_id.industry_id', store=True, string='Customer type')
     duration = fields.Float('Duration', default=1)
-
-    #compute function
-    @api.depends('contact_id')
-    def _compute_company_partner_id(self):
-        for rec in self:
-            if rec.contact_id:
-                rec.function = rec.contact_id.parent_id
-            else:
-                rec.function = False
 
     @api.onchange('duration')
     def _onchange_duration(self):
@@ -483,7 +470,7 @@ class CalendarEvent(models.Model):
     @api.model
     def _get_public_fields(self):
         public_fields = super()._get_public_fields()
-        public_fields |= {'meeting_type_id','industry_id','customer_state','function','company_partner_id','contact_status_id'}
+        public_fields |= {'meeting_type_id', 'industry_id', 'customer_state', 'contact_id', 'company_partner_id', 'contact_status_id'}
         return public_fields
 
 
