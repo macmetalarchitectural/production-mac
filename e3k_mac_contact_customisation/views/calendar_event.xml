@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_calendar_event_calendar_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+            <field name="arch" type="xml">
+                <xpath expr="//calendar" position="inside">
+                    <field name="completed" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='page_invitations']//button[@name='action_sendmail']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='page_invitations']" position="attributes">
+                    <attribute name="groups"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_title')]" position="replace">
+                    <div class="oe_title mb-3">
+                        <div>
+                            <label for="meeting_type_id" string="Meeting type: "/>
+                            <field name="meeting_type_id" class="oe_inline"
+                                   options="{'no_create': True,'no_open':True}"/>
+                        </div>
+                        <div>
+                            <label for="completed" string="Completed: "/>
+                            <field name="completed" class="oe_inline" widget="boolean_button" readonly="1"/>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='start']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='stop']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="team_id" options="{'no_create': True,'no_open':True}"/>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <field name="completed" invisible="1"/>
+                        <button string="Mark as Done" name="action_done"
+                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                        />
+                        <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                        />
+                        <button string="Mark as Done" name="action_done"
+                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+                        />
+                        <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
+                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+
+                        />
+                    </header>
+
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="view_calendar_event_tree_inherited" model="ir.ui.view">
+            <field name="name">calendar.event.tree.contact.info</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="team_id" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='categ_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="company_partner_id" optional="show" string="Company name"/>
+                    <field name="contact_id" optional="show" string="Contact"/>
+                    <!--                    <field name="customer_state" optional="show" string="status"/>-->
+                    <field name="meeting_type_id" optional="show"/>
+                    <field name="contact_status_id" optional="show"/>
+                    <field name="industry_id" optional="show"/>
+                    <field name="completed" optional="show"/>
+                    <field name="contact_ids" widget="many2many_tags" optional="show"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_calendar_event_search_inherited" model="ir.ui.view">
+            <field name="name">calendar.event.search.contact.info</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="team_id" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="company_partner_id" string="Company name"/>
+                    <field name="partner_id" string="Contact"/>
+                    <field name="contact_status_id" string="status"/>
+                    <field name="meeting_type_id"/>
+                    <field name="completed"/>
+
+
+                </xpath>
+                <xpath expr="//filter[@name='mymeetings']" position="after">
+
+                    <filter string="Done" name="completed" domain="[('completed', '=', 'yes')]"
+                    />
+                </xpath>
+
+                <xpath expr="//filter[@name='recurrent']" position="after">
+
+
+                    <filter string="Company name" name="company_partner_id" domain="[]"
+                            context="{'group_by':'company_partner_id'}"/>
+                    <filter string="Contact" name="partner_id" domain="[]"
+                            context="{'group_by':'contact_id'}"/>
+                    <filter string="Status" name="customer_state" domain="[]"
+                            context="{'group_by':'contact_status_id'}"/>
+                    <filter string="Customer Type" name="industry_id" domain="[]"
+                            context="{'group_by':'industry_id'}"/>
+                    <filter string="Meeting type" name="meeting_type_id" domain="[]"
+                            context="{'group_by':'meeting_type_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_calendar_pivot_inherited" model="ir.ui.view">
+            <field name="name">calendar.event.pivot.contact.info</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="e3k_macmetal.view_calendar_event_pivot"/>
+            <field name="arch" type="xml">
+                <xpath expr="//pivot" position="inside">
+                    <field name="company_partner_id"/>
+                    <field name="industry_id" string="Customer Type"/>
+                    <field name="customer_state"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="action_activity_dashboard" model="ir.actions.client">
+            <field name="name">Activity analysis</field>
+            <field name="tag">activity_dashboard</field>
+        </record>
+        <menuitem
+                id="activity_dashboard_menu"
+                name="Activity analysis"
+                parent="calendar.mail_menu_calendar"
+                action="action_activity_dashboard"
+                sequence="100"
+        />
+
+    </data>
+</odoo>
