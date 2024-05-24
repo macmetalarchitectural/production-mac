@@ -39,19 +39,7 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
         },
 
 
-        isEventCompleted() {
-            var self = this;
-            return self._rpc({
-                model: 'calendar.event',
-                method: 'read',
-                args: [[parseInt(self.event.id)], ['completed']],
-             }).then(function(result) {
-               if (result[0].completed == 'yes') {
-                   return true;
-               }
-                return false;
-            });
-        },
+
 
         _onClickDone: function (ev) {
             ev.preventDefault();
