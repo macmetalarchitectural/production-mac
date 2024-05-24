@@ -90,7 +90,10 @@ class CalendarEvent(models.Model):
     def action_done(self):
         self.ensure_one()
         self.completed = 'yes'
-        return True
+        return {
+            'id': self.id,
+            'completed': self.completed,
+        }
 
     @api.depends('partner_ids')
     def compute_contact_id(self):

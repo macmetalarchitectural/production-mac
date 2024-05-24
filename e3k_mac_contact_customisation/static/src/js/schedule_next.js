@@ -28,8 +28,19 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
                 model: 'calendar.event',
                 method: 'action_done',
                 args: [[parseInt(this.event.id)]],
+            }).then(function(result) {
+                if (result.completed === 'yes') {
+                    self.$('.o_cw_event_done').removeClass('btn-primary').addClass('btn-secondary');
+                    self.$('.o_cw_event_done_schedule_next').removeClass('btn-primary').addClass('btn-secondary');
+                    self.do_action({
+                        'type': 'ir.actions.client',
+                        'tag': 'reload',
+                    });
+                }
+
             });
         },
+
 
         _onClickDoneScheduleNext: function (ev) {
 
@@ -38,14 +49,6 @@ odoo.define('e3k_mac_contact_customisation.CalendarScheduleNext', function (requ
             var partner_ids=self.event.extendedProps.record.partner_ids;
             var record=self.event.extendedProps.record;
             var completed=self.event.extendedProps.record.completed;
-
-            console.log("=========================================record");
-            console.log(record);
-            console.log(completed);
-            console.log("222222222222222222222222222222");
-
-            console.log(this);
-
             this._rpc({
                 model: 'calendar.event',
                 method: 'action_done',
