@@ -1,0 +1,237 @@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8"/>
+</head>
+<body>
+<table width="100%">
+    <tr><td>
+        <table width="100%" style="background-color: #e6252f; background-image: url(img/header-bg.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+            <tr height="35"></tr>
+                <tr>
+                    <td align="center">
+                        <img src="img/header.png" style="width: 600px; margin: 0 auto; display: block;" alt="E3K | Partenaire Technologique | Odoo">
+                    </td>
+                </tr>
+                <tr height="35"></tr>
+            </table>
+    </td></tr>
+    <tr style="background-image: url('img/pattern.jpg');">
+
+    </tr>
+    <tr style="background-image: url('img/pattern.jpg');"><td>
+        <table width="100%">
+
+            <td width="100%" align="center">
+ 
+                <table width="600" style="margin: 0 auto; background-color: #F4F5F5; border-bottom: 15px solid #2D2F3C;">
+
+                    <tr><td>
+                        <table class="table table-bordered">
+
+
+							<p class="text-center" style="text-align:center; font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 36px; line-height: 1; margin: 10px 0;">Transfert électronique de fonds (TEF)</p>
+
+
+                            <tr><th><p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">Résumé </p></th></tr>
+                            <tr><td>
+                                <p style="color: #707593;  font-size: 15px;
+                                                font-family: 'Roboto', arial;">Ce module permet de créer des fichiers de transfert pour effectuer des transferts électroniques de fonds
+                                 (TEF) aux fournisseurs et/ou aux clients. Les fichiers générés par Odoo peuvent être transmis aux
+                                     institutions financières via leur application en ligne afin de compléter les transactions bancaires. </p>
+
+
+                            </td></tr>
+                            <tr><th><p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">Module(s) requis </p></th></tr>
+                            <tr><td><p style="margin: 5px 0; color: #707593; font-weight: 500; font-size: 21px;
+                                                font-family: 'Roboto', arial; font-weight: 500;">Comptabilité</p></td></tr>
+                            <tr><th>
+                                <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                    Étapes de mise en place / configuration du module
+                                </p>
+                            </th></tr>
+                            <tr><td><ol>
+                                <li>
+                                    <p>Dans le module Paramètres, CONFIGURATION / UTILISATEURS ET SOCIÉTÉS / UTILISATEURS, dans la section Autres, cocher les cases pertinentes pour les utilisateurs concernées. </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img1.png"> <br/>
+                                    <p><strong>Définitions des droits </strong></p>
+                                    <ul>
+                                        <li>Permet de confirmer un TEF : Personne autorisée à créer le fichier de transfert qui sera transmis à la banque</li>
+                                        <li>Permet de créer et supprimer un TEF : Personne autorisée à créer ET à supprimer des enregistrements dans Odoo en vue de préparer le fichier de transfert (mais ne peut pas générer le fichier à moins d’y être autorisé).</li>
+                                        <li>Permet d’entrer info TEF contact : Personne autorisée à entrer les informations bancaires des clients et fournisseurs dans les fiches contact Odoo.</li>
+                                        <li>Permet de créer un TEF : Personne autorisée à créer uniquement des enregistrements dans Odoo en vue de préparer le fichier de transfert (mais ne peut pas générer le fichier à moins d’y être autorisé).  </li>
+                                        <li>Permet de configurer TEF : Personne autorisée à créer et modifier les configurations du TEF (onglet configuration / Banque TEF)</li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li>
+                                    <p>Dans le module Comptabilité, CONFIGURATION / BANQUE TEF, configurer les paramètres spécifiques à la banque utilisée pour les transferts électroniques de fonds.  Il est possible de créer et configurer plusieurs banques TEF et d’en sélectionner une au moment de créer l’enregistrement du TEF.  </p>
+                                    <br/><p>Les champs disponibles dans la configuration sont :</p>
+                                    <ul>
+
+
+                                        <li>	Numéro de l'émetteur :	Numéro remis par la banque (généralement 10 chiffres)</li>
+                                        <li>	Institution financière : Numéro de la banque précédé d’un 0 (ex : Desjardins (0815), Banque Nationale (006), CIBC (0010), Banque TD (0004))	</li>
+                                        <li>	Centre bancaire Transit : Numéro du transit (5 chiffres)</li>
+                                        <li>	Nom court de l'émetteur : Nom de l’entreprise qui sera affiché sur le TEF (15 caractères alphanumériques)</li>
+                                        <li>	Nom long de l'émetteur : Nom complet de l’entreprise</li>
+                                        <li>	Numéro de compte : Numéro du compte bancaire</li>
+                                        <li>	Sequence Paiement Client : Séquence Odoo qui sera utilisée lors de l’enregistrement des TFE clients</li>
+                                        <li>	Sequence Paiement Fournisseur : Séquence Odoo qui sera utilisée lors de l’enregistrement des TFE fournisseurs</li>
+                                        <li>	Société: Sélectionner la Société Odoo liée à l’émetteur</li>
+                                        <li>	Name of the file to export: Renseigner si l’institution bancaire exige un nom particulier de fichier à transmettre via leur application 	</li>
+                                        <li>	Operation Code	: Numéro fourni par l’institution bancaire</li>
+
+                                    </ul>
+                                    <p>others info: </p>
+                                    <ul>
+                                        <li>Url: lien à l’institution bancaire – utilisé pour faciliter l’accès à la plate-forme en ligne à partir d’Odoo</li>
+                                        <li>Journal	: Sélectionner les journaux liés aux transactions du TEF</li>
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <p>Dans le module CONTACT, renseigner l’onglet TFE en y ajoutant un crochet et en ajoutant les informations bancaires du client et/ou fournisseur qui fera partie des transferts électroniques de fonds, soit le numéro d’institution (code de banque – <strong>3 chiffres </strong>), le transit (branche – 5 chiffres) et le numéro de compte bancaire   </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img2.png"> <br/>
+                                </li>
+                                <li>
+                                    <p>Dans le module COMPTABILITÉ, dans les configurations du journal du compte bancaire pour lequel sera effectué des TFE, la méthode de paiement « TFE » doit être créé pour les paiements sortants. </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img3.png"> <br/>
+                                </li>
+                            </ol></td></tr>
+
+                            <tr><th><p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">Fonctionnement du module </p></th></tr>
+                            <tr><td><ol>
+                                <li>
+                                    <p> Dans le module COMPTABILITÉ / FOURNISSEUR, créer un(des) paiement(s) en indiquant le moyen de paiement TEF afin de facilement repérer les paiements électroniques à faire.  </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img4.png">
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img5.png">
+                                </li>
+                                <li>
+                                    <p>Dans le module COMPTABILITÉ / FOURNISSEUR / PAIEMENTS PAR TEF, cliquer sur CRÉER.  Dans le nouvel enregistrement, renseigner la date du transfert, sélectionner la banque à utiliser et cliquer sur Ajouter une ligne. </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img6.png">
+                                </li>
+
+                                <li>
+                                    <p>La liste des paiements TFE et Manuel qui n’ont pas déjà faits l’objet d’un TEF s’afficheront.  Utiliser les outils de recherche, filtre et groupement au besoin pour cibler les paiements à inclure dans le fichier de transfert </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img7.png">
+                                </li>
+                                <li>
+                                    <p>Le(les) paiement(s) sélectionnés seront ajoutés dans le TEF et le montant total sera automatiquement calculé.  Les personnes autorisées peuvent confirmer le TEF pour permettre la création du fichier à transmettre à l’institution bancaire. </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img8.png"> <br/>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img9.png"> <br/>
+                                    <p>En cliquant sur GÉNÉRER UN FICHIER, Odoo génère un fichier .txt conformes aux exigences des principales banques canadiennes et l’ajoute dans le chatter d’où il peut être téléchargé et rechargé dans la plateforme informatique de l’institution bancaire.</p>
+                                </li>
+
+                                <li>
+                                    <p>On peut facilement voir que le paiement a été effectué par TEF </p>
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img10.png"> <br/>
+
+                                </li>
+                            </ol></td><tr/>
+                            <tr><th>
+                                <p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 25px; line-height: 1; margin: 10px 0;">
+                                   Astuces possibles / autres informations importantes
+                                </p>
+                            </th></tr>
+                            <tr><td><ul>
+                                <li>
+                                    <p>Les étapes 1 à 5 du fonctionnement pour un paiement fournisseur sont pratiquement identiques lorsqu’il
+                                        s’agit de verser des sommes (crédits) à des clients.  La différence étant que les factures
+                                        et paiements seront comptabilisés et que le module TFE sera accédé via le module COMPTABILITÉ / CLIENT</p>
+
+                                    <img style="margin: 16px 0; display: block; max-width: 100%; width: 100%;" src="img/img11.png"> <br/>
+                                </li>
+                                <li>
+                                    <p>Les séquences de TEF sont importantes à respecter.  La banque ne permettra généralement pas le transfert d’un numéro de TEF qui ne respecte pas la séquence (ex : numéro en double ou numéro manquant).  Si un enregistrement TEF est créé par erreur, il faut l’annuler et le remettre en brouillon fin de conserver son numéro séquentiel.  Les TEF annulés sont normalement des tests au démarrage réalisés auprès de la banque pour s’assurer de la conformité du format de fichier et de ses données de base. </p>
+
+                                </li>
+                            </ul>
+                        </table>
+                    </td>
+                        <td width="20"></td>
+                                     <tr>
+                                                <td>
+                                                    <p style="text-align: center; margin: 0;">
+                                                        <a href="https://www.e3k.co/nous-joindre"><img src="img/btn.png" width="260"></a>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                    </tr><tr width="20"></tr>
+                    </table>
+                </td></tr><tr height="40"></tr>
+            </table>
+        </td>
+    </tr>
+    <tr bgcolor="#F4F5F5">
+        <td bgcolor="#F4F5F5" align="center">
+            <table style="max-width: 600px; margin: 0 auto; width: 100%; font-family: Arial; text-align: center;">
+                <tr height="40"></tr>
+                <tr><td><p style="font-family: 'Lato', arial; color: #2D2F3C; font-weight: 900; font-size: 36px; line-height: 1; margin: 0;">Nos services</p></td></tr>
+                <tr height="40"></tr>
+                <tr>
+                    <td>
+                        <table width="100%" style="text-align: center;">
+                            <tr>
+                                <td width="33%" align="center">
+                                    <img src="img/service-01.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Personnalisation</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-02.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Intégration</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-03.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Installation</span>
+                                </td>
+                            </tr>
+                            <tr height="40"></tr>
+                            <tr>
+                                <td width="33%" align="center">
+                                    <img src="img/service-04.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Création et mise à jour</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-05.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Migration</span>
+                                </td>
+                                <td width="33%" align="center">
+                                    <img src="img/service-06.png" height="60px">
+                                    <span style="color: #707593; font-weight: 400; display: block; margin-top: 15px; font-family: 'Lato', arial; font-weight: bold">Soutien technique</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr height="40"></tr>
+            </table>
+
+        </td>
+    </tr>
+
+    <tr  style ="background-color:#2D2F3C;" >
+        <td  style ="background-color:#2D2F3C;" align="center">
+            <table width="100%">
+                <tr height="60"></tr>
+                <tr>
+                    <td align="center">
+                        <img src="img/logo.png" width="340" style="display: block; margin: 0 auto;" alt="E3K | Partenaire Technologique | Odoo">
+                    </td>
+                </tr>
+                <tr height="40"><td>&nbsp;</td></tr>
+                <tr>
+                    <td style="text-align: center; color: #fff;">
+                        <p style="margin: 0; padding: 0; font-size: 21px; font-family: 'Lato', arial; font-weight: bold;">Contactez-nous</p>
+                        <p style="margin: 10px 0 0; padding: 0; font-family: 'Roboto', arial; font-weight: 400;"><a style="color: #fff; text-decoration: none;" href="mailto:support-erp@e3k.co">support-erp@e3k.co</a> | <a style="color: #fff; text-decoration: none;" href="https://www.e3k.co">www.e3k.co</a></p>
+                    </td>
+                </tr>
+                <tr height="60"><td>&nbsp;</td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
