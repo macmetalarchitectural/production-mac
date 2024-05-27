@@ -143,7 +143,9 @@ class CalendarEvent(models.Model):
         """
         result = []
         for event in self:
-            name = event.meeting_type_id.name if event.meeting_type_id else _("Unknown Meeting Type")
+            contact_name = event.contact_id.display_name if event.contact_id else event.company_partner_id.display_name if event.company_partner_id else ''
+            meeting_type_name = event.meeting_type_id.name if event.meeting_type_id else ''
+            name = f"{contact_name} - {meeting_type_name}"
             if event.privacy == 'private' and event.user_id.id != self.env.uid and self.env.user.partner_id not in event.partner_ids:
                 result.append((event.id, _('Busy')))
             else:
