@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 17:05+0000\n"
-"PO-Revision-Date: 2024-04-18 17:05+0000\n"
+"POT-Creation-Date: 2024-05-29 10:17+0000\n"
+"PO-Revision-Date: 2024-05-29 10:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -65,6 +65,11 @@ msgstr ""
 #: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
 #, python-format
 msgid "Busy"
+msgstr ""
+
+#. module: e3k_mac_contact_customisation
+#: model:ir.model,name:e3k_mac_contact_customisation.model_calendar_attendee
+msgid "Calendar Attendee Information"
 msgstr ""
 
 #. module: e3k_mac_contact_customisation
@@ -169,8 +174,9 @@ msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
-msgid "Status"
-msgstr "Statut"
+#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_pivot_inherited
+msgid "Customer Type"
+msgstr "Type de client"
 
 #. module: e3k_mac_contact_customisation
 #. openerp-web
@@ -201,24 +207,31 @@ msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__completed
+#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
 msgid "Done"
 msgstr "Terminé"
 
 #. module: e3k_mac_contact_customisation
 #. openerp-web
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
 #, python-format
 msgid ""
 "Done\n"
-"                    & Schedule Next"
+"                        & Schedule Next"
 msgstr ""
 "Terminé\n"
-"                    & planifier le prochain"
+"                        & planifier le prochain"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
 msgid "Done & Schedule Next"
 msgstr "Terminé & planifier le prochain"
+
+#. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__duration
+msgid "Duration"
+msgstr "Durée"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model,name:e3k_mac_contact_customisation.model_calendar_event_type
@@ -285,12 +298,6 @@ msgid "Inactive"
 msgstr "Inactif"
 
 #. module: e3k_mac_contact_customisation
-#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
-#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_pivot_inherited
-msgid "Customer Type"
-msgstr "Type de client"
-
-#. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__invoice_address_ids
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__invoice_address_ids
 msgid "Invoice Addresses"
@@ -331,6 +338,7 @@ msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #. openerp-web
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
 #, python-format
@@ -406,7 +414,7 @@ msgstr "Nom"
 #: model:contact.status,name:e3k_mac_contact_customisation.contact_status_new
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Nouveau/Prospect"
 
 #. module: e3k_mac_contact_customisation
 #. openerp-web
@@ -455,8 +463,16 @@ msgid "Other Addresses"
 msgstr ""
 
 #. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,help:e3k_mac_contact_customisation.field_calendar_event__partner_id
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_calendar_event__rep_id
 msgid "Partner-related data of the user"
+msgstr "Données du partenaire lié à l'utilisateur"
+
+#. module: e3k_mac_contact_customisation
+#. openerp-web
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+#, python-format
+msgid "Period:"
 msgstr ""
 
 #. module: e3k_mac_contact_customisation
@@ -552,7 +568,13 @@ msgid "Schedule an activity"
 msgstr "Planifier une activité"
 
 #. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__partner_id
+msgid "Scheduled by"
+msgstr ""
+
+#. module: e3k_mac_contact_customisation
 #. openerp-web
+#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
@@ -583,11 +605,13 @@ msgstr ""
 #. openerp-web
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_status_id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__customer_state
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__contact_status_id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__contact_status_id
 #: model:ir.ui.menu,name:e3k_mac_contact_customisation.menu_contact_status
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
+#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
 #, python-format
 msgid "Status"
 msgstr "Statut"
@@ -690,12 +714,6 @@ msgstr "À faire"
 #, python-format
 msgid "To:"
 msgstr "A:"
-
-#. module: e3k_mac_contact_customisation
-#: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
-#, python-format
-msgid "Unknown Meeting Type"
-msgstr "Type de réunion inconnu"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_unread

@@ -41,6 +41,12 @@ class ResPartner(models.Model):
             'target': 'current',
         }
 
+    @api.onchange('parent_id')
+    def _onchange_parent_id(self):
+        if self.parent_id:
+            self.contact_status_id = self.parent_id.contact_status_id
+            self.industry_id = self.parent_id.industry_id
+
     def write(self, vals):
         res = super(ResPartner, self).write(vals)
         # if contact_status_id is changed, update the contact_status_id of all contacts
