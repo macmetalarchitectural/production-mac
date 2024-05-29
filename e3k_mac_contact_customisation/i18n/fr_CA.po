@@ -220,6 +220,8 @@ msgid ""
 "Done\n"
 "                        & Schedule Next"
 msgstr ""
+"Terminé\n"
+"                        & planifier le prochain"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
