@@ -43,18 +43,14 @@
                                             <t t-name="kanban-box">
                                                 <div class="oe_kanban_card oe_kanban_global_click">
                                                     <div class="o_kanban_card_content d-flex">
-                                                        <div>
-                                                            <img t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"
-                                                                 class="o_kanban_image o_image_64_cover" alt="Avatar"/>
-                                                        </div>
                                                         <div class="oe_kanban_details d-flex flex-column ml-3">
                                                             <strong class="o_kanban_record_title oe_partner_heading">
                                                                 <field name="name"/>
                                                             </strong>
                                                             <div class="d-flex align-items-baseline text-break">
                                                                 <i class="fa fa-envelope mr-1" role="img"
-                                                                   aria-label="Email" title="Email"/>
-                                                                <field name="email"/>
+                                                                   aria-label="Responsible" title="user_id"/>
+                                                                <field name="user_id"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -96,6 +92,24 @@
                     <field name="user_id"/>
                     <field name="company_id" invisible="1"/>
                     <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_card_content d-flex">
+                                    <div class="oe_kanban_details d-flex flex-column ml-3">
+                                        <strong class="o_kanban_record_title oe_partner_heading">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="d-flex align-items-baseline text-break">
+                                            <i class="fa fa-envelope mr-1" role="img"
+                                               aria-label="Responsible" title="user_id"/>
+                                            <field name="user_id"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
                 </kanban>
             </field>
         </record>
