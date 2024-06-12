@@ -478,6 +478,12 @@ class CalendarEvent(models.Model):
         public_fields |= {'meeting_type_id', 'industry_id', 'customer_state', 'contact_id', 'company_partner_id', 'contact_status_id'}
         return public_fields
 
+    def action_open_composer(self):
+        action = super(CalendarEvent, self).action_open_composer()
+        if action.get("context"):
+            action.get("context").update({'send_email_from_button': True})
+        return action
+
 
 class CalendarEventType(models.Model):
     _inherit = 'calendar.event.type'

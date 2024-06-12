@@ -87,7 +87,7 @@ class CalendarAttendee(models.Model):
     def _send_mail_to_attendees(self, mail_template, force_send=False):
         # get context from the
         context = self._context
-        if context.get('default_res_model') == 'res.partner':
-            return
-        else:
+        if context.get('send_email_from_button'):
             return super(CalendarAttendee, self)._send_mail_to_attendees(mail_template, force_send)
+        else:
+            return
