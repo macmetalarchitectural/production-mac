@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="contact_status_active" model="contact.status">
+            <field name="name">Active</field>
+        </record>
+        <record id="contact_status_inactive" model="contact.status">
+            <field name="name">Inactive</field>
+        </record>
+        <record id="contact_status_new" model="contact.status">
+            <field name="name">New</field>
+        </record>
+        <record id="contact_status_target" model="contact.status">
+            <field name="name">Target</field>
+        </record>
+    </data>
+</odoo>

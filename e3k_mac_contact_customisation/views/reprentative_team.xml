@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="representative_team_view_form" model="ir.ui.view">
+            <field name="name">representative.team.form</field>
+            <field name="model">representative.team</field>
+            <field name="arch" type="xml">
+                <form string="Representative team">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <label for="name" string="Representative Team"/>
+                            <h1>
+                                <field class="text-break" name="name" placeholder="e.g. North America"/>
+                            </h1>
+                            <div name="options_active"/>
+                        </div>
+                        <group>
+                            <group name="left" string="Team Details">
+                                <field name="active" invisible="1"/>
+                                <field name="sequence" invisible="1"/>
+                                <field name="user_id" widget="many2one_avatar_user"/>
+                                <field name="company_id" options="{'no_create': True}"
+                                       groups="base.group_multi_company" invisible="1"/>
+                            </group>
+                            <group name="right">
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Members" name="members_users">
+                                <field name="member_ids" mode="kanban"
+                                       class="w-100">
+                                    <kanban>
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                        <field name="avatar_128"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_card oe_kanban_global_click">
+                                                    <div class="o_kanban_card_content d-flex">
+                                                        <div class="oe_kanban_details d-flex flex-column ml-3">
+                                                            <strong class="o_kanban_record_title oe_partner_heading">
+                                                                <field name="name"/>
+                                                            </strong>
+                                                            <div class="d-flex align-items-baseline text-break">
+                                                                <i class="fa fa-envelope mr-1" role="img"
+                                                                   aria-label="Responsible" title="user_id"/>
+                                                                <field name="user_id"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               help="Follow this salesteam to automatically track the events associated to users of this team."/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="representative_team_view_tree" model="ir.ui.view">
+            <field name="name">representative.team.tree</field>
+            <field name="model">representative.team</field>
+            <field name="arch" type="xml">
+                <tree string="Representative team">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record id="representative_team_view_kanban" model="ir.ui.view">
+            <field name="name">representative.team.kanban</field>
+            <field name="model">representative.team</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_card_content d-flex">
+                                    <div class="oe_kanban_details d-flex flex-column ml-3">
+                                        <strong class="o_kanban_record_title oe_partner_heading">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="d-flex align-items-baseline text-break">
+                                            <i class="fa fa-envelope mr-1" role="img"
+                                               aria-label="Responsible" title="user_id"/>
+                                            <field name="user_id"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="representative_team_view_search" model="ir.ui.view">
+            <field name="name">representative.team.search</field>
+            <field name="model">representative.team</field>
+            <field name="arch" type="xml">
+                <search string="Representative team">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </search>
+            </field>
+        </record>
+        <record id="representative_team_action" model="ir.actions.act_window">
+            <field name="name">Representative Team</field>
+            <field name="res_model">representative.team</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="representative_team_view_tree"/>
+        </record>
+        <menuitem id="menu_representative_team" name="Representative Team" parent="calendar.mail_menu_calendar"
+                  action="representative_team_action" sequence="10"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+
+.frame-container {
+    border: 1px solid #000; /* Add your desired border style here */
+    padding: 10px; /* Add padding to create space between content and the border */
+}
+/* Position the hover divs relatively */
+.frame-container {
+    position: relative;
+}
+
+/* Hidden divs initially hidden and positioned relative to the hover div */
+.hidden-div {
+    position: absolute;
+    top: 100%; /* Initially position below the hover div */
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: top 0.3s ease; /* Add transition for smooth sliding animation */
+    display: none; /* Initially hide the hidden div */
+}
+
+/* Show hidden divs when hover div is hovered */
+.frame-container:hover .hidden-div {
+    top: 100%; /* Slide the hidden div down when the hover div is hovered */
+}
+
