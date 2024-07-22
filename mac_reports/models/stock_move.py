@@ -83,7 +83,8 @@ class StockMoveLine(models.Model):
                                                    'qty_ordered': qty_ordered or qty_done,
                                                    'product_uom': uom.name,
                                                    'product_uom_rec': uom,
-                                                   'product': move_line.product_id}
+                                                   'product': move_line.product_id,
+                                                   'sale_line_id': False}
             else:
                 aggregated_move_lines[line_key]['qty_ordered'] += qty_done
                 aggregated_move_lines[line_key]['qty_done'] += qty_done
@@ -108,7 +109,6 @@ class StockMoveLine(models.Model):
                     'qty_ordered': qty_ordered,
                     'product_uom': uom.name,
                     'product': empty_move.product_id,
-                    'description': '',
                     'sale_line_id': False
                 }
             else:
