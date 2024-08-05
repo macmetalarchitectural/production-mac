@@ -28,8 +28,9 @@ class ResPartner(models.Model):
                     currency_id = self.env['product.pricelist'].search([('company_id', '=', False)],
                                                                        limit=1)
                     tag_id = self.env['res.partner.category'].search([('name', '=', currency_id.currency_id.name)])
-                    vals_category.append([4, tag_id[0].id])
-                    vals.update({"category_id": vals_category})
+                    if tag_id:
+                        vals_category.append([4, tag_id[0].id])
+                        vals.update({"category_id": vals_category})
 
         return super(ResPartner, self).create(vals_list)
 
@@ -56,8 +57,9 @@ class ResPartner(models.Model):
                 else:
                     currency_id = self.env['product.pricelist'].search([('company_id', '=', False)], limit=1)
                     tag_id = self.env['res.partner.category'].search([('name', '=', currency_id.currency_id.name)])
-                    vals_category.append([4, tag_id[0].id])
-                    vals.update({"category_id": vals_category})
+                    if tag_id:
+                        vals_category.append([4, tag_id[0].id])
+                        vals.update({"category_id": vals_category})
 
         return super(ResPartner, self).write(vals)
 
