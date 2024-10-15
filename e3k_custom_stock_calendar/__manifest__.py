@@ -16,7 +16,6 @@
 
         # views
         'views/stock_picking.xml',
-        'views/sale_order.xml',
 
         # wizard
     ],
