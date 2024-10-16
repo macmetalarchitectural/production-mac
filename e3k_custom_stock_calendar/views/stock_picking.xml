@@ -7,9 +7,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='state']" position="after">
                     <field name="note" optional="show"/>
-                    <field name="delivery_pickup"/>
-                    <field name="worksite_ready"/>
-                    <field name="flexible_date"/>
+                    <field name="delivery_pickup" widget="boolean_toggle"/>
+                    <field name="worksite_ready" widget="boolean_toggle"/>
+                    <field name="flexible_date" widget="boolean_toggle"/>
                   </xpath>
             </field>
         </record>
@@ -21,8 +21,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="delivery_pickup" string="Delivery-Pickup confirmed" force_save="True" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}"/>
-                    <field name="worksite_ready" />
-                    <field name="flexible_date" />
+                    <field name="delivery_pickup" string="Delivery-Pickup confirmed" widget="boolean_toggle"/>
+                    <field name="worksite_ready" widget="boolean_toggle"/>
+                    <field name="flexible_date" widget="boolean_toggle"/>
                   </xpath>
             </field>
         </record>
