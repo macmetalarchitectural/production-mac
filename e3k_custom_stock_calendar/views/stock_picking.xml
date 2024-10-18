@@ -14,17 +14,33 @@
             </field>
         </record>
 
-    <record id="e3k_view_picking_form" model="ir.ui.view">
-            <field name="name">e3k.stock.picking.form</field>
+    <record id="e3k_stock_picking_calendar" model="ir.ui.view">
+            <field name="name">e3k.stock.picking.calendar</field>
             <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="inherit_id" ref="stock.stock_picking_calendar" />
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='origin']" position="after">
-                    <field name="delivery_pickup" string="Delivery-Pickup confirmed" force_save="True" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}"/>
-                    <field name="delivery_pickup" string="Delivery-Pickup confirmed" widget="boolean_toggle"/>
-                    <field name="worksite_ready" widget="boolean_toggle"/>
-                    <field name="flexible_date" widget="boolean_toggle"/>
-                  </xpath>
+                <xpath expr="//calendar" position="attributes">
+                    <attribute name="date_start">date_deadline</attribute>
+                    <attribute name="create">false</attribute>
+                    <attribute name="all_day">e3k_all_day</attribute>
+                    <attribute name="mode">week</attribute>
+<!--                    <attribute name="date_stop">scheduled_date</attribute>-->
+<!--                    <attribute name="color">state</attribute>-->
+<!--                    <attribute name="color_field">state</attribute>-->
+
+<!--                    <attribute name="string">Stock Picking</attribute>-->
+
+<!--                    <attribute name="quick_add">False</attribute>-->
+
+<!--                    <attribute name="edit">False</attribute>-->
+<!--                    <attribute name="delete">False</attribute>-->
+<!--                    <attribute name="action">stock.action_picking_tree_all</attribute>-->
+<!--                    <attribute name="search_view_id" ref="stock.view_picking_filter"/>-->
+<!--                    <attribute name="view_id" ref="e3k_vpicktree"/>-->
+                </xpath>
             </field>
         </record>
+
+
+
 </odoo>
