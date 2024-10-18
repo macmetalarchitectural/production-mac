@@ -24,4 +24,26 @@
     </field>
   </record>
 
+  <record id="e3k_view_quotation_tree_with_onboarding" model="ir.ui.view">
+            <field name="name">e3k.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="delivery_route" optional="show"/>
+                  </xpath>
+            </field>
+        </record>
+
+    <record id="e3k_view_order_form" model="ir.ui.view">
+            <field name="name">e3k.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="delivery_route"/>
+                  </xpath>
+            </field>
+        </record>
+
 </odoo>
