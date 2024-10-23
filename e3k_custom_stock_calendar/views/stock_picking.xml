@@ -39,6 +39,9 @@
 <!--                    <attribute name="search_view_id" ref="stock.view_picking_filter"/>-->
 <!--                    <attribute name="view_id" ref="e3k_vpicktree"/>-->
                 </xpath>
+                <xpath expr="//calendar" position="inside">
+                    <field name="e3k_custom_display_name"/>
+                </xpath>
             </field>
         </record>
 

@@ -23,6 +23,9 @@
         'web.assets_qweb': [
             'e3k_custom_stock_calendar/static/src/legacy/xml/template.xml',
         ],
+        'web.assets_backend': [
+            'e3k_custom_stock_calendar/static/src/legacy/js/views/calendar/calendar_renderer.js',
+        ],
     },
     'installable': True,
     'application': False,
