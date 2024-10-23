@@ -19,7 +19,7 @@ class StockPicking(models.Model):
             if hasattr(rec, 'x_delivery_pickup'):
                 rec.delivery_pickup = rec.x_delivery_pickup
 
-    @api.depends('partner_id', 'date_deadline', 'rec.partner_id.city')
+    @api.depends('partner_id', 'date_deadline', 'partner_id.city')
     def _compute_e3k_custom_display_name(self):
         for rec in self:
             sep = ' - '
