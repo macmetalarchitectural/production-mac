@@ -19,6 +19,11 @@
 
         # wizard
     ],
+    'assets': {
+        'web.assets_qweb': [
+            'e3k_custom_stock_calendar/static/src/legacy/xml/template.xml',
+        ],
+    },
     'installable': True,
     'application': False,
 }
