@@ -24,6 +24,7 @@
                     <attribute name="create">false</attribute>
                     <attribute name="all_day">e3k_all_day</attribute>
                     <attribute name="mode">week</attribute>
+                    <attribute name="create_name_field">name</attribute>
 <!--                    <attribute name="date_stop">scheduled_date</attribute>-->
 <!--                    <attribute name="color">state</attribute>-->
 <!--                    <attribute name="color_field">state</attribute>-->
