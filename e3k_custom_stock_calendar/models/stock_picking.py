@@ -20,15 +20,16 @@ class StockPicking(models.Model):
             if hasattr(rec, 'x_delivery_pickup'):
                 rec.delivery_pickup = rec.x_delivery_pickup
 
-    @api.depends('partner_id', 'date_deadline', 'partner_id.city')
+    @api.depends('partner_id', 'date_deadline', 'partner_id.city', 'worksite_ready')
     def _compute_e3k_custom_display_name(self):
         for rec in self:
-            sep = ' - '
             date = False
             city = False
+            mark_for_non_ready_work = "-"
             if rec.date_deadline:
-                date = sep + rec.date_deadline.strftime('%d/%m/%Y')
+                date = rec.date_deadline.strftime('%d/%m/%Y')
             if rec.partner_id.city:
-                city = sep + rec.partner_id.city
-            rec.e3k_custom_display_name = f"{rec.partner_id.name}  {date if date else ''}  { city if city else ''}"
+                city = rec.partner_id.city
+
+            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if not rec.worksite_ready else ''} {rec.partner_id.name}  {date if date else ''}  { city if city else ''}"
 
