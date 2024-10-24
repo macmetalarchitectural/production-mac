@@ -4,6 +4,7 @@
            <div class="o_event_title" t-esc="record.display_name" t-if="record.model != 'stock.picking'"/>
            <div class="o_event_title"  t-else="" t-attf-style="border: {{record.flexible_date ? '0px' : '2px'}} solid red">
                    <span t-esc="record.e3k_custom_display_name"/>
+                   <div t-if="record.state == 'assigned'" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background-color: black; border-radius: 50%;"/>
             </div>
         </xpath>
     </t>
