@@ -41,6 +41,7 @@
                 </xpath>
                 <xpath expr="//calendar" position="inside">
                     <field name="e3k_custom_display_name"/>
+                    <field name="flexible_date" invisible="1"/>
                 </xpath>
             </field>
         </record>

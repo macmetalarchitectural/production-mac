@@ -2,7 +2,9 @@
     <t t-inherit="web.calendar-box" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('o_event_title')]" position="replace">
            <div class="o_event_title" t-esc="record.display_name" t-if="record.model != 'stock.picking'"/>
-           <div class="o_event_title" t-esc="record.e3k_custom_display_name" t-else=""/>
+           <div class="o_event_title"  t-else="" t-attf-style="!record.flexible_date ? 'border: 2px solid red' : ''">
+                   <span t-esc="record.e3k_custom_display_name"/>
+            </div>
         </xpath>
     </t>
 </template>
