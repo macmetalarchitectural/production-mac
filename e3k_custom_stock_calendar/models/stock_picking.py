@@ -8,6 +8,7 @@ class StockPicking(models.Model):
 
 
     delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
+    delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
     flexible_date = fields.Boolean(string='Flexible Date', default=False)
     e3k_all_day = fields.Boolean(string='All Day', default=True)
@@ -34,9 +35,8 @@ class StockPicking(models.Model):
 
             rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''} {rec.partner_id.name}  {sale_name if sale_name else ''}  { city if city else ''}"
 
-    @api.depends('delivery_route', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
-    def _compute_e3k_calendar_color(self):
-        # Checking conditions for delivery type
+    def _get_e3k_calendar_color(self):
+        self.ensure_one()
         color = False
         if self.delivery_route == 'Route1':
             color = '#FFB6C1'  # Pink (ROSE)
@@ -63,3 +63,8 @@ class StockPicking(models.Model):
             else:
                 color = '#000000'  # Black (NOIR)
         return color
+    @api.depends('delivery_route', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
+    def _compute_e3k_calendar_color(self):
+        # Checking conditions for delivery type
+        for rec in self:
+            rec.e3k_calendar_color = rec._get_e3k_calendar_color()
