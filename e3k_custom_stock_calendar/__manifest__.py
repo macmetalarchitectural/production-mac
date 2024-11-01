@@ -25,6 +25,7 @@
         ],
         'web.assets_backend': [
             'e3k_custom_stock_calendar/static/src/legacy/js/views/calendar/calendar_renderer.js',
+            # 'e3k_custom_stock_calendar/static/src/legacy/js/views/calendar/main.js',
         ],
     },
     'installable': True,
