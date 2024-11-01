@@ -2,13 +2,14 @@
     <t t-inherit="web.calendar-box" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('o_event_title')]" position="replace">
            <div class="o_event_title" t-esc="record.display_name" t-if="record.model != 'stock.picking'"/>
-           <div class="o_event_title"  t-else="" t-attf-style="border: {{record.flexible_date ? '2px' : '0px'}} solid red">
+           <div class="o_event_title"  t-else="" t-attf-style="border: {{record.flexible_date ? '2px' : '0px'}} solid red; {{record.e3k_calendar_color ? 'background-color:' + record.e3k_calendar_color + ';' + (record.e3k_calendar_text_color ? 'color:' + record.e3k_calendar_text_color  + ';' : '') : ''}}">
                    <span t-esc="record.e3k_custom_display_name"/>
                    <div t-if="record.state == 'assigned'" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background-color: black; border-radius: 50%;"/>
             </div>
         </xpath>
          <xpath expr="//div[1]" position="attributes">
-            <attribute name="t-att-style">record.e3k_calendar_color' ? ('background-color:' + record.e3k_calendar_color) + ';' : ''</attribute>
+            <attribute name="t-att-style"/>
+             <attribute name="style">margin: 0px;height: 30px;</attribute>
         </xpath>
     </t>
 </template>
