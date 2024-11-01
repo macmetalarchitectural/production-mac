@@ -21,9 +21,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//calendar" position="attributes">
                     <attribute name="date_start">date_deadline</attribute>
-                    <attribute name="create">false</attribute>
+<!--                    <attribute name="create">false</attribute>-->
                     <attribute name="all_day">e3k_all_day</attribute>
                     <attribute name="mode">week</attribute>
+<!--                    <attribute name="scales">week</attribute>-->
                     <attribute name="create_name_field">name</attribute>
 <!--                    <attribute name="date_stop">scheduled_date</attribute>-->
 <!--                    <attribute name="color">state</attribute>-->
@@ -41,6 +42,7 @@
                 </xpath>
                 <xpath expr="//calendar" position="inside">
                     <field name="e3k_custom_display_name"/>
+                    <field name="e3k_calendar_color"/>
                     <field name="flexible_date" invisible="1"/>
                 </xpath>
             </field>
