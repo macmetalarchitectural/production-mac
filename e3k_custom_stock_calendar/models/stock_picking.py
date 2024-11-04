@@ -12,9 +12,10 @@ class StockPicking(models.Model):
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
     flexible_date = fields.Boolean(string='Flexible Date', default=False)
     e3k_all_day = fields.Boolean(string='All Day', default=True)
-    e3k_custom_display_name = fields.Char(compute='_compute_e3k_custom_display_name', store=True, string='Display Name')
+    e3k_custom_display_name = fields.Char(compute='_compute_e3k_custom_display_name', string='Display Name')
     e3k_calendar_color = fields.Char(string='Calendar Color', compute='_compute_e3k_calendar_color')
     e3k_calendar_text_color = fields.Char(string='Calendar Color', compute='_compute_e3k_calendar_color')
+    e3k_calendar_date_deadline = fields.Date(compute='_compute_e3k_calendar_date_deadline', default=False,)
 
     # @api.model
     # def _action_get_value_from_x_delivery_pickup(self):
@@ -24,23 +25,28 @@ class StockPicking(models.Model):
         #         rec.delivery_pickup = rec.x_delivery_pickup
         # self.search([])._compute_e3k_calendar_color()._compute_e3k_custom_display_name()
 
-    @api.depends('partner_id', 'date_deadline', 'partner_id.city', 'worksite_ready')
+    @api.depends('date_deadline')
+    def _compute_e3k_calendar_date_deadline(self):
+        for rec in self:
+            rec.e3k_calendar_date_deadline =  rec.date_deadline.date() if rec.date_deadline else False
+
+    @api.depends('partner_id', 'partner_id.city', 'worksite_ready', 'origin')
     def _compute_e3k_custom_display_name(self):
         for rec in self:
             sale_name = False
             city = False
             mark_for_non_ready_work = "-"
-            if rec.sale_id:
-                sale_name = rec.sale_id.name
+            if rec.origin:
+                sale_name = rec.origin
             if rec.partner_id.city:
                 city = rec.partner_id.city
 
-            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''} {rec.partner_id.name}  {sale_name if sale_name else ''}  { city if city else ''}"
+            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''} {rec.partner_id.name} / {sale_name if sale_name else ''} / { city if city else ''}"
 
     def _get_e3k_calendar_color(self):
         self.ensure_one()
         color = False
-        text_color = False
+        text_color = '#000000'
         if self.delivery_route == 'Route1':
             color = '#ffccff'  # Pink (ROSE)
         elif self.delivery_route == 'Route3':
@@ -54,6 +60,7 @@ class StockPicking(models.Model):
         # Checking conditions for pickup status
         elif self.delivery_pickup and self.delivery_route == 'Route5':
             color = '#919191'  # Black (NOIR)
+            text_color = '#FFFFFF'
         elif not self.delivery_pickup and self.delivery_route == 'Route5':
             color = '#9fcc97'  # Green (VERT)
 
@@ -67,6 +74,7 @@ class StockPicking(models.Model):
                 text_color = '#FFFFFF'
             else:
                 color = '#919191'  # Black (NOIR)
+                text_color = '#FFFFFF'  # White (BLANC)
         return color, text_color
     @api.depends('delivery_route', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
     def _compute_e3k_calendar_color(self):

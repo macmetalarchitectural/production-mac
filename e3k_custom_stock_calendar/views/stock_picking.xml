@@ -33,7 +33,7 @@
             <field name="inherit_id" ref="stock.stock_picking_calendar" />
             <field name="arch" type="xml">
                 <xpath expr="//calendar" position="attributes">
-                    <attribute name="date_start">date_deadline</attribute>
+                    <attribute name="date_start">e3k_calendar_date_deadline</attribute>
 <!--                    <attribute name="create">false</attribute>-->
                     <attribute name="all_day">e3k_all_day</attribute>
                     <attribute name="mode">week</attribute>
@@ -58,6 +58,7 @@
                     <field name="e3k_calendar_color" invisible="1"/>
                     <field name="e3k_calendar_text_color" invisible="1"/>
                     <field name="flexible_date" invisible="1"/>
+                    <field name="e3k_calendar_date_deadline" invisible="1"/>
                 </xpath>
             </field>
         </record>
