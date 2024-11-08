@@ -27,39 +27,73 @@
             </field>
         </record>
 
-    <record id="e3k_stock_picking_calendar" model="ir.ui.view">
-            <field name="name">e3k.stock.picking.calendar</field>
+     <record model="ir.ui.view" id="stock_picking_calendar">
+            <field name="name">stock.picking.calendar</field>
             <field name="model">stock.picking</field>
-            <field name="inherit_id" ref="stock.stock_picking_calendar" />
+            <field name="priority" eval="2"/>
             <field name="arch" type="xml">
-                <xpath expr="//calendar" position="attributes">
-                    <attribute name="date_start">date_deadline</attribute>
-<!--                    <attribute name="create">false</attribute>-->
-                    <attribute name="all_day">e3k_all_day</attribute>
-                    <attribute name="mode">week</attribute>
-<!--                    <attribute name="scales">week</attribute>-->
-                    <attribute name="create_name_field">name</attribute>
-<!--                    <attribute name="date_stop">scheduled_date</attribute>-->
-<!--                    <attribute name="color">state</attribute>-->
-<!--                    <attribute name="color_field">state</attribute>-->
+                <calendar string="Calendar View" date_start="scheduled_date" color="partner_id" event_limit="5" quick_add="False">
+                    <field name="partner_id" filters="1"/>
+                    <field name="origin"/>
+                    <field name="picking_type_id"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
 
-<!--                    <attribute name="string">Stock Picking</attribute>-->
+<!--    <record id="e3k_stock_picking_calendar" model="ir.ui.view">-->
+<!--            <field name="name">e3k.stock.picking.calendar</field>-->
+<!--            <field name="model">stock.picking</field>-->
+<!--        <field name="priority" eval="1"/>-->
+<!--            <field name="inherit_id" ref="stock.stock_picking_calendar" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//calendar" position="attributes">-->
+<!--                    <attribute name="date_start">date_deadline</attribute>-->
+<!--&lt;!&ndash;                    <attribute name="create">false</attribute>&ndash;&gt;-->
+<!--                    <attribute name="all_day">e3k_all_day</attribute>-->
+<!--                    <attribute name="mode">week</attribute>-->
+<!--&lt;!&ndash;                    <attribute name="scales">week</attribute>&ndash;&gt;-->
+<!--                    <attribute name="create_name_field">name</attribute>-->
+<!--&lt;!&ndash;                    <attribute name="date_stop">scheduled_date</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="color">state</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="color_field">state</attribute>&ndash;&gt;-->
 
-<!--                    <attribute name="quick_add">False</attribute>-->
+<!--&lt;!&ndash;                    <attribute name="string">Stock Picking</attribute>&ndash;&gt;-->
 
-<!--                    <attribute name="edit">False</attribute>-->
-<!--                    <attribute name="delete">False</attribute>-->
-<!--                    <attribute name="action">stock.action_picking_tree_all</attribute>-->
-<!--                    <attribute name="search_view_id" ref="stock.view_picking_filter"/>-->
-<!--                    <attribute name="view_id" ref="e3k_vpicktree"/>-->
-                </xpath>
-                <xpath expr="//calendar" position="inside">
+<!--&lt;!&ndash;                    <attribute name="quick_add">False</attribute>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <attribute name="edit">False</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="delete">False</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="action">stock.action_picking_tree_all</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="search_view_id" ref="stock.view_picking_filter"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <attribute name="view_id" ref="e3k_vpicktree"/>&ndash;&gt;-->
+<!--                </xpath>-->
+<!--                <xpath expr="//calendar" position="inside">-->
+<!--                    <field name="e3k_custom_display_name" invisible="1"/>-->
+<!--                    <field name="e3k_calendar_color" invisible="1"/>-->
+<!--                    <field name="e3k_calendar_text_color" invisible="1"/>-->
+<!--                    <field name="flexible_date" invisible="1"/>-->
+<!--                    <field name="date_deadline" invisible="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+    <record model="ir.ui.view" id="e3k_stock_picking_calendar">
+            <field name="name">stock.picking.calendar</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" eva="False" />
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Calendar View" date_start="date_deadline" color="partner_id" event_limit="5" quick_add="False" all_day="e3k_all_day" mode="week">
+                    <field name="partner_id" filters="1"/>
+                    <field name="origin"/>
+                    <field name="picking_type_id"/>
+                    <field name="state"/>
                     <field name="e3k_custom_display_name" invisible="1"/>
                     <field name="e3k_calendar_color" invisible="1"/>
                     <field name="e3k_calendar_text_color" invisible="1"/>
                     <field name="flexible_date" invisible="1"/>
                     <field name="date_deadline" invisible="1"/>
-                </xpath>
+                </calendar>
             </field>
         </record>
 
@@ -67,6 +101,12 @@
 
     <record id="stock.action_picking_tree_ready" model="ir.actions.act_window">
         <field name="context">{'search_default_allowed' : 1}</field>
+    </record>
+
+    <record id="e3k_action_stock_picking_calendar" model="ir.actions.act_window.view">
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="e3k_custom_stock_calendar.e3k_stock_picking_calendar"/>
+        <field name="act_window_id" ref="stock.action_picking_tree_ready"/>
     </record>
 
 
