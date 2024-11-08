@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
   delivery_route = fields.Selection([
     ('Route1', 'Livraison MAC'),
     ('Route2', 'Livraison GMR'),
-    ('Route3', 'Livraison Dumais'),
+    ('Route3', 'Livraison Lacroix'),
     ('Route4', 'Livraison - Autre'),
     ('Route5', 'Pick up'),
     ('Route6', 'Target'),], string='Delivery Route', help='Preferred delivery route.',)
