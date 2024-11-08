@@ -49,7 +49,7 @@ msgstr ""
 #. module: e3k_custom_stock_calendar
 #: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__flexible_date
 msgid "Flexible Date"
-msgstr "Date flexible"
+msgstr "Date non modifiable"
 
 #. module: e3k_custom_stock_calendar
 #: model:ir.model.fields,help:e3k_custom_stock_calendar.field_stock_picking__delivery_route
