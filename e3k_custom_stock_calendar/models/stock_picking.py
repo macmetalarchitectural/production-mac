@@ -43,7 +43,7 @@ class StockPicking(models.Model):
     def _get_e3k_calendar_color(self):
         self.ensure_one()
 
-        product_code_to_check = ('SER0028')
+        product_code_to_check = ['SER0028']
         white = '#FFFFFF'
         black = '#000000'
 
@@ -94,8 +94,8 @@ class StockPicking(models.Model):
             else:
                 return color_code['Route5_no_dp']['color'], color_code['Route5_no_dp']['text_color']
         elif self.delivery_route == 'Route6':
-            so_all_product_default_code = set(self.sale_id.order_line.mapped('product_id.default_code'))
-            if list(product_code_to_check & so_all_product_default_code):
+            so_all_product_default_code = self.sale_id.order_line.mapped('product_id.default_code')
+            if list(set(product_code_to_check) & set(so_all_product_default_code)):
                 return color_code['Route6_producct_code_found']['color'], color_code['Route6_producct_code_found']['text_color']
             elif not self.delivery_pickup:
                 return color_code['Route6_no_dp']['color'], color_code['Route6_no_dp']['text_color']
