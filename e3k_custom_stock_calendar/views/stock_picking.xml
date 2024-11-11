@@ -30,13 +30,31 @@
      <record model="ir.ui.view" id="stock_picking_calendar">
             <field name="name">stock.picking.calendar</field>
             <field name="model">stock.picking</field>
-            <field name="priority" eval="2"/>
+            <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                 <calendar string="Calendar View" date_start="scheduled_date" color="partner_id" event_limit="5" quick_add="False">
                     <field name="partner_id" filters="1"/>
                     <field name="origin"/>
                     <field name="picking_type_id"/>
                     <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+    <record model="ir.ui.view" id="stock_picking_calendar">
+            <field name="name">stock.picking.calendar</field>
+            <field name="model">stock.picking</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+               <calendar string="Calendar View" date_start="date_deadline" color="partner_id" event_limit="5" quick_add="False" all_day="e3k_all_day" mode="week">
+                    <field name="partner_id" filters="1"/>
+                    <field name="origin"/>
+                    <field name="picking_type_id"/>
+                    <field name="state"/>
+                    <field name="e3k_custom_display_name" invisible="1"/>
+                    <field name="e3k_calendar_color" invisible="1"/>
+                    <field name="e3k_calendar_text_color" invisible="1"/>
+                    <field name="flexible_date" invisible="1"/>
+                    <field name="date_deadline" invisible="1"/>
                 </calendar>
             </field>
         </record>
@@ -77,25 +95,25 @@
 <!--                </xpath>-->
 <!--            </field>-->
 <!--        </record>-->
-    <record model="ir.ui.view" id="e3k_stock_picking_calendar">
-            <field name="name">stock.picking.calendar</field>
-            <field name="model">stock.picking</field>
-            <field name="inherit_id" eva="False" />
-            <field name="priority" eval="2"/>
-            <field name="arch" type="xml">
-                <calendar string="Calendar View" date_start="date_deadline" color="partner_id" event_limit="5" quick_add="False" all_day="e3k_all_day" mode="week">
-                    <field name="partner_id" filters="1"/>
-                    <field name="origin"/>
-                    <field name="picking_type_id"/>
-                    <field name="state"/>
-                    <field name="e3k_custom_display_name" invisible="1"/>
-                    <field name="e3k_calendar_color" invisible="1"/>
-                    <field name="e3k_calendar_text_color" invisible="1"/>
-                    <field name="flexible_date" invisible="1"/>
-                    <field name="date_deadline" invisible="1"/>
-                </calendar>
-            </field>
-        </record>
+<!--    <record model="ir.ui.view" id="e3k_stock_picking_calendar">-->
+<!--            <field name="name">stock.picking.calendar</field>-->
+<!--            <field name="model">stock.picking</field>-->
+<!--            <field name="inherit_id" eva="False" />-->
+<!--            <field name="priority" eval="2"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <calendar string="Calendar View" date_start="date_deadline" color="partner_id" event_limit="5" quick_add="False" all_day="e3k_all_day" mode="week">-->
+<!--                    <field name="partner_id" filters="1"/>-->
+<!--                    <field name="origin"/>-->
+<!--                    <field name="picking_type_id"/>-->
+<!--                    <field name="state"/>-->
+<!--                    <field name="e3k_custom_display_name" invisible="1"/>-->
+<!--                    <field name="e3k_calendar_color" invisible="1"/>-->
+<!--                    <field name="e3k_calendar_text_color" invisible="1"/>-->
+<!--                    <field name="flexible_date" invisible="1"/>-->
+<!--                    <field name="date_deadline" invisible="1"/>-->
+<!--                </calendar>-->
+<!--            </field>-->
+<!--        </record>-->
 
 
 
@@ -103,11 +121,11 @@
         <field name="context">{'search_default_allowed' : 1}</field>
     </record>
 
-    <record id="e3k_action_stock_picking_calendar" model="ir.actions.act_window.view">
-        <field name="view_mode">calendar</field>
-        <field name="view_id" ref="e3k_custom_stock_calendar.e3k_stock_picking_calendar"/>
-        <field name="act_window_id" ref="stock.action_picking_tree_ready"/>
-    </record>
+<!--    <record id="e3k_action_stock_picking_calendar" model="ir.actions.act_window.view">-->
+<!--        <field name="view_mode">calendar</field>-->
+<!--        <field name="view_id" ref="e3k_custom_stock_calendar.e3k_stock_picking_calendar"/>-->
+<!--        <field name="act_window_id" ref="stock.action_picking_tree_ready"/>-->
+<!--    </record>-->
 
 
 
