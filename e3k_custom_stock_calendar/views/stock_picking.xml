@@ -45,7 +45,16 @@
             <field name="model">stock.picking</field>
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
-               <calendar string="Calendar View" date_start="date_deadline" color="partner_id" event_limit="5" quick_add="False" all_day="e3k_all_day" mode="week">
+               <calendar string="Calendar View"
+                         date_start="e3k_start_date"
+                         date_stop="e3k_stop_date"
+                         date_delay="duration"
+                         color="partner_id"
+                         event_limit="5"
+                         quick_add="False"
+                         all_day="e3k_all_day"
+                         mode="week">
+
                     <field name="partner_id" filters="1"/>
                     <field name="origin"/>
                     <field name="picking_type_id"/>
@@ -55,6 +64,7 @@
                     <field name="e3k_calendar_text_color" invisible="1"/>
                     <field name="flexible_date" invisible="1"/>
                     <field name="date_deadline" invisible="1"/>
+
                 </calendar>
             </field>
         </record>
