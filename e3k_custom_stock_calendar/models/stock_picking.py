@@ -19,10 +19,10 @@ class StockPicking(models.Model):
 
     e3k_start_date = fields.Datetime(
         'Start Date',
-        compute='_compute_dates', inverse='_inverse_dates', store=True)
+        compute='_compute_e3k_start_date', inverse='_inverse_dates', store=True)
     e3k_stop_date = fields.Datetime(
         'End Date',
-        compute='_compute_dates', inverse='_inverse_dates', store=True)
+        compute='_compute_e3k_stop_date', inverse='_inverse_dates', store=True)
 
     duration = fields.Float(
         'Duration',
@@ -129,26 +129,33 @@ class StockPicking(models.Model):
         duration = (stop - start).total_seconds() / 3600
         return round(duration, 2)
 
-    @api.depends('stop', 'start')
+    @api.depends('e3k_start_date', 'e3k_stop_date')
     def _compute_duration(self):
         for pick in self:
             pick.duration = self._get_duration(pick.e3k_start_date, pick.e3k_stop_date)
 
-    @api.depends('allday', 'deadline')
-    def _compute_dates(self):
+    @api.depends('e3k_all_day', 'date_deadline')
+    def _compute_e3k_stop_date(self):
         """ Adapt the value of start_date(time)/stop_date(time)
             according to start/stop fields and allday. Also, compute
             the duration for not allday meeting ; otherwise the
             duration is set to zero, since the meeting last all the day.
         """
         for pick in self:
-            if pick.allday and pick.deadline:
+            if pick.e3k_all_day and pick.date_deadline:
                 deadline = fields.Datetime.from_string(pick.date_deadline)
-                pick.e3k_start_date = deadline.replace(hour=8)
                 pick.e3k_stop_date = deadline.replace(hour=18)
             else:
-                pick.e3k_start_date = False
                 pick.e3k_stop_date = False
+
+    @api.depends('e3k_stop_date')
+    def _compute_e3k_start_date(self):
+        for pick in self:
+            if pick.e3k_stop_date:
+                deadline = fields.Datetime.from_string(pick.e3k_stop_date)
+                pick.e3k_start_date = deadline.replace(hour=8)
+            else:
+                pick.e3k_start_date = False
 
     def _inverse_dates(self):
         """ This method is used to set the start and stop values of all day events.
@@ -157,17 +164,9 @@ class StockPicking(models.Model):
             this inverse method is needed to update the  start/stop value and have a relevant calendar view.
         """
         for pick in self:
-            if pick.allday:
-
-                # Convention break:
-                # stop and start are NOT in UTC in allday event
-                # in this case, they actually represent a date
-                # because fullcalendar just drops times for full day events.
-                # i.e. Christmas is on 25/12 for everyone
-                # even if people don't celebrate it simultaneously
-                day_diff = pick.date_deadline.day - max(pick.e3k_start_date.day, pick.e3k_stop_date.day)
-                deadline = pick.date_deadline + timedelta(days=day_diff)
-
+            if pick.e3k_all_day:
+                deadline = fields.Datetime.from_string(pick.date_deadline)
+                new_deadline = deadline.replace(day=pick.e3k_stop_date.day)
                 pick.write({
-                    'date_deadline': deadline,
+                    'date_deadline': new_deadline,
                 })
