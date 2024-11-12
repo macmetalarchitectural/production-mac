@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="route_config_view_tree_edit" model="ir.ui.view">
+    <field name="name">route.config.tree.edit</field>
+    <field name="model">mac.route.config</field>
+    <field name="arch" type="xml">
+      <tree string="Routes" editable="bottom">
+        <field name="name"/>
+        <field name="code"/>
+      </tree>
+    </field>
+
+    </record>
+
+<!--  action-->
+    <record id="route_config_action" model="ir.actions.act_window">
+        <field name="name">Configuration des routes de livraison</field>
+        <field name="res_model">mac.route.config</field>
+        <field name="view_mode">tree</field>
+    </record>
+<!--   and to the menu commamnde in the config menue of the sale module-->
+    <menuitem id="menu_route_config" name="Routes de livraison" parent="sale.menu_sale_config" action="route_config_action"/>
+
+</odoo>

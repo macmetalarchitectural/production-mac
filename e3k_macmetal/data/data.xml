@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="route_mac" model="mac.route.config">
+        <field name="name">Livraison MAC</field>
+        <field name="code">Route1</field>
+    </record>
+    <record id="route_gmr" model="mac.route.config">
+        <field name="name">Livraison GMR</field>
+        <field name="code">Route2</field>
+    </record>
+    <record id="route_lacroix" model="mac.route.config">
+        <field name="name">Livraison Lacroix</field>
+        <field name="code">Route3</field>
+    </record>
+    <record id="route_autre" model="mac.route.config">
+        <field name="name">Livraison - Autre</field>
+        <field name="code">Route4</field>
+    </record>
+    <record id="route_pickup" model="mac.route.config">
+        <field name="name">Pick up</field>
+        <field name="code">Route5</field>
+    </record>
+    <record id="route_target" model="mac.route.config">
+        <field name="name">Target</field>
+        <field name="code">Route6</field>
+    </record>
+</odoo>
