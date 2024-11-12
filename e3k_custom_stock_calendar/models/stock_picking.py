@@ -9,7 +9,8 @@ class StockPicking(models.Model):
 
 
     delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
-    delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
+    # delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
+    delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route')
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
     flexible_date = fields.Boolean(string='Flexible Date', default=False)
     e3k_all_day = fields.Boolean(string='All Day', default=True)
@@ -84,7 +85,7 @@ class StockPicking(models.Model):
                 'color': '#9fcc97',  # Green (VERT)
                 'text_color': black,  # Black (NOIR)
             },
-            'Route6_producct_code_found': {
+            'Route6_product_code_found': {
                 'color': '#F075B5',  # Pink (ROSE)
                 'text_color': black,  # Black (NOIR)
             },
@@ -97,18 +98,18 @@ class StockPicking(models.Model):
                 'text_color': white,  # White (BLANC)
             },
         }
-
-        if self.delivery_route in ('Route1', 'Route2', 'Route3', 'Route4'):
-            return color_code[self.delivery_route]['color'], color_code[self.delivery_route]['text_color']
-        elif self.delivery_route == 'Route5':
+        delivery_route_code = self.delivery_route_id.code
+        if delivery_route_code in ('Route1', 'Route2', 'Route3', 'Route4'):
+            return color_code[delivery_route_code]['color'], color_code[delivery_route_code]['text_color']
+        elif delivery_route_code == 'Route5':
             if self.delivery_pickup:
                 return color_code['Route5_yes_dp']['color'], color_code['Route5_yes_dp']['text_color']
             else:
                 return color_code['Route5_no_dp']['color'], color_code['Route5_no_dp']['text_color']
-        elif self.delivery_route == 'Route6':
+        elif delivery_route_code == 'Route6':
             so_all_product_default_code = self.sale_id.order_line.mapped('product_id.default_code')
             if list(set(product_code_to_check) & set(so_all_product_default_code)):
-                return color_code['Route6_producct_code_found']['color'], color_code['Route6_producct_code_found']['text_color']
+                return color_code['Route6_product_code_found']['color'], color_code['Route6_product_code_found']['text_color']
             elif not self.delivery_pickup:
                 return color_code['Route6_no_dp']['color'], color_code['Route6_no_dp']['text_color']
             else:
@@ -116,7 +117,7 @@ class StockPicking(models.Model):
         else:
             return white, black
 
-    @api.depends('delivery_route', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
+    @api.depends('delivery_route_id', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
     def _compute_e3k_calendar_color(self):
         # Checking conditions for delivery type
         for rec in self:
@@ -136,11 +137,6 @@ class StockPicking(models.Model):
 
     @api.depends('e3k_all_day', 'date_deadline')
     def _compute_e3k_stop_date(self):
-        """ Adapt the value of start_date(time)/stop_date(time)
-            according to start/stop fields and allday. Also, compute
-            the duration for not allday meeting ; otherwise the
-            duration is set to zero, since the meeting last all the day.
-        """
         for pick in self:
             if pick.e3k_all_day and pick.date_deadline:
                 deadline = fields.Datetime.from_string(pick.date_deadline)
@@ -158,11 +154,6 @@ class StockPicking(models.Model):
                 pick.e3k_start_date = False
 
     def _inverse_dates(self):
-        """ This method is used to set the start and stop values of all day events.
-            The calendar view needs date_start and date_stop values to display correctly the allday events across
-            several days. As the user edit the {start,stop}_date fields when allday is true,
-            this inverse method is needed to update the  start/stop value and have a relevant calendar view.
-        """
         for pick in self:
             if pick.e3k_all_day:
                 deadline = fields.Datetime.from_string(pick.date_deadline)
