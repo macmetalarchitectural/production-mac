@@ -8,7 +8,7 @@
   "author" : "e3k Solutions",
   "license" : "Other proprietary",
   "website" : "https://e3k.co",
-  "version" : "15.0.1.3.0",
+  "version" : "15.0.2.3.0",
   "depends" : [
     'sale',
     'crm',
@@ -16,6 +16,8 @@
     'stock',
   ],
   "data" : [
+    'security/ir.model.access.csv',
+    'data/data.xml',
     'views/res_config_settings_views.xml',
     'views/sale_portal_templates.xml',
     'views/sale_views.xml',
@@ -23,6 +25,7 @@
     'views/stock_move_line_views.xml',
     'views/calendar_views.xml',
     'views/stock_location_views.xml',
+    'views/route_config.xml',
   ],
   'assets': {
     'e3k_macmetal.sale_assets': [
