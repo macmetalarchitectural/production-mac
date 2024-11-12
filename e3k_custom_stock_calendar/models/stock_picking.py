@@ -85,7 +85,7 @@ class StockPicking(models.Model):
                 'color': '#9fcc97',  # Green (VERT)
                 'text_color': black,  # Black (NOIR)
             },
-            'Route6_producct_code_found': {
+            'Route6_product_code_found': {
                 'color': '#F075B5',  # Pink (ROSE)
                 'text_color': black,  # Black (NOIR)
             },
@@ -109,7 +109,7 @@ class StockPicking(models.Model):
         elif delivery_route_code == 'Route6':
             so_all_product_default_code = self.sale_id.order_line.mapped('product_id.default_code')
             if list(set(product_code_to_check) & set(so_all_product_default_code)):
-                return color_code['Route6_producct_code_found']['color'], color_code['Route6_producct_code_found']['text_color']
+                return color_code['Route6_product_code_found']['color'], color_code['Route6_product_code_found']['text_color']
             elif not self.delivery_pickup:
                 return color_code['Route6_no_dp']['color'], color_code['Route6_no_dp']['text_color']
             else:
@@ -117,7 +117,7 @@ class StockPicking(models.Model):
         else:
             return white, black
 
-    @api.depends('delivery_route', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
+    @api.depends('delivery_route_id', 'delivery_pickup', 'sale_id.order_line.product_id.default_code')
     def _compute_e3k_calendar_color(self):
         # Checking conditions for delivery type
         for rec in self:
