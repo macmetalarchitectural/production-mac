@@ -56,7 +56,7 @@ class StockPicking(models.Model):
             if rec.partner_id.city:
                 city = rec.partner_id.city
 
-            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''}{rec.partner_id.name}{' / ' + sale_name if sale_name else ''}{' / ' + city if city else ''}"
+            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''}{rec.partner_id.name if rec.partner_id else '' }{' / ' + sale_name if sale_name else ''}{' / ' + city if city else ''}"
 
     def _get_e3k_calendar_color(self):
         self.ensure_one()
