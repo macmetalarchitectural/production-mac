@@ -2,6 +2,9 @@
 
 from odoo import api, fields, models, _
 from datetime import timedelta
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
@@ -45,13 +48,15 @@ class StockPicking(models.Model):
         for rec in self:
             sale_name = False
             city = False
-            mark_for_non_ready_work = "-"
+            mark_for_non_ready_work = " - "
             if rec.origin:
                 sale_name = rec.origin
+            elif rec.name:
+                sale_name = rec.name
             if rec.partner_id.city:
                 city = rec.partner_id.city
 
-            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''} {rec.partner_id.name} / {sale_name if sale_name else ''} / { city if city else ''}"
+            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''}{rec.partner_id.name}{' / ' + sale_name if sale_name else ''}{' / ' + city if city else ''}"
 
     def _get_e3k_calendar_color(self):
         self.ensure_one()
@@ -153,17 +158,23 @@ class StockPicking(models.Model):
             else:
                 pick.e3k_start_date = False
 
+    def _update_deadline(self):
+        self.ensure_one()
+        deadline = fields.Datetime.from_string(self.date_deadline)
+        if deadline:
+            new_deadline = deadline.replace(day=self.e3k_stop_date.day)
+        else:
+            deadline = fields.Datetime.from_string(self.e3k_stop_date)
+            new_deadline = deadline.replace(hour=13, minute=0, second=0, microsecond=0)
+
+        self.write({
+            'date_deadline': new_deadline,
+        })
+
     def _inverse_dates(self):
         for pick in self:
             if pick.e3k_all_day:
-                deadline = fields.Datetime.from_string(pick.date_deadline)
-                if deadline:
-                    new_deadline = deadline.replace(day=pick.e3k_stop_date.day)
-                else:
-                    new_deadline = pick.e3k_stop_date
-                pick.write({
-                    'date_deadline': new_deadline,
-                })
+                pick._update_deadline()
 
     @api.depends('move_lines.date_deadline', 'move_type')
     def _compute_date_deadline(self):
@@ -171,5 +182,4 @@ class StockPicking(models.Model):
         for pick in self:
             if not pick.date_deadline:
                 if pick.e3k_stop_date:
-                    deadline = fields.Datetime.from_string(pick.e3k_stop_date)
-                    pick.date_deadline = deadline.replace(hour=0, minute=0, second=0, microsecond=0)
+                    pick._update_deadline()
