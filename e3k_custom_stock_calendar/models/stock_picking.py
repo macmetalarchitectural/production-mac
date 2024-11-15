@@ -157,7 +157,19 @@ class StockPicking(models.Model):
         for pick in self:
             if pick.e3k_all_day:
                 deadline = fields.Datetime.from_string(pick.date_deadline)
-                new_deadline = deadline.replace(day=pick.e3k_stop_date.day)
+                if deadline:
+                    new_deadline = deadline.replace(day=pick.e3k_stop_date.day)
+                else:
+                    new_deadline = pick.e3k_stop_date
                 pick.write({
                     'date_deadline': new_deadline,
                 })
+
+    @api.depends('move_lines.date_deadline', 'move_type')
+    def _compute_date_deadline(self):
+        super(StockPicking, self)._compute_date_deadline()
+        for pick in self:
+            if not pick.date_deadline:
+                if pick.e3k_stop_date:
+                    deadline = fields.Datetime.from_string(pick.e3k_stop_date)
+                    pick.date_deadline = deadline.replace(hour=0, minute=0, second=0, microsecond=0)
