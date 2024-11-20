@@ -20,5 +20,15 @@ AbstractRenderer.include({
             return qweb.render(this.config.eventTemplate, qweb_context);
         }
     },
+
+
+    start: function () {
+        var res = this._super();
+
+        if (this.model === 'stock.picking') {
+            $(this.calendar.el).addClass('e3k_calendar');
+        }
+        return res;
+    },
 });
 
