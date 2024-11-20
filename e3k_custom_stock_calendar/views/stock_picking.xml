@@ -52,7 +52,8 @@
                          color="partner_id"
                          quick_add="True"
                          all_day="e3k_all_day"
-                         mode="week">
+                         mode="week"
+                        delete="false">
 
                     <field name="partner_id" filters="1"/>
                     <field name="origin"/>
