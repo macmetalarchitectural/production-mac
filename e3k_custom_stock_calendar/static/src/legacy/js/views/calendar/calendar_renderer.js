@@ -21,14 +21,13 @@ AbstractRenderer.include({
         }
     },
 
-
-    start: function () {
-        var res = this._super();
-
-        if (this.model === 'stock.picking') {
+//retirerla partie des heure pour le noed semaine et jour
+   async _renderView() {
+       if (this.model === 'stock.picking' && (this.state.scale === 'week' || this.state.scale === 'day')) {
             $(this.calendar.el).addClass('e3k_calendar');
+        }else{
+            $(this.calendar.el).removeClass('e3k_calendar');
         }
-        return res;
-    },
+        this._super();
+    }
 });
-
