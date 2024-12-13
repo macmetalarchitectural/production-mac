@@ -46,7 +46,7 @@ class StockPicking(models.Model):
     def _copy_val_from_x_delivery_pickup(self):
         for rec in self:
             if hasattr(rec, 'x_delivery_pickup'):
-                rec.deliver_pickuyp = rec.x_delivery_pickup
+                rec.deliver_pickup = rec.x_delivery_pickup
 
     @api.depends('partner_id', 'partner_id.city', 'worksite_ready', 'origin')
     def _compute_e3k_custom_display_name(self):
