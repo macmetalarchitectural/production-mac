@@ -11,7 +11,7 @@ class StockPicking(models.Model):
     _order = 'partner_id'
 
 
-    delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
+    # delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
     # delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
     delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route')
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
@@ -43,10 +43,10 @@ class StockPicking(models.Model):
         # self.search([])._compute_e3k_calendar_color()._compute_e3k_custom_display_name()
 
     # fonction executer lors de l'installation
-    def _copy_val_from_x_delivery_pickup(self):
-        for rec in self:
-            if hasattr(rec, 'x_delivery_pickup'):
-                rec.delivery_pickup = rec.x_delivery_pickup
+    # def _copy_val_from_x_delivery_pickup(self):
+    #     for rec in self:
+    #         if hasattr(rec, 'x_delivery_pickup'):
+    #             rec.delivery_pickup = rec.x_delivery_pickup
 
     @api.depends('partner_id', 'partner_id.city', 'worksite_ready', 'origin')
     def _compute_e3k_custom_display_name(self):

@@ -26,8 +26,9 @@ def migrate(cr, version):
             _logger.info(f"Sale order {sale_order.name} has delivery route {sale_order.x_delivery_route} but no route found with this code")
 
 
-    vues_where_to_remove = [3286, 3287, 3285]
-    field = ['x_delivery_route']
+    vue_to_delete =[1975,1976]
+    vues_where_to_remove = [3286, 3287, 3285,]
+    field = ['x_delivery_route','x_delivery_pickup']
 
 
     for vue_id in vues_where_to_remove:
@@ -38,6 +39,11 @@ def migrate(cr, version):
                     parent = field[0].getparent()
                     parent.remove(field[0])
                     _logger.info(f"Removed field '{f}' from view {vue_id}")
+                else:
+                    _logger.info(f"field '{f}' not found")
+
+    for view in  env['ir.ui.view'].browse(vue_to_delete).exists():
+        view.active = False
 
 
 
