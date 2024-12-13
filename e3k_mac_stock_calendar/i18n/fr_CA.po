@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* e3k_custom_stock_calendar
+# 	* e3k_mac_stock_calendar
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 03:21+0000\n"
-"PO-Revision-Date: 2024-11-01 03:21+0000\n"
+"POT-Creation-Date: 2024-12-13 15:05+0000\n"
+"PO-Revision-Date: 2024-12-13 15:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,53 +15,80 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__e3k_all_day
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_all_day
 msgid "All Day"
 msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model_terms:ir.ui.view,arch_db:e3k_custom_stock_calendar.e3k_view_picking_internal_search
+#. module: e3k_mac_stock_calendar
+#: model_terms:ir.ui.view,arch_db:e3k_mac_stock_calendar.e3k_view_picking_internal_search
 msgid "Allowed states"
 msgstr "Etats autorisés"
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__e3k_calendar_color
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__e3k_calendar_text_color
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_calendar_color
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_calendar_text_color
 msgid "Calendar Color"
 msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__delivery_pickup
-msgid "Delivery Pickup"
-msgstr "Livraison-Ramassage"
-
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__delivery_route
-msgid "Delivery Route"
+#. module: e3k_mac_stock_calendar
+#: model_terms:ir.ui.view,arch_db:e3k_mac_stock_calendar.stock_picking_calendar
+msgid "Calendar View"
 msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__e3k_custom_display_name
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__delivery_pickup
+msgid "Delivery Pickup"
+msgstr "Livraison ramassage"
+
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__delivery_route_id
+msgid "Delivery Route"
+msgstr "Route de livraison"
+
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_custom_display_name
 msgid "Display Name"
 msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__flexible_date
-msgid "Flexible Date"
-msgstr "Date non modifiable"
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__duration
+msgid "Duration"
+msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,help:e3k_custom_stock_calendar.field_stock_picking__delivery_route
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_stop_date
+msgid "End Date"
+msgstr ""
+
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__flexible_date
+msgid "Flexible Date"
+msgstr ""
+
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,help:e3k_mac_stock_calendar.field_stock_picking__delivery_route_id
 msgid "Preferred delivery route."
 msgstr ""
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model,name:e3k_custom_stock_calendar.model_stock_picking
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__e3k_start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: e3k_mac_stock_calendar
+#: model:ir.model,name:e3k_mac_stock_calendar.model_stock_picking
 msgid "Transfer"
 msgstr "Transfert"
 
-#. module: e3k_custom_stock_calendar
-#: model:ir.model.fields,field_description:e3k_custom_stock_calendar.field_stock_picking__worksite_ready
+#. module: e3k_mac_stock_calendar
+#: model:ir.model.fields,field_description:e3k_mac_stock_calendar.field_stock_picking__worksite_ready
 msgid "Worksite Ready"
-msgstr "Chantier prêt"
+msgstr ""
+
+#. module: e3k_mac_stock_calendar
+#. openerp-web
+#: code:addons/e3k_mac_stock_calendar/static/src/legacy/xml/template.xml:0
+#, python-format
+msgid "margin: 0px;height: 30px;"
+msgstr ""
