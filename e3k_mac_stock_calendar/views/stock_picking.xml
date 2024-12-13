@@ -49,7 +49,7 @@
                         delete="false">
 
                     <field name="partner_id" filters="1"/>
-                    <field name="origin"/>
+<!--                    <field name="origin"/>-->
                     <field name="sale_id"/>
                     <field name="state"/>
                     <field name="e3k_custom_display_name" invisible="1"/>

@@ -9,9 +9,13 @@ def migrate(cr, version):
 
     env = util.env(cr)
     # domaine ou le champ delivery_route n' est pas vide
-    domaine = [('x_delivery_route', '!=', False)]
-    sale_order_ids = env['sale.order'].search(domaine)
+    domaine_so = [('x_delivery_route', '!=', False)]
+    domaine_SP = [('x_delivery_pickup', '!=', False)]
+    sale_order_ids = env['sale.order'].search(domaine_so)
     all_routes_ids = env['mac.route.config'].search([])
+
+    stock_picking_ids =  env['stock.picking'].search(domaine_SP)
+    stock_picking_ids.write({'delivery_pickup': True})
 
     for sale_order in sale_order_ids:
         routes = all_routes_ids.filtered(lambda x: x.code == sale_order.x_delivery_route)
