@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'E3K Stock Calendar',
+    'version': '1.0.2',
+    'author': 'e3k solutions',
+    'maintainer': 'e3k',
+    'website': 'https://www.e3k.co/',
+    'license': 'AGPL-3',
+    'category': 'Others',
+    'summary': 'E3K Custom Stock Calendar',
+    'depends': ['e3k_macmetal'],
+    'data': [
+        # data
+
+        # security
+
+        # views
+        'views/stock_picking.xml',
+
+        # wizard
+    ],
+    'assets': {
+        'web.assets_qweb': [
+            'e3k_mac_stock_calendar/static/src/legacy/xml/template.xml',
+        ],
+        'web.assets_backend': [
+            'e3k_mac_stock_calendar/static/src/legacy/js/views/calendar/calendar_renderer.js',
+            'e3k_mac_stock_calendar/static/src/legacy/scss/disable_hours_in_calendar.scss',
+        ],
+    },
+    'installable': True,
+    'application': False,
+    "post_init_hook": "_post_init_hook",
+}

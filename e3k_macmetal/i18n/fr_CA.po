@@ -108,6 +108,7 @@ msgstr "Termes et Conditions de Livraison par Défaut"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__delivery_route
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__delivery_route_id
 msgid "Delivery Route"
 msgstr "Route de Livraison"
 
