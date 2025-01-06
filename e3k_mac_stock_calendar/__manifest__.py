@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'E3K Stock Calendar',
-    'version': '1.0.4',
+    'version': '1.0.5',
     'author': 'e3k solutions',
     'maintainer': 'e3k',
     'website': 'https://www.e3k.co/',

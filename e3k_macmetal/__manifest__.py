@@ -8,7 +8,7 @@
   "author" : "e3k Solutions",
   "license" : "Other proprietary",
   "website" : "https://e3k.co",
-  "version" : "15.0.2.4.4",
+  "version" : "15.0.2.4.5",
   "depends" : [
     'sale',
     'crm',
