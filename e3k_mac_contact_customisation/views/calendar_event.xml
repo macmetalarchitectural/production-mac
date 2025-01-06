@@ -28,7 +28,9 @@
                         <div>
                             <label for="meeting_type_id" string="Meeting type: "/>
                             <field name="meeting_type_id" class="oe_inline"
-                                   options="{'no_create': True,'no_open':True}"/>
+                                   options="{'no_create': True,'no_open':True}"
+                                    required="1"
+                            />
                         </div>
                         <div>
                             <label for="completed" string="Completed: "/>

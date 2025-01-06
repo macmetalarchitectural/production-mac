@@ -34,8 +34,7 @@ class account_payment_partial(models.Model):
                                       store=True,
                                       compute="get_amount_total_residual")  # ,related='invoice_id.amount_residual')
 
-    currency_id = fields.Many2one('res.currency', related='invoice_id.currency_id', string='Currency', required=True,
-                                  default=lambda self: self.env.user.company_id.currency_id)
+    currency_id = fields.Many2one('res.currency', related='invoice_id.currency_id', string='Currency', required=True)
     payment_discount_amount = fields.Monetary(related='invoice_id.payment_discount_amount', string='Discount Amount',
                                               store=True)
     due_payment_discount_amount = fields.Monetary(related='invoice_id.due_payment_discount_amount',
@@ -45,14 +44,7 @@ class account_payment_partial(models.Model):
     done_discount_amount_in_out_refund = fields.Monetary(string='Discount')
 
     done_discount_amount_signed = fields.Monetary(string='Discount', compute='_get_done_discount_amount_signed')
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('proforma', 'Pro-forma'),
-        ('proforma2', 'Pro-forma'),
-        ('open', 'Open'),
-        ('paid', 'Paid'),
-        ('cancel', 'Cancelled'),
-    ], related='invoice_id.payment_state', string='Status', index=True, readonly=True, default='draft')
+    state = fields.Selection( related='invoice_id.payment_state', string='Status', index=True, readonly=True)
     acc_move_line_ids = fields.One2many('account.move.line', 'partial_payment_line_id', string='Move lines', copy=False)
 
     @api.depends('done_discount_amount')
