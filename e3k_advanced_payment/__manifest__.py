@@ -8,7 +8,7 @@
     'version': '15.0.1',
     'category': 'Accounting/Payment',
     'depends': ['account', 'account_check_printing', 'account_accountant'],
-
+    'license': 'LGPL-3',
     'data': [
         'security/ir.model.access.csv',
         'data/email_templat.xml',

@@ -18,6 +18,7 @@
             '/e3k_custom_cheque/static/src/less/report_check_commons.less',
         ],
     },
+    'license': 'LGPL-3',
     'installable': True,
     'application': True,
     'auto_install': False,

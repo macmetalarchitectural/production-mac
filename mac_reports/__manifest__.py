@@ -5,6 +5,7 @@
         """,
     'description': """
     """,
+    'license': 'LGPL-3',
     'author': "E3K",
     'website': "http://www.e3k.co",
     'category': 'Sale',
