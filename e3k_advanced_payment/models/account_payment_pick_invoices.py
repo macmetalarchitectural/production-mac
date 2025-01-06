@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class account_payment_pick_invoices(models.TransientModel):
     _name = "account.payment.pick.invoices"
+    _description = "Pick Invoices to pay"
 
     def _default_payment_id(self):
         payment_id = self._context.get('active_model') == 'account.payment' and self._context.get('active_ids') or []
