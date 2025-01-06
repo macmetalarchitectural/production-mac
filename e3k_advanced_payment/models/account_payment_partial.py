@@ -45,14 +45,7 @@ class account_payment_partial(models.Model):
     done_discount_amount_in_out_refund = fields.Monetary(string='Discount')
 
     done_discount_amount_signed = fields.Monetary(string='Discount', compute='_get_done_discount_amount_signed')
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('proforma', 'Pro-forma'),
-        ('proforma2', 'Pro-forma'),
-        ('open', 'Open'),
-        ('paid', 'Paid'),
-        ('cancel', 'Cancelled'),
-    ], related='invoice_id.payment_state', string='Status', index=True, readonly=True, default='draft')
+    state = fields.Selection( related='invoice_id.payment_state', string='Status', index=True, readonly=True)
     acc_move_line_ids = fields.One2many('account.move.line', 'partial_payment_line_id', string='Move lines', copy=False)
 
     @api.depends('done_discount_amount')
