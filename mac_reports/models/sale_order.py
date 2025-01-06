@@ -14,7 +14,7 @@ class SaleOrderNote(models.Model):
             'e3k_default_reports.use_sale_order_terms') and self.env.company.sale_order_terms or ''
 
     delivery_note = fields.Text('Delivery Note')
-    sale_note_termes = fields.Text('Terms and conditions', default=_default_sale_note_terms, translate=True, copy=False)
+    sale_note_termes = fields.Text('SO Terms and conditions', default=_default_sale_note_terms, translate=True, copy=False)
     client_order_ref = fields.Text(string='Customer Reference', copy=False)
 
     @api.model_create_multi
