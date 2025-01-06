@@ -34,8 +34,7 @@ class account_payment_partial(models.Model):
                                       store=True,
                                       compute="get_amount_total_residual")  # ,related='invoice_id.amount_residual')
 
-    currency_id = fields.Many2one('res.currency', related='invoice_id.currency_id', string='Currency', required=True,
-                                  default=lambda self: self.env.user.company_id.currency_id)
+    currency_id = fields.Many2one('res.currency', related='invoice_id.currency_id', string='Currency', required=True)
     payment_discount_amount = fields.Monetary(related='invoice_id.payment_discount_amount', string='Discount Amount',
                                               store=True)
     due_payment_discount_amount = fields.Monetary(related='invoice_id.due_payment_discount_amount',
