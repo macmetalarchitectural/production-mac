@@ -217,6 +217,7 @@ class AccountPayment(models.Model):
             self.child_partner_ids = [(6, 0, contact_ids)]
             self.str_child_partner_list = str(contact_ids)
 
+    @api.constrains('payment_partial_ids')
     def _check_partial_amount(self):
         for payment in self:
             for line in payment.payment_partial_ids:
@@ -240,9 +241,9 @@ class AccountPayment(models.Model):
                     return False
         return True
 
-    _constraints = [
-        (_check_partial_amount, "The Partial payments must be <= To Pay", ["payment_partial_ids"]),
-    ]
+    # _constraints = [
+    #     (_check_partial_amount, "The Partial payments must be <= To Pay", ["payment_partial_ids"]),
+    # ]
 
     def delete_invoice_ids(self):
         for payment in self:
