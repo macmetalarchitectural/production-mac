@@ -4,6 +4,19 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError
 
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    # cette contrainte n'était pas chargée dans la base de données (on a cherché les raisons mais on a pas trouvé) dont on la bypassé pour eviter le warnning
+    _sql_constraints = [
+        (
+            'check_amount_currency_balance_sign',
+            '''CHECK(1=1)''',
+            ""
+        ),
+    ]
+
+
 
 class SaleOrderNote(models.Model):
     _inherit = 'sale.order'
@@ -77,15 +90,3 @@ class AccountMove(models.Model):
                     self.env['ir.translation'].sudo().create(translation)
 
         return moves
-
-class AccountMoveLine(models.Model):
-    _inherit = 'account.move.line'
-
-    # cette contrainte n'était pas chargée dans la base de données (on a cherché les raisons mais on a pas trouvé) dont on la bypassé pour eviter le warnning
-    _sql_constraints = [
-        (
-            'check_amount_currency_balance_sign',
-            '''CHECK(1=1)''',
-            ""
-        ),
-    ]
