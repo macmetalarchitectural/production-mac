@@ -356,7 +356,7 @@ msgstr "Mouvement de stock"
 
 #. module: mac_reports
 #: model:ir.model.fields,field_description:mac_reports.field_sale_order__sale_note_termes
-msgid "Terms and conditions"
+msgid "SO Terms and conditions"
 msgstr ""
 
 #. module: mac_reports

@@ -22,8 +22,15 @@
 
     <template id="ckca_stub" inherit_id="l10n_ca_check_printing.ckca_stub">
 
-        <xpath expr="//div[@class='sequence_number']" position="replace"/>
-        <xpath expr="//div[hasclass('row')]" position="replace">
+        <xpath expr="//div[hasclass('sequence_number')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+
+         <xpath expr="//div[hasclass('row')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('row')]" position="after">
             <div class="row summary_line" t-if="page['stub_lines'] and (stub_num == 1)"
                  t-attf-style="font-size:{{ page['company_id'].check_table_font_size }}px;">
                 <div class="col-md-4 text-left">
@@ -92,7 +99,10 @@
             </div>
         </xpath>
 
-        <xpath expr="//div[hasclass('stub_total_amount')]" position="replace">
+        <xpath expr="//div[hasclass('stub_total_amount')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+        <xpath expr="//div[hasclass('stub_total_amount')]" position="after">
             <div t-if="page['stub_lines'] and (stub_num == 1)"
                  t-attf-style=" position: absolute;
                             top: {{ page['company_id'].table_1_amount_top }}px;
@@ -111,7 +121,12 @@
             </div>
         </xpath>
 
-        <xpath expr="//table" position="replace">
+         <xpath expr="//table" position="attributes">
+                <attribute name="class" add="d-none"/>
+        </xpath>
+
+
+        <xpath expr="//table" position="after">
 
             <table class="stub_lines"
             t-attf-style="position: absolute; top: {{ page['company_id'].check_table1_top }}px;
@@ -235,11 +250,18 @@
     </template>
 
     <template id="ckca_check" inherit_id="l10n_ca_check_printing.ckca_check">
-        <xpath expr="//div[@class='sequence_number']" position="replace"/>
+        <xpath expr="//div[hasclass('sequence_number')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
 
-        <xpath expr="//div[hasclass('ckca_amount_in_word')]" position="replace"/>
+        <xpath expr="//div[hasclass('ckca_amount_in_word')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+        <xpath expr="//div[hasclass('ckca_check')]" position="attributes">
+                <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
 
-        <xpath expr="//div[hasclass('ckca_check')]" position="replace">
+        <xpath expr="//div[hasclass('ckca_check')]" position="after">
             <div class="check_area"
                  t-attf-style="position: relative;width:{{ page['company_id'].check_area_width }}px; font-size:  {{ page['company_id'].check_font_size }}px;">
                 <img src="/e3k_partial_payment_cheque/static/src/images/vtm2_cheque.jpg"

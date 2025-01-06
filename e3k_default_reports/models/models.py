@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
         return self.env['ir.config_parameter'].sudo().get_param(
             'e3k_default_reports.use_sale_order_terms') and self.env.company.sale_order_terms or ''
 
-    sale_note_termes = fields.Text('Terms and conditions', default=_default_sale_note_terms)
+    sale_note_termes = fields.Text('SO Terms and conditions', default=_default_sale_note_terms)
 
     def _compute_print_default_code(self):
         return self.env['ir.config_parameter'] \

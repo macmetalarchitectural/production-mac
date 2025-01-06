@@ -73,11 +73,6 @@ msgstr ""
 msgid "Account journal discount"
 msgstr ""
 
-#. module: e3k_advanced_payment
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_residual
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_residual_signed
-msgid "Amount Due"
-msgstr ""
 
 #. module: e3k_advanced_payment
 #: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__check_amount_in_words
@@ -146,12 +141,6 @@ msgstr ""
 msgid "Difference Amount"
 msgstr ""
 
-#. module: e3k_advanced_payment
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__done_discount_amount
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__done_discount_amount_signed
-#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
-msgid "Discount"
-msgstr ""
 
 #. module: e3k_advanced_payment
 #: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_term__payment_term_discount_ids
@@ -368,12 +357,6 @@ msgstr ""
 msgid "Partner"
 msgstr ""
 
-#. module: e3k_advanced_payment
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__child_partner_ids
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__str_child_partner_list
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__str_child_partner_list
-msgid "Partner Contacts"
-msgstr ""
 
 #. module: e3k_advanced_payment
 #: model:ir.model.fields,field_description:e3k_advanced_payment.field_send_payment_notification__partner_ids
@@ -381,12 +364,7 @@ msgstr ""
 msgid "Partners"
 msgstr ""
 
-#. module: e3k_advanced_payment
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__payment_id
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__payment_in_id
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_pick_invoices__payment_id
-msgid "Payment"
-msgstr ""
+
 
 #. module: e3k_advanced_payment
 #: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment__total_partial_amount
@@ -525,14 +503,6 @@ msgstr ""
 msgid "To Pay"
 msgstr ""
 
-#. module: e3k_advanced_payment
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_total
-#: model:ir.model.fields,field_description:e3k_advanced_payment.field_account_payment_partial__amount_total_signed
-#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_in_tree
-#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.account_partial_payment_out_tree
-#: model_terms:ir.ui.view,arch_db:e3k_advanced_payment.vtm2_view_account_payment_form
-msgid "Total"
-msgstr ""
 
 #. module: e3k_advanced_payment
 #: code:addons/e3k_advanced_payment/models/account_move.py:0

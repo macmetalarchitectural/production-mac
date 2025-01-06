@@ -398,7 +398,7 @@ msgstr "Stock déplacer"
 
 #. module: e3k_default_reports
 #: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__sale_note_termes
-msgid "Terms & conditions"
+msgid "SO Terms & conditions"
 msgstr ""
 
 #. module: e3k_default_reports

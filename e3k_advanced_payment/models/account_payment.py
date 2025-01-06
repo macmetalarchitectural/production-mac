@@ -15,7 +15,7 @@ class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
     payment_partial_ids = fields.One2many('account.payment.partial', 'payment_id', string='Payment Lines', copy=True)
-    payment_partial_in_ids = fields.One2many('account.payment.partial', 'payment_in_id', string='Payment Lines',
+    payment_partial_in_ids = fields.One2many('account.payment.partial', 'payment_in_id', string='Payment in Lines',
                                              copy=True)
     total_partial_amount = fields.Monetary(string='Payment Amount', store=True, readonly=True,
                                            compute='_compute_payment_amount_total', tracking=True)
@@ -24,7 +24,7 @@ class AccountPayment(models.Model):
     discount_move_id = fields.Many2one('account.move', string='Discount Entries', store=True, readonly=True)
     child_partner_ids = fields.Many2many('res.partner', 'payment_child_partner_rel', 'payment_id', 'child_partner_id',
                                          string='Partner Contacts')
-    str_child_partner_list = fields.Text(string='Partner Contacts')
+    str_child_partner_list = fields.Text(string='Partner Contacts identifiers')
     notif_partner = fields.Many2one('res.partner', string='Notifie partner', compute='_compute_notif_partner'
                                    )
 
