@@ -5,7 +5,7 @@
     'description': 'Select invoices when paying a supplier.',
     'author': "E3K",
     'website': "https://e3kco.odoo.com",
-    'version': '15.0.3',
+    'version': '15.0.4',
     'category': 'Accounting/Payment',
     'depends': ['account', 'account_check_printing', 'account_accountant'],
     'license': 'LGPL-3',
