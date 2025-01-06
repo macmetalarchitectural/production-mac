@@ -9,7 +9,7 @@
     'author': "E3K",
     'website': "http://www.e3k.co",
     'category': 'Sale',
-    'version': '15.5',
+    'version': '15.6',
     'depends': ['e3k_default_reports', 'account'],
     'data': [
         'reports/sale_report.xml',
