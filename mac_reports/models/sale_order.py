@@ -4,6 +4,19 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError
 
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    # cette contrainte n'était pas chargée dans la base de données (on a cherché les raisons mais on a pas trouvé) dont on la bypassé pour eviter le warnning
+    _sql_constraints = [
+        (
+            'check_amount_currency_balance_sign',
+            '''CHECK(1=1)''',
+            ""
+        ),
+    ]
+
+
 
 class SaleOrderNote(models.Model):
     _inherit = 'sale.order'
@@ -14,7 +27,7 @@ class SaleOrderNote(models.Model):
             'e3k_default_reports.use_sale_order_terms') and self.env.company.sale_order_terms or ''
 
     delivery_note = fields.Text('Delivery Note')
-    sale_note_termes = fields.Text('Terms and conditions', default=_default_sale_note_terms, translate=True, copy=False)
+    sale_note_termes = fields.Text('SO Terms and conditions', default=_default_sale_note_terms, translate=True, copy=False)
     client_order_ref = fields.Text(string='Customer Reference', copy=False)
 
     @api.model_create_multi

@@ -605,8 +605,6 @@ msgstr ""
 #. openerp-web
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_status_id
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__customer_state
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__contact_status_id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__contact_status_id
 #: model:ir.ui.menu,name:e3k_mac_contact_customisation.menu_contact_status
@@ -615,6 +613,20 @@ msgstr ""
 #, python-format
 msgid "Status"
 msgstr "Statut"
+
+#. module: e3k_mac_contact_customisation
+#. openerp-web
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__customer_state
+#, python-format
+msgid "Customer status"
+msgstr "Statut du client"
+
+#. module: e3k_mac_contact_customisation
+#. openerp-web
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_status_id
+#, python-format
+msgid "Contact status"
+msgstr "Statut du contact"
 
 #. module: e3k_mac_contact_customisation
 #. openerp-web

@@ -15,16 +15,16 @@ class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
     payment_partial_ids = fields.One2many('account.payment.partial', 'payment_id', string='Payment Lines', copy=True)
-    payment_partial_in_ids = fields.One2many('account.payment.partial', 'payment_in_id', string='Payment Lines',
+    payment_partial_in_ids = fields.One2many('account.payment.partial', 'payment_in_id', string='Payment in Lines',
                                              copy=True)
     total_partial_amount = fields.Monetary(string='Payment Amount', store=True, readonly=True,
-                                           compute='_compute_payment_amount_total', track_visibility='always')
+                                           compute='_compute_payment_amount_total', tracking=True)
     difference_amount = fields.Monetary(string='Difference Amount', readonly=True,
-                                        compute='_compute_payment_difference_amount', track_visibility='always')
+                                        compute='_compute_payment_difference_amount', tracking=True)
     discount_move_id = fields.Many2one('account.move', string='Discount Entries', store=True, readonly=True)
     child_partner_ids = fields.Many2many('res.partner', 'payment_child_partner_rel', 'payment_id', 'child_partner_id',
                                          string='Partner Contacts')
-    str_child_partner_list = fields.Text(string='Partner Contacts')
+    str_child_partner_list = fields.Text(string='Partner Contacts identifiers')
     notif_partner = fields.Many2one('res.partner', string='Notifie partner', compute='_compute_notif_partner'
                                    )
 
@@ -217,6 +217,7 @@ class AccountPayment(models.Model):
             self.child_partner_ids = [(6, 0, contact_ids)]
             self.str_child_partner_list = str(contact_ids)
 
+    @api.constrains('payment_partial_ids')
     def _check_partial_amount(self):
         for payment in self:
             for line in payment.payment_partial_ids:
@@ -240,9 +241,9 @@ class AccountPayment(models.Model):
                     return False
         return True
 
-    _constraints = [
-        (_check_partial_amount, "The Partial payments must be <= To Pay", ["payment_partial_ids"]),
-    ]
+    # _constraints = [
+    #     (_check_partial_amount, "The Partial payments must be <= To Pay", ["payment_partial_ids"]),
+    # ]
 
     def delete_invoice_ids(self):
         for payment in self:

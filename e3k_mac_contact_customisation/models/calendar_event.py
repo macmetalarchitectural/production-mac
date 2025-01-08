@@ -31,12 +31,12 @@ class CalendarEvent(models.Model):
 
         return next_hour
 
-    meeting_type_id = fields.Many2one('calendar.event.type', string='Meeting Type', required=True)
+    meeting_type_id = fields.Many2one('calendar.event.type', string='Meeting Type', required=False)
     name = fields.Char(default=lambda self: _('New'), translate=True)
     team_id = fields.Many2one('representative.team', string='Team', compute='_compute_team_rep_id', store=True)
     company_partner_id = fields.Many2one('res.partner', string='Company name', compute='_compute_company_partner_id',
                                          store=True)
-    customer_state = fields.Selection(related='partner_id.customer_state', string='Status', store=True)
+    customer_state = fields.Selection(related='partner_id.customer_state', string='Customer status', store=True)
     rep_id = fields.Many2one('res.partner', string='Representative', related='user_id.partner_id', store=True)
     contact_ids = fields.Many2many('res.partner', string='Contacts', relation='calendar_event_contact_id',
                                    column1='calendar_event_id',

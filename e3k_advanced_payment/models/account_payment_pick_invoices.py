@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class account_payment_pick_invoices(models.TransientModel):
     _name = "account.payment.pick.invoices"
+    _description = "Pick Invoices to pay"
 
     def _default_payment_id(self):
         payment_id = self._context.get('active_model') == 'account.payment' and self._context.get('active_ids') or []
@@ -37,7 +38,7 @@ class account_payment_pick_invoices(models.TransientModel):
                                    string="Invoices", copy=False)
     payment_id = fields.Many2one('account.payment', string='Payment', default=_default_payment_id , ondelete='cascade')
     partner_id = fields.Many2one('res.partner', related='payment_id.partner_id', string='Partner', readonly=True)
-    str_child_partner_list = fields.Text(related='payment_id.str_child_partner_list', string='Partner Contacts')
+    str_child_partner_list = fields.Text(related='payment_id.str_child_partner_list', string='Partner Contacts identifiers')
     type_invoice = fields.Selection([
             ('in_invoice', 'Fournisseur'),
             ('out_invoice', 'Client'),

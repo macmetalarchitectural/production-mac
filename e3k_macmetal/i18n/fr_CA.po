@@ -93,8 +93,8 @@ msgstr "Termes & Conditions de Livraison par Défaut"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__customer_delivery_date
-msgid "Delivery Date"
-msgstr "Date de Livraison"
+msgid "Customer delivery date"
+msgstr "Date de livraison du client"
 
 #. module: e3k_macmetal
 #: model:ir.model.fields,field_description:e3k_macmetal.field_res_config_settings__use_delivery_terms

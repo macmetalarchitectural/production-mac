@@ -3,7 +3,7 @@
 {
     'name': 'Custom Payment Cheque',
     'description': 'Custom Payment Cheque',
-    'version': '15.0.0.0.2',
+    'version': '15.0.0.0.7',
     'category': 'account',
     'author': "E3K",
     'depends': ['account', 'l10n_ca_check_printing','e3k_advanced_payment'],
@@ -18,6 +18,7 @@
             '/e3k_custom_cheque/static/src/less/report_check_commons.less',
         ],
     },
+    'license': 'LGPL-3',
     'installable': True,
     'application': True,
     'auto_install': False,

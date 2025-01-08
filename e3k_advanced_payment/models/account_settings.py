@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class account_journal_discount(models.Model):
     _name = 'account.journal.discount'
+    _description = 'Journal Discount'
 
     company_id = fields.Many2one('res.company', string="Company", required=True)
     journal_discount_client_id = fields.Many2one('account.journal', string="Journal Client Discount")

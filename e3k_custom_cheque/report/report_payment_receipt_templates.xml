@@ -3,12 +3,12 @@
     <data>
         <template id="cheque_report_payment_receipt_document_inherit"
                   inherit_id="account.report_payment_receipt_document">
-            <xpath expr="//div[@class='page']//table[@class='table table-sm']/thead/tr/th[last()]" position="replace">
+            <xpath expr="//div[hasclass('page')]//table[hasclass('table','table-sm')]/thead/tr/th[last()]" position="replace">
                 <th class="text-right"><span>Montant</span></th>
                 <th class="text-right"><span>Montant total</span></th>
                 <th class="text-right"><span>Montant dû</span></th>
             </xpath>
-            <xpath expr="//div[@class='page']//table[@class='table table-sm']/tbody"
+            <xpath expr="//div[hasclass('page')]//table[hasclass('table','table-sm')]/tbody"
                    position="replace">
 
                 <tbody>

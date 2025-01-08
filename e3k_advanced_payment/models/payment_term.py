@@ -16,6 +16,7 @@ class AccountPaymentTerm(models.Model):
 
 class AccountPaymentTermDiscount(models.Model):
     _name = 'account.payment.term.discount'
+    _description = 'Account Payment Term Discount'
 
     payment_term_id = fields.Many2one('account.payment.term', string='Payment Term')
     company_id = fields.Many2one('res.company', string='Company')

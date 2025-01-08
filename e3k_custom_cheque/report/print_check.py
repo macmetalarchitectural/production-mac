@@ -9,12 +9,12 @@ import logging
 INV_LINES_PER_STUB = 7
 
 # import inflect  # to installe withe python3 => pip install inflect
-_logger = logging.getLogger(__name__)
-try:
-    import inflect
-except ImportError:
-    _logger.warning(
-        "The `inflect` Python module is not installed")
+# _logger = logging.getLogger(__name__)
+# try:
+#     import inflect
+# except ImportError:
+#     _logger.warning(
+#         "The `inflect` Python module is not installed")
 
 LINE_FILLER = '*'
 
