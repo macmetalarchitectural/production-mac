@@ -6,6 +6,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+_logger.info('StockPicking model loaded')
+
 class StockPicking(models.Model):
     _inherit = "stock.picking"
     _order = 'partner_id'
