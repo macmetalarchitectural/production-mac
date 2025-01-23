@@ -11,6 +11,6 @@ class SaleOrder(models.Model):
     def _compute_commitment_date(self):
         for order in self:
             if order.picking_ids:
-                order.commitment_date = max(order.picking_ids.mapped('date_deadline'), default=False)
+                order.commitment_date = max(order.picking_ids.filtered(lambda p: p.pick_type_id.code == 'outgoing').mapped('date_deadline'), default=False)
             else:
                 pass
