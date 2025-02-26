@@ -152,13 +152,13 @@ class CalendarEvent(models.Model):
                 result.append((event.id, name))
         return result
 
-    @api.model
-    def get_activity_details(self):
-        """Get the details of the activity for the activity dashboard
-        """
-        activities = self.env['calendar.event'].search(
-            [('start', '>=', fields.Datetime.now()), ('user_id', '=', self.env.uid)], limit=5)
-        return activities
+    # @api.model
+    # def get_activity_details(self):
+    #     """Get the details of the activity for the activity dashboard
+    #     """
+    #     activities = self.env['calendar.event'].search(
+    #         [('start', '>=', fields.Datetime.now()), ('user_id', '=', self.env.uid)], limit=5)
+    #     return activities
 
     @api.model
     def get_teams(self):
@@ -269,27 +269,23 @@ class CalendarEvent(models.Model):
                 a.name AS rep,
                 c.meeting_type_id AS meeting_type_id,
                 t.name AS meeting_type,
-                p.parent_id AS parent_id,
                 p.contact_status_id AS contact_status_id,
                 s.name AS status,
                 r.industry_id AS industry_id,
                 i.name AS customer_type,
                 r.name AS company_name,
-                e.contact_id AS contact_id,
                 p.name AS contact,
                 c.completed AS completed
             FROM
                 calendar_event c
             LEFT JOIN
-                calendar_event_contact_id e ON e.calendar_event_id = c.id
-            LEFT JOIN
-                res_partner p ON p.id = e.contact_id
+                res_partner p ON p.id = c.contact_id
             LEFT JOIN
                 calendar_event_type t ON t.id = c.meeting_type_id
             LEFT JOIN
-                res_partner r ON r.id = p.parent_id
+                res_partner r ON r.id = c.company_partner_id
             LEFT JOIN
-                res_partner_industry i ON i.id = r.industry_id
+                res_partner_industry i ON i.id = p.industry_id
             LEFT JOIN
                 contact_status s ON s.id = p.contact_status_id
             LEFT JOIN
@@ -305,13 +301,11 @@ class CalendarEvent(models.Model):
                 a.name,
                 c.meeting_type_id,
                 t.name,
-                p.parent_id,
                 p.contact_status_id,
                 s.name,
                 r.industry_id,
                 i.name,
                 r.name,
-                e.contact_id,
                 p.name,
                 c.completed
             ORDER BY
@@ -380,27 +374,23 @@ class CalendarEvent(models.Model):
                 a.name AS rep,
                 c.meeting_type_id AS meeting_type_id,
                 t.name AS meeting_type,
-                p.parent_id AS parent_id,
                 p.contact_status_id AS contact_status_id,
                 s.name AS status,
                 r.industry_id AS industry_id,
                 i.name AS customer_type,
                 r.name AS company_name,
-                e.contact_id AS contact_id,
                 p.name AS contact,
                 c.completed AS completed
             FROM
                 calendar_event c
             LEFT JOIN
-                calendar_event_contact_id e ON e.calendar_event_id = c.id
-            LEFT JOIN
-                res_partner p ON p.id = e.contact_id
+                res_partner p ON p.id = c.contact_id
             LEFT JOIN
                 calendar_event_type t ON t.id = c.meeting_type_id
             LEFT JOIN
-                res_partner r ON r.id = p.parent_id
+                res_partner r ON r.id = c.company_partner_id
             LEFT JOIN
-                res_partner_industry i ON i.id = r.industry_id
+                res_partner_industry i ON i.id = p.industry_id
             LEFT JOIN
                 contact_status s ON s.id = p.contact_status_id
             LEFT JOIN
@@ -408,7 +398,7 @@ class CalendarEvent(models.Model):
             LEFT JOIN
                 res_partner a ON a.id = c.rep_id
             WHERE
-                c.team_id IS NOT NULL  
+                c.team_id IS NOT NULL
         '''
 
         params = ()
@@ -440,13 +430,11 @@ class CalendarEvent(models.Model):
                 a.name,
                 c.meeting_type_id,
                 t.name,
-                p.parent_id,
                 p.contact_status_id,
                 s.name,
                 r.industry_id,
                 i.name,
                 r.name,
-                e.contact_id,
                 p.name,
                 c.completed
             ORDER BY
