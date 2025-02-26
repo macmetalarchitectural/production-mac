@@ -174,9 +174,16 @@ class StockPicking(models.Model):
             deadline = fields.Datetime.from_string(self.e3k_stop_date)
             new_deadline = deadline.replace(hour=13, minute=0, second=0, microsecond=0)
 
-        self.write({
-            'date_deadline': new_deadline,
-        })
+        val = {
+                'date_deadline': new_deadline,
+            }
+
+        if self.move_ids_without_package:
+            _logger.warning(f'Updating move_ids_without_package: {self.move_ids_without_package}')
+            self.move_ids_without_package.write(val)
+        else:
+            self.write(val)
+
 
     def _inverse_dates(self):
         for pick in self:

@@ -126,7 +126,7 @@
         </xpath>
 
 
-        <xpath expr="//table" position="after">
+        <xpath expr="//table" position="replace">
 
             <table class="stub_lines"
             t-attf-style="position: absolute; top: {{ page['company_id'].check_table1_top }}px;
