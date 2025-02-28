@@ -10,18 +10,18 @@ _logger.info('StockPicking model loaded')
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
-    _order = 'partner_id'
+    _order = 'e3k_calendar_color, partner_id'
 
 
     # delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
     # delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
-    delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route')
+    delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route', store=True)
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
     flexible_date = fields.Boolean(string='Flexible Date', default=False)
     e3k_all_day = fields.Boolean(string='All Day', default=True)
     e3k_custom_display_name = fields.Char(compute='_compute_e3k_custom_display_name', string='Custom display Name')
-    e3k_calendar_color = fields.Char(string='Calendar color', compute='_compute_e3k_calendar_color')
-    e3k_calendar_text_color = fields.Char(string='Calendar text color', compute='_compute_e3k_calendar_color')
+    e3k_calendar_color = fields.Char(string='Calendar color', compute='_compute_e3k_calendar_color',store=True)
+    e3k_calendar_text_color = fields.Char(string='Calendar text color', compute='_compute_e3k_calendar_color', store=True)
 
     e3k_start_date = fields.Datetime(
         'Start Date',
