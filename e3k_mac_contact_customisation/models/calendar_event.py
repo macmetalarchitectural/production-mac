@@ -25,7 +25,7 @@ class CalendarEvent(models.Model):
     def _default_start_date(self):
         print("inside defualt start")
         now = datetime.now()
-        next_hour = now.replace(second=0, microsecond=0, minute=0, hour=now.hour + 1)
+        next_hour = now.replace(second=0, microsecond=0, minute=0) + timedelta(hours=1)
         if next_hour.hour == 0:
             next_hour += timedelta(days=1)
 
