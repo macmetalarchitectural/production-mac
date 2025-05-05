@@ -3,18 +3,18 @@
 from odoo import api, fields, models, _
 from datetime import timedelta
 import logging
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import pytz
 
 _logger = logging.getLogger(__name__)
 
 _logger.info('StockPicking model loaded')
 
+
 class StockPicking(models.Model):
     _inherit = "stock.picking"
     _order = 'partner_id'
 
-
-    # delivery_pickup = fields.Boolean(string='Delivery Pickup', default=False)
-    # delivery_route = fields.Selection(related='sale_id.delivery_route', string='Delivery Route', store=True)
     delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route')
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)
     flexible_date = fields.Boolean(string='Flexible Date', default=False)
@@ -22,33 +22,6 @@ class StockPicking(models.Model):
     e3k_custom_display_name = fields.Char(compute='_compute_e3k_custom_display_name', string='Custom display Name')
     e3k_calendar_color = fields.Char(string='Calendar color', compute='_compute_e3k_calendar_color')
     e3k_calendar_text_color = fields.Char(string='Calendar text color', compute='_compute_e3k_calendar_color')
-
-    e3k_start_date = fields.Datetime(
-        'Start Date',
-        compute='_compute_e3k_start_date', inverse='_inverse_dates', store=True)
-    e3k_stop_date = fields.Datetime(
-        'End Date',
-        compute='_compute_e3k_stop_date', inverse='_inverse_dates', store=True)
-
-    duration = fields.Float(
-        'Duration',
-        compute='_compute_duration', store=True, readonly=True)
-
-    # e3k_calendar_date_deadline = fields.Date(compute='_compute_e3k_calendar_date_deadline', default=False,)
-
-    # @api.model
-    # def _action_get_value_from_x_delivery_pickup(self):
-        # fonction a executer une seule fois pour mettre a jour les valeurs
-        # for rec in self.search([]):
-        #     if hasattr(rec, 'x_delivery_pickup'):
-        #         rec.delivery_pickup = rec.x_delivery_pickup
-        # self.search([])._compute_e3k_calendar_color()._compute_e3k_custom_display_name()
-
-    # fonction executer lors de l'installation
-    # def _copy_val_from_x_delivery_pickup(self):
-    #     for rec in self:
-    #         if hasattr(rec, 'x_delivery_pickup'):
-    #             rec.delivery_pickup = rec.x_delivery_pickup
 
     @api.depends('partner_id', 'partner_id.city', 'worksite_ready', 'origin')
     def _compute_e3k_custom_display_name(self):
@@ -63,7 +36,7 @@ class StockPicking(models.Model):
             if rec.partner_id.city:
                 city = rec.partner_id.city
 
-            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''}{rec.partner_id.name if rec.partner_id else '' }{' / ' + sale_name if sale_name else ''}{' / ' + city if city else ''}"
+            rec.e3k_custom_display_name = f"{mark_for_non_ready_work if rec.worksite_ready else ''}{rec.partner_id.name if rec.partner_id else ''}{' / ' + sale_name if sale_name else ''}{' / ' + city if city else ''}"
 
     def _get_e3k_calendar_color(self):
         self.ensure_one()
@@ -121,7 +94,8 @@ class StockPicking(models.Model):
         elif delivery_route_code == 'Route6':
             so_all_product_default_code = self.sale_id.order_line.mapped('product_id.default_code')
             if list(set(product_code_to_check) & set(so_all_product_default_code)):
-                return color_code['Route6_product_code_found']['color'], color_code['Route6_product_code_found']['text_color']
+                return color_code['Route6_product_code_found']['color'], color_code['Route6_product_code_found'][
+                    'text_color']
             elif not self.delivery_pickup:
                 return color_code['Route6_no_dp']['color'], color_code['Route6_no_dp']['text_color']
             else:
@@ -133,67 +107,37 @@ class StockPicking(models.Model):
     def _compute_e3k_calendar_color(self):
         # Checking conditions for delivery type
         for rec in self:
-            rec.e3k_calendar_color , rec.e3k_calendar_text_color = rec._get_e3k_calendar_color()
+            rec.e3k_calendar_color, rec.e3k_calendar_text_color = rec._get_e3k_calendar_color()
 
-    def _get_duration(self, start, stop):
-        """ Get the duration value between the 2 given dates. """
-        if not start or not stop:
-            return 0
-        duration = (stop - start).total_seconds() / 3600
-        return round(duration, 2)
 
-    @api.depends('e3k_start_date', 'e3k_stop_date')
-    def _compute_duration(self):
-        for pick in self:
-            pick.duration = self._get_duration(pick.e3k_start_date, pick.e3k_stop_date)
+    def write(self, vals):
+        _logger.warning(f'Writing values: {vals}')
+        if 'date_deadline' in vals and vals['date_deadline']:
+            user_tz = pytz.timezone(self.env.user.tz or 'UTC')
 
-    @api.depends('e3k_all_day', 'date_deadline')
-    def _compute_e3k_stop_date(self):
-        for pick in self:
-            if pick.e3k_all_day and pick.date_deadline:
-                deadline = fields.Datetime.from_string(pick.date_deadline)
-                pick.e3k_stop_date = deadline.replace(hour=18)
+            if self.date_deadline:
+                # Convertir la date existante en UTC pour avoir la bonne heure
+                existing_dt = fields.Datetime.from_string(self.date_deadline)
             else:
-                pick.e3k_stop_date = False
+                # Si pas de date existante, utiliser la date actuelle
+                existing_dt = fields.Datetime.from_string(fields.Datetime.now())
 
-    @api.depends('e3k_stop_date')
-    def _compute_e3k_start_date(self):
-        for pick in self:
-            if pick.e3k_stop_date:
-                deadline = fields.Datetime.from_string(pick.e3k_stop_date)
-                pick.e3k_start_date = deadline.replace(hour=8)
-            else:
-                pick.e3k_start_date = False
+            # Convertir la nouvelle date
+            new_dt = fields.Datetime.from_string(vals.get('date_deadline'))
+            user_new_dt = user_tz.localize(new_dt)
+            new_dt_utc = user_new_dt.astimezone(pytz.utc)
 
-    def _update_deadline(self):
-        self.ensure_one()
-        deadline = fields.Datetime.from_string(self.date_deadline)
-        if deadline:
-            new_deadline = deadline.replace(day=self.e3k_stop_date.day)
-        else:
-            deadline = fields.Datetime.from_string(self.e3k_stop_date)
-            new_deadline = deadline.replace(hour=13, minute=0, second=0, microsecond=0)
+            # Appliquer l'heure UTC existante à la nouvelle date UTC
+            final_dt_utc = new_dt_utc.replace(
+                hour=existing_dt.hour,
+                minute=existing_dt.minute,
+                second=existing_dt.second,
+                microsecond=existing_dt.microsecond
+            )
+            _logger.warning(f'Final datetime UTC: {final_dt_utc}')
 
-        val = {
-                'date_deadline': new_deadline,
-            }
+            # Enregistrer la nouvelle date avec l'heure existante
+            vals['date_deadline'] = final_dt_utc.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
-        if self.move_ids_without_package:
-            _logger.warning(f'Updating move_ids_without_package: {self.move_ids_without_package}')
-            self.move_ids_without_package.write(val)
-        else:
-            self.write(val)
-
-
-    def _inverse_dates(self):
-        for pick in self:
-            if pick.e3k_all_day:
-                pick._update_deadline()
-
-    @api.depends('move_lines.date_deadline', 'move_type')
-    def _compute_date_deadline(self):
-        super(StockPicking, self)._compute_date_deadline()
-        for pick in self:
-            if not pick.date_deadline:
-                if pick.e3k_stop_date:
-                    pick._update_deadline()
+        result = super(StockPicking, self).write(vals)
+        return result
