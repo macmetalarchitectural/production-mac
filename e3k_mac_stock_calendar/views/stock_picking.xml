@@ -39,9 +39,7 @@
             <field name="priority" eval="1"/>
             <field name="arch" type="xml">
                <calendar string="Calendar View"
-                         date_start="e3k_start_date"
-                         date_stop="e3k_stop_date"
-                         date_delay="duration"
+                         date_start="date_deadline"
                          color="partner_id"
                          quick_add="True"
                          all_day="e3k_all_day"
