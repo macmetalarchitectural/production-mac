@@ -137,6 +137,10 @@ class StockPicking(models.Model):
             _logger.warning(f'Final datetime UTC: {final_dt_utc}')
 
             # Enregistrer la nouvelle date avec l'heure existante
+            self.move_ids_without_package.write({
+                'date_deadline': final_dt_utc.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+            })
+
             vals['date_deadline'] = final_dt_utc.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
         result = super(StockPicking, self).write(vals)
