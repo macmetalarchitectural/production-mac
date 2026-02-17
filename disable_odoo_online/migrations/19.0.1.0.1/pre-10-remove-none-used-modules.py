@@ -57,16 +57,7 @@ ACTIONS_TO_DO_BEFORE = [
     #     ],
     #     'records': {},
     # },
-    # {
-    #     "operation": "reset",
-    #     "xmlids": [
-    #         # reports
-    #         "stock.report_delivery_document"
-    #     ],
-    #     'records': {'ir.ui.view': []},
-    # },
 ]
-
 
 def _apply_operation(record, op, identifier, logger_prefix):
     """
@@ -154,5 +145,5 @@ def remove_non_used_modules(cr):
 
 def migrate(cr, version):
     env = util.env(cr)
-    # manage_datas(env, ACTIONS_TO_DO_BEFORE)
+
     remove_non_used_modules(cr)
