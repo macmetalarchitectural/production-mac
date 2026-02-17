@@ -17,7 +17,7 @@ def migrate(cr, version):
     Odoo recréera automatiquement la contrainte correcte lors du chargement du module account.
     """
 
-    if util.module_installed(cr, 'mac_reports'):
+    if not util.module_installed(cr, 'mac_reports'):
         e3k_logger.warning(E3K_PREFIX_LOG + "Début de la correction des contraintes account_move_line")
 
         # Supprimer la contrainte bypassée (CHECK(1=1)) laissée par mac_reports
