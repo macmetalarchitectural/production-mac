@@ -47,8 +47,8 @@ def _apply_operation(record, op, identifier, logger_prefix):
     try:
         if op == "unarchive":
             if hasattr(record, "active"):
-                record.write({'active': False})
-                e3k_logger.warning(logger_prefix + f"Unarchivé {identifier}")
+                record.write({'active': True})
+                e3k_logger.warning(logger_prefix + f"Désarchivé {identifier}")
         elif op == "unlink":
             record.unlink()
             e3k_logger.warning(logger_prefix + f"Supprimé {identifier}")
