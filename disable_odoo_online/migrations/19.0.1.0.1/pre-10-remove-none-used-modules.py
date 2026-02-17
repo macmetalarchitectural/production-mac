@@ -25,7 +25,6 @@ MODULES_TO_REMOVE = [
     'disable_quick_create',
     'password_security',
     'mac_reports',
-    'e3k_custom_sale_order',
     'e3k_mac_contact_customisation',
     'account_invoice_supplier_ref_unique',
 ]
