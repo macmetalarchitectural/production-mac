@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="act_report_xml_view" model="ir.ui.view">
+        <field name="name">ir.actions.report.e3k_default_reports</field>
+        <field name="model">ir.actions.report</field>
+        <field name="inherit_id" ref="base.act_report_xml_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page name="configuration" string='Configuration'>
+                    <group>
+                         <group string="Information Block configuration">
+                           <field name="e3k_nb_block_infos_per_row"/>
+                         </group>
+                    </group>
+            	 </page>
+            </xpath>
+         </field>
+     </record>
+</odoo>

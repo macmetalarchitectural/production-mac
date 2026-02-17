@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="l10n_ca_check_printing.print_check_top">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div t-att-data-oe-model="o._name" t-att-data-oe-id="o.id" t-foreach="o._check_get_pages()" t-as="page"
+                     class="page article ckca_page ckca_top_page"
+                     t-attf-style="top: {{ o.company_id.account_check_printing_margin_top }}in; left: {{ o.company_id.account_check_printing_margin_left }}in;">
+
+                    <t t-call="l10n_ca_check_printing.ckca_check" t-lang="o.partner_id.lang"/>
+                    <t t-call="l10n_ca_check_printing.ckca_stub" t-lang="o.partner_id.lang">
+                        <t t-set="stub_num" t-value="1"/>
+                    </t>
+                    <t t-call="l10n_ca_check_printing.ckca_stub" t-lang="o.partner_id.lang">
+                        <t t-set="stub_num" t-value="2"/>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="ckca_stub" inherit_id="l10n_ca_check_printing.ckca_stub">
+
+        <xpath expr="//div[hasclass('sequence_number')]" position="replace"/>
+        <xpath expr="//div[hasclass('row')]" position="replace">
+            <div class="row summary_line" t-if="(stub_num == 1)"
+                 t-attf-style="font-size:{{ page['company_id'].check_table_font_size }}px;">
+                <div class="col-md-4 text-left">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['partner_name']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].table_1_partner_name_top }}px;
+				            left: {{ page['company_id'].table_1_partner_name_left }}px;"/>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['payment_date']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].table_1_payment_date_top }}px;
+				            left: {{ page['company_id'].table_1_payment_date_left }}px; width: 150px;"/>
+                </div>
+                <div class="col-md-6 text-right" t-if="page['company_id'].print_check_number">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['check_number']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].table_1_check_number_top }}px;
+				            left: {{ page['company_id'].table_1_check_number_left }}px;"/>
+                </div>
+            </div>
+            <div class="row summary_line" t-if="page['stub_lines'] and (stub_num == 2)"
+                 t-attf-style="font-size:{{ page['company_id'].check_table_font_size }}px;">
+                <div class="col-md-4 text-left">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['partner_name']"
+                          t-attf-style=" position: absolute; top:{{ page['company_id'].table_2_partner_name_top }}px;
+				            left: {{ page['company_id'].table_2_partner_name_left }}px;"/>
+                </div>
+                <div class="col-md-4 text-right">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['payment_date']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].table_2_payment_date_top }}px;
+				            left: {{ page['company_id'].table_2_payment_date_left }}px;"/>
+                </div>
+                <div class="col-xs-6 text-right" t-if="page['company_id'].print_check_number">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['check_number']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].table_2_check_number_top }}px;
+				            left: {{ page['company_id'].table_2_check_number_left }}px;"/>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('stub_total_amount')]" position="replace">
+            <div t-if="(stub_num == 1)"
+                 t-attf-style=" position: absolute;
+                            top: {{ page['company_id'].table_1_amount_top }}px;
+				            left: {{ page['company_id'].table_1_amount_left }}px;
+                            font-size:{{ page['company_id'].check_table_font_size }}px;"
+            >
+                <b>Check Amount:
+                    <t t-out="page['amount']"/>
+                </b>
+            </div>
+            <div t-if="(stub_num == 2)"
+                 t-attf-style=" position: absolute;
+                            top: {{ page['company_id'].table_2_amount_top }}px;
+				            left: {{ page['company_id'].table_2_amount_left }}px;
+                            font-size:{{ page['company_id'].check_table_font_size }}px;"
+            >
+                <b>Check Amount:
+                    <t t-if="page['payment_amount_2']=='VOID'">
+                        <t t-esc="page['payment_amount_2']"/>
+                    </t>
+                    <t t-else="">
+                        <!--                  <t t-esc="'%.2f' % page['amount']"/>-->
+                        <t t-out="page['amount']"/>
+                    </t>
+                </b>
+            </div>
+        </xpath>
+
+        <xpath expr="//table" position="replace">
+            <style>
+                .border-top-table {
+                border-collapse: collapse !important;
+                border: none !important;
+                border-top: 2px solid black !important;
+                }
+
+                .sub-table-borderless {
+                border: none !important;
+                }
+            </style>
+            <!--class="table-borderless" -->
+            <table class="table-borderless"
+                   t-attf-style="position: absolute; top: {{ page['company_id'].check_table1_top }}px;
+            left: {{ page['company_id'].check_table1_left }}px;
+            font-size:{{ page['company_id'].check_table_font_size }}px;
+            width:{{ page['company_id'].check_table_width }}px;
+            "
+                   t-if="page['stub_lines'] and (stub_num == 1)">
+                <thead>
+                    <tr>
+                        <th style="text-align: left; border-top: 2px solid black !important;">Date</th>
+                        <!--<th class="text-left">Description</th>-->
+                        <th style="text-align: left; border-top: 2px solid black !important;">Invoice</th>
+                        <th style="text-align: right; border-top: 2px solid black !important;">Invoice Amount</th>
+                        <!--                        <th style="text-align: right; border-top: 2px solid black !important;">Discount</th>-->
+                        <th style="text-align: right; border-top: 2px solid black !important;">Discount</th>
+                        <th style="text-align: right; border-top: 2px solid black !important;">Payment</th>
+                    </tr>
+                </thead>
+                <tbody style="border: none !important;">
+                    <t t-foreach="page['stub_lines']" t-as="stub_line">
+                        <t t-if="stub_line.get('header')">
+                            <tr>
+                                <th colspan="6">
+                                    <t t-esc="stub_line['name']"/>
+                                </th>
+                            </tr>
+                        </t>
+                        <t t-if="not stub_line.get('header')">
+                            <tr>
+                                <td style="text-align: left;">
+                                    <t t-if="stub_line['invoice_date']" t-esc="stub_line['invoice_date']"/>
+                                </td>
+                                <td class="text-truncate" style="max-width: 500px;text-align: left;">
+                                    <t t-esc="stub_line['number']"/>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['amount_total']"/>
+                                </td>
+                                <!--                                    <td style="text-align: right;">-->
+                                <!--                                        <t t-esc="stub_line['disc']"/>-->
+                                <!--                                    </td>-->
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['escompt']"/>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['p_amount_paid']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+
+                    <tr t-if="page['stub_cropped']">
+                        <td colspan="6" class="text-right">...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <table class="table-borderless"
+                   t-attf-style=" position: absolute;
+				   top: {{ page['company_id'].check_table2_top }}px;
+				   left: {{ page['company_id'].check_table2_left }}px;
+				   font-size:{{ page['company_id'].check_table_font_size }}px;width:{{ page['company_id'].check_table_width }}px;
+                    "
+                   t-if="page['stub_lines'] and (stub_num == 2)">
+                <thead>
+                    <tr>
+                        <th style="text-align: left; border-top: 2px solid black !important;">Document date</th>
+                        <!--<th class="text-left">Description</th>-->
+                        <th style="text-align: left; border-top: 2px solid black !important;">Invoice</th>
+                        <th style="text-align: right; border-top: 2px solid black !important;">Invoice Amount</th>
+                        <!--                        <th style="text-align: right; border-top: 2px solid black !important;">Discount</th>-->
+                        <th style="text-align: right; border-top: 2px solid black !important;">Discount</th>
+                        <th style="text-align: right; border-top: 2px solid black !important;">Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="page['stub_lines']" t-as="stub_line">
+                        <t t-if="stub_line.get('header')">
+                            <tr>
+                                <th colspan="6">
+                                    <t t-esc="stub_line['name']"/>
+                                </th>
+                            </tr>
+                        </t>
+                        <t t-if="not stub_line.get('header')">
+                            <tr>
+                                <td style="text-align: left;">
+                                    <t t-if="stub_line['invoice_date']" t-esc="stub_line['invoice_date']"/>
+                                </td>
+                                <td class="text-truncate" style="max-width: 500px;text-align: left;">
+                                    <t t-esc="stub_line['number']"/>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['amount_total']"/>
+                                </td>
+                                <!--                                    <td style="text-align: right;">-->
+                                <!--                                        <t t-esc="stub_line['disc']"/>-->
+                                <!--                                    </td>-->
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['escompt']"/>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-esc="stub_line['p_amount_paid']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                    <tr t-if="page['stub_cropped']">
+                        <td colspan="6" class="text-right">...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <!--            <t t-set="discount_amount" t-value="o.calculate_discount_payment()"/>-->
+            <!--            <table class="table table-sm table-bordered" name="discount_table" t-if="discount_amount">-->
+            <!--                <tbody>-->
+            <!--                    <tr>-->
+
+            <!--                        <td colspan="8">-->
+            <!--                            <strong>Escompte</strong>-->
+            <!--                        </td>-->
+            <!--                        <td colspan="4" class="text-end">-->
+            <!--                            <t t-esc="discount_amount"-->
+            <!--                               t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+            <!--                        </td>-->
+            <!--                    </tr>-->
+            <!--                </tbody>-->
+            <!--            </table>-->
+        </xpath>
+    </template>
+
+    <template id="ckca_check" inherit_id="l10n_ca_check_printing.ckca_check">
+        <xpath expr="//div[hasclass('sequence_number')]" position="replace"/>
+
+        <xpath expr="//div[hasclass('ckca_amount_in_word')]" position="replace"/>
+
+        <xpath expr="//div[hasclass('ckca_check')]" position="replace">
+            <div class="check_area"
+                 t-attf-style="position: relative;width:{{ page['company_id'].check_area_width }}px; font-size:  {{ page['company_id'].check_font_size }}px;">
+                <img src="/e3k_partial_payment_cheque/static/src/images/vtm2_cheque.jpg"
+                     t-attf-style="margin-top: {{ page['company_id'].image_top }}px;
+  						              width: {{ page['company_id'].image_width }}px;
+  						              height: {{ page['company_id'].image_height }}px;
+  						              visibility: {{ page['company_id'].check_background }} ; "/>
+
+                <div t-attf-style="position: absolute; top: {{ page['company_id'].payment_date_top }}px; left: {{ page['company_id'].payment_date_left }}px;">
+                    <div class="ckca_date" t-esc="page['payment_date']"/>
+                </div>
+                <div t-if="page['company_id'].display_date_format"
+                     t-attf-style="position: absolute;
+				    			   top: {{ page['display_date_format_str_top'] }}px;
+				    			   left: {{ page['company_id'].display_date_format_left }}px;
+				    			   font-size: {{ page['company_id'].display_date_format_font_size }}px;">
+                    <div class="ckca_date" t-esc="page['date_format_str']"/>
+                </div>
+                                <div t-attf-style="position: absolute; top: {{ page['company_id'].amount1_top }}px; left: {{ page['company_id'].amount1_left }}px;">
+                                    <div class="ckca_amount_in_word"
+                                         t-attf-style="font-size:  {{ page['company_id'].amount_in_world_font_size }}px;">
+
+                                        ***
+                                        <span t-esc="page['amount_in_word'].replace('*','')"/>
+                                        ***
+
+                                    </div>
+
+
+                                </div>
+
+                <div t-attf-style="position: absolute; text-align: right; top: {{ page['company_id'].amount2_top }}px; right: {{ page['company_id'].amount2_right }}px;">
+
+                    <!--                    <span t-esc="'%.2f' % page['amount']"/>-->
+                    <t t-out="page['amount']"/>
+
+                </div>
+
+                <div t-attf-style="position: absolute; top: {{ page['company_id'].address_top }}px; left: {{ page['company_id'].address_left }}px;">
+                    <span t-esc="page['partner_name']"/>
+                    <br/>
+                    <t t-if="page['partner_street1']">
+                        <span t-esc="page['partner_street1']"/>
+                        <br/>
+                    </t>
+                    <t t-if="page['partner_street2']">
+                        <span t-esc="page['partner_street2']"/>
+                        <br/>
+                    </t>
+                    <t t-if="page['partner_city']">
+                        <span t-esc="page['partner_city']"/>
+                    </t>
+                    <t t-if="page['partner_state']">
+                        <span t-esc="page['partner_state']"/>
+                    </t>
+                    <t t-if="page['partner_zip']">
+                        <span t-esc="page['partner_zip']"/>
+                    </t>
+                    <br/>
+                </div>
+                <span t-if=" not page['stub_lines']" t-esc="page['partner_name']"
+                      t-attf-style=" position: absolute; top: {{ page['company_id'].table_1_partner_name_top }}px;                 left: {{ page['company_id'].table_1_partner_name_left }}px;"/>
+                <!--                <div t-if="not page['stub_lines']"-->
+                <!--                     t-attf-style=" position: absolute;                             top: {{ page['company_id'].table_1_amount_top }}px;                 left: {{ page['company_id'].table_1_amount_left }}px;                             font-size:{{ page['company_id'].check_table_font_size }}px;"-->
+                <!--                     class="stub_total_amount col-md-6 text-right">-->
+                <!--                    <p style="font-weight: bold;display: inline;">Check Amount: </p>-->
+                <!--                     <t t-out="page['amount']"/>-->
+                <!--&lt;!&ndash;                     <t t-if="not page['company_id'].print_currency_sign" t-out="page['amount'].replace('$', '')"/>&ndash;&gt;-->
+                <!--                </div>-->
+
+                <!--                <span t-if=" not page['stub_lines']" t-esc="page['memo']" t-attf-style=" position: absolute; top: {{ page['company_id'].memo_payment_top}}px;                 left: {{ page['company_id'].memo_payment_left }}px;"/>-->
+                <div class="col-md-6 text-right" t-if="page['company_id'].print_head_check_number">
+                    <br/>
+                    <t t-if="page['partner_street2']">
+                        <br/>
+                    </t>
+                    <br/>
+                    <span t-esc="page['check_number']"
+                          t-attf-style=" position: absolute; top: {{ page['company_id'].head_check_number_top }}px;
+                            left: {{ page['company_id'].head_check_number_left }}px;"/>
+                </div>
+                <t t-if="page['show_ref_on_check']">
+                    <div t-attf-style="position: absolute; top: {{ page['company_id'].check_ref_top }}px; left: {{ page['company_id'].check_ref_left }}px; font-size: {{ page['company_id'].check_ref_font_size }}px;">
+                        <div class="ckca_date"
+                             t-attf-style="width: {{ page['ref_width'] }}px; display:flex; justify-content:start; align-items:start;">
+                            <t t-foreach="page['ref_lines']" t-as="line">
+                                <div style="text-align:left">
+                                    <t t-out="line"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>

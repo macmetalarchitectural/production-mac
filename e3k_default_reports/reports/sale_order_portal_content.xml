@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sale_order_portal_content_e3k" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//table[@id='sales_order_table']" position="attributes">
+            <attribute name="t-attf-style">
+                #{'display:none;' if sale_order.invoice_print_report == 'summary' else ''}
+            </attribute>
+        </xpath>
+        <xpath expr="//table[@id='sales_order_table']" position="after">
+            <t t-if="sale_order.invoice_print_report == 'summary'">
+                <div>
+                    <span class="text-nowrap" t-field="sale_order.invoice_text" widget="html"/>
+                </div>
+            </t>
+        </xpath>
+
+    </template>
+</odoo>

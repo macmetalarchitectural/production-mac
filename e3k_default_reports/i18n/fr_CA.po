@@ -1,0 +1,760 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* e3k_default_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-17 13:57+0000\n"
+"PO-Revision-Date: 2026-02-17 13:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "1.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "25.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "27.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "3.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "30.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "31.05"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "9.00"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.res_config_settings_sale_view_form_add_sale_terms
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Les valeurs définies ici sont"
+" spécifiques à l'entreprise.\" aria-label=\"Les valeurs définies ici sont "
+"spécifiques à l'entreprise.\"/>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "<span>1.00 Units</span>"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid ""
+"<span>1.00</span>\n"
+"                                            <span groups=\"uom.group_uom\">Units</span>"
+msgstr ""
+"<span>1.00</span>\n"
+"                                            <span groups=\"uom.group_uom\">Unités</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "<span>Amount</span>"
+msgstr "<span>Montant</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<span>Delivery slip N°</span>"
+msgstr "<span>Bon de livraison N°</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "<span>Disc.%</span>"
+msgstr "<span>Rem.%</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Product number</span>"
+msgstr "<span>Numéro de produit</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Product</span>"
+msgstr "<span>Produit</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Quantity Billed</span>"
+msgstr "<span>Quantité facturée</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Quantity Ordered</span>"
+msgstr "<span>Quantité commandée</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Quantity Received</span>"
+msgstr "<span>Quantité reçue</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Quantity delivered</span>"
+msgstr "<span>Quantité livrée</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Quantity invoiced</span>"
+msgstr "<span>Quantité facturée</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.document_tax_totals_template_inherit
+msgid "<span>Subtotal</span>"
+msgstr "<span>Sous-total</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "<span>Taxes</span>"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<span>Unit Price</span>"
+msgstr "<span>Prix unitaire</span>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Sous-total</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Amount</strong>"
+msgstr "<strong>Montant</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<strong>Customer Reference:</strong>"
+msgstr "<strong>Référence Client:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Customer reference:</strong>"
+msgstr "<strong>Référence:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Date Req.</strong>"
+msgstr "<strong>Date Req</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<strong>Default code</strong>"
+msgstr "<strong>Référence interne</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>Date d'échéance:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Expected Date</strong>"
+msgstr "<strong>Date prévue</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Internal order:</strong>"
+msgstr "<strong>Commande interne:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Date de facturation:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Invoicing Address:</strong>"
+msgstr "<strong>Adresse de facturation:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Invoicing and Shipping Address:</strong>"
+msgstr "<strong>Adresse de facturation et de livraison:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Invoicing and Shipping Address</strong>"
+msgstr "<strong>Adresse de facturation et de livraison</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>Date de commande :</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<strong>Order:</strong>"
+msgstr "<strong>Commande:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Payment Terms:</strong>"
+msgstr "<strong>Terme de paiement:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Product number</strong>"
+msgstr "<strong>Numéro de produit</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Product</strong>"
+msgstr "<strong>Produit</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Qty</strong>"
+msgstr "<strong>Qté</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Quantité</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid ""
+"<strong>Shipped via:</strong>\n"
+"                <br/>"
+msgstr ""
+"<strong>Expédié par:</strong>\n"
+"                <br/>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "<strong>Shipping Address:</strong>"
+msgstr "<strong>Adresse de livraison:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "<strong>Shipping Address</strong>"
+msgstr "<strong>Adresse de livraison</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.default_report_delivery_document_inherit
+msgid "<strong>Shipping Date:</strong>"
+msgstr "<strong>Date d'expédition:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Shipping address:</strong>"
+msgstr "<strong>Adresse de livraison:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Supplier reference:</strong>"
+msgstr "<strong>Référence fournisseur:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "<strong>Supplier:</strong>"
+msgstr "<strong>Fournisseur:</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>Prix unitaire</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "A note, whose content usually applies to the section or product above."
+msgstr ""
+"Une note, dont le contenu s'applique généralement à la section ou au produit"
+" ci-dessus."
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "A section title"
+msgstr "Titre de section"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_company__b_logo
+msgid "Becorp Logo"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Cancelled Credit Note N°"
+msgstr "<strong>Note de crédit annulée N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Cancelled Invoice N°"
+msgstr "<strong>Facture annulée N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "Cancelled Purchase Order N°"
+msgstr "<strong>Bon de commande annulé N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Combo Product"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.act_report_xml_view
+msgid "Configuration"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Credit Note N°"
+msgstr "<strong>Note de crédit N°</strong>"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_partner__sale_order_template_id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_users__sale_order_template_id
+msgid "Default Sale Order Template"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_company__sale_order_terms
+msgid "Default Sale Terms and Conditions"
+msgstr "Termes et conditions par défaut"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__use_sale_order_terms
+msgid "Default Terms and Conditions"
+msgstr "Termes et conditions par défaut"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,help:e3k_default_reports.field_account_bank_statement_line__invoice_print_report
+#: model:ir.model.fields,help:e3k_default_reports.field_account_move__invoice_print_report
+#: model:ir.model.fields,help:e3k_default_reports.field_res_partner__invoice_print_report
+#: model:ir.model.fields,help:e3k_default_reports.field_res_users__invoice_print_report
+#: model:ir.model.fields,help:e3k_default_reports.field_sale_order__invoice_print_report
+#: model:ir.model.fields,help:e3k_default_reports.field_sale_order_template__invoice_print_report
+msgid "Default print invoice"
+msgstr "<strong>Rapport d'impression de facture par défaut</strong>"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order_template__invoice_print_report__standard
+msgid "Detailed"
+msgstr "Détaillé"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_info_block_report_mixin__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_company__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_partner__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_template__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_move__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Draft Credit Note N°"
+msgstr "<strong>Note de crédit brouillon N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Draft Invoice N°"
+msgstr "<strong>Facture brouillon N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Group 1"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move_line__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_info_block_report_mixin__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_company__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_partner__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_line__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_template__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_move__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_move_line__id
+#: model:ir.model.fields,field_description:e3k_default_reports.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "INV/2023/0001 N°"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.act_report_xml_view
+msgid "Information Block configuration"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_info_block_report_mixin
+msgid "Information block Report mixin"
+msgstr "Mixin de rapport de bloc d'information"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.res_config_settings_sale_view_form_add_sale_terms
+msgid "Insert your terms & conditions here..."
+msgstr "Insérez Vos termes et condition ici..."
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.res_config_settings_account_view_form_add_print_config
+msgid "Invoice Format options"
+msgstr "Format de facture"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Invoice N°"
+msgstr "Facture N°"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_bank_statement_line__invoice_print_report
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__invoice_print_report
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_partner__invoice_print_report
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_users__invoice_print_report
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__invoice_print_report
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_template__invoice_print_report
+msgid "Invoice Print Report"
+msgstr "Rapport d'impression de facture"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.account_move_form_view_inherited_configuration
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.sale_order_form_view_inherited_add_notes
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.sale_order_template_view_form_psa
+msgid "Invoice Text"
+msgstr "Texte de la facture"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_bank_statement_line__invoice_text
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__invoice_text
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__invoice_text
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order_template__invoice_text
+msgid "Invoice text"
+msgstr "Texte de la facture"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Invoicing Address"
+msgstr "Adresse de facturation"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Invoicing and Shipping Address"
+msgstr "Adresse de facturation et de livraison"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_account_move
+msgid "Journal Entry"
+msgstr "Écriture comptable"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_ir_actions_report__e3k_nb_block_infos_per_row
+msgid "Number of blocks per row"
+msgstr "Nombre de blocs par ligne"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,help:e3k_default_reports.field_ir_actions_report__e3k_nb_block_infos_per_row
+msgid ""
+"Number of information blocks to display per row in reports using the "
+"info.block.report.mixin mixin."
+msgstr ""
+"Nombre de blocs d'informations à afficher par ligne dans les rapports "
+"utilisant le mixin info.block.report.mixin."
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Order N°"
+msgstr "Commande N°"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "PROFORMA"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__add_qty_delivered_in_report
+msgid "Print Delivered Quantity"
+msgstr "Imprimer Qté livrée"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__add_ordered_qty_in_report
+msgid "Print Ordered Quantity"
+msgstr "Imprimer Qté Commandée"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__add_default_sale_description
+msgid "Print Sale description"
+msgstr "Imprimer description de vente"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__add_default_taxes
+msgid "Print taxes"
+msgstr "Imprimer taxes"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Pro-Forma Invoice N°"
+msgstr "Facture Pro-Forma N°"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Product"
+msgstr "Produit"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Product number"
+msgstr "Numéro de produit"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+msgid "Purchase Order N°"
+msgstr "Bon de commande N°"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Quotation N°"
+msgstr "Devis N°"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_sale_order_template
+msgid "Quotation Template"
+msgstr "Modèle de devis"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_ir_actions_report
+msgid "Report Action"
+msgstr "Action de rapport"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_purchase_quotation_e3k
+msgid "Request for Quotation N°"
+msgstr "Demande de devis N°"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "SO0000"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_sale_order
+msgid "Sales Order"
+msgstr "Commande client"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_sale_order__sale_note_termes
+msgid "Sales Terms and conditions"
+msgstr "Termes et conditions de vente"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Section Summary"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__account_move__invoice_print_report__detail
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__res_partner__invoice_print_report__detail
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order__invoice_print_report__detail
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order_template__invoice_print_report__detail
+msgid "Semi-detailed"
+msgstr "Semi-détaillé"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__add_default_code_report
+msgid "Separate column for internal reference?"
+msgstr "Colonne séparée pour la référence interne?"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.res_config_settings_sale_view_form_add_sale_terms
+msgid "Show standard terms &amp; conditions on Orders"
+msgstr "Afficher les conditions générales standard sur commandes"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__account_move__invoice_print_report__standard
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__res_partner__invoice_print_report__standard
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order__invoice_print_report__standard
+msgid "Standard"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__account_move__invoice_print_report__summary
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__res_partner__invoice_print_report__summary
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order__invoice_print_report__summary
+#: model:ir.model.fields.selection,name:e3k_default_reports.selection__sale_order_template__invoice_print_report__summary
+msgid "Summary"
+msgstr "Sommaire"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Tax 15%"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Tax ID"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_res_config_settings__sale_order_terms
+msgid "Terms and Conditions"
+msgstr "Termes et conditions"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.sale_order_form_view_inherited_add_notes
+msgid "The Administrator can set default Terms & Conditions in Sales Settings"
+msgstr ""
+"L'administrateur peut définir des termes et conditions par défaut dans les "
+"paramètres de vente"
+
+#. module: e3k_default_reports
+#: model:ir.model,name:e3k_default_reports.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Unit"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Vendor Bill N°"
+msgstr "<strong>Facture fournisseur N°</strong>"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+msgid "Vendor Credit Note N°"
+msgstr "<strong>Note de crédit fournisseur N°</strong>"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_purchase_order_line__ref_seller_product_code
+msgid "Vendor Product Code"
+msgstr "Code produit fournisseur"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_purchase_order_line__has_seller_code
+msgid "has seller  Code"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.res_config_settings_account_view_form_add_print_config
+msgid "invoice_format_options"
+msgstr ""
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_bank_statement_line__print_delivered_qty
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__print_delivered_qty
+msgid "print Delivered qty"
+msgstr "Imprimer Qté livrée"
+
+#. module: e3k_default_reports
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_bank_statement_line__print_ordered_qty
+#: model:ir.model.fields,field_description:e3k_default_reports.field_account_move__print_ordered_qty
+msgid "print ordedred qty"
+msgstr "Imprimer Qté Commandée"
+
+#. module: e3k_default_reports
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_invoice_e3k
+#: model_terms:ir.ui.view,arch_db:e3k_default_reports.report_sale_e3k
+msgid "units"
+msgstr "unités"

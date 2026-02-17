@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="company_form_view">
+        <field name="name">res.company.form.inherit.bvr</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Cheque Position">
+                    <group>
+                        <group>
+                            <field name="check_inv_line_per_page"/>
+                            <separator/>
+                            <separator/>
+                            <field name="print_currency_sign"/>
+                            <separator/>
+                            <separator/>
+                            <field name="payment_date_top"/>
+                            <field name="payment_date_left"/>
+                            <field name="is_currency"/>
+                            <field name="memo_payment_top"/>
+                            <field name="memo_payment_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="display_date_format"/>
+                            <field name="display_date_format_top"/>
+                            <field name="display_date_format_left"/>
+                            <field name="display_date_format_font_size"/>
+                            <separator/>
+                            <separator/>
+                            <field name="amount1_top"/>
+                            <field name="amount1_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="amount2_top"/>
+                            <field name="amount2_right"/>
+                            <separator/>
+                            <separator/>
+                            <field name="address_top"/>
+                            <field name="address_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="amount_in_world_font_size"/>
+                            <field name="check_font_size"/>
+                            <field name="check_area_width"/>
+                            <separator/>
+                            <separator/>
+                            <field name="check_table_font_size"/>
+                            <field name="check_table_width"/>
+                            <separator/>
+                            <separator/>
+                            <field name="check_table1_top"/>
+                            <field name="check_table1_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="check_table2_top"/>
+                            <field name="check_table2_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_1_partner_name_top"/>
+                            <field name="table_1_partner_name_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_1_payment_date_top"/>
+                            <field name="table_1_payment_date_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_1_amount_top"/>
+                            <field name="table_1_amount_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_2_partner_name_top"/>
+                            <field name="table_2_partner_name_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_2_payment_date_top"/>
+                            <field name="table_2_payment_date_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_2_amount_top"/>
+                            <field name="table_2_amount_left"/>
+                            <separator/>
+                            <separator/>
+                            <field name="print_check_number"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_1_check_number_top" invisible="not print_check_number"/>
+                            <field name="table_1_check_number_left" invisible="not print_check_number"/>
+                            <separator/>
+                            <separator/>
+                            <field name="table_2_check_number_top" invisible="not print_check_number"/>
+                            <field name="table_2_check_number_left" invisible="not print_check_number"/>
+                            <separator/>
+                            <separator/>
+                            <field name="print_head_check_number"/>
+                            <separator/>
+                            <separator/>
+                            <field name="head_check_number_top" invisible="not print_head_check_number"/>
+                            <field name="head_check_number_left" invisible="not print_head_check_number"/>
+                            <field name="check_ref_top"/>
+                            <field name="check_ref_left"/>
+                            <field name="check_ref_font_size"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

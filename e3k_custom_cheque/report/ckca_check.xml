@@ -1,0 +1,48 @@
+<odoo> 
+<!--    <template id="ckca_check" inherit_id="e3k_custom_cheque.ckca_check">-->
+<!--        <xpath expr="//div[hasclass('check_area')]" position="inside">-->
+<!--            <t t-if="page['show_ref_on_check']">-->
+<!--                <div t-attf-style="position: absolute; top: {{ page['company_id'].check_ref_top }}px; left: {{ page['company_id'].check_ref_left }}px; font-size: {{ page['company_id'].check_ref_font_size }}px;">-->
+<!--                    <div class="ckca_date" t-attf-style="width: {{ page['ref_width'] }}px; display:flex; justify-content:start; align-items:start;">-->
+<!--                        <t t-foreach="page['ref_lines']" t-as="line">-->
+<!--                            <div style="text-align:left">-->
+<!--                                <t t-out="line"/>-->
+<!--                            </div>-->
+<!--                        </t>-->
+<!--                    </div>-->
+<!--                </div> -->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//span[@t-esc=&quot;page['memo']&quot;]" position="replace"/>-->
+
+<!--        &lt;!&ndash; Hide check amount from check header &ndash;&gt;-->
+<!--        <xpath expr="//div[@class='check_area']//div[6]" position="replace"/>-->
+<!--    </template>-->
+
+<!--    <template id="ckca_stub" inherit_id="e3k_custom_cheque.ckca_stub">-->
+<!--        <xpath expr="//div[@t-if=&quot;page['stub_lines'] and (stub_num == 1)&quot;]/div/span" position="attributes">-->
+<!--            <attribute name="t-attf-style" add="width:800px" separator=";"/>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[@t-if=&quot;page['stub_lines'] and (stub_num == 2)&quot;]/div/span" position="attributes">-->
+<!--            <attribute name="t-attf-style" add="width:800px" separator=";"/>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[@t-if=&quot;page['stub_lines'] and (stub_num == 1)&quot;]" position="attributes">-->
+<!--            <attribute name="t-if">(stub_num == 1)</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[@t-attf-style=&quot; position: absolute;-->
+<!--                            top: {{ page['company_id'].table_1_amount_top }}px;-->
+<!--				            left: {{ page['company_id'].table_1_amount_left }}px;-->
+<!--                            font-size:{{ page['company_id'].check_table_font_size }}px;&quot;]" position="attributes">-->
+<!--            <attribute name="t-if">(stub_num == 1)</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[@t-if=&quot;page['stub_lines'] and (stub_num == 2)&quot;]" position="attributes">-->
+<!--            <attribute name="t-if">(stub_num == 2)</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//div[@t-attf-style=&quot; position: absolute;-->
+<!--                            top: {{ page['company_id'].table_2_amount_top }}px;-->
+<!--				            left: {{ page['company_id'].table_2_amount_left }}px;-->
+<!--                            font-size:{{ page['company_id'].check_table_font_size }}px;&quot;]" position="attributes">-->
+<!--            <attribute name="t-if">(stub_num == 2)</attribute>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>
