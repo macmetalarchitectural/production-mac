@@ -8,11 +8,5 @@
   "license": "AGPL-3",
   "category": "base",
   "depends": ["mail"],
-  "data": ["views/ir_ui_menu.xml"],
-  'assets': {
-    'web.assets_backend': [
-      'disable_odoo_online/static/src/js/user_menu_items.js',
-    ],
-  },
   "installable": True,
 }
