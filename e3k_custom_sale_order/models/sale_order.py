@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models, _
-from odoo.tools import html_keep_url, is_html_empty
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
