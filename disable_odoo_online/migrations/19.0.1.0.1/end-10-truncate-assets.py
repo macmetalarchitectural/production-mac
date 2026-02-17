@@ -14,37 +14,54 @@ def truncate_ir_asset_table(cr):
         e3k_logger.warning(E3K_PREFIX_LOG + f"Failed to truncate table ir_asset: {e}")
 
 
-def drop_check_amount_currency_balance_sign(cr):
+def normalize_balance_currency_signs(cr):
+    """
+    Fix account_move_line data to comply with Odoo v19 native constraint.
+
+    The constraint requires that balance and amount_currency must have the SAME SIGN:
+    - Both positive (debit)
+    - Both negative (credit)
+    - Both zero
+
+    The correction formula: amount_currency = SIGN(balance) * ABS(amount_currency)
+
+    Examples:
+    - balance = 100, amount_currency = -50  => amount_currency becomes 50
+    - balance = -100, amount_currency = 50  => amount_currency becomes -50
+    - balance = 0, amount_currency = 50     => amount_currency becomes 0
+
+    This preserves the absolute value but aligns the sign with balance.
+    """
     if not util.module_installed(cr, 'mac_reports'):
-        e3k_logger.warning(E3K_PREFIX_LOG + "Début de la correction des contraintes account_move_line")
+        e3k_logger.warning(E3K_PREFIX_LOG + "Starting account_move_line data correction")
 
-        # Supprimer la contrainte bypassée (CHECK(1=1)) laissée par mac_reports
+        # DATA CORRECTION to comply with Odoo v19 native constraint
+        e3k_logger.warning(E3K_PREFIX_LOG + "Searching for lines with inconsistent signs between balance and amount_currency...")
         cr.execute("""
-            SELECT conname, pg_get_constraintdef(oid) as definition
-            FROM pg_constraint
-            WHERE conname = 'account_move_line_check_amount_currency_balance_sign'
-              AND conrelid = 'account_move_line'::regclass
+            SELECT COUNT(*)
+            FROM account_move_line
+            WHERE display_type NOT IN ('line_section', 'line_subsection', 'line_note')
+              AND NOT ((balance <= 0 AND amount_currency <= 0) OR (balance >= 0 AND amount_currency >= 0))
         """)
+        count = cr.fetchone()[0]
+        e3k_logger.warning(E3K_PREFIX_LOG + f"{count} lines with inconsistent signs found")
 
-        constraint = cr.fetchone()
-
-        if constraint:
-            conname, definition = constraint
-            e3k_logger.warning(E3K_PREFIX_LOG + f"Contrainte trouvée: {conname} = {definition}")
-            e3k_logger.warning(E3K_PREFIX_LOG + "Suppression de la contrainte bypassée par mac_reports")
+        if count > 0:
+            e3k_logger.warning(E3K_PREFIX_LOG + "Correction: aligning amount_currency sign with balance sign...")
+            e3k_logger.warning(E3K_PREFIX_LOG + "Formula: amount_currency = SIGN(balance) * ABS(amount_currency)")
             cr.execute("""
-                ALTER TABLE account_move_line
-                DROP CONSTRAINT account_move_line_check_amount_currency_balance_sign
+                UPDATE account_move_line
+                SET amount_currency = SIGN(balance) * ABS(amount_currency)
+                WHERE display_type NOT IN ('line_section', 'line_subsection', 'line_note')
+                  AND NOT ((balance <= 0 AND amount_currency <= 0) OR (balance >= 0 AND amount_currency >= 0))
             """)
-        else:
-            e3k_logger.warning(E3K_PREFIX_LOG + "Aucune contrainte existante trouvée")
+            e3k_logger.warning(E3K_PREFIX_LOG + f"{count} lines corrected - amount_currency sign aligned with balance")
 
-
-        e3k_logger.warning(E3K_PREFIX_LOG + "Fin - Odoo recréera automatiquement la contrainte correcte")
+        e3k_logger.warning(E3K_PREFIX_LOG + "Correction completed - Odoo will automatically recreate the correct constraint")
 
 
 def migrate(cr, version):
 
     truncate_ir_asset_table(cr)
 
-    drop_check_amount_currency_balance_sign(cr)
+    normalize_balance_currency_signs(cr)
