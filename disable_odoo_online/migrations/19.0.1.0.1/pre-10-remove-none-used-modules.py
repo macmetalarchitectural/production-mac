@@ -10,7 +10,7 @@ MODULES_TO_REMOVE = [
     'account_invoice_supplier_ref_unique',
     'aged_partner_balance_invoice_date',
     'auditlog',
-    'disable_odoo_online',
+    # 'disable_odoo_online',  # Ne pas supprimer le module lui-même !
     'disable_quick_create',
     'e3k_advanced_payment',
     'e3k_custom_cheque',
