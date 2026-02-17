@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_template_view_form_psa" model="ir.ui.view">
+        <field name="name">sale.order.template.form.psa</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mail_template_id']" position="after">
+                <field name="invoice_print_report"/>
+            </xpath>
+            <xpath expr="//page[@name='terms_and_conditions']" position="after">
+                <page string="Invoice Text"   invisible="invoice_print_report != 'summary'">
+                    <field name="invoice_text"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

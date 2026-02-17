@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="document_tax_totals_template_inherit"
+              inherit_id="account.document_tax_totals_template"
+              name="Change Untaxed Amount label to Subtotal">
+
+
+        <xpath expr="//tr[hasclass('o_subtotal')]/td[1]/span" position="replace">
+            <span>Subtotal</span>
+        </xpath>
+        <xpath expr="//tr[hasclass('o_taxes')]/t[@t-else='']/td/span[2]" position="replace">
+        </xpath>
+        <xpath expr="//tr[hasclass('o_taxes')]/t[@t-else='']/td/span[2]" position="replace">
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_account_view_form_add_print_config" model="ir.ui.view">
+        <field name="name">res.config.settings.account.view.form.add.print.config</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='invoicing_settings']" position="after">
+                    <block string="invoice_format_options" title="Invoice Format options">
+                        <setting name="add_ordered_qty_in_report">
+                            <field name="add_ordered_qty_in_report"/>
+                        </setting>
+                        <setting name="add_qty_delivered_in_report">
+                            <field name="add_qty_delivered_in_report"/>
+                        </setting>
+                        <setting name="add_default_code_report">
+                            <field name="add_default_code_report"/>
+                        </setting>
+                         <setting name="add_default_sale_description">
+                             <field name="add_default_sale_description"/>
+                         </setting>
+                        <setting name="add_default_taxes">
+                            <field name="add_default_taxes"/>
+                        </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="res_config_settings_sale_view_form_add_sale_terms" model="ir.ui.view">
+        <field name="name">res.config.settings.sale.view.form.add.sale.terms</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='proforma_configuration']" position="after">
+                <setting id="sale_order_terms_id">
+                        <field name="use_sale_order_terms"/>
+                        <div class="o_setting_right_pane">
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                              aria-label="Values set here are company-specific." groups="base.group_multi_company"
+                              role="img"/>
+                            <div class="text-muted">
+                            Show standard terms &amp; conditions on Orders
+                            </div>
+                        <div class="content-group" invisible="not use_sale_order_terms">
+                            <div class="mt16">
+                                <field name="sale_order_terms"
+                                       placeholder="Insert your terms &amp; conditions here..."/>
+                            </div>
+                        </div>
+                    </div>
+                </setting>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
