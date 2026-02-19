@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <!-- Override the event template for stock.picking model -->
-    <t t-name="web.CalendarCommonRenderer.event" t-inherit="web.CalendarCommonRenderer.event" t-inherit-mode="extension">
-        <!-- Replace the default event title rendering -->
-        <xpath expr="//div[@class='o_event_title']" position="replace">
-            <!-- Default rendering for non-stock.picking models -->
-            <t t-if="resModel != 'stock.picking'">
-                <div class="o_event_title" t-out="title"/>
-            </t>
+    <!--
+        Custom OWL template for rendering stock.picking events in calendar
 
-            <!-- Custom rendering for stock.picking model -->
-            <t t-else="">
-                <div class="o_event_title d-flex align-items-center justify-content-between"
-                     style="margin: 0px; height: 30px; padding: 2px 4px;">
+        This template replaces the default 'web.CalendarCommonRenderer.event' for stock.picking.
+        It is called by onEventContent() in stock_calendar_common_renderer.js via renderToFragment().
 
-                    <!-- Display custom name -->
-                    <span t-esc="rawRecord.e3k_custom_display_name"
-                          style="display: inline-block; margin-right: 15px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"/>
+        Structure:
+        1. Conditional time display (startTime) - hidden on mobile (d-none d-lg-inline)
+        2. Main flex container with title and indicator
 
-                    <!-- Black dot indicator for 'assigned' state -->
-                    <div t-if="rawRecord.state == 'assigned'"
-                         style="width: 10px; height: 10px; background-color: black; border-radius: 50%; flex-shrink: 0;"/>
-                </div>
-            </t>
-        </xpath>
+        Available variables (passed by onEventContent):
+        - isTimeHidden: Boolean to show/hide time
+        - startTime: Formatted start time (e.g., "14:00")
+        - e3k_display_name: Custom picking name (e3k_custom_display_name field)
+        - e3k_show_assigned_dot: Boolean (true if state === 'assigned')
+
+        CSS classes (defined in stock_calendar.scss):
+        - e3k_stock_event_container: Flex container (margin, padding, height)
+        - e3k_stock_event_title: Title style (ellipsis, nowrap, flex)
+        - e3k_assigned_dot: Black circular dot (10px, border-radius 50%)
+    -->
+    <t t-name="e3k_mac_stock_calendar.StockCalendarEvent">
+        <!-- Start time display (hidden on mobile and if isTimeHidden) -->
+        <t t-if="!isTimeHidden">
+            <span class="d-none d-lg-inline fc-time" t-esc="startTime" />
+            <t> </t>
+        </t>
+
+        <!-- Main event container with flex layout -->
+        <div class="o_event_title d-flex align-items-center justify-content-between e3k_stock_event_container">
+            <!-- Event title (custom picking name) -->
+            <!-- Uses text-overflow: ellipsis to truncate if too long -->
+            <span class="e3k_stock_event_title" t-esc="e3k_display_name"/>
+
+            <!-- Visual indicator: black dot displayed only if state === 'assigned' -->
+            <!-- The t-if makes this element conditional based on e3k_show_assigned_dot -->
+            <div t-if="e3k_show_assigned_dot" class="e3k_assigned_dot"/>
+        </div>
     </t>
 
 </templates>
