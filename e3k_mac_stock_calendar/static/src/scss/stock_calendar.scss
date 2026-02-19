@@ -1,0 +1,13 @@
+// Hide hours column in calendar for stock.picking in week/day mode
+.o_calendar_view {
+    .e3k_calendar {
+        .fc-timegrid-axis {
+            // Hide the time axis column in week/day view
+            display: none !important;
+        }
+        .fc-timegrid-slot-label {
+            // Hide time labels in week/day view
+            display: none !important;
+        }
+    }
+}

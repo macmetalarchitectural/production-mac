@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Extend NameAndSignature template to add delivery date field -->
+    <t t-name="web.NameAndSignature" t-inherit="web.NameAndSignature" t-inherit-mode="extension">
+        <!-- Add delivery date field before the name input field -->
+        <xpath expr="//div[hasclass('o_web_sign_name_group')]" position="before">
+            <div class="o_web_sign_name_group form-group">
+                <label class="col-form-label" t-att-for="'o_web_sign_delivery_input_' + htmlId">Desired Date</label>
+                <div class="input-group o_sign_form_date" t-attf-id="datetimepicker_delivery_{{htmlId}}" data-target-input="nearest">
+                    <input type="text"
+                           class="form-control datetimepicker-input o_web_sign_delivery_date"
+                           t-attf-data-target="#datetimepicker_delivery_{{htmlId}}"
+                           t-att-data-paddingdays="paddingDeliveryDays"
+                           name="delivery"
+                           t-ref="deliveryDate"
+                           required=""/>
+                    <div class="input-group-append position-absolute"
+                         data-toggle="datetimepicker"
+                         t-attf-data-target="#datetimepicker_delivery_{{htmlId}}"
+                         style="right: 10px; bottom: 10px;">
+                        <div class="input-group-text text-primary border-0 bg-transparent p-0">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

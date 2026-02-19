@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="e3k_vpicktree" model="ir.ui.view">
+            <field name="name">e3k.stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="note" optional="show"/>
+                    <field name="delivery_pickup" widget="boolean_toggle" string="Delivery Pickup"/>
+                    <field name="worksite_ready" widget="boolean_toggle"/>
+                    <field name="flexible_date" widget="boolean_toggle"/>
+                  </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                  <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="date_deadline" optional="show" widget="remaining_days"/>
+                  </xpath>
+            </field>
+        </record>
+     <record id="e3k_view_picking_internal_search" model="ir.ui.view">
+            <field name="name">e3k.stock.picking.internal.search</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='cancel']" position="after">
+                    <field name="note" optional="show"/>
+                    <field name="delivery_pickup" widget="boolean_toggle"/>
+                    <field name="worksite_ready" widget="boolean_toggle"/>
+                    <filter name="allowed" string="Allowed states" domain="[('state', 'in', ('draft', 'waiting',  'confirmed', 'assigned'))]"/>
+                  </xpath>
+            </field>
+        </record>
+
+    <record model="ir.ui.view" id="stock_picking_calendar">
+            <field name="name">stock.picking.calendar</field>
+            <field name="model">stock.picking</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+               <calendar string="Calendar View"
+                         date_start="date_deadline"
+                         color="partner_id"
+                         quick_add="True"
+                         all_day="e3k_all_day"
+                         mode="week"
+                        delete="false">
+
+                    <field name="partner_id" filters="1"/>
+<!--                    <field name="origin"/>-->
+                    <field name="sale_id"/>
+                    <field name="state"/>
+                    <field name="e3k_custom_display_name" invisible="1"/>
+                    <field name="e3k_calendar_color" invisible="1"/>
+                    <field name="e3k_calendar_text_color" invisible="1"/>
+                    <field name="flexible_date" invisible="1"/>
+                    <field name="date_deadline" invisible="1"/>
+
+                </calendar>
+            </field>
+        </record>
+
+
+
+    <record id="stock.action_picking_tree_ready" model="ir.actions.act_window">
+        <field name="context">{'search_default_allowed' : 1}</field>
+    </record>
+
+
+
+</odoo>
