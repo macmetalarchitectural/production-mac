@@ -28,8 +28,7 @@
     'views/route_config.xml',
   ],
   'assets': {
-    'web.assets_frontend': [
-      'e3k_macmetal/static/src/lib/moment-weekday-calc.min.js',
+    'web.assets_frontend_lazy': [
       'e3k_macmetal/static/src/signature_form/mac_signature_form.js',
       'e3k_macmetal/static/src/signature_form/mac_signature_form.xml',
     ],
