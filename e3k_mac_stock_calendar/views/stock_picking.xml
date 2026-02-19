@@ -24,7 +24,7 @@
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_internal_search" />
             <field name="arch" type="xml">
-                <xpath expr="//filter[@name='cancel']" position="after">
+                <xpath expr="//separator[1]" position="before">
                     <field name="note" optional="show"/>
                     <field name="delivery_pickup" widget="boolean_toggle"/>
                     <field name="worksite_ready" widget="boolean_toggle"/>
@@ -41,13 +41,15 @@
                <calendar string="Calendar View"
                          date_start="date_deadline"
                          color="partner_id"
-                         quick_add="True"
-                         all_day="e3k_all_day"
+                         event_limit="5"
+                         quick_create="1"
                          mode="week"
-                        delete="false">
+                         delete="false"
+                         all_day="e3k_all_day"
+
+               >
 
                     <field name="partner_id" filters="1"/>
-<!--                    <field name="origin"/>-->
                     <field name="sale_id"/>
                     <field name="state"/>
                     <field name="e3k_custom_display_name" invisible="1"/>

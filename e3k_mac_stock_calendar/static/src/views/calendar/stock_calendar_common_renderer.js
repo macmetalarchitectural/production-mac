@@ -5,18 +5,15 @@ import { patch } from "@web/core/utils/patch";
 
 patch(CalendarCommonRenderer.prototype, {
     /**
-     * Override to add custom class for stock.picking calendar in week/day mode
-     * This allows hiding the time column via CSS
+     * Override get options to customize viewDidMount callback
      */
-    setup() {
-        super.setup(...arguments);
+    get options() {
+        const options = super.options;
+        const originalViewDidMount = options.viewDidMount;
 
-        // Store the original viewDidMount to extend it
-        const originalViewDidMount = this.viewDidMount.bind(this);
-
-        this.viewDidMount = ({ el, view }) => {
+        options.viewDidMount = ({ el, view }) => {
             // Call original viewDidMount
-            originalViewDidMount({ el, view });
+            originalViewDidMount.call(this, { el, view });
 
             // Add custom class for stock.picking model in week/day view
             const resModel = this.props.model.resModel;
@@ -28,10 +25,28 @@ patch(CalendarCommonRenderer.prototype, {
                 el.classList.remove('e3k_calendar');
             }
         };
+
+        return options;
     },
 
     /**
-     * Override eventDidMount to apply custom styles for stock.picking
+     * Override onEventContent to customize title for stock.picking
+     */
+    onEventContent(arg) {
+        const { event } = arg;
+        const record = this.props.model.records[event.id];
+        const resModel = this.props.model.resModel;
+
+        // Use custom display name for stock.picking
+        if (record && resModel === 'stock.picking' && record.rawRecord.e3k_custom_display_name) {
+            record.title = record.rawRecord.e3k_custom_display_name;
+        }
+
+        return super.onEventContent(...arguments);
+    },
+
+    /**
+     * Override onEventDidMount to apply custom styles for stock.picking
      */
     onEventDidMount({ el, event }) {
         super.onEventDidMount(...arguments);
