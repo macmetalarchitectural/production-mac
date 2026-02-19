@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+
+{
+  "name" : "e3k MACMÉTAL",
+  "summary" : "",
+  "description" : "",
+  "category" : "Sales/Sales",
+  "author" : "e3k Solutions",
+  "license" : "Other proprietary",
+  "website" : "https://e3k.co",
+  "version" : "19.0.1.0.0",
+  "depends" : [
+    'sale',
+    'crm',
+    'calendar',
+    'stock',
+  ],
+  "data" : [
+    'security/ir.model.access.csv',
+    'data/data.xml',
+    'views/res_config_settings_views.xml',
+    'views/sale_portal_templates.xml',
+    'views/sale_views.xml',
+    'views/stock_quant_views.xml',
+    'views/stock_move_line_views.xml',
+    'views/calendar_views.xml',
+    'views/stock_location_views.xml',
+    'views/route_config.xml',
+  ],
+  'assets': {
+    'web.assets_frontend_lazy': [
+      'e3k_macmetal/static/src/signature_form/mac_signature_form.js',
+      'e3k_macmetal/static/src/signature_form/mac_signature_form.xml',
+    ],
+  },
+  "images" : [],
+  "application" : False,
+  "installable" : True,
+  "auto_install" : False,
+  "pre_init_hook" : "pre_init_check",
+}

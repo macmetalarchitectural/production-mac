@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Extend NameAndSignature template to add delivery date field (100% OWL) -->
+    <t t-name="web.NameAndSignature" t-inherit="web.NameAndSignature" t-inherit-mode="extension">
+        <!-- Add delivery date field before the name input field -->
+        <xpath expr="//div[hasclass('o_web_sign_name_group')]" position="before">
+            <div class="o_web_sign_name_group form-group"
+                 t-att-class="{'o_has_error': deliveryState.hasError}">
+                <label class="col-form-label" t-att-for="'o_web_sign_delivery_input_' + htmlId">
+                    Desired Date <span class="text-danger">*</span>
+                </label>
+
+                <!-- Date picker input with OWL ref -->
+                <div class="input-group">
+                    <input type="text"
+                           t-ref="deliveryDate"
+                           class="form-control o_web_sign_delivery_date"
+                           t-att-class="{'is-invalid': deliveryState.hasError}"
+                           t-att-id="'o_web_sign_delivery_input_' + htmlId"
+                           name="delivery"
+                           placeholder="Select date and time"
+                           autocomplete="off"
+                           required=""/>
+                    <span class="input-group-text">
+                        <i class="fa fa-calendar text-primary"/>
+                    </span>
+                </div>
+
+                <!-- Error message (reactive with OWL state) -->
+                <div t-if="deliveryState.hasError" class="invalid-feedback d-block">
+                    <t t-esc="deliveryState.errorMessage"/>
+                </div>
+
+                <!-- Help text -->
+                <small class="form-text text-muted" t-if="deliveryState.paddingDays > 0">
+                    Minimum <t t-esc="deliveryState.paddingDays"/> business day(s) from today (weekdays only)
+                </small>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

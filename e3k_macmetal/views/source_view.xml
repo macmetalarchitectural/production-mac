@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+      <menuitem id="utm.menu_utm_source"
+        action="utm.utm_source_action"
+        parent="crm_menu_report"
+        sequence="5"
+        />
+
+</odoo>
