@@ -10,6 +10,7 @@ def migrate(cr, version):
     # domaine ou le champ delivery_route n' est pas vide
     domaine_so = [('x_delivery_route', '!=', False)]
     domaine_SP = [('x_delivery_pickup', '!=', False)]
+
     sale_order_ids = env['sale.order'].search(domaine_so)
     all_routes_ids = env['mac.route.config'].search([])
 
