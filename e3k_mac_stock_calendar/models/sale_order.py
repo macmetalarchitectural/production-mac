@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models, api
+from odoo import api, models
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -16,6 +17,6 @@ class SaleOrder(models.Model):
                 if outgoing_pickings:
                     order.commitment_date = max(outgoing_pickings.mapped('date_deadline'))
                 else:
-                    super(SaleOrder, order)._compute_commitment_date()
+                    super()._compute_commitment_date()
             else:
-                super(SaleOrder, order)._compute_commitment_date()
+                super()._compute_commitment_date()

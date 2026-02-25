@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'E3K Stock Calendar',
-    'version': '19.0.1.0.0',
-    'author': 'e3k solutions',
+    'version': '19.0.1',
+    'author': 'e3k',
     'maintainer': 'e3k',
     'website': 'https://www.e3k.co/',
     'license': 'AGPL-3',
@@ -11,12 +11,9 @@
     'depends': ['e3k_macmetal'],
     'data': [
         # data
-
         # security
-
         # views
         'views/stock_picking.xml',
-
         # wizard
     ],
     'assets': {

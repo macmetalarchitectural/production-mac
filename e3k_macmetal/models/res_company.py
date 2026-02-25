@@ -6,7 +6,7 @@ from odoo import fields, models
 class Company(models.Model):
     _inherit = "res.company"
 
-    delivery_terms = fields.Html(
+    delivery_terms = fields.Html(  # no-check
         string="Delivery Default Terms and Conditions",
         translate=True,
         default="""
@@ -14,7 +14,7 @@ class Company(models.Model):
             <p>Your conditions...</p>
         """,
     )
-    padding_delivery_days = fields.Integer(
+    padding_delivery_days = fields.Integer(  # no-check
         string="Padding Delivery Days",
         help="Amount of days",
     )
