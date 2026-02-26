@@ -11,13 +11,14 @@ class StockQuant(models.Model):
     @api.model
     def _get_inventory_fields_write(self):
         """Returns a list of fields user can edit when he want to edit a quant in `inventory_mode`."""
-        fields = super(StockQuant, self)._get_inventory_fields_write()
-        fields.append('note')
-        return fields
+        field_list = super()._get_inventory_fields_write()
+        field_list.append('note')
+        return field_list
 
     def action_clear_inventory_quantity(self):
-        super(StockQuant, self).action_clear_inventory_quantity()
+        res = super().action_clear_inventory_quantity()
         self.note = ''
+        return res
 
     def _get_inventory_move_values(
         self, qty, location_id, location_dest_id, note, write_uid, package_id=False, package_dest_id=False
@@ -124,6 +125,6 @@ class StockQuant(models.Model):
 
     @api.model
     def action_view_inventory(self):
-        action = super(StockQuant, self).action_view_inventory()
+        action = super().action_view_inventory()
         action['context']['search_default_displayable_loc'] = True
         return action

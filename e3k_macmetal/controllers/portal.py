@@ -52,7 +52,7 @@ class CustomerPortal(portal.CustomerPortal):
 
         # In Odoo 19, use message_post directly instead of _message_post_helper
         order_sudo.message_post(
-            attachments=[('%s.pdf' % order_sudo.name, pdf)],
+            attachments=[(f'{order_sudo.name}.pdf', pdf)],
             author_id=(order_sudo.partner_id.id if request.env.user._is_public() else request.env.user.partner_id.id),
             body=_('Order signed by %s', name),
             message_type='comment',

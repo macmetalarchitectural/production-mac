@@ -1,0 +1,110 @@
+/* ── Activity Dashboard ──────────────────────────────────────────────────── */
+
+.e3k-activity-dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Barre de filtres sticky */
+.e3k-filter-bar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    z-index: 100;
+}
+
+.e3k-filter-bar-inner {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Groupe de filtre individuel */
+.e3k-filter-group {
+    position: relative;
+    min-width: 140px;
+}
+
+/* Bouton header du filtre */
+.e3k-filter-header {
+    border: 1px solid #ced4da;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.e3k-filter-header:hover {
+    background-color: #e9ecef;
+}
+
+/* Dropdown des checkboxes */
+.e3k-filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 200;
+    min-width: 180px;
+    max-height: 280px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 6px 0;
+}
+
+/* Item checkbox dans le dropdown */
+.e3k-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.e3k-filter-item:hover {
+    background-color: #f1f3f5;
+}
+
+.e3k-filter-item--all {
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+/* Filtre période / dates */
+.e3k-period-filter {
+    min-width: 180px;
+}
+
+.e3k-filter-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Corps du dashboard (tableau) */
+.e3k-dashboard-body {
+    flex: 1;
+    overflow-x: auto;
+}
+
+.e3k-activity-table-wrap {
+    min-height: 200px;
+}
+
+/* Spinner de chargement */
+.e3k-loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    color: #6c757d;
+}
+
+/* État vide */
+.e3k-empty-state {
+    color: #6c757d;
+}
