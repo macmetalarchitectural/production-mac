@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import { Component, useState, onWillStart } from "@odoo/owl";
+import { Component, useState, onWillStart, onWillUpdateProps } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
@@ -28,7 +28,10 @@ class FilterCheckboxGroup extends Component {
 }
 
 // ─── ActivityTable ────────────────────────────────────────────────────────────
-// Composant dédié au tableau de résultats avec gestion du chargement
+// Composant dédié au tableau de résultats avec pagination côté client
+
+const PAGE_SIZES = [25, 50, 100];
+const DEFAULT_PAGE_SIZE = 50;
 
 class ActivityTable extends Component {
     static template = "e3k_mac_contact_customisation.ActivityTable";
@@ -36,6 +39,72 @@ class ActivityTable extends Component {
         rows: Array,
         isLoading: Boolean,
     };
+
+    setup() {
+        this.pageSizes = PAGE_SIZES;
+        this.state = useState({
+            currentPage: 1,
+            pageSize: DEFAULT_PAGE_SIZE,
+        });
+        // Réinitialise la page quand les données changent (nouveau filtre)
+        onWillUpdateProps(() => {
+            this.state.currentPage = 1;
+        });
+    }
+
+    // ── Getters pagination ────────────────────────────────────────────────────
+
+    get totalPages() {
+        return Math.max(1, Math.ceil(this.props.rows.length / this.state.pageSize));
+    }
+
+    get pagedRows() {
+        const start = (this.state.currentPage - 1) * this.state.pageSize;
+        return this.props.rows.slice(start, start + this.state.pageSize);
+    }
+
+    get fromRow() {
+        return this.props.rows.length === 0 ? 0 : (this.state.currentPage - 1) * this.state.pageSize + 1;
+    }
+
+    get toRow() {
+        return Math.min(this.state.currentPage * this.state.pageSize, this.props.rows.length);
+    }
+
+    // Génère la liste des numéros de page avec ellipses : [1, '...', 4, 5, 6, '...', 12]
+    get pageNumbers() {
+        const total = this.totalPages;
+        const current = this.state.currentPage;
+        if (total <= 7) {
+            return Array.from({ length: total }, (_, i) => i + 1);
+        }
+        const range = new Set([1, total]);
+        for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+            range.add(i);
+        }
+        const sorted = [...range].sort((a, b) => a - b);
+        const pages = [];
+        let prev = 0;
+        for (const p of sorted) {
+            if (p - prev > 1) pages.push("...");
+            pages.push(p);
+            prev = p;
+        }
+        return pages;
+    }
+
+    // ── Handlers pagination ───────────────────────────────────────────────────
+
+    goToPage(page) {
+        if (page >= 1 && page <= this.totalPages) {
+            this.state.currentPage = page;
+        }
+    }
+
+    onPageSizeChange(ev) {
+        this.state.pageSize = parseInt(ev.target.value, 10);
+        this.state.currentPage = 1;
+    }
 
     completedLabel(completed) {
         return completed === "yes" ? _t("Yes") : _t("No");

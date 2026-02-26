@@ -88,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="props.rows" t-as="row"
+                        <t t-foreach="pagedRows" t-as="row"
                            t-key="[row.team_id, row.rep_id, row.meeting_type_id, row.contact_status_id, row.completed, row_index].join('-')">
                             <tr t-att-class="row.completed ? 'e3k-row-done' : ''">
                                 <td>
@@ -127,6 +127,43 @@
                         </t>
                     </tbody>
                 </table>
+
+                <!-- ── Pagination footer ── -->
+                <div class="e3k-pagination">
+                    <div class="e3k-pagination-info">
+                        <span class="e3k-pagination-count">
+                            <t t-esc="fromRow"/>–<t t-esc="toRow"/> / <t t-esc="props.rows.length"/>
+                        </span>
+                        <select class="form-select form-select-sm e3k-page-size-select"
+                                t-on-change="onPageSizeChange">
+                            <t t-foreach="pageSizes" t-as="ps" t-key="ps">
+                                <option t-att-value="ps" t-att-selected="state.pageSize === ps">
+                                    <t t-esc="ps"/> / page
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="e3k-pagination-nav">
+                        <button class="e3k-page-btn"
+                                t-att-disabled="state.currentPage === 1"
+                                t-on-click="() => goToPage(state.currentPage - 1)">
+                            <i class="fa fa-chevron-left"/>
+                        </button>
+                        <t t-foreach="pageNumbers" t-as="p" t-key="p_index">
+                            <span t-if="p === '...'" class="e3k-page-ellipsis">…</span>
+                            <button t-else=""
+                                    t-att-class="p === state.currentPage ? 'e3k-page-btn e3k-page-btn--active' : 'e3k-page-btn'"
+                                    t-on-click="() => goToPage(p)">
+                                <t t-esc="p"/>
+                            </button>
+                        </t>
+                        <button class="e3k-page-btn"
+                                t-att-disabled="state.currentPage === totalPages"
+                                t-on-click="() => goToPage(state.currentPage + 1)">
+                            <i class="fa fa-chevron-right"/>
+                        </button>
+                    </div>
+                </div>
             </t>
         </t>
 
