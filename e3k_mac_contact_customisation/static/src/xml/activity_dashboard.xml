@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<!-- ─── FilterCheckboxGroup ──────────────────────────────────────────────────
+     Composant générique réutilisable : section collapsible avec checkboxes.
+     Props : label, filterKey, items, selectedIds, isOpen,
+             onToggleSection, onSelectAll, onItemChange
+-->
+<t t-name="e3k_mac_contact_customisation.FilterCheckboxGroup">
+    <div class="e3k-filter-group"
+         t-on-mouseleave="() => props.isOpen &amp;&amp; props.onToggleSection(props.filterKey)">
+
+        <button class="e3k-filter-header btn btn-sm btn-light w-100 text-start"
+                t-on-click="() => props.onToggleSection(props.filterKey)">
+            <span t-esc="props.label"/>
+            <i t-att-class="props.isOpen ? 'fa fa-caret-down ms-1' : 'fa fa-caret-right ms-1'"/>
+        </button>
+
+        <div t-if="props.isOpen" class="e3k-filter-dropdown">
+            <label class="e3k-filter-item e3k-filter-item--all">
+                <input type="checkbox"
+                    t-att-checked="allSelected"
+                    t-on-change="() => props.onSelectAll(props.filterKey, props.items.map(i => i.id))"/>
+                <span>Select all</span>
+            </label>
+
+            <t t-foreach="props.items" t-as="item" t-key="item.id">
+                <label class="e3k-filter-item">
+                    <input type="checkbox"
+                        t-att-checked="props.selectedIds.includes(item.id)"
+                        t-on-change="() => props.onItemChange(props.filterKey, item.id)"/>
+                    <span t-esc="item.name"/>
+                </label>
+            </t>
+        </div>
+
+    </div>
+</t>
+
+<!-- ─── ActivityTable ────────────────────────────────────────────────────────
+     Composant dédié au tableau de résultats.
+     Props : rows, isLoading
+-->
+<t t-name="e3k_mac_contact_customisation.ActivityTable">
+    <div class="e3k-activity-table-wrap">
+
+        <t t-if="props.isLoading">
+            <div class="e3k-loading-overlay">
+                <i class="fa fa-spinner fa-spin fa-2x text-secondary"/>
+            </div>
+        </t>
+
+        <t t-else="">
+            <t t-if="props.rows.length === 0">
+                <div class="e3k-empty-state text-center text-muted py-4">
+                    <i class="fa fa-inbox fa-2x mb-2 d-block"/>
+                    No records found
+                </div>
+            </t>
+            <t t-else="">
+                <table class="table table-sm table-hover mb-0 e3k-activity-table">
+                    <thead>
+                        <tr>
+                            <th class="e3k-col-team">
+                                <i class="fa fa-users me-1"/>Team
+                            </th>
+                            <th class="e3k-col-rep">
+                                <i class="fa fa-user me-1"/>Rep
+                            </th>
+                            <th class="e3k-col-company">
+                                <i class="fa fa-building me-1"/>Company
+                            </th>
+                            <th class="e3k-col-contact">
+                                <i class="fa fa-address-card me-1"/>Contact
+                            </th>
+                            <th class="e3k-col-type">Customer type</th>
+                            <th class="e3k-col-status">Status</th>
+                            <th class="e3k-col-meeting">Meeting type</th>
+                            <th class="e3k-col-qty text-end">
+                                <i class="fa fa-hashtag me-1"/>Qty
+                            </th>
+                            <th class="e3k-col-closed text-center">Closed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.rows" t-as="row"
+                           t-key="[row.team_id, row.rep_id, row.meeting_type_id, row.contact_status_id, row.completed, row_index].join('-')">
+                            <tr t-att-class="row.completed ? 'e3k-row-done' : ''">
+                                <td>
+                                    <span class="e3k-team-chip" t-esc="row.team_name or '—'"/>
+                                </td>
+                                <td>
+                                    <span class="e3k-rep-name" t-esc="row.rep or '—'"/>
+                                </td>
+                                <td class="e3k-cell-long" t-att-title="row.company_name or ''">
+                                    <t t-esc="row.company_name or '—'"/>
+                                </td>
+                                <td class="e3k-cell-long" t-att-title="row.contact or ''">
+                                    <t t-esc="row.contact or '—'"/>
+                                </td>
+                                <td>
+                                    <span class="e3k-badge e3k-badge-type" t-esc="row.customer_type or '—'"/>
+                                </td>
+                                <td>
+                                    <span class="e3k-badge e3k-badge-status" t-esc="row.status or '—'"/>
+                                </td>
+                                <td t-esc="row.meeting_type or '—'"/>
+                                <td class="text-end">
+                                    <span class="e3k-qty-badge" t-esc="row.activity_quantity or 0"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-if="row.completed" class="e3k-closed-badge e3k-closed-badge--done">
+                                        <i class="fa fa-check-circle me-1"/>
+                                        <t t-esc="completedLabel(row.completed)"/>
+                                    </span>
+                                    <span t-else="" class="e3k-closed-badge e3k-closed-badge--open">
+                                        <i class="fa fa-circle-o me-1"/>
+                                        <t t-esc="completedLabel(row.completed)"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+
+    </div>
+</t>
+
+<!-- ─── ActivityDashboard ────────────────────────────────────────────────────
+     Composant root : barre de filtres sticky + tableau de résultats.
+-->
+<t t-name="e3k_mac_contact_customisation.ActivityDashboard">
+    <div class="e3k-activity-dashboard">
+
+        <!-- Barre de filtres sticky -->
+        <div class="e3k-filter-bar sticky-top">
+            <div class="e3k-filter-bar-inner d-flex flex-wrap gap-2 p-2">
+
+                <FilterCheckboxGroup
+                    label="'Team'"
+                    filterKey="'teams'"
+                    items="state.teams"
+                    selectedIds="state.filters.teams"
+                    isOpen="state.openSections.teams"
+                    onToggleSection="(key) => this.toggleSection(key)"
+                    onSelectAll="(key, ids) => this.onTeamSelectAll(key, ids)"
+                    onItemChange="(key, id) => this.onTeamItemChange(key, id)"/>
+
+                <FilterCheckboxGroup
+                    label="'Rep'"
+                    filterKey="'reps'"
+                    items="state.reps"
+                    selectedIds="state.filters.reps"
+                    isOpen="state.openSections.reps"
+                    onToggleSection="(key) => this.toggleSection(key)"
+                    onSelectAll="(key, ids) => this.onFilterSelectAll(key, ids)"
+                    onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
+
+                <FilterCheckboxGroup
+                    label="'Meeting type'"
+                    filterKey="'meetingTypes'"
+                    items="state.meetingTypes"
+                    selectedIds="state.filters.meetingTypes"
+                    isOpen="state.openSections.meetingTypes"
+                    onToggleSection="(key) => this.toggleSection(key)"
+                    onSelectAll="(key, ids) => this.onFilterSelectAll(key, ids)"
+                    onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
+
+                <FilterCheckboxGroup
+                    label="'Status'"
+                    filterKey="'status'"
+                    items="state.statuses"
+                    selectedIds="state.filters.status"
+                    isOpen="state.openSections.status"
+                    onToggleSection="(key) => this.toggleSection(key)"
+                    onSelectAll="(key, ids) => this.onFilterSelectAll(key, ids)"
+                    onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
+
+                <FilterCheckboxGroup
+                    label="'Closed'"
+                    filterKey="'completed'"
+                    items="completedItems"
+                    selectedIds="state.filters.completed"
+                    isOpen="state.openSections.completed"
+                    onToggleSection="(key) => this.toggleSection(key)"
+                    onSelectAll="(key, ids) => this.onFilterSelectAll(key, ids)"
+                    onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
+
+                <!-- Filtre période + plage de dates -->
+                <div class="e3k-filter-group e3k-period-filter">
+                    <label class="e3k-filter-label">
+                        Period
+                        <select class="form-select form-select-sm mt-1"
+                                t-on-change="(ev) => this.onPeriodChange(ev)">
+                            <t t-foreach="state.periods" t-as="p" t-key="p.id">
+                                <option t-att-value="p.id"
+                                        t-att-selected="state.filters.period === p.id">
+                                    <t t-esc="p.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </label>
+                    <label class="e3k-filter-label mt-2">
+                        From
+                        <input type="datetime-local" class="form-control form-control-sm mt-1"
+                               t-att-value="state.filters.fromDate"
+                               t-on-change="(ev) => this.onDateChange('fromDate', ev)"/>
+                    </label>
+                    <label class="e3k-filter-label mt-2">
+                        To
+                        <input type="datetime-local" class="form-control form-control-sm mt-1"
+                               t-att-value="state.filters.toDate"
+                               t-on-change="(ev) => this.onDateChange('toDate', ev)"/>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tableau de résultats -->
+        <div class="e3k-dashboard-body p-2">
+            <ActivityTable
+                rows="state.activityDetails"
+                isLoading="state.isLoading"/>
+        </div>
+
+    </div>
+</t>
+
+</templates>

@@ -3,7 +3,6 @@
 {
     "name": "e3k MACMÉTAL",
     "summary": "",
-    "description": "",
     "category": "Sales/Sales",
     "author": "e3k",
     "license": "Other proprietary",

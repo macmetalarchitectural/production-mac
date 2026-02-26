@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_form_view_validation_sale" model="ir.ui.view">
+    <field name="name">res.partner.form.validation.sale</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='sale']" position="inside">
+        <!-- <field name="customer_rank"/> -->
+        <field name="customer_state"/>
+        <!-- <field name="customer_state" attrs="{'invisible': ['|',('customer_rank','=', 0), '&amp;', ('is_company', '=', False), ('parent_id', '!=', False)]}"/> -->
+        <!-- <div attrs="{'invisible': ['|',('customer_rank','=', 0), '&amp;', ('is_company', '=', False), ('parent_id', '!=', False)]}"> -->
+        <div>
+          <!-- Empty div to put buttons on the right -->
+        </div>
+        <!-- <div class="custom_div_button_sale" attrs="{'invisible': ['|',('customer_rank','=', 0), '&amp;', ('is_company', '=', False), ('parent_id', '!=', False)]}"> -->
+        <div class="custom_div_button_sale_">
+          <button name="reject_customer" type="object" string="Reject"
+                  invisible="customer_state == 'new'"/>
+          <button name="approve_customer" type="object" string="Approve" class="oe_highlight"
+                  invisible="customer_state in ('new', 'approved')"
+                  groups="partner_validation_sale.group_partner_restricted_field_sales"/>
+          <button name="confirm_customer" type="object" string="Confirm" class="oe_highlight"
+                  invisible="customer_state != 'new'"/>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
