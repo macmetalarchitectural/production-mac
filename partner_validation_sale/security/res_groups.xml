@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+  <data noupdate="1">
+
+    <record id="group_partner_restricted_field_sales" model="res.groups">
+      <field name="name">Customer Approval</field>
+    </record>
+
+  </data>
+</odoo>
