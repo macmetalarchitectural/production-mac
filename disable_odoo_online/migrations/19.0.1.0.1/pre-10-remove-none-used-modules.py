@@ -7,18 +7,14 @@ E3K_PREFIX_LOG = '----------------------> e3k log : '
 
 
 MODULES_TO_REMOVE = [
-    'stock_move_list_requested_date',
     'auditlog',
     'mass_editing',
     'ui_color_wasabi',
     'web_custom_label',
     'stock_move_list_partner',
-    'stock_move_list_reserved',
-    'sale_order_search_by_client_order_ref',
     'e3k_advanced_payment',
-    'password_security',
+
     'mac_reports',
-    'account_invoice_supplier_ref_unique',
 ]
 
 MODULE_TO_UNINSTALL = [
