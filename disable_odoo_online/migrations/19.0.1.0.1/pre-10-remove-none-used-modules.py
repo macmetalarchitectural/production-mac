@@ -12,11 +12,9 @@ MODULES_TO_REMOVE = [
     'ui_color_wasabi',
     'web_custom_label',
     'stock_move_list_partner',
-    'sale_order_search_by_client_order_ref',
     'e3k_advanced_payment',
     'password_security',
     'mac_reports',
-    'account_invoice_supplier_ref_unique',
 ]
 
 MODULE_TO_UNINSTALL = [
