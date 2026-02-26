@@ -1,11 +1,11 @@
 import logging
-from odoo import api, SUPERUSER_ID
+
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 
 
 def migrate(cr, version):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+    api.Environment(cr, SUPERUSER_ID, {})
     _logger.info("Migration %s: starting", version)
-    # TODO: add migration logic here
     _logger.info("Migration %s: done", version)

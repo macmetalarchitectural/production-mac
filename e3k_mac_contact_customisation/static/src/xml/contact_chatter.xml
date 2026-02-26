@@ -9,7 +9,7 @@
     <t t-inherit="mail.Chatter" t-inherit-mode="extension">
         <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="before">
             <button t-if="state.thread and state.thread.model === 'res.partner'"
-                    class="o-mail-Chatter-activity btn btn-secondary text-nowrap"
+                    class="o-mail-Chatter-activity btn btn-secondary text-nowrap ms-1"
                     t-att-class="{ 'my-2': !props.compactHeight }"
                     t-att-disabled="!state.thread.id"
                     t-on-click="onClickScheduleMeeting">

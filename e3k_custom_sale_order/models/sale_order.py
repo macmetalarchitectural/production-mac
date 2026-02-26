@@ -16,3 +16,4 @@ class SaleOrder(models.Model):
         orders_to_compute = self.filtered(lambda order: not order.partner_shipping_id)
         if orders_to_compute:
             return super(SaleOrder, orders_to_compute)._compute_partner_shipping_id()
+        return None

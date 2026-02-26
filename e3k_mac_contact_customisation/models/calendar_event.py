@@ -173,9 +173,7 @@ class CalendarEvent(models.Model):
     def _compute_team_rep_id(self):
         for rec in self:
             if rec.user_id:
-                team = self.env['representative.team'].search(
-                    [('member_ids', 'in', rec.user_id.id)], limit=1
-                )
+                team = self.env['representative.team'].search([('member_ids', 'in', rec.user_id.id)], limit=1)
                 rec.team_id = team.id if team else False
             else:
                 rec.team_id = False
@@ -273,7 +271,7 @@ class CalendarEvent(models.Model):
     @api.model
     def get_teams(self):
         """Liste des équipes pour le dashboard."""
-        return self.env['representative.team'].search_read([], ['name'], order='name asc')
+        return self.env['representative.team'].search_read([], ['name'], order='name asc', limit=None)
 
     @api.model
     def get_rep(self):
@@ -294,14 +292,12 @@ class CalendarEvent(models.Model):
     @api.model
     def get_status(self):
         """Liste des statuts contact pour le dashboard."""
-        return self.env['contact.status'].search_read([], ['name'], order='name asc')
+        return self.env['contact.status'].search_read([], ['name'], order='name asc', limit=None)
 
     @api.model
     def get_meeting_type(self):
         """Liste des types de réunion actifs pour le dashboard."""
-        return self.env['calendar.event.type'].search_read(
-            [('active', '=', True)], ['name'], order='name asc'
-        )
+        return self.env['calendar.event.type'].search_read([('active', '=', True)], ['name'], order='name asc')
 
     @api.model
     def get_period(self):
@@ -317,7 +313,7 @@ class CalendarEvent(models.Model):
 
         # Calcul propre des mois précédents sans recourir à timedelta(days=30)
         first_curr = today.replace(day=1)
-        last_prev = first_curr - timedelta(days=1)          # dernier jour du mois précédent
+        last_prev = first_curr - timedelta(days=1)  # dernier jour du mois précédent
         last_2prev = last_prev.replace(day=1) - timedelta(days=1)  # dernier jour d'il y a 2 mois
 
         return [
@@ -333,13 +329,11 @@ class CalendarEvent(models.Model):
     @api.model
     def get_activity_details(self):
         """Résumé de toutes les activités pour le dashboard (sans filtre)."""
-        self._cr.execute(_ACTIVITY_SELECT + _ACTIVITY_GROUP_ORDER)
+        self._cr.execute(_ACTIVITY_SELECT + _ACTIVITY_GROUP_ORDER)  # pylint: disable=E8103
         return self._translate_activity_records(self._cr.dictfetchall())
 
     @api.model
-    def get_activity_details_by_filter(
-        self, teams, reps, meeting_types, completed, status, dates, period
-    ):
+    def get_activity_details_by_filter(self, teams, reps, meeting_types, completed, status, dates, period):
         """Résumé des activités filtré selon les critères du dashboard."""
         query = _ACTIVITY_SELECT
         params = ()
