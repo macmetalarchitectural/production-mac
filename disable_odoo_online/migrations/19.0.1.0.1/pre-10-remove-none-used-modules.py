@@ -13,6 +13,7 @@ MODULES_TO_REMOVE = [
     'web_custom_label',
     'stock_move_list_partner',
     'e3k_advanced_payment',
+    'auth_totp_password_security'
 
     'mac_reports',
 ]
