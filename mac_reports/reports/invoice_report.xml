@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_mac" inherit_id="e3k_default_reports.report_invoice_e3k">
+        <xpath expr="//div[@name='comment']" position="replace">
+            <div t-if="not is_html_empty(o.narration)" name="comment">
+                <table class="table">
+                    <tr>
+                        <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;">
+                            <span t-field="o.narration"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+        <xpath expr="//span[@name='payment_term']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//p[@name='payment_communication']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//div[@id='e3k_informations']//div[@name='invoice_date']" position="after">
+
+            <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_payment_term_id" name="payment_term">
+                <strong>Payment terms:</strong>
+                <p class="m-0" t-field="o.invoice_payment_term_id"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='qrcode']" position="after">
+
+            <br/>
+            <br/>
+            <br/>
+            <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
+font-weight: bold; page-break-inside: avoid;">
+                <p t-field="o.invoice_note_terms"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
