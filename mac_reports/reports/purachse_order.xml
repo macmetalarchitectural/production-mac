@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchase_mac" inherit_id="e3k_default_reports.report_purchase_e3k">
+        <xpath expr="//td[@id='product']/span"  position="attributes">
+            <attribute name="t-options">{'widget': 'text'}</attribute>
+        </xpath>
+        <xpath expr="//div[@t-elif='o.date_order']"  position="after">
+            <div t-if="o.origin" class="col-3 bm-2">
+                <strong>Origin:</strong>
+                <p t-field="o.origin" class="m-0"/>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <strong>Shipping address:</strong>
+                <div t-if="o.picking_type_id and o.picking_type_id.warehouse_id">
+                    <span t-field="o.picking_type_id.warehouse_id.name"/>
+                    <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                         t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                </div>
+            </t>
+
+        </xpath>
+    </template>
+
+
+    <template id="report_purchase_quotation_mac" inherit_id="e3k_default_reports.report_purchase_quotation_e3k">
+         <xpath expr="//td[@id='product']/span"  position="attributes">
+            <attribute name="t-options">{'widget': 'text'}</attribute>
+        </xpath>
+        <xpath expr="//table[1]" position="before">
+            <div id="informations" class="row mt32 mb32">
+                <div t-if="o.date_approve" class="col-3 bm-2">
+                    <strong>Date:</strong>
+                    <p t-field="o.date_approve" class="m-0" t-options='{"format": "MM/dd/yyyy"}'/>
+                </div>
+                <div t-if="o.partner_ref" class="col-3 bm-2">
+                    <strong>Reference:</strong>
+                    <p t-field="o.partner_ref" class="m-0"/>
+                </div>
+                <div t-if="o.origin" class="col-3 bm-2">
+                    <strong>Origin:</strong>
+                    <p t-field="o.origin" class="m-0"/>
+                </div>
+
+            </div>
+
+        </xpath>
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <strong>Shipping address:</strong>
+                <div t-if="o.picking_type_id and o.picking_type_id.warehouse_id">
+                    <span t-field="o.picking_type_id.warehouse_id.name"/>
+                    <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                         t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                </div>
+            </t>
+
+        </xpath>
+
+    </template>
+
+</odoo>
