@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!--
+        Ajoute le bouton "Schedule activity" dans la topbar du Chatter
+        uniquement quand le modèle est res.partner.
+        La méthode onClickScheduleMeeting est injectée via le patch dans schedule_meeting.js.
+    -->
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="before">
+            <button t-if="state.thread and state.thread.model === 'res.partner'"
+                    class="o-mail-Chatter-activity btn btn-secondary text-nowrap ms-1"
+                    t-att-class="{ 'my-2': !props.compactHeight }"
+                    t-att-disabled="!state.thread.id"
+                    t-on-click="onClickScheduleMeeting">
+                <i class="fa fa-calendar-o me-1"/>
+                Schedule activity
+            </button>
+        </xpath>
+        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]//span" position="replace">
+            <span>To do</span>
+        </xpath>
+    </t>
+
+    <!--
+        Ajoute les boutons "Mark as Done" et "Done & Schedule Next"
+        dans le footer du popover calendrier.
+        macState.completed et les méthodes sont injectés via le patch dans schedule_next.js.
+    -->
+    <t t-inherit="calendar.AttendeeCalendarCommonPopover.footer" t-inherit-mode="extension">
+        <xpath expr="//a[@t-if='isEventArchivable and isEventDetailsVisible']" position="after">
+            <a t-if="isEventEditable" href="#"
+               t-att-class="macState.completed ? 'btn btn-secondary o_cw_event_done ms-1' : 'btn btn-primary o_cw_event_done ms-1'"
+               t-on-click.prevent="onClickDone">
+                Mark as Done
+            </a>
+            <a t-if="isEventEditable" href="#"
+               t-att-class="macState.completed ? 'btn btn-secondary o_cw_event_done_schedule_next ms-1' : 'btn btn-primary o_cw_event_done_schedule_next ms-1'"
+               t-on-click.prevent="onClickDoneScheduleNext">
+                Done &amp; Schedule Next
+            </a>
+        </xpath>
+    </t>
+
+</templates>

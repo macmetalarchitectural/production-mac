@@ -16,7 +16,5 @@ class SaleOrder(models.Model):
                 )
                 if outgoing_pickings:
                     order.commitment_date = max(outgoing_pickings.mapped('date_deadline'))
-                else:
-                    super()._compute_commitment_date()
-            else:
-                super()._compute_commitment_date()
+                    continue
+            return super()._compute_commitment_date()

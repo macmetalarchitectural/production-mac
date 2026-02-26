@@ -3,7 +3,6 @@
 {
     "name": "e3k custom sale order",
     "summary": "",
-    "description": "",
     "category": "Sales/Sales",
     "author": "e3k",
     'license': 'LGPL-3',

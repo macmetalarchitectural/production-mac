@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+contact_status,contact_status,model_contact_status,,1,1,1,1
+representative_team,representative_team,model_representative_team,,1,1,1,1

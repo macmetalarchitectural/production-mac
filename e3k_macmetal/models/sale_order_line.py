@@ -7,7 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     def get_sale_order_line_multiline_description_sale(self, product):
-        super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(product)
+        super().get_sale_order_line_multiline_description_sale(product)
         if product.description_sale:
             result = product.display_name + ' ' + product.description_sale
         else:
