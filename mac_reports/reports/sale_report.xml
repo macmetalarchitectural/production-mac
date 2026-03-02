@@ -33,6 +33,10 @@ font-weight: bold; page-break-inside: avoid;">
                 <p t-field="doc.sale_note_termes"/>
             </div>
         </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]" position="attributes">
+            <attribute name="class">o_has_total_table table o_main_table table-sm</attribute>
+        </xpath>
+
         <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
             <th name="th_description" class="text-left">Description</th>
 
@@ -48,7 +52,7 @@ font-weight: bold; page-break-inside: avoid;">
                 <div id="total" class="row" name="total">
                     <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ms-auto">
 
-                        <div class="col-7">
+                        <div class="col-7" style="padding-right: 15px;">
                             <table class="table" style="font-weight: bold; !important">
                                 <tr>
                                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
@@ -79,7 +83,7 @@ font-weight: bold; page-break-inside: avoid;">
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-5">
+                        <div class="col-5" style="padding-left: 15px;">
                             <table class="table table-sm">
                                 <!-- Tax totals -->
                                 <t t-call="sale.document_tax_totals">
@@ -110,8 +114,6 @@ font-weight: bold; page-break-inside: avoid;">
         <xpath expr="//p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
         </xpath>
         <xpath expr="//div[@t-if='doc.commitment_date']" position="replace">
-        </xpath>
-        <xpath expr="//span[@t-field='doc.note']" position="replace">
         </xpath>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">

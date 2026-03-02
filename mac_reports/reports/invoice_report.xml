@@ -18,13 +18,6 @@
         <xpath expr="//p[@name='payment_communication']" position="attributes">
             <attribute name="t-if">False</attribute>
         </xpath>
-        <xpath expr="//div[@id='e3k_informations']//div[@name='invoice_date']" position="after">
-
-            <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_payment_term_id" name="payment_term">
-                <strong>Payment terms:</strong>
-                <p class="m-0" t-field="o.invoice_payment_term_id"/>
-            </div>
-        </xpath>
         <xpath expr="//div[@id='qrcode']" position="after">
 
             <br/>
