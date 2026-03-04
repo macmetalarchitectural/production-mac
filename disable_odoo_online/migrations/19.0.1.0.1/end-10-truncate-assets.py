@@ -26,6 +26,7 @@ ACTIONS_TO_DO = [
             "mac_reports.report_sale_e3k_mac",
             "mac_reports.report_invoice_mac",
             "mac_reports.report_picking_mac",
+            "e3k_mac_stock_calendar.e3k_view_picking_internal_search",
             "e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca",
             "website.footer_language_selector_no_text",
         ],
