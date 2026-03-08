@@ -3,7 +3,6 @@
 
 from odoo import api, models, fields, SUPERUSER_ID, _
 from collections import defaultdict
-from odoo.addons.purchase.models.purchase import PurchaseOrder
 from odoo.tools import float_compare
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -22,7 +21,7 @@ class StockRule(models.Model):
         errors = []
         for procurement, rule in procurements:
             # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
+            procurement_date_planned = fields.Datetime.to_datetime(procurement.values['date_planned'])
 
             supplier = False
             if procurement.values.get('supplierinfo_id'):
@@ -126,7 +125,7 @@ class StockRule(models.Model):
         for procurement, rule in procurements:
 
             # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
+            procurement_date_planned = fields.Datetime.to_datetime(procurement.values['date_planned'])
 
             supplier = False
             if procurement.values.get('supplierinfo_id'):
@@ -249,7 +248,7 @@ class StockRule(models.Model):
             group_id = procurement.values.get('group_id')
 
             # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
+            procurement_date_planned = fields.Datetime.to_datetime(procurement.values['date_planned'])
 
             supplier = False
             if procurement.values.get('supplierinfo_id'):

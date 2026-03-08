@@ -3,7 +3,7 @@
 
 {
   "name": "Stock Block Auto Purchase Order",
-  "version": "15.0.1.0.0",
+  "version": "19.0.1.0.0",
   "category": "Purchase",
   "description": "Use a boolean to prevent the automatic make of Purchase Order.",
   "maintainer": "numigi",

@@ -3,14 +3,14 @@
 
 {
     "name": "Unique Supplier Invoice Number in Invoice",
-    "version": "15.0.1.1.0",
+    "version": "1.0.0",
     "summary": "Checks that supplier invoices are not entered twice",
     "author": "Savoir-faire Linux, Acsone SA/NV, Odoo Community Association (OCA)",
-    "maintainer": "Savoir-faire Linux",
+    "maintainer": "e3k",
     "website": "https://github.com/OCA/account-invoicing",
     "license": "AGPL-3",
     "category": "Accounting & Finance",
     "depends": ["account"],
-    "data": ["views/account_move.xml"],
+    "data": ["views/account_move.xml", "views/res_config_settings.xml"],
     "installable": True,
 }

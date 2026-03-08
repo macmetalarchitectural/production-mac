@@ -1,7 +1,7 @@
 # Copyright 2016 Acsone
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -11,7 +11,6 @@ class AccountMove(models.Model):
     supplier_invoice_number = fields.Char(
         string="Vendor invoice number",
         readonly=True,
-        states={"draft": [("readonly", False)]},
         copy=False,
     )
 
@@ -22,8 +21,10 @@ class AccountMove(models.Model):
         and the same commercial_partner_id than the current instance
         """
         for rec in self:
-            if rec.supplier_invoice_number and rec.is_purchase_document(
-                include_receipts=True
+            if (
+                rec.company_id.check_invoice_supplier_number
+                and rec.supplier_invoice_number
+                and rec.is_purchase_document(include_receipts=True)
             ):
                 same_supplier_inv_num = rec.search(
                     [
@@ -40,17 +41,15 @@ class AccountMove(models.Model):
                 )
                 if same_supplier_inv_num:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "The invoice/refund with supplier "
-                            "invoice number %(invoice_number)s "
-                            "already exists in Odoo under the number %(name)s "
-                            "for supplier %(partner)s."
+                            "invoice number %(number)s "
+                            "already exists in Odoo under the number %(same)s "
+                            "for supplier %(supplier)s.",
+                            number=same_supplier_inv_num.supplier_invoice_number,
+                            same=same_supplier_inv_num.name or "-",
+                            supplier=same_supplier_inv_num.partner_id.display_name,
                         )
-                        % {
-                            "invoice_number": same_supplier_inv_num.supplier_invoice_number,
-                            "name": same_supplier_inv_num.name or "-",
-                            "partner": same_supplier_inv_num.partner_id.display_name,
-                        }
                     )
 
     @api.onchange("supplier_invoice_number")
@@ -61,7 +60,7 @@ class AccountMove(models.Model):
     def _reverse_moves(self, default_values_list=None, cancel=False):
         # OVERRIDE
         if default_values_list:
-            for move, default_values in zip(self, default_values_list):
+            for move, default_values in zip(self, default_values_list, strict=False):
                 if (
                     move
                     and move.is_purchase_document(include_receipts=True)

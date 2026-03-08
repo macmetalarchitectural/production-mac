@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_purchase_mac" inherit_id="e3k_default_reports.report_purchase_baleco">
+    <template id="report_purchase_mac" inherit_id="e3k_default_reports.report_purchase_e3k">
         <xpath expr="//td[@id='product']/span"  position="attributes">
             <attribute name="t-options">{'widget': 'text'}</attribute>
         </xpath>
-        <xpath expr="//div[@t-if='o.date_order']"  position="after">
+        <xpath expr="//div[@t-elif='o.date_order']"  position="after">
             <div t-if="o.origin" class="col-3 bm-2">
                 <strong>Origin:</strong>
                 <p t-field="o.origin" class="m-0"/>
@@ -23,36 +23,12 @@
         </xpath>
     </template>
 
-    <template id="report_purchase_mac2" inherit_id="purchase_stock.report_purchaseorder_document">
-        <xpath expr="//t[@t-else='']//t[@t-set='information_block']" position="replace">
-            <t t-set="information_block">
-                <strong>Supplier:</strong>
-                <div t-field="o.partner_id"
-                     t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
-                <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
-                    <span t-field="o.partner_id.vat"/>
-                </p>
-            </t>
-        </xpath>
-    </template>
 
-    <template id="report_purchase_quotation_mac2" inherit_id="purchase_stock.report_purchasequotation_document">
-        <xpath expr="//t[@t-else='']//t[@t-set='information_block']" position="replace">
-            <t t-set="information_block">
-                <strong>Supplier:</strong>
-                <div t-field="o.partner_id"
-                     t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
-                <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
-                    <span t-field="o.partner_id.vat"/>
-                </p>
-            </t>
-        </xpath>
-    </template>
-    <template id="report_purchase_quotation_mac" inherit_id="e3k_default_reports.report_purchase_quotation_baleco">
+    <template id="report_purchase_quotation_mac" inherit_id="e3k_default_reports.report_purchase_quotation_e3k">
          <xpath expr="//td[@id='product']/span"  position="attributes">
             <attribute name="t-options">{'widget': 'text'}</attribute>
         </xpath>
-        <xpath expr="//h2" position="after">
+        <xpath expr="//table[1]" position="before">
             <div id="informations" class="row mt32 mb32">
                 <div t-if="o.date_approve" class="col-3 bm-2">
                     <strong>Date:</strong>
