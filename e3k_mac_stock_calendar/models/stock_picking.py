@@ -149,10 +149,12 @@ class StockPicking(models.Model):
                 second=existing_dt.second,
                 microsecond=existing_dt.microsecond,
             )
+            # Odoo stocke les datetimes en UTC naïf (sans tzinfo)
+            final_dt_utc = final_dt_utc.replace(tzinfo=None)
             _logger.warning('Final datetime UTC: %s', final_dt_utc)
 
             # Enregistrer la nouvelle date avec l'heure existante
-            self.move_ids_without_package.write({'date_deadline': final_dt_utc})
+            self.move_ids.write({'date_deadline': final_dt_utc})
 
             vals['date_deadline'] = final_dt_utc
 
