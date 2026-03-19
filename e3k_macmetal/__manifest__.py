@@ -13,6 +13,8 @@
         'crm',
         'calendar',
         'stock',
+        'purchase',
+        'helpdesk',
     ],
     "data": [
         'security/ir.model.access.csv',

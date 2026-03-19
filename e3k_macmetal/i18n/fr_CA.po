@@ -357,3 +357,123 @@ msgstr "Votre nom"
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
 msgid "days"
 msgstr "jours"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_e3k_ticket_product_type
+msgid "Ticket Product Type"
+msgstr "Type de produit de ticket"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_e3k_ticket_product_type__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Ticket d'Assistance"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_old_amount
+msgid "Old Amount"
+msgstr "Vieux montant"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_ticket_product_type_id
+msgid "Product Type"
+msgstr "Type de produit"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_division_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_division_id
+msgid "Division"
+msgstr "Division"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_inside_sales_rep_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_inside_sales_rep_id
+msgid "Inside Sales Rep"
+msgstr "Responsable compte"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_res_partner__e3k_inside_sales_rep_id
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_inside_sales_rep_id
+msgid "The order desk employee who is responsible for the client account."
+msgstr "L'employé qui est responsable du compte client à l'interne."
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_maison_mere_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_maison_mere_id
+msgid "Parent Company"
+msgstr "Maison mère"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_product_template
+msgid "Product"
+msgstr "Modèle d'article"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_product_template__e3k_drawing
+#: model:ir.model.fields,field_description:e3k_macmetal.field_purchase_order_line__e3k_drawing
+msgid "Drawing"
+msgstr "Dessin"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_follow_up_date
+msgid "Follow-up Date"
+msgstr "Date de suivi"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_on_hold
+msgid "On Hold"
+msgstr "En attente"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_on_hold
+msgid "The order is on hold when the checkbox is checked."
+msgstr "La commande est en attente lorsque la case est cochée."
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_receipt_date
+msgid "Date of Receipt"
+msgstr "Date de réception"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_replacement
+msgid "Replacement"
+msgstr "Remplacement"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_replacement
+msgid "The order is a replacement when the checkbox is checked."
+msgstr "La commande est un remplacement lorsque la case est cochée."
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_picking__e3k_delivery_on_hold
+msgid "Delivery On Hold"
+msgstr "Livraison en attente"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_picking__e3k_sales_value
+msgid "Sales Value"
+msgstr "Valeur de ventes"

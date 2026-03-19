@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import _, api, fields, models
-
+from odoo.tools import float_is_zero
 
 class StockQuant(models.Model):
     _inherit = 'stock.quant'
@@ -33,7 +33,7 @@ class StockQuant(models.Model):
         :return: dict with all values needed to create a new `stock.move` with its move line.
         """
         self.ensure_one()
-        if fields.Float.is_zero(qty, 0, precision_rounding=self.product_uom_id.rounding):
+        if float_is_zero(qty, precision_rounding=self.product_uom_id.rounding):
             name = _('Product Quantity Confirmed')
         else:
             name = _('Product Quantity Updated')
