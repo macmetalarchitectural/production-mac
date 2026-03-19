@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- stock.move — List -->
+    <record id="e3k_stock_move_view_list" model="ir.ui.view">
+        <field name="name">e3k.stock.move.list</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reference']" position="after">
+                <field optional="show" name="e3k_date_field" widget="date"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

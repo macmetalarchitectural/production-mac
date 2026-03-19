@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- purchase.order — Form (lignes) -->
+    <record id="e3k_purchase_order_view_form" model="ir.ui.view">
+        <field name="name">e3k.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="after">
+                <field optional="show" name="x_studio_drawing"widget="image"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

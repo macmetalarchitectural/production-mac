@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- res.partner — Form -->
+    <record id="e3k_res_partner_view_form" model="ir.ui.view">
+        <field name="name">e3k.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="domain">["|", ["is_company","=",True],"&amp;",["is_company","=",False],"|",["type","=","delivery"],["type","=","other"]]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="e3k_inside_sales_rep_id" widget="many2one_avatar_user" string="Inside sales rep"
+                       domain="[('share', '=', False)]"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="e3k_maison_mere_id" string="Maison mère"/>
+                <field name="e3k_division_id" string="Division"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- res.partner — List -->
+    <record id="e3k_res_partner_view_list" model="ir.ui.view">
+        <field name="name">e3k.res.partner.list</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!-- TODO: placer e3k_inside_sales_rep_id -->
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="e3k_inside_sales_rep_id"
+                       widget="many2one_avatar_user"
+                       domain="[('share', '=', False)]"
+                       optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="after">
+                <xpath expr="//field[@name='country_id']" position="move"/>
+                <field name="contact_status_id" optional="show"/>
+                <field name="industry_id" optional="show" string="Customer Type"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
