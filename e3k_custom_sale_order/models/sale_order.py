@@ -9,11 +9,6 @@ class SaleOrder(models.Model):
     @api.depends('partner_id')
     def _compute_partner_shipping_id(self):
         """
-        Computes partner_shipping_id only for orders where it is not already set.
-
-        Restricts parent computation to preserve existing shipping partners.
-        """
-        orders_to_compute = self.filtered(lambda order: not order.partner_shipping_id)
-        if orders_to_compute:
-            return super(SaleOrder, orders_to_compute)._compute_partner_shipping_id()
-        return None
+               Intentionally disabled: delivery address is never auto-filled when a partner
+               is selected on an invoice. The user must choose it manually.
+           """
