@@ -124,9 +124,9 @@ font-weight: bold; page-break-inside: avoid;">
                     <p class="m-0" t-field="doc.user_id"/>
                 </t>
             </div>
-            <div t-if="doc.x_studio_inside_sales_rep" class="col-auto col-3 mw-100 mb-2">
+            <div t-if="doc.e3k_inside_sales_rep_id" class="col-auto col-3 mw-100 mb-2">
                 <strong class="text-nowrap">Inside sales rep:</strong>
-                <p class="m-0" t-field="doc.x_studio_inside_sales_rep"/>
+                <p class="m-0" t-field="doc.e3k_inside_sales_rep_id"/>
             </div>
         </xpath>
     </template>

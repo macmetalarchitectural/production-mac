@@ -9,10 +9,11 @@
     "website": "https://e3k.co",
     "version": "19.0.1",
     "depends": [
-        'sale',
+        'sale_purchase',
         'crm',
         'calendar',
         'stock',
+        'helpdesk',
     ],
     "data": [
         'security/ir.model.access.csv',
@@ -25,6 +26,12 @@
         'views/calendar_views.xml',
         'views/stock_location_views.xml',
         'views/route_config.xml',
+        'views/res_partner_views.xml',
+        'views/product_template_views.xml',
+        'views/purchase_order_views.xml',
+        'views/helpdesk_ticket_views.xml',
+        'views/stock_picking_views.xml',
+        'views/stock_move_views.xml',
     ],
     'assets': {
         'web.assets_frontend_lazy': [

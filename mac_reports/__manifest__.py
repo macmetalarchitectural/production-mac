@@ -10,7 +10,7 @@
     'website': "http://www.e3k.co",
     'category': 'Sale',
     'version': '19.0.1.0.0',
-    'depends': ['e3k_default_reports', 'account', 'stock_delivery'],
+    'depends': ['e3k_default_reports', 'account', 'stock_delivery', 'e3k_macmetal'],
     'data': [
         'reports/sale_report.xml',
         'reports/invoice_report.xml',

@@ -69,7 +69,7 @@ class CustomerPortal(portal.CustomerPortal):
 
     @http.route(
         ['/get_padding_delivery_days'],
-        type='json',
+        type='jsonrpc',
         auth="public",
     )  # website=True)
     def get_padding_delivery_days(self):
