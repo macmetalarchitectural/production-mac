@@ -32,7 +32,69 @@ ACTIONS_TO_DO = [
         ],
         'records': {},
     },
+    {
+        "operation": "unlink",
+        "xmlids": [
+            "studio_customization.odoo_studio_res_part_53e160e5-7142-4672-a104-1ff718a33dda",
+            "studio_customization.odoo_studio_sale_ord_155972b3-8324-4337-b41c-64d309b806d6",
+            "studio_customization.odoo_studio_sale_ord_6885aa07-95db-45d2-940d-6b404294b486",
+            "studio_customization.odoo_studio_sale_ord_ee0c6151-f94a-483e-9c80-0105c1441f62",
+            "studio_customization.odoo_studio_helpdesk_80283aa9-d13f-4317-be2e-a7de59c1cf86",
+            "studio_customization.odoo_studio_product__ac58e971-6a32-47a5-9ff8-637df088ef28",
+            "studio_customization.odoo_studio_purchase_a0749a94-7f1b-4fd4-9471-d5ded433ea96",
+            "studio_customization.odoo_studio_res_part_6c52af64-9ba0-4499-9931-b22a739f56eb",
+            "studio_customization.odoo_studio_stock_mo_c855b356-05ad-42e5-a649-a6ba1543760c",
+            "studio_customization.odoo_studio_stock_pi_b768ae15-bd79-449f-b41a-f5ed340eaa04",
+            "studio_customization.odoo_studio_stock_pi_75276b15-12a9-473c-8a1d-fd4eafe68cf7",
+            "studio_customization.odoo_studio_stock_pi_4a4c824c-32ed-4f06-b115-e13d89dd853c",
+        ],
+        'records': {},
+    },
 ]
+
+_RENAMED_FIELDS = [
+      # helpdesk.ticket
+      ("helpdesk.ticket",  "x_studio_amount",                    "e3k_old_amount"),
+      ("helpdesk.ticket",  "x_studio_amount_1",                  "e3k_amount"),
+      ("helpdesk.ticket",  "x_studio_ticket_product_type",       "e3k_ticket_product_type_id"),
+      # product.template
+      ("product.template", "x_studio_drawing",                   "e3k_drawing"),
+      # res.partner
+      ("res.partner",      "x_studio_division",                  "e3k_division_id"),
+      ("res.partner",      "x_studio_inside_sales_rep",          "e3k_inside_sales_rep_id"),
+      ("res.partner",      "x_studio_maison_mre",                "e3k_maison_mere_id"),
+      # sale.order
+      ("sale.order",       "x_studio_division",                  "e3k_division_id"),
+      ("sale.order",       "x_studio_follow_up_date",            "e3k_follow_up_date"),
+      ("sale.order",       "x_studio_inside_sales_rep",          "e3k_inside_sales_rep_id"),
+      ("sale.order",       "x_studio_maison_mre",                "e3k_maison_mere_id"),
+      ("sale.order",       "x_studio_on_hold",                   "e3k_on_hold"),
+      ("sale.order",       "x_studio_receipt_date",              "e3k_receipt_date"),
+      ("sale.order",       "x_studio_replacement",               "e3k_replacement"),
+      # stock.move
+      ("stock.move",       "x_studio_date_field_WyUyd",          "e3k_date_field"),
+      # stock.picking
+      ("stock.picking",    "x_studio_delivery_on_hold",          "e3k_delivery_on_hold"),
+      ("stock.picking",    "x_studio_sales_value",               "e3k_sales_value"),
+  ]
+
+_RENAME_MODELS = [
+    ('x_ticket_product_type','e3k.ticket.product.type')
+]
+
+def rename_fields(cr):
+    for model, old_name, new_name in _RENAMED_FIELDS:
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming field {model}.{old_name} to {new_name}")
+        util.rename_field(cr, model, old_name, new_name)
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Field {model}.{old_name} renamed to {new_name} successfully")
+
+
+def rename_models(cr):
+    for old_name, new_name in _RENAME_MODELS:
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming model {old_name} to {new_name}")
+        util.rename_model(cr, old_name, new_name)
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Model {old_name} renamed to {new_name} successfully")
+
 
 def _apply_operation(record, op, identifier, logger_prefix):
     """
@@ -65,6 +127,7 @@ def _apply_operation(record, op, identifier, logger_prefix):
             e3k_logger.warning(logger_prefix + f"Réinitialisé {identifier}")
     except Exception as e:
         e3k_logger.warning(logger_prefix + f"Erreur sur {identifier}: {e}")
+
 
 def manage_datas(env, ACTIONS):
     """
@@ -107,56 +170,14 @@ def truncate_ir_asset_table(cr):
         e3k_logger.warning(E3K_PREFIX_LOG + f"Failed to truncate table ir_asset: {e}")
 
 
-def normalize_balance_currency_signs(cr):
-    """
-    Fix account_move_line data to comply with Odoo v19 native constraint.
-
-    The constraint requires that balance and amount_currency must have the SAME SIGN:
-    - Both positive (debit)
-    - Both negative (credit)
-    - Both zero
-
-    The correction formula: amount_currency = SIGN(balance) * ABS(amount_currency)
-
-    Examples:
-    - balance = 100, amount_currency = -50  => amount_currency becomes 50
-    - balance = -100, amount_currency = 50  => amount_currency becomes -50
-    - balance = 0, amount_currency = 50     => amount_currency becomes 0
-
-    This preserves the absolute value but aligns the sign with balance.
-    """
-    if not util.module_installed(cr, 'mac_reports'):
-        e3k_logger.warning(E3K_PREFIX_LOG + "Starting account_move_line data correction")
-
-        # DATA CORRECTION to comply with Odoo v19 native constraint
-        e3k_logger.warning(E3K_PREFIX_LOG + "Searching for lines with inconsistent signs between balance and amount_currency...")
-        cr.execute("""
-            SELECT COUNT(*)
-            FROM account_move_line
-            WHERE display_type NOT IN ('line_section', 'line_subsection', 'line_note')
-              AND NOT ((balance <= 0 AND amount_currency <= 0) OR (balance >= 0 AND amount_currency >= 0))
-        """)
-        count = cr.fetchone()[0]
-        e3k_logger.warning(E3K_PREFIX_LOG + f"{count} lines with inconsistent signs found")
-
-        if count > 0:
-            e3k_logger.warning(E3K_PREFIX_LOG + "Correction: aligning amount_currency sign with balance sign...")
-            e3k_logger.warning(E3K_PREFIX_LOG + "Formula: amount_currency = SIGN(balance) * ABS(amount_currency)")
-            cr.execute("""
-                UPDATE account_move_line
-                SET amount_currency = SIGN(balance) * ABS(amount_currency)
-                WHERE display_type NOT IN ('line_section', 'line_subsection', 'line_note')
-                  AND NOT ((balance <= 0 AND amount_currency <= 0) OR (balance >= 0 AND amount_currency >= 0))
-            """)
-            e3k_logger.warning(E3K_PREFIX_LOG + f"{count} lines corrected - amount_currency sign aligned with balance")
-
-        e3k_logger.warning(E3K_PREFIX_LOG + "Correction completed - Odoo will automatically recreate the correct constraint")
-
 
 def migrate(cr, version):
     env = util.env(cr)
-    truncate_ir_asset_table(cr)
 
-    normalize_balance_currency_signs(cr)
+    rename_models(cr)
+
+    rename_fields(cr)
+
+    truncate_ir_asset_table(cr)
 
     manage_datas(env, ACTIONS_TO_DO)

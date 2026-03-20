@@ -9,11 +9,10 @@
     "website": "https://e3k.co",
     "version": "19.0.1",
     "depends": [
-        'sale',
+        'sale_purchase',
         'crm',
         'calendar',
         'stock',
-        'purchase',
         'helpdesk',
     ],
     "data": [

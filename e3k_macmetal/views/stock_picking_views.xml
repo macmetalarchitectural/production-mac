@@ -7,27 +7,10 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <!-- TODO: placer e3k_delivery_on_hold, e3k_sales_value -->
             <xpath expr="//group[@name='other_infos']/field[@name='company_id']"
                    position="after">
                 <field name="e3k_currency_id" invisible="1"/>
                 <field name="e3k_sales_value" string="Sales Value"/>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- stock.picking — List -->
-    <record id="e3k_stock_picking_view_search" model="ir.ui.view">
-        <field name="name">e3k.stock.picking.list</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.vpicktree"/>
-        <field name="arch" type="xml">
-            <!-- TODO: placer e3k_delivery_on_hold, e3k_sales_value -->
-            <xpath expr="//field[@name='date_deadline']" position="attributes">
-                <attribute name="widget">date</attribute>
-            </xpath>
-            <xpath expr="//field[@name='flexible_date']" position="after">
-                <field name="e3k_delivery_on_hold" widget="boolean_toggle"/>
             </xpath>
         </field>
     </record>

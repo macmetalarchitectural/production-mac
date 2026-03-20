@@ -36,7 +36,7 @@
             </xpath>
             <xpath expr="//field[@name='city']" position="after">
                 <xpath expr="//field[@name='country_id']" position="move"/>
-                <field name="contact_status_id" optional="show"/>
+<!--                <field name="contact_status_id" optional="show"/>-->
                 <field name="industry_id" optional="show" string="Customer Type"/>
             </xpath>
         </field>
