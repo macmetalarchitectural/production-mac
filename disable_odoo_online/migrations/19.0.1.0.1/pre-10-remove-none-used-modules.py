@@ -40,6 +40,8 @@ _RENAMED_FIELDS = [
       # stock.picking
       ("stock.picking",    "x_studio_delivery_on_hold",          "e3k_delivery_on_hold"),
       ("stock.picking",    "x_studio_sales_value",               "e3k_sales_value"),
+        # e3k.ticket.product.type
+      ("e3k.ticket.product.type",    "x_name",               "name"),
   ]
 
 _RENAME_MODELS = [
@@ -182,6 +184,20 @@ def rename_models(cr):
         e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming model {old_name} to {new_name}")
         util.rename_model(cr, old_name, new_name)
         e3k_logger.warning(E3K_PREFIX_LOG + f"Model {old_name} renamed to {new_name} successfully")
+
+    # Fix ir.model.data: reassign the external ID of the renamed model so that
+    # the CSV (model_e3k_ticket_product_type in e3k_macmetal) resolves correctly.
+    cr.execute("""
+        UPDATE ir_model_data imd
+        SET module = 'e3k_macmetal',
+            name   = 'e3k_ticket_product_type'
+        FROM ir_model im
+        WHERE imd.res_id  = im.id
+          AND imd.model   = 'ir.model'
+          AND im.model    = 'e3k.ticket.product.type'
+          AND (imd.module != 'e3k_macmetal' OR imd.name != 'e3k_ticket_product_type')
+    """)
+    e3k_logger.warning(E3K_PREFIX_LOG + f"Fixed ir.model.data external ID for e3k.ticket.product.type ({cr.rowcount} row updated)")
 
 def migrate(cr, version):
     env = util.env(cr)
