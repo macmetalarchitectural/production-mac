@@ -190,12 +190,12 @@ def rename_models(cr):
     cr.execute("""
         UPDATE ir_model_data imd
         SET module = 'e3k_macmetal',
-            name   = 'e3k_ticket_product_type'
+            name   = 'model_e3k_ticket_product_type'
         FROM ir_model im
         WHERE imd.res_id  = im.id
           AND imd.model   = 'ir.model'
           AND im.model    = 'e3k.ticket.product.type'
-          AND (imd.module != 'e3k_macmetal' OR imd.name != 'e3k_ticket_product_type')
+          AND (imd.module != 'e3k_macmetal' OR imd.name != 'model_e3k_ticket_product_type')
     """)
     e3k_logger.warning(E3K_PREFIX_LOG + f"Fixed ir.model.data external ID for e3k.ticket.product.type ({cr.rowcount} row updated)")
 
