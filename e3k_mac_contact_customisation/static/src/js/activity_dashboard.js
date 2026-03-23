@@ -1,760 +1,268 @@
-odoo.define('e3k_mac_contact_customisation.ActivityDashboard', function (require) {
-    'use strict';
-    var AbstractAction = require('web.AbstractAction');
-    var ajax = require('web.ajax');
-    var core = require('web.core');
-    var rpc = require('web.rpc');
-    var web_client = require('web.web_client');
-    var _t = core._t;
-    var QWeb = core.qweb;
-    var self = this;
-    var currency;
-    var ActionMenu = AbstractAction.extend({
-
-        contentTemplate: 'ActivityDashboard',
-
-        events: {
-            'click #hoverDiv1': 'onclick_hoverDiv1',
-            'click #hoverDiv2': 'onclick_hoverDiv2',
-            'click #hoverDiv3': 'onclick_hoverDiv3',
-            'click #hoverDiv4': 'onclick_hoverDiv4',
-            'click #hoverDiv5': 'onclick_hoverDiv5',
-            'click #hoverDiv6': 'onclick_hoverDiv6',
-            'change #activity_team': 'onclick_activity_team',
-            'change #activity_rep': 'onclick_activity_details',
-            'change #activity_meeting_type': 'onclick_activity_details',
-            'change #open_closed': 'onclick_activity_details',
-            'change #activity_status': 'onclick_activity_details',
-            'click #from_date': 'onclick_from_date',
-            'change #from_date': 'onclick_activity_details',
-            'click #to_date': 'onclick_to_date',
-            'change #to_date': 'onclick_activity_details',
-            'change #activity_period': 'onclick_activity_period',
-        },
-
-
-        onclick_hoverDiv1: function (ev) {
-            var hiddenDiv1 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv1");
-            if (hiddenDiv1.is(":visible")) {
-                hiddenDiv1.slideUp();
-                $("#team_up").show();
-                $("#team_down").hide();
-            } else {
-                hiddenDiv1.slideDown();
-                $("#team_up").hide();
-                $("#team_down").show();
-            }
-        },
-
-        onclick_hoverDiv2: function (ev) {
-            var hiddenDiv2 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv2");
-            if (hiddenDiv2.is(":visible")) {
-                hiddenDiv2.slideUp();
-                $("#rep_up").show();
-                $("#rep_down").hide();
-            } else {
-                hiddenDiv2.slideDown();
-                $("#rep_up").hide();
-                $("#rep_down").show();
-            }
-        },
-
-        onclick_hoverDiv3: function (ev) {
-            var hiddenDiv3 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv3");
-            if (hiddenDiv3.is(":visible")) {
-                hiddenDiv3.slideUp();
-                $("#meeting_type_up").show();
-                $("#meeting_type_down").hide();
-            } else {
-                hiddenDiv3.slideDown();
-                $("#meeting_type_up").hide();
-                $("#meeting_type_down").show();
-            }
-        },
-
-        onclick_hoverDiv4: function (ev) {
-            var hiddenDiv4 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv4");
-            if (hiddenDiv4.is(":visible")) {
-                hiddenDiv4.slideUp();
-                $("#closed_up").show();
-                $("#closed_down").hide();
-            } else {
-                hiddenDiv4.slideDown();
-                $("#closed_up").hide();
-                $("#closed_down").show();
-            }
-        },
-
-        onclick_hoverDiv5: function (ev) {
-            var hiddenDiv5 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv5");
-            if (hiddenDiv5.is(":visible")) {
-                hiddenDiv5.slideUp();
-                $("#status_up").show();
-                $("#status_down").hide();
-            } else {
-                hiddenDiv5.slideDown();
-                $("#status_up").hide();
-                $("#status_down").show();
-            }
-        },
-
-        onclick_hoverDiv6: function (ev) {
-            var hiddenDiv6 = $(ev.currentTarget).closest('.col-2').find("#hiddenDiv6");
-            if (hiddenDiv6.is(":visible")) {
-                hiddenDiv6.slideUp();
-                $("#period_up").show();
-                $("#period_down").hide();
-            } else {
-                hiddenDiv6.slideDown();
-                $("#period_up").hide();
-                $("#period_down").show();
-            }
-        },
-
-
-        onclick_from_date: function (ev) {
-            if (!document.getElementById("from_date").value) {
-                var currentDate = new Date();
-                // Set the time to 00:00:00
-                currentDate.setHours(0, 0, 0, 0);
-                // Adjust for the time zone offset
-                var timezoneOffset = currentDate.getTimezoneOffset();
-                currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);
-                // Format the date to be compatible with the datetime-local input
-                var formattedDate = currentDate.toISOString().slice(0, -8);
-                document.getElementById("from_date").value = formattedDate;
-                }
-                // delete period value
-                document.getElementById("activity_period").value = '';
-        },
-
-        onclick_to_date: function (ev) {
-            if (!document.getElementById("to_date").value) {
-                var currentDate = new Date();
-                // Set the time to 23:59:59
-                currentDate.setHours(23, 59, 59, 0);
-                // Adjust for the time zone offset
-                var timezoneOffset = currentDate.getTimezoneOffset();
-                currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);
-                // Format the date to be compatible with the datetime-local input
-                var formattedDate = currentDate.toISOString().slice(0, -8);
-                document.getElementById("to_date").value = formattedDate;
-            }
-             document.getElementById("activity_period").value = '';
-        },
-
-        onclick_activity_period: function (ev) {
-            if (document.getElementById("activity_period").value) {
-                document.getElementById("from_date").value = '';
-                document.getElementById("to_date").value = '';
-
-            }
-            this.onclick_activity_details(ev);
-        },
-
-        onclick_activity_team: function (ev) {
-        var activity_team = document.getElementById("activity_team");
-            var teams = [];
-
-            function toggleAllTeams(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-
-                }
-            }
-            // Find the "all" checkbox element
-            var allTeams = document.querySelector("input[type=checkbox][name=team][value='all']");
-            // Attach event listener to the "all" checkbox
-            allTeams.addEventListener("change", function() {
-                toggleAllTeams(this.checked);
-            });
-
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allTeams.checked = false;
-                    }
-                });
-            });
-            // Trigger the checked checkbox
-            if (allTeams.checked) {
-                toggleAllTeams(true);
-            }
-            else {
-                for (var k = 0; k < activity_team.children.length; k++) {
-                    var checkbox = activity_team.children[k].querySelector("input[type=checkbox][name=team]");
-                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
-                        teams.push(checkbox.value);
-                    }
-                }
-            }
-
-            this.get_rep_by_team(ev, teams);
-            this.onclick_activity_details(ev);
-
-        },
-
-        get_rep_by_team: function (ev, teams) {
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_rep_by_team",
-                        args: [teams],
-                    })
-                    .then(function (result) {
-                        if (result[0]) {
-                            var select_all= _t('Select all');
-                            var container = document.getElementById("activity_rep");
-                            container.innerHTML = ""; // Clear any previous content
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.name = "rep";
-                            checkbox.value = "all";
-
-                            // Create a label for the checkbox
-                            var label = document.createElement("label");
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(select_all));
-
-                            // Append the label to the container
-                            container.appendChild(label);
-                            container.appendChild(document.createElement("br"));
-
-                            for (var k = 0; k < result.length; k++) {
-                                var item = result[k].name;
-                                var value = result[k].id;
-
-                                // Create a checkbox element
-                                var checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                checkbox.name = "rep";
-                                checkbox.value = value;
-
-                                // Create a label for the checkbox
-                                var label = document.createElement("label");
-                                label.appendChild(checkbox);
-                                label.appendChild(document.createTextNode(item));
-
-                                // Append the label to the container
-                                container.appendChild(label);
-                                container.appendChild(document.createElement("br"));
-                            }
-                        }
-                    })
-        },
-
-
-        onclick_activity_details: function (ev) {
-            ev.preventDefault();
-            //get selected teams
-            var activity_team = document.getElementById("activity_team");
-            var teams = [];
-
-            function toggleAllTeams(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-
-                }
-            }
-            // Find the "all" checkbox element
-            var allTeams = document.querySelector("input[type=checkbox][name=team][value='all']");
-            // Attach event listener to the "all" checkbox
-            allTeams.addEventListener("change", function() {
-                toggleAllTeams(this.checked);
-            });
-
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=team]:not([value='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allTeams.checked = false;
-                    }
-                });
-            });
-            // Trigger the checked checkbox
-            if (allTeams.checked) {
-                toggleAllTeams(true);
-            }
-            else {
-                for (var k = 0; k < activity_team.children.length; k++) {
-                    var checkbox = activity_team.children[k].querySelector("input[type=checkbox][name=team]");
-                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
-                        teams.push(checkbox.value);
-                    }
-                }
-            }
-
-            //get selected reps
-            var activity_rep = document.getElementById("activity_rep");
-            var reps = [];
-
-            function toggleAllReps(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-                }
-            }
-
-             // Find the "all" checkbox element
-            var allReps = document.querySelector("input[type=checkbox][name=rep][value='all']");
-            // Attach event listener to the "all" checkbox
-            allReps.addEventListener("change", function() {
-                toggleAllReps(this.checked);
-            });
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=rep]:not([value='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allReps.checked = false;
-                    }
-                });
-            });
-
-            // Trigger the checked checkbox
-            if (allReps.checked) {
-                toggleAllReps(true);
-            }
-            else {
-                for (var k = 0; k < activity_rep.children.length; k++) {
-                    var checkbox = activity_rep.children[k].querySelector("input[type=checkbox][name=rep]");
-                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
-                        reps.push(checkbox.value);
-                    }
-                }
-            }
-
-            //get selected meeting types
-            var activity_meeting_type = document.getElementById("activity_meeting_type");
-            var meeting_types = [];
-            function toggleAllMeetingTypes(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-                }
-            }
-
-            // Find the "all" checkbox element
-            var allMeetingTypes = document.querySelector("input[type=checkbox][name=meeting_type][value='all']");
-            // Attach event listener to the "all" checkbox
-            allMeetingTypes.addEventListener("change", function() {
-                toggleAllMeetingTypes(this.checked);
-            });
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=meeting_type]:not([value='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allMeetingTypes.checked = false;
-                    }
-                });
-            });
-            // Trigger the checked checkbox
-            if (allMeetingTypes.checked) {
-                toggleAllMeetingTypes(true);
-            }
-            else {
-                for (var k = 0; k < activity_meeting_type.children.length; k++) {
-                    var checkbox = activity_meeting_type.children[k].querySelector("input[type=checkbox][name=meeting_type]");
-                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
-                        meeting_types.push(checkbox.value);
-                    }
-                }
-            }
-
-            //get selected status
-            var activity_status = document.getElementById("activity_status");
-            var status = [];
-            function toggleAllStatus(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-                }
-            }
-
-             // Find the "all" checkbox element
-            var allStatus = document.querySelector("input[type=checkbox][name=status][value='all']");
-            // Attach event listener to the "all" checkbox
-            allStatus.addEventListener("change", function() {
-                toggleAllStatus(this.checked);
-            });
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=status]:not([value='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allStatus.checked = false;
-                    }
-                });
-            });
-            // Trigger the checked checkbox
-            if (allStatus.checked) {
-                toggleAllStatus(true);
-            }
-            else {
-                for (var k = 0; k < activity_status.children.length; k++) {
-                    var checkbox = activity_status.children[k].querySelector("input[type=checkbox][name=status]");
-                    if (checkbox && checkbox.checked && checkbox.value !== "all") {
-                        status.push(checkbox.value);
-                    }
-                }
-            }
-
-            //get selected state of open/closed
-            var open_closed = document.getElementById("open_closed");
-            var completed = [];
-            function toggleAllCompleted(checked) {
-                var allCheckboxes = document.querySelectorAll("input[type='checkbox'][name=completed]:not([id='all'])");
-                for (var i = 0; i < allCheckboxes.length; i++) {
-                    allCheckboxes[i].checked = checked;
-                }
-            }
-
-            // Find the "all" checkbox element
-            var allCompleted = document.querySelector("input[type=checkbox][name=completed][id='all']");
-            // Attach event listener to the "all" checkbox
-            allCompleted.addEventListener("change", function() {
-                toggleAllCompleted(this.checked);
-            });
-            // Attach event listener to individual checkboxes
-            var individualCheckboxes = document.querySelectorAll("input[type=checkbox][name=completed]:not([id='all'])");
-            individualCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    // If any individual checkbox is unchecked, uncheck the "All" checkbox
-                    if (!this.checked) {
-                        allCompleted.checked = false;
-                    }
-                });
-            });
-            // Trigger the checked checkbox
-            if (allCompleted.checked) {
-                toggleAllCompleted(true);
-            }
-            else {
-                for (var k = 0; k < open_closed.children.length; k++) {
-                    var checkbox = open_closed.children[k].querySelector("input[type=checkbox][name=completed]");
-                    if (checkbox && checkbox.checked) {
-                        completed.push(checkbox.id);
-                    }
-                }
-            }
-
-            //get selected period
-            var activity_period = document.getElementById("activity_period").value;
-
-            //get selected dates
-            var from_date = document.getElementById("from_date").value;
-            var to_date = document.getElementById("to_date").value;
-            var dates = [from_date, to_date];
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_activity_details_by_filter",
-                        args: [teams, reps, meeting_types, completed, status, dates, activity_period],
-                    }).then(function (result) {
-                        $('#activity_details').empty();
-                        var inner ='<table class="table table-sm table-sm">';
-                        var team =  _t('Team');
-                        var rep =  _t('Rep');
-                        var company =  _t('Company name');
-                        var contact =  _t('Contact');
-                        var customer_type =  _t('Customer type');
-                        var status =  _t('Status');
-                        var meeting_type =  _t('Meeting type');
-                        var activity_quantity =  _t('Activity quantity');
-                        var closed =  _t('Closed');
-                        var inner = '<table class="table table-sm table-sm">';
-                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
-                        inner+='<tbody>';
-                        for (var k = 0; k < result.length; k++) {
-                            var team = result[k].team_name ? result[k].team_name : '';
-                            var rep = result[k].rep ? result[k].rep : '';
-                            var company = result[k].company_name ? result[k].company_name : '';
-                            var contact = result[k].contact ? result[k].contact : '';
-                            var meeting_type = result[k].meeting_type ? result[k].meeting_type : '';
-                            var activity_quantity = result[k].activity_quantity ? result[k].activity_quantity : 0;
-                            var customer_type = result[k].customer_type ? result[k].customer_type : '';
-                            var status = result[k].status ? result[k].status : '';
-                            if (result[k].completed == 'yes')
-                                {
-                                var completed = _t('Yes');
-                                    }
-                            else
-                                {
-                                    var completed = _t('No');
-                                }
-                           inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
-                            }
-                        inner+='</tbody>';
-                        inner+='</table>';
-                        $('#activity_details').append(inner);
-                        })
-
-        },
-
-
-        renderElement: function (ev) {
-            var self = this;
-            $.when(this._super())
-                .then(function (ev) {
-
-
-                 rpc.query({
-                        model: "calendar.event",
-                        method: "get_activity_details",
-                    }).then(function (result) {
-                        var team =  _t('Team');
-                        var rep =  _t('Rep');
-                        var company =  _t('Company name');
-                        var contact =  _t('Contact');
-                        var customer_type =  _t('Customer type');
-                        var status =  _t('Status');
-                        var meeting_type =  _t('Meeting type');
-                        var activity_quantity =  _t('Activity quantity');
-                        var closed =  _t('Closed');
-                        var inner = '<table class="table table-sm table-sm">';
-                        inner += "<thread><tr style='background-color: silver;'><th><strong>" + team + "</strong></th><th><strong>" + rep + "</strong></th><th><strong>" + company + "</strong></th><th><strong>" + contact + "</strong></th><th><strong>" + customer_type + "</strong></th><th><strong>" + status + "</strong></th><th><strong>" + meeting_type + "</strong></th><th><strong>" + activity_quantity + "</strong></th><th><strong>" + closed + "</strong></th></tr></thread>";
-                       inner+='<tbody>';
-                        for (var k = 0; k < result.length; k++) {
-                            var team = result[k].team_name ? result[k].team_name : '';
-                            var rep = result[k].rep ? result[k].rep : '';
-                            var company = result[k].company_name ? result[k].company_name : '';
-                            var contact = result[k].contact ? result[k].contact : '';
-                            var meeting_type = result[k].meeting_type ? result[k].meeting_type : '';
-                            var activity_quantity = result[k].activity_quantity ? result[k].activity_quantity : 0;
-                            var customer_type = result[k].customer_type ? result[k].customer_type : '';
-                            var status = result[k].status ? result[k].status : '';
-                            if (result[k].completed == 'yes')
-                                {
-                                var completed = _t('Yes');
-                                    }
-                            else
-                                {
-                                    var completed = _t('No');
-                                }
-                           inner+= '<tr><td>'+team+'</td><td>'+rep+'</td><td>'+company+'</td><td>'+contact+'</td><td>'+customer_type+'</td><td>'+status+'</td><td>'+meeting_type+'</td><td>'+activity_quantity+'</td><td>'+completed+'</td></tr>';
-                            }
-                        inner+='</tbody>';
-                        inner+='</table>';
-                        $('#activity_details').append(inner);
-                        })
-
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_teams",
-                    })
-                    .then(function (result) {
-                        if (result[0]) {
-                            var select_all= _t('Select all');
-                            var container = document.getElementById("activity_team");
-                            container.innerHTML = ""; // Clear any previous content
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.name = "team";
-                            checkbox.value = "all";
-
-                            // Create a label for the checkbox
-                            var label = document.createElement("label");
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(select_all));
-
-                            // Append the label to the container
-                            container.appendChild(label);
-                            container.appendChild(document.createElement("br"));
-
-                            for (var k = 0; k < result.length; k++) {
-                                var item = result[k].name;
-                                var value = result[k].id;
-
-                                // Create a checkbox element
-                                var checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                checkbox.name = "team";
-                                checkbox.value = value;
-
-                                // Create a label for the checkbox
-                                var label = document.createElement("label");
-                                label.appendChild(checkbox);
-                                label.appendChild(document.createTextNode(item));
-
-                                // Append the label to the container
-                                container.appendChild(label);
-                                container.appendChild(document.createElement("br"));
-                            }
-                        }
-                    })
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_rep",
-                    })
-                    .then(function (result) {
-                        if (result[0]) {
-                            var select_all= _t('Select all');
-                            var container = document.getElementById("activity_rep");
-                            container.innerHTML = ""; // Clear any previous content
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.name = "rep";
-                            checkbox.value = "all";
-
-                            // Create a label for the checkbox
-                            var label = document.createElement("label");
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(select_all));
-
-                            // Append the label to the container
-                            container.appendChild(label);
-                            container.appendChild(document.createElement("br"));
-
-                            for (var k = 0; k < result.length; k++) {
-                                var item = result[k].name;
-                                var value = result[k].id;
-
-                                // Create a checkbox element
-                                var checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                checkbox.name = "rep";
-                                checkbox.value = value;
-
-                                // Create a label for the checkbox
-                                var label = document.createElement("label");
-                                label.appendChild(checkbox);
-                                label.appendChild(document.createTextNode(item));
-
-                                // Append the label to the container
-                                container.appendChild(label);
-                                container.appendChild(document.createElement("br"));
-                            }
-                        }
-                    })
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_meeting_type",
-                    })
-                    .then(function (result) {
-                        if (result[0]) {
-                            var select_all= _t('Select all');
-                            var container = document.getElementById("activity_meeting_type");
-                            container.innerHTML = ""; // Clear any previous content
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.name = "meeting_type";
-                            checkbox.value = "all";
-
-                            // Create a label for the checkbox
-                            var label = document.createElement("label");
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(select_all));
-
-                            // Append the label to the container
-                            container.appendChild(label);
-                            container.appendChild(document.createElement("br"));
-
-                            for (var k = 0; k < result.length; k++) {
-                                var item = result[k].name;
-                                var value = result[k].id;
-
-                                // Create a checkbox element
-                                var checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                checkbox.name = "meeting_type";
-                                checkbox.value = value;
-
-                                // Create a label for the checkbox
-                                var label = document.createElement("label");
-                                label.appendChild(checkbox);
-                                label.appendChild(document.createTextNode(item));
-
-                                // Append the label to the container
-                                container.appendChild(label);
-                                container.appendChild(document.createElement("br"));
-                            }
-                        }
-                    })
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_status",
-                    })
-                    .then(function (result) {
-                        if (result[0]) {
-                            var select_all= _t('Select all');
-                            var container = document.getElementById("activity_status");
-                            container.innerHTML = ""; // Clear any previous content
-                            var checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.name = "status";
-                            checkbox.value = "all";
-
-                            // Create a label for the checkbox
-                            var label = document.createElement("label");
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(select_all));
-
-                            // Append the label to the container
-                            container.appendChild(label);
-                            container.appendChild(document.createElement("br"));
-
-                            for (var k = 0; k < result.length; k++) {
-                                var item = result[k].name;
-                                var value = result[k].id;
-
-                                // Create a checkbox element
-                                var checkbox = document.createElement("input");
-                                checkbox.type = "checkbox";
-                                checkbox.name = "status";
-                                checkbox.value = value;
-
-                                // Create a label for the checkbox
-                                var label = document.createElement("label");
-                                label.appendChild(checkbox);
-                                label.appendChild(document.createTextNode(item));
-
-                                // Append the label to the container
-                                container.appendChild(label);
-                                container.appendChild(document.createElement("br"));
-                            }
-                        }
-                    })
-
-
-            rpc.query({
-                        model: "calendar.event",
-                        method: "get_period",
-                    })
-                        .then(function (result) {
-
-                                if(result[0]){
-                                  var selectElem = document.getElementById("activity_period");
-                                  $(selectElem).empty();
-                                  for (var k = 0; k < result.length; k++) {
-                                  var item =result[k].name;
-                                  var value =result[k].id;
-                                  var element = document.createElement("option");
-                                  element.innerText = item;
-                                  element.value = value;
-                                  selectElem.append(element);
-                                    }
-                                }
-                                })
-
-
-
-           });
-        },
-    });
-    core.action_registry.add('activity_dashboard', ActionMenu);
-
-});
+/** @odoo-module **/
+import { Component, useState, onWillStart, onWillUpdateProps } from "@odoo/owl";
+import { registry } from "@web/core/registry";
+import { useService } from "@web/core/utils/hooks";
+import { _t } from "@web/core/l10n/translation";
+
+// ─── FilterCheckboxGroup ──────────────────────────────────────────────────────
+// Composant générique : panel collapsible avec liste de checkboxes + "Select all"
+
+class FilterCheckboxGroup extends Component {
+    static template = "e3k_mac_contact_customisation.FilterCheckboxGroup";
+    static props = {
+        label: String,
+        // filterKey doit correspondre à la clé dans state.filters ET state.openSections
+        filterKey: String,
+        items: Array,
+        selectedIds: Array,
+        isOpen: Boolean,
+        onToggleSection: Function,
+        onSelectAll: Function,   // (filterKey, allIds) => void
+        onItemChange: Function,  // (filterKey, itemId) => void
+    };
+
+    get allSelected() {
+        const { items, selectedIds } = this.props;
+        return items.length > 0 && selectedIds.length === items.length;
+    }
+}
+
+// ─── ActivityTable ────────────────────────────────────────────────────────────
+// Composant dédié au tableau de résultats avec pagination côté client
+
+const PAGE_SIZES = [25, 50, 100];
+const DEFAULT_PAGE_SIZE = 50;
+
+class ActivityTable extends Component {
+    static template = "e3k_mac_contact_customisation.ActivityTable";
+    static props = {
+        rows: Array,
+        isLoading: Boolean,
+    };
+
+    setup() {
+        this.pageSizes = PAGE_SIZES;
+        this.state = useState({
+            currentPage: 1,
+            pageSize: DEFAULT_PAGE_SIZE,
+        });
+        // Réinitialise la page quand les données changent (nouveau filtre)
+        onWillUpdateProps(() => {
+            this.state.currentPage = 1;
+        });
+    }
+
+    // ── Getters pagination ────────────────────────────────────────────────────
+
+    get totalPages() {
+        return Math.max(1, Math.ceil(this.props.rows.length / this.state.pageSize));
+    }
+
+    get pagedRows() {
+        const start = (this.state.currentPage - 1) * this.state.pageSize;
+        return this.props.rows.slice(start, start + this.state.pageSize);
+    }
+
+    get fromRow() {
+        return this.props.rows.length === 0 ? 0 : (this.state.currentPage - 1) * this.state.pageSize + 1;
+    }
+
+    get toRow() {
+        return Math.min(this.state.currentPage * this.state.pageSize, this.props.rows.length);
+    }
+
+    // Génère la liste des numéros de page avec ellipses : [1, '...', 4, 5, 6, '...', 12]
+    get pageNumbers() {
+        const total = this.totalPages;
+        const current = this.state.currentPage;
+        if (total <= 7) {
+            return Array.from({ length: total }, (_, i) => i + 1);
+        }
+        const range = new Set([1, total]);
+        for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+            range.add(i);
+        }
+        const sorted = [...range].sort((a, b) => a - b);
+        const pages = [];
+        let prev = 0;
+        for (const p of sorted) {
+            if (p - prev > 1) pages.push("...");
+            pages.push(p);
+            prev = p;
+        }
+        return pages;
+    }
+
+    // ── Handlers pagination ───────────────────────────────────────────────────
+
+    goToPage(page) {
+        if (page >= 1 && page <= this.totalPages) {
+            this.state.currentPage = page;
+        }
+    }
+
+    onPageSizeChange(ev) {
+        this.state.pageSize = parseInt(ev.target.value, 10);
+        this.state.currentPage = 1;
+    }
+
+    completedLabel(completed) {
+        return completed === "yes" ? _t("Yes") : _t("No");
+    }
+}
+
+// ─── ActivityDashboard ────────────────────────────────────────────────────────
+// Composant root : gère l'état global et orchestre les sous-composants
+
+export class ActivityDashboard extends Component {
+    static template = "e3k_mac_contact_customisation.ActivityDashboard";
+    static props = ["*"];
+    static components = { FilterCheckboxGroup, ActivityTable };
+
+    setup() {
+        this.orm = useService("orm");
+        this.state = useState({
+            teams: [],
+            reps: [],
+            meetingTypes: [],
+            statuses: [],
+            periods: [],
+            activityDetails: [],
+            isLoading: false,
+            filters: {
+                teams: [],
+                reps: [],
+                meetingTypes: [],
+                completed: [],
+                status: [],
+                fromDate: "",
+                toDate: "",
+                period: "",
+            },
+            // Les clés correspondent exactement aux clés de filters pour simplifier toggleSection
+            openSections: {
+                teams: false,
+                reps: false,
+                meetingTypes: false,
+                status: false,
+                completed: false,
+            },
+        });
+
+        onWillStart(() => this._loadInitialData());
+    }
+
+    // Getter : items statiques pour le filtre "Closed"
+    get completedItems() {
+        return [
+            { id: "yes", name: _t("Yes") },
+            { id: "no", name: _t("No") },
+        ];
+    }
+
+    // ── Chargement des données ───────────────────────────────────────────────
+
+    async _loadInitialData() {
+        const [teams, reps, meetingTypes, statuses, periods, details] =
+            await Promise.all([
+                this.orm.call("calendar.event", "get_teams", []),
+                this.orm.call("calendar.event", "get_rep", []),
+                this.orm.call("calendar.event", "get_meeting_type", []),
+                this.orm.call("calendar.event", "get_status", []),
+                this.orm.call("calendar.event", "get_period", []),
+                this.orm.call("calendar.event", "get_activity_details", []),
+            ]);
+        Object.assign(this.state, {
+            teams,
+            reps,
+            meetingTypes,
+            statuses,
+            periods,
+            activityDetails: details,
+        });
+    }
+
+    async _loadFilteredDetails() {
+        this.state.isLoading = true;
+        try {
+            const f = this.state.filters;
+            const details = await this.orm.call(
+                "calendar.event",
+                "get_activity_details_by_filter",
+                [f.teams, f.reps, f.meetingTypes, f.completed, f.status, [f.fromDate, f.toDate], f.period]
+            );
+            this.state.activityDetails = details;
+        } finally {
+            this.state.isLoading = false;
+        }
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    _toggleInList(list, value) {
+        const idx = list.indexOf(value);
+        if (idx >= 0) list.splice(idx, 1);
+        else list.push(value);
+    }
+
+    async _updateRepsAndReload() {
+        const teamIds = this.state.filters.teams;
+        const method = teamIds.length ? "get_rep_by_team" : "get_rep";
+        const args = teamIds.length ? [teamIds] : [];
+        this.state.reps = await this.orm.call("calendar.event", method, args);
+        this.state.filters.reps = [];
+        await this._loadFilteredDetails();
+    }
+
+    // ── Handlers partagés avec FilterCheckboxGroup ───────────────────────────
+
+    toggleSection(filterKey) {
+        this.state.openSections[filterKey] = !this.state.openSections[filterKey];
+    }
+
+    // Handler générique toggle : met à jour le filtre et recharge
+    async onFilterItemChange(filterKey, itemId) {
+        this._toggleInList(this.state.filters[filterKey], itemId);
+        await this._loadFilteredDetails();
+    }
+
+    // Handler générique "select all" : bascule tout ou rien
+    async onFilterSelectAll(filterKey, allIds) {
+        const f = this.state.filters;
+        f[filterKey] = f[filterKey].length === allIds.length ? [] : [...allIds];
+        await this._loadFilteredDetails();
+    }
+
+    // Handler spécifique teams : recharge aussi la liste des reps
+    async onTeamItemChange(filterKey, teamId) {
+        this._toggleInList(this.state.filters.teams, teamId);
+        await this._updateRepsAndReload();
+    }
+
+    async onTeamSelectAll(filterKey, allIds) {
+        const f = this.state.filters;
+        f.teams = f.teams.length === allIds.length ? [] : [...allIds];
+        await this._updateRepsAndReload();
+    }
+
+    // ── Handlers période / dates ─────────────────────────────────────────────
+
+    async onPeriodChange(ev) {
+        this.state.filters.period = ev.target.value;
+        if (this.state.filters.period) {
+            this.state.filters.fromDate = "";
+            this.state.filters.toDate = "";
+        }
+        await this._loadFilteredDetails();
+    }
+
+    async onDateChange(field, ev) {
+        this.state.filters[field] = ev.target.value;
+        if (this.state.filters[field]) {
+            this.state.filters.period = "";
+        }
+        await this._loadFilteredDetails();
+    }
+}
+
+registry.category("actions").add("activity_dashboard", ActivityDashboard);

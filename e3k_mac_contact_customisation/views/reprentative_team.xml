@@ -11,7 +11,7 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active"/>
                         <div class="oe_title">
                             <label for="name" string="Representative Team"/>
                             <h1>
@@ -40,7 +40,7 @@
                                         <field name="email"/>
                                         <field name="avatar_128"/>
                                         <templates>
-                                            <t t-name="kanban-box">
+                                            <t t-name="card">
                                                 <div class="oe_kanban_card oe_kanban_global_click">
                                                     <div class="o_kanban_card_content d-flex">
                                                         <div class="oe_kanban_details d-flex flex-column ml-3">
@@ -63,11 +63,7 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"
-                               help="Follow this salesteam to automatically track the events associated to users of this team."/>
-                        <field name="message_ids"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -75,12 +71,12 @@
             <field name="name">representative.team.tree</field>
             <field name="model">representative.team</field>
             <field name="arch" type="xml">
-                <tree string="Representative team">
+                <list string="Representative team">
                     <field name="name"/>
                     <field name="user_id"/>
                     <field name="company_id" invisible="1"/>
                     <field name="active"/>
-                </tree>
+                </list>
             </field>
         </record>
         <record id="representative_team_view_kanban" model="ir.ui.view">
@@ -93,7 +89,7 @@
                     <field name="company_id" invisible="1"/>
                     <field name="active"/>
                     <templates>
-                        <t t-name="kanban-box">
+                        <t t-name="card">
                             <div class="oe_kanban_card oe_kanban_global_click">
                                 <div class="o_kanban_card_content d-flex">
                                     <div class="oe_kanban_details d-flex flex-column ml-3">
@@ -128,7 +124,7 @@
         <record id="representative_team_action" model="ir.actions.act_window">
             <field name="name">Representative Team</field>
             <field name="res_model">representative.team</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">list,form,kanban</field>
             <field name="view_id" ref="representative_team_view_tree"/>
         </record>
         <menuitem id="menu_representative_team" name="Representative Team" parent="calendar.mail_menu_calendar"

@@ -3,27 +3,26 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-  'name': 'Partner Validation Sale',
-  'version': '15.0.1.0.0',
-  'author': 'Numigi',
-  'maintainer': 'Numigi',
-  'website': 'https://www.numigi.com',
-  'license': 'LGPL-3',
-  'category': 'Partner Management',
-  'depends': [
-    'partner_validation',
-    'sale_stock'
-  ],
-  'data': [
-    'security/res_groups.xml',
-    'views/res_partner_restricted_field.xml',
-    'views/res_partner.xml'
-  ],
-  'assets': {
-    'web.assets_backend': [
-      'partner_validation_sale/static/src/css/custom_button_sale.css',
+    'name': 'Partner Validation Sale',
+    'version': '19.0.1',
+    'author': 'e3k',
+    'website': 'https://e3k.co',
+    'license': 'LGPL-3',
+    'category': 'Partner Management',
+    'depends': [
+        'partner_validation',
+        'sale_stock',
     ],
-  },
-  'application': False,
-  'installable': True,
+    'data': [
+        'security/res_groups.xml',
+        'views/res_partner_restricted_field.xml',
+        'views/res_partner.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'partner_validation_sale/static/src/**/*',
+        ],
+    },
+    'application': False,
+    'installable': True,
 }

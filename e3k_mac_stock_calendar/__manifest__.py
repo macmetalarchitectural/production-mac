@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'E3K Stock Calendar',
-    'version': '1.0.6',
-    'author': 'e3k solutions',
+    'version': '19.0.1',
+    'author': 'e3k',
     'maintainer': 'e3k',
     'website': 'https://www.e3k.co/',
     'license': 'AGPL-3',
@@ -11,21 +11,16 @@
     'depends': ['e3k_macmetal'],
     'data': [
         # data
-
         # security
-
         # views
         'views/stock_picking.xml',
-
         # wizard
     ],
     'assets': {
-        'web.assets_qweb': [
-            'e3k_mac_stock_calendar/static/src/legacy/xml/template.xml',
-        ],
         'web.assets_backend': [
-            'e3k_mac_stock_calendar/static/src/legacy/js/views/calendar/calendar_renderer.js',
-            'e3k_mac_stock_calendar/static/src/legacy/scss/disable_hours_in_calendar.scss',
+            'e3k_mac_stock_calendar/static/src/views/calendar/stock_calendar_common_renderer.js',
+            'e3k_mac_stock_calendar/static/src/views/calendar/stock_calendar_common_renderer.xml',
+            'e3k_mac_stock_calendar/static/src/scss/stock_calendar.scss',
         ],
     },
     'installable': True,

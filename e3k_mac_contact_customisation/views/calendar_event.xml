@@ -54,17 +54,16 @@
                     <header>
                         <field name="completed" invisible="1"/>
                         <button string="Mark as Done" name="action_done"
-                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                                type="object" invisible="completed == 'yes'" class="btn-primary"
                         />
                         <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
-                                type="object" attrs="{'invisible': [('completed', '=', 'yes')]}" class="btn-primary"
+                                type="object" invisible="completed == 'yes'" class="btn-primary"
                         />
                         <button string="Mark as Done" name="action_done"
-                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
+                                type="object" invisible="completed == 'no'" class="btn-secondary"
                         />
                         <button string="Done &amp; Schedule Next" name="action_done_schedule_next"
-                                type="object" attrs="{'invisible': [('completed', '=', 'no')]}" class="btn-secondary"
-
+                                type="object" invisible="completed == 'no'" class="btn-secondary"
                         />
                     </header>
 

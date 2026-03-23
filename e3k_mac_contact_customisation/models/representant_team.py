@@ -1,16 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import json
-import random
-
-from babel.dates import format_date
-from datetime import date
-from dateutil.relativedelta import relativedelta
-
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
-from odoo.release import version
+from odoo import fields, models
 
 
 class RepresentativeTeam(models.Model):
@@ -23,11 +14,16 @@ class RepresentativeTeam(models.Model):
     # description
     name = fields.Char('Representative Team', required=True, translate=True)
     sequence = fields.Integer('Sequence', default=10)
-    active = fields.Boolean(default=True, help="If the active field is set to false, it will allow you to hide the Sales Team without removing it.")
-    company_id = fields.Many2one(
-        'res.company', string='Company', index=True,
-        default=lambda self: self.env.company)
+    active = fields.Boolean(
+        default=True,
+        help="If the active field is set to false, it will allow you to hide the Sales Team without removing it.",
+    )
+    company_id = fields.Many2one('res.company', string='Company', index=True, default=lambda self: self.env.company)
     user_id = fields.Many2one('res.users', string='Responsible', check_company=True)
     member_ids = fields.Many2many(
-        'res.users', string='Team Members', relation='representative_team_res_users_rel',  check_company=True,
-        help="Users assigned to this team.")
+        'res.users',
+        string='Team Members',
+        relation='representative_team_res_users_rel',
+        check_company=True,
+        help="Users assigned to this team.",
+    )

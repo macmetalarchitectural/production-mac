@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_invoice_mac" inherit_id="e3k_default_reports.report_invoice_baleco">
+    <template id="report_invoice_mac" inherit_id="e3k_default_reports.report_invoice_e3k">
         <xpath expr="//div[@name='comment']" position="replace">
             <div t-if="not is_html_empty(o.narration)" name="comment">
                 <table class="table">
@@ -12,16 +12,11 @@
                 </table>
             </div>
         </xpath>
-        <xpath expr="//p[@name='payment_term']" position="replace">
+        <xpath expr="//span[@name='payment_term']" position="attributes">
+            <attribute name="t-if">False</attribute>
         </xpath>
-        <xpath expr="//p[@name='payment_communication']" position="replace">
-        </xpath>
-        <xpath expr="//div[@id='informations']//div[@name='invoice_date']" position="after">
-
-            <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_payment_term_id" name="payment_term">
-                <strong>Payment terms:</strong>
-                <p class="m-0" t-field="o.invoice_payment_term_id"/>
-            </div>
+        <xpath expr="//p[@name='payment_communication']" position="attributes">
+            <attribute name="t-if">False</attribute>
         </xpath>
         <xpath expr="//div[@id='qrcode']" position="after">
 
@@ -35,15 +30,4 @@ font-weight: bold; page-break-inside: avoid;">
         </xpath>
     </template>
 
-    <template id="report_invoice_mac_report2" inherit_id="account.report_invoice">
-        <xpath expr="//t[@t-set='lang']" position="replace">
-            <t t-set="lang" t-value="o.partner_id.lang"/>
-        </xpath>
-    </template>
-    <!--    payment2-->
-    <template id="report_invoice_mac_with_payments2" inherit_id="account.report_invoice_with_payments">
-        <xpath expr="//t[@t-set='lang']" position="replace">
-            <t t-set="lang" t-value="o.partner_id.lang"/>
-        </xpath>
-    </template>
 </odoo>
