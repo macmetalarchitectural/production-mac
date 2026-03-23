@@ -16,8 +16,34 @@ MODULES_TO_REMOVE = [
     'auth_totp_password_security'
 ]
 
-MODULE_TO_UNINSTALL = [
-    # 'e3k_eft',
+_RENAMED_FIELDS = [
+      # helpdesk.ticket
+      ("helpdesk.ticket",  "x_studio_amount",                    "e3k_old_amount"),
+      ("helpdesk.ticket",  "x_studio_amount_1",                  "e3k_amount"),
+      ("helpdesk.ticket",  "x_studio_ticket_product_type",       "e3k_ticket_product_type_id"),
+      # product.template
+      ("product.template", "x_studio_drawing",                   "e3k_drawing"),
+      # res.partner
+      ("res.partner",      "x_studio_division",                  "e3k_division_id"),
+      ("res.partner",      "x_studio_inside_sales_rep",          "e3k_inside_sales_rep_id"),
+      ("res.partner",      "x_studio_maison_mre",                "e3k_maison_mere_id"),
+      # sale.order
+      ("sale.order",       "x_studio_division",                  "e3k_division_id"),
+      ("sale.order",       "x_studio_follow_up_date",            "e3k_follow_up_date"),
+      ("sale.order",       "x_studio_inside_sales_rep",          "e3k_inside_sales_rep_id"),
+      ("sale.order",       "x_studio_maison_mre",                "e3k_maison_mere_id"),
+      ("sale.order",       "x_studio_on_hold",                   "e3k_on_hold"),
+      ("sale.order",       "x_studio_receipt_date",              "e3k_receipt_date"),
+      ("sale.order",       "x_studio_replacement",               "e3k_replacement"),
+      # stock.move
+      ("stock.move",       "x_studio_date_field_WyUyd",          "e3k_date_field"),
+      # stock.picking
+      ("stock.picking",    "x_studio_delivery_on_hold",          "e3k_delivery_on_hold"),
+      ("stock.picking",    "x_studio_sales_value",               "e3k_sales_value"),
+  ]
+
+_RENAME_MODELS = [
+    ('x_ticket_product_type','e3k.ticket.product.type')
 ]
 
 
@@ -128,8 +154,24 @@ def remove_non_used_modules(cr):
     #     except Exception as e:
     #         e3k_logger.warning(E3K_PREFIX_LOG + f"Failed to uninstall  module {module}: {e}")
 
+def rename_fields(cr):
+    for model, old_name, new_name in _RENAMED_FIELDS:
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming field {model}.{old_name} to {new_name}")
+        util.rename_field(cr, model, old_name, new_name)
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Field {model}.{old_name} renamed to {new_name} successfully")
+
+
+def rename_models(cr):
+    for old_name, new_name in _RENAME_MODELS:
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming model {old_name} to {new_name}")
+        util.rename_model(cr, old_name, new_name)
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Model {old_name} renamed to {new_name} successfully")
 
 def migrate(cr, version):
     env = util.env(cr)
+
+    rename_models(cr)
+
+    rename_fields(cr)
 
     remove_non_used_modules(cr)
