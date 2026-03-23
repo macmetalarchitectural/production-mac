@@ -154,6 +154,22 @@ def remove_non_used_modules(cr):
     #     except Exception as e:
     #         e3k_logger.warning(E3K_PREFIX_LOG + f"Failed to uninstall  module {module}: {e}")
 
+def set_studio_fields_as_base(cr):
+    fields_by_model = {}
+    for model, field_name, _ in _RENAMED_FIELDS:
+        fields_by_model.setdefault(model, []).append(field_name)
+
+    for model, field_names in fields_by_model.items():
+        cr.execute("""
+            UPDATE ir_model_fields
+            SET state = 'base'
+            WHERE model = %s
+              AND name = ANY(%s)
+              AND state != 'base'
+        """, (model, field_names))
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Set state='base' for {model}: {field_names} ({cr.rowcount} rows updated)")
+
+
 def rename_fields(cr):
     for model, old_name, new_name in _RENAMED_FIELDS:
         e3k_logger.warning(E3K_PREFIX_LOG + f"Renaming field {model}.{old_name} to {new_name}")
@@ -171,6 +187,8 @@ def migrate(cr, version):
     env = util.env(cr)
 
     rename_models(cr)
+
+    set_studio_fields_as_base(cr)
 
     rename_fields(cr)
 
