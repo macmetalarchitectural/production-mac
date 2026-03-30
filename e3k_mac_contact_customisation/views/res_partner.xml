@@ -20,11 +20,15 @@
                            options="{'no_open': True, 'no_create': True}" string="Status" force_save="1"
                            readonly="not is_company"/>
                     <field name="industry_id"
-                           string="Customer type" readonly="not is_company" options="{'no_open': True, 'no_create': True}"/>
+                           string="Customer type" readonly="not is_company"
+                           options="{'no_open': True, 'no_create': True}"/>
                 </xpath>
 
                 <xpath expr="//page[1]" position="attributes">
                     <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='general']" position="inside">
+                    <field name="l10n_ca_pst" position="move"/>
                 </xpath>
                 <xpath expr="//page[1]" position="after">
                     <page string="Contacts &amp; Addresses" name="contact_addresses" autofocus="autofocus">
