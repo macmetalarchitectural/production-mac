@@ -13,7 +13,6 @@ _logger.info('StockPicking model loaded')
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
-    _order = 'partner_id'
 
     delivery_route_id = fields.Many2one(related='sale_id.delivery_route_id', string='Delivery Route')  # no-check
     worksite_ready = fields.Boolean(string='Worksite Ready', default=False)  # no-check
@@ -157,6 +156,11 @@ class StockPicking(models.Model):
             self.move_ids.write({'date_deadline': final_dt_utc})
 
             vals['date_deadline'] = final_dt_utc
+
+        #     ecrite aussi la nouvelle dateline  su le SO lié
+
+            if self.sale_id:
+                self.sale_id.write({'commitment_date': final_dt_utc})
 
         result = super().write(vals)
         return result

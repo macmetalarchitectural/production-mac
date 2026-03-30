@@ -34,7 +34,29 @@
             // Hide time slot labels
             display: none !important;
         }
+
+        // Hide the time grid (hourly slots) — all stock.picking events are all-day
+        // fc-timegrid-body: the time slot rows (00:00, 01:00, etc.)
+        // fc-scrollgrid-section-liquid: the scrollable body row containing the time grid
+        .fc-timegrid-body,
+        .fc-scrollgrid-section-liquid {
+            display: none !important;
+        }
     }
+}
+
+// ============================================================================
+// Stock.picking calendar container — scrollable
+// ============================================================================
+/**
+ * .e3k_stock_calendar_view is added to .o_calendar_wrapper by viewDidMount in JS.
+ * .o_calendar_wrapper has a fixed height (CSS grid 1fr) and overflow:hidden (Bootstrap).
+ * With height:'auto' on FullCalendar, .fc grows to fit all events.
+ * Overriding overflow-y to auto makes the wrapper scroll when events exceed its height.
+ * Specificity 0,2,0 beats Bootstrap's .overflow-hidden (0,1,0), both with !important.
+ */
+.o_calendar_wrapper.e3k_stock_calendar_view {
+    overflow-y: auto !important;
 }
 
 // ============================================================================

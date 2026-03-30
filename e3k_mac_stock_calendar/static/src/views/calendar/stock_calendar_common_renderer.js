@@ -49,12 +49,29 @@ patch(CalendarCommonRenderer.prototype, {
             const scale = this.props.model.scale;
 
             // Add custom class only for stock.picking in week/day view
+            // .o_calendar_wrapper is the real container (CSS grid 1fr, overflow:hidden)
+            const wrapper = el.closest('.o_calendar_wrapper');
             if (resModel === 'stock.picking' && (scale === 'week' || scale === 'day')) {
                 el.classList.add('e3k_calendar');
+                if (wrapper) {
+                    wrapper.classList.add('e3k_stock_calendar_view');
+                }
             } else {
                 el.classList.remove('e3k_calendar');
+                if (wrapper) {
+                    wrapper.classList.remove('e3k_stock_calendar_view');
+                }
             }
         };
+
+        // Disable "+N more" collapse for stock.picking
+        // height: 'auto' → FullCalendar sizes itself to fit all events (no fixed height)
+        // The parent container (.e3k_stock_calendar_view) gets overflow-y: auto via CSS
+        if (this.props.model.resModel === 'stock.picking') {
+            options.dayMaxEvents = false;
+            options.dayMaxEventRows = false;
+            options.height = 'auto';
+        }
 
         return options;
     },
@@ -81,12 +98,42 @@ patch(CalendarCommonRenderer.prototype, {
      * This "OWL-like" approach pre-calculates data for the template, avoiding
      * business logic in XML templates.
      */
+    /**
+     * Override mapRecordsToEvents to sort stock.picking events by partner name.
+     *
+     * In Odoo 19, records are stored in a plain JS object keyed by ID.
+     * Object.values() order is not guaranteed, so _order on the Python model
+     * has no effect on calendar rendering. We sort here before FullCalendar
+     * receives the events, so same-day events are grouped by partner.
+     */
+    mapRecordsToEvents() {
+        if (this.props.model.resModel !== 'stock.picking') {
+            return super.mapRecordsToEvents();
+        }
+        return Object.values(this.props.model.records)
+            .sort((a, b) => {
+                const nameA = Array.isArray(a.rawRecord.partner_id)
+                    ? a.rawRecord.partner_id[1]
+                    : (a.rawRecord.partner_id || '');
+                const nameB = Array.isArray(b.rawRecord.partner_id)
+                    ? b.rawRecord.partner_id[1]
+                    : (b.rawRecord.partner_id || '');
+                return nameA.localeCompare(nameB);
+            })
+            .map((r) => this.convertRecordToEvent(r));
+    },
+
     convertRecordToEvent(record) {
         const event = super.convertRecordToEvent(record);
 
         if (this.props.model.resModel === 'stock.picking' && record.rawRecord) {
+            // Remplace le title (display_name du picking ex: WH/OUT/00123) par
+            // e3k_custom_display_name (commence par le nom du partenaire).
+            // FullCalendar utilise 'title' comme critère de tri secondaire dans
+            // son eventOrder par défaut → les événements du même partenaire
+            // se retrouvent groupés sans avoir besoin d'eventOrder custom.
+            event.title = record.rawRecord.e3k_custom_display_name || record.title;
             // Enrich event with custom data
-            event.e3k_display_name = record.rawRecord.e3k_custom_display_name || record.title;
             event.e3k_show_assigned_dot = record.rawRecord.state === 'assigned';
             event.e3k_flexible_date = record.rawRecord.flexible_date;
             event.e3k_calendar_color = record.rawRecord.e3k_calendar_color;
@@ -164,7 +211,10 @@ patch(CalendarCommonRenderer.prototype, {
 
         if (record && resModel === 'stock.picking') {
             // Filter out Odoo default classes
-            const filteredClasses = classesToAdd.filter(cls => !cls.startsWith('o_calendar_color_'));
+            // o_past_event: rend les événements passés semi-transparents (comportement natif non désiré)
+            const filteredClasses = classesToAdd.filter(
+                cls => !cls.startsWith('o_calendar_color_') && cls !== 'o_past_event'
+            );
 
             // Add base class for stock.picking (black border)
             filteredClasses.push('e3k_stock_event');
