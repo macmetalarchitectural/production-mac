@@ -210,10 +210,9 @@ patch(CalendarCommonRenderer.prototype, {
         const resModel = this.props.model.resModel;
 
         if (record && resModel === 'stock.picking') {
-            // Filter out Odoo default classes
-            // o_past_event: rend les événements passés semi-transparents (comportement natif non désiré)
+            // Filter out Odoo default color classes
             const filteredClasses = classesToAdd.filter(
-                cls => !cls.startsWith('o_calendar_color_') && cls !== 'o_past_event'
+                cls => !cls.startsWith('o_calendar_color_')
             );
 
             // Add base class for stock.picking (black border)
