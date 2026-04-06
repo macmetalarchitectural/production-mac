@@ -27,8 +27,13 @@
 .o_calendar_view {
     .e3k_calendar {
         .fc-timegrid-axis {
-            // Hide hour column on left side of calendar
-            display: none !important;
+            // Collapse to zero width without removing from DOM flow.
+            // display:none would shift the header row, misaligning the first day column.
+            width: 0 !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            overflow: hidden !important;
         }
         .fc-timegrid-slot-label {
             // Hide time slot labels
