@@ -5,9 +5,10 @@ import { SignatureForm } from "@portal/signature_form/signature_form";
 import { patch } from "@web/core/utils/patch";
 import { rpc } from "@web/core/network/rpc";
 import { _t } from "@web/core/l10n/translation";
-import { formatDateTime, parseDateTime, serializeDateTime } from "@web/core/l10n/dates";
+import { formatDateTime, serializeDateTime } from "@web/core/l10n/dates";
+import { redirect } from "@web/core/utils/urls";
 import { useDateTimePicker } from "@web/core/datetime/datetime_picker_hook";
-import { useState, onWillStart, useRef } from "@odoo/owl";
+import { useState, onWillStart } from "@odoo/owl";
 
 const { DateTime } = luxon;
 
@@ -84,6 +85,7 @@ patch(NameAndSignature.prototype, {
         if (!value) {
             this.deliveryState.date = null;
             this.deliveryState.hasError = false;
+            this.props.signature.deliveryDate = null;
             return;
         }
 
@@ -92,6 +94,7 @@ patch(NameAndSignature.prototype, {
             this.deliveryState.hasError = true;
             this.deliveryState.errorMessage = _t('Please select a weekday (Monday to Friday).');
             this.deliveryState.date = null;
+            this.props.signature.deliveryDate = null;
             return;
         }
 
@@ -103,50 +106,17 @@ patch(NameAndSignature.prototype, {
                 formatDateTime(this.deliveryState.minDate)
             );
             this.deliveryState.date = null;
+            this.props.signature.deliveryDate = null;
             return;
         }
 
-        // Valid date
+        // Valid date — store locally and on shared signature state
         this.deliveryState.date = value;
         this.deliveryState.hasError = false;
         this.deliveryState.errorMessage = '';
+        this.props.signature.deliveryDate = value;
     },
 
-    /**
-     * Get the selected delivery date (for compatibility)
-     */
-    getDeliveryDate() {
-        return this.deliveryState.date ? serializeDateTime(this.deliveryState.date) : '';
-    },
-
-    /**
-     * Get delivery date as ISO string
-     */
-    getDeliveryDateISO() {
-        return this.deliveryState.date ? this.deliveryState.date.toISO() : null;
-    },
-
-    /**
-     * Validate signature including delivery date
-     */
-    validateSignature() {
-        const hasDeliveryDate = !!this.deliveryState.date;
-        const name = this.props.signature.name;
-        const isSignatureEmpty = this.props.signature.isSignatureEmpty;
-
-        // Update error state reactively
-        if (!hasDeliveryDate) {
-            this.deliveryState.hasError = true;
-            this.deliveryState.errorMessage = _t('Please select a delivery date.');
-        }
-
-        // Validate name and signature (let parent handle those)
-        const isValid = super.validateSignature ?
-            super.validateSignature() :
-            (!isSignatureEmpty && !!name);
-
-        return hasDeliveryDate && isValid;
-    },
 });
 
 /**
@@ -155,73 +125,41 @@ patch(NameAndSignature.prototype, {
 patch(SignatureForm.prototype, {
     setup() {
         super.setup(...arguments);
-
-        // Add loading state
-        if (!this.state.isSubmitting) {
-            this.state.isSubmitting = false;
-        }
-
-        // Reference to submit button
-        this.submitButtonRef = useRef("submitButton");
+        // Extend shared signature state with deliveryDate
+        this.signature.deliveryDate = null;
     },
 
     /**
-     * Override click submit to add delivery date to RPC params (100% OWL)
+     * Override click submit to add delivery date to RPC params.
+     * Delivery date is read from this.signature.deliveryDate, written
+     * by the NameAndSignature patch via this.props.signature.deliveryDate.
      */
     async onClickSubmit() {
-        // Validate first
-        if (this.nameAndSignatureRef?.comp) {
-            const comp = this.nameAndSignatureRef.comp;
-            if (!comp.validateSignature()) {
-                return;
-            }
+        // Validate delivery date before proceeding
+        if (!this.signature.deliveryDate) {
+            this.state.error = _t('Please select a delivery date.');
+            return;
         }
 
-        // Set loading state (reactive)
-        this.state.isSubmitting = true;
+        const name = this.signature.name;
+        const signature = this.signature.getSignatureImage().split(",")[1];
+        const delivery = serializeDateTime(this.signature.deliveryDate);
+        const data = await rpc(this.props.callUrl, { name, signature, delivery });
 
-        try {
-            // Get delivery date from NameAndSignature component
-            let delivery = null;
-            if (this.nameAndSignatureRef?.comp?.getDeliveryDateISO) {
-                delivery = this.nameAndSignatureRef.comp.getDeliveryDateISO();
+        if (data.force_refresh) {
+            if (data.redirect_url) {
+                redirect(data.redirect_url);
+            } else {
+                window.location.reload();
             }
-
-            // Prepare params
-            const name = this.signature.name;
-            const signature = this.signature.getSignatureImage().split(",")[1];
-            const params = { name, signature };
-
-            if (delivery) {
-                params.delivery = delivery;
-            }
-
-            // Make RPC call
-            const data = await rpc(this.props.callUrl, params);
-
-            if (data.force_refresh) {
-                if (data.redirect_url) {
-                    const { redirect } = await import("@web/core/utils/urls");
-                    redirect(data.redirect_url);
-                } else {
-                    window.location.reload();
-                }
-                return new Promise(() => {});
-            }
-
-            // Update state reactively
-            this.state.error = data.error || false;
-            this.state.success = !data.error && {
-                message: data.message,
-                redirectUrl: data.redirect_url,
-                redirectMessage: data.redirect_message,
-            };
-        } catch (error) {
-            console.error('Error submitting signature:', error);
-            this.state.error = error.message || _t('An error occurred');
-        } finally {
-            // Reset loading state
-            this.state.isSubmitting = false;
+            return new Promise(() => {});
         }
+
+        this.state.error = data.error || false;
+        this.state.success = !data.error && {
+            message: data.message,
+            redirectUrl: data.redirect_url,
+            redirectMessage: data.redirect_message,
+        };
     },
 });

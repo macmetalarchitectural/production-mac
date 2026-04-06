@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import binascii
+from datetime import datetime, timezone
 
 from odoo import _, fields, http
 from odoo.addons.portal.controllers import portal
@@ -27,6 +28,18 @@ class CustomerPortal(portal.CustomerPortal):
             return {'error': _('Name is missing.')}
         if not delivery:
             return {'error': _('Delivery is missing.')}
+
+        # Normalize delivery to UTC naive datetime string (Odoo ORM format).
+        # The JS may send ISO 8601 with timezone (e.g. '2026-04-28T11:00:00.000-04:00')
+        # or Odoo's own format ('2026-04-28 15:00:00'). Handle both.
+        try:
+            if 'T' in delivery:
+                dt = datetime.fromisoformat(delivery)
+                if dt.tzinfo is not None:
+                    dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
+                delivery = dt.strftime('%Y-%m-%d %H:%M:%S')
+        except (ValueError, TypeError):
+            return {'error': _('Invalid delivery date format.')}
 
         try:
             order_sudo.write(
