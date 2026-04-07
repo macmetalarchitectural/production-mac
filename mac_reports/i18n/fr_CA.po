@@ -24,7 +24,7 @@ msgid ""
 "                    </span>"
 msgstr ""
 "<span>\n"
-"                        <strong>Expédier À:</strong>\n"
+"                        <strong>Expédier à:</strong>\n"
 "                    </span>"
 
 #. module: mac_reports
@@ -34,7 +34,7 @@ msgid ""
 "<span>\n"
 "                        <strong>Sold to:</strong>\n"
 "                    </span>"
-msgstr "<span><strong>Vendu À:</strong></span>"
+msgstr "<span><strong>Vendu à:</strong></span>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
