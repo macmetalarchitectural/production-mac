@@ -21,6 +21,11 @@
         'views/sale_order.xml',
         'views/picking_form_view.xml',
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'mac_reports/static/src/css/report_overrides.css',
+        ],
+    },
     'demo': [
     ],
 }
