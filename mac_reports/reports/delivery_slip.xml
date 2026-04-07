@@ -101,7 +101,7 @@
                             <tr>
                                 <th name="th_sm_product"><strong>Product</strong></th>
                                 <th name="th_sm_ordered" class="text-end"><strong>Ordered</strong></th>
-                                <th name="th_sm_quantity" class="text-end"><strong>>Qty exp.</strong></th>
+                                <th name="th_sm_quantity" class="text-end"><strong>Qty exp.</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -229,37 +229,25 @@
                 <tr style="background-color:#FFFFFF; color: black; font-size: 11px !important; font-weight: bold">
                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
 font-weight: bold" colspan="3">
-                        Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des
-                        frais
-                        supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.
+                        A charge of 2.5% per month will be added to all invoices unpaid within 30 days, and
+                        additional fees will be considered if CENTRIA is used for payments.
                         <br/>
-                        MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des
-                        commandes
-                        qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.
+                        MAC cannot be held responsible for color tone variations of the same color for orders that are
+                        not placed and delivered at the same time within the same project.
                         <br/>
-                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs
-                        commandes
-                        pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou
-                        Textural
-                        III
-                        Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client
-                        opte
-                        pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la
-                        décoloration
-                        due
-                        aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.
-                        MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,
-                        selon
-                        les
-                        échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage
-                        d’intérêts
-
-                        et de frais supplémentaires causés par des délais prolongés de livraison.
+                        MAC will require advance material reservation when the customer plans to place multiple orders
+                        for the same project. MAC strongly recommends the purchase of steel from the Textural III or
+                        Textural III Print* series, which are the most resistant to rust and UV rays. However, if the
+                        customer opts for the 8000, PERSPECTA OR PERSPECTA + series, the steel will not be guaranteed
+                        against discoloration due to UV rays, nor against premature rusting at folded or heavily bent
+                        areas.
+                        MAC commits to accommodating its customers by manufacturing their orders within the suggested
+                        timeframes, according to the schedules and pace of its production. MAC cannot be held
+                        responsible for any damages and additional charges caused by extended delivery delays.
                         <br/>
-                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.
+                        WITH THE MAX MS-1 SERIES (WITHOUT GROOVE), POSSIBILITY OF SLIGHT UNDULATIONS: NOT RESPONSIBLE.
                         <br/>
-                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA
-                        FABRICATION.
+                        CONDITION FOR A FIRST ORDER: A MINIMUM DEPOSIT OF (50%) IS REQUIRED FOR MANUFACTURING.
 
                     </td>
                 </tr>
