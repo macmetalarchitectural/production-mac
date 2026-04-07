@@ -17,7 +17,7 @@
         'reports/delivery_slip.xml',
         'reports/report_picking.xml',
         'reports/purachse_order.xml',
-        'reports/report_delivery_document.xml',
+        # 'reports/report_delivery_document.xml',
         'views/sale_order.xml',
         'views/picking_form_view.xml',
     ],
