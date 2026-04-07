@@ -4,21 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 10:51+0000\n"
-"PO-Revision-Date: 2023-10-11 10:51+0000\n"
+"POT-Creation-Date: 2026-04-07 19:50+0000\n"
+"PO-Revision-Date: 2026-04-07 19:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
-msgid "0,00"
-msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -77,7 +72,7 @@ msgstr ""
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "<strong>Delivery slip:</strong>"
-msgstr ""
+msgstr "<strong>Bon de livraison:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
@@ -95,6 +90,7 @@ msgid "<strong>Order:</strong>"
 msgstr ""
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid "<strong>Ordered</strong>"
 msgstr "<strong>Commandé</strong>"
@@ -109,11 +105,6 @@ msgstr "<strong>Document d’origine:</strong>"
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid "<strong>PO</strong>"
 msgstr ""
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_invoice_mac
-msgid "<strong>Payment terms:</strong>"
-msgstr "<strong>Conditions de paiement:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
@@ -131,6 +122,7 @@ msgid "<strong>Product Barcode</strong>"
 msgstr "<strong>Code-barres de l'article</strong>"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid "<strong>Product</strong>"
 msgstr "<strong>Produit</strong>"
@@ -167,12 +159,6 @@ msgid "<strong>Shipping address:</strong>"
 msgstr "<strong>Adresse de livraison:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac2
-msgid "<strong>Supplier:</strong>"
-msgstr "<strong>Fournisseur:</strong>"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "<strong>Terms:</strong>"
 msgstr "<strong>Termes:</strong>"
@@ -183,68 +169,12 @@ msgid "<strong>To prepare</strong>"
 msgstr "<strong>À préparer</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid ""
-"<strong>Total Weight:</strong>\n"
-"                <br/>"
-msgstr ""
-"<strong>Poids Total:</strong>\n"
-"                <br/>"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.document_tax_totals_e3k
 msgid "<strong>Total:</strong>"
 msgstr ""
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
-msgid ""
-"ATTENTION PLEASE VERIFY YOUR MEASUREMENTS.\n"
-"                                        NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED."
-msgstr ""
-"S.V.P. ATTENTION DE BIEN VÉRIFIER VOS MESURES\n"
-"CAR LORSQU’APPROUVÉ, AUCUN CHANGEMENT NE SERA POSSIBLE.\n"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
-msgid "COMMENTS :"
-msgstr "COMMENTAIRES:"
-
-#. module: mac_reports
-#: model:ir.model.fields,field_description:mac_reports.field_sale_order__client_order_ref
-msgid "Customer Reference"
-msgstr "Référence client"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
-msgid "DELIVERY COMMENT:"
-msgstr "COMMENTAIRE DE LIVRAISON :"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "Date : .............................................."
-msgstr ""
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
-msgid "Date : ................................................"
-msgstr ""
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
-msgid "Date: ......................................................"
-msgstr ""
-
-#. module: mac_reports
-#: model:ir.model.fields,field_description:mac_reports.field_sale_order__delivery_note
-msgid "Delivery Note"
-msgstr ""
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_invoice_mac
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid ""
 "A charge of 2.5% per month will be added to all invoices unpaid within 30 days, and\n"
 "                        additional fees will be considered if CENTRIA is used for payments.\n"
@@ -290,13 +220,98 @@ msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
+msgid ""
+"ATTENTION PLEASE VERIFY YOUR MEASUREMENTS.\n"
+"                                        NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED."
+msgstr ""
+"S.V.P. ATTENTION DE BIEN VÉRIFIER VOS MESURES\n"
+"CAR LORSQU’APPROUVÉ, AUCUN CHANGEMENT NE SERA POSSIBLE."
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
+msgid "COMMENTS :"
+msgstr "COMMENTAIRES:"
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__client_order_ref
+msgid "Customer Reference"
+msgstr "Référence client"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Customizable Desk"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+msgid "DELIVERY COMMENT:"
+msgstr "COMMENTAIRE DE LIVRAISON :"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Date : .............................................."
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
+msgid "Date : ................................................"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+msgid "Date: ......................................................"
+msgstr ""
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__delivery_note
+msgid "Delivery Note"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid "Description"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Description on transfer"
+msgstr ""
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__id
+#: model:ir.model.fields,field_description:mac_reports.field_account_move_line__id
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move_line__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_picking__id
+msgid "ID"
 msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Insp. By :............................................"
 msgstr "Insp. Par :...................................................."
+
+#. module: mac_reports
+#: model:ir.model,name:mac_reports.model_account_move
+msgid "Journal Entry"
+msgstr "Écriture comptable"
+
+#. module: mac_reports
+#: model:ir.model,name:mac_reports.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -314,7 +329,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid "ORDER COMMENT:"
-msgstr "COMMENTAIRE DE COMMANDE : "
+msgstr "COMMENTAIRE DE COMMANDE :"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Pack of 6"
+msgstr ""
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/account_move.py:0
+msgid "Payment terms"
+msgstr "Conditions de paiement"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
@@ -324,7 +350,7 @@ msgstr "Préparé par: ................................................"
 #. module: mac_reports
 #: model:ir.model,name:mac_reports.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -337,9 +363,14 @@ msgid "Received by :.............................................."
 msgstr "Reçu par :........................................................"
 
 #. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__sale_note_termes
+msgid "SO Terms and conditions"
+msgstr "Termes et conditions de vente"
+
+#. module: mac_reports
 #: model:ir.model,name:mac_reports.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de vente"
+msgstr "Commande client"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.sale_order_inherited_add_ndelivery_notes
@@ -364,8 +395,9 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: mac_reports
-#: model:ir.model.fields,field_description:mac_reports.field_sale_order__sale_note_termes
-msgid "SO Terms and conditions"
+#: model:ir.model.fields,field_description:mac_reports.field_account_bank_statement_line__invoice_note_terms
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__invoice_note_terms
+msgid "Terms and conditions"
 msgstr ""
 
 #. module: mac_reports
@@ -379,7 +411,6 @@ msgid "Transfer"
 msgstr "Transfert"
 
 #. module: mac_reports
-#: code:mac_reports/models/account_move.py:0
-#, python-format
-msgid "Payment terms"
-msgstr "Conditions de paiement"
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "units"
+msgstr ""
