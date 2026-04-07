@@ -131,7 +131,8 @@ def truncate_ir_asset_table(cr):
 def migrate(cr, version):
     env = util.env(cr)
 
-
+    env['ir.config_parameter'].set_param('e3k_default_reports.add_default_sale_description', True)
+    e3k_logger.warning(E3K_PREFIX_LOG + "Set add_default_sale_description = True")
 
     truncate_ir_asset_table(cr)
 
