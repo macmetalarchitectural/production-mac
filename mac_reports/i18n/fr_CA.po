@@ -377,3 +377,9 @@ msgstr "Heure: ........................................................."
 #: model:ir.model,name:mac_reports.model_stock_picking
 msgid "Transfer"
 msgstr "Transfert"
+
+#. module: mac_reports
+#: code:mac_reports/models/account_move.py:0
+#, python-format
+msgid "Payment terms"
+msgstr "Conditions de paiement"
