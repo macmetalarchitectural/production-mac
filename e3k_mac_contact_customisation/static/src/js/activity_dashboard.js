@@ -28,9 +28,10 @@ class FilterCheckboxGroup extends Component {
 }
 
 // ─── ActivityTable ────────────────────────────────────────────────────────────
-// Composant dédié au tableau de résultats avec pagination côté client
+// Composant dédié au tableau de résultats avec pagination côté client.
+// pageSize === 0 signifie "Tout afficher".
 
-const PAGE_SIZES = [25, 50, 100];
+const PAGE_SIZES = [25, 50, 100, 0];   // 0 = Tout
 const DEFAULT_PAGE_SIZE = 50;
 
 class ActivityTable extends Component {
@@ -54,20 +55,29 @@ class ActivityTable extends Component {
 
     // ── Getters pagination ────────────────────────────────────────────────────
 
+    get showAll() {
+        return this.state.pageSize === 0;
+    }
+
     get totalPages() {
+        if (this.showAll) return 1;
         return Math.max(1, Math.ceil(this.props.rows.length / this.state.pageSize));
     }
 
     get pagedRows() {
+        if (this.showAll) return this.props.rows;
         const start = (this.state.currentPage - 1) * this.state.pageSize;
         return this.props.rows.slice(start, start + this.state.pageSize);
     }
 
     get fromRow() {
-        return this.props.rows.length === 0 ? 0 : (this.state.currentPage - 1) * this.state.pageSize + 1;
+        if (this.props.rows.length === 0) return 0;
+        if (this.showAll) return 1;
+        return (this.state.currentPage - 1) * this.state.pageSize + 1;
     }
 
     get toRow() {
+        if (this.showAll) return this.props.rows.length;
         return Math.min(this.state.currentPage * this.state.pageSize, this.props.rows.length);
     }
 
@@ -105,6 +115,8 @@ class ActivityTable extends Component {
         this.state.pageSize = parseInt(ev.target.value, 10);
         this.state.currentPage = 1;
     }
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
 
     completedLabel(completed) {
         return completed === "yes" ? _t("Yes") : _t("No");

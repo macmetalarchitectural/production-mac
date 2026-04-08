@@ -15,3 +15,4 @@ from . import purchase_order_line
 from . import ticket_product_type
 from . import helpdesk_ticket
 from . import stock_move
+from . import calendar_event

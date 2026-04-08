@@ -138,32 +138,34 @@
                                 t-on-change="onPageSizeChange">
                             <t t-foreach="pageSizes" t-as="ps" t-key="ps">
                                 <option t-att-value="ps" t-att-selected="state.pageSize === ps">
-                                    <t t-esc="ps"/> / page
+                                    <t t-if="ps === 0">All</t>
+                                    <t t-else=""><t t-esc="ps"/> / page</t>
                                 </option>
                             </t>
                         </select>
                     </div>
-                    <div class="e3k-pagination-nav">
+                    <div class="e3k-pagination-nav" t-if="!showAll">
                         <button class="e3k-page-btn"
                                 t-att-disabled="state.currentPage === 1"
-                                t-on-click="() => goToPage(state.currentPage - 1)">
+                                t-on-click="() => this.goToPage(state.currentPage - 1)">
                             <i class="fa fa-chevron-left"/>
                         </button>
                         <t t-foreach="pageNumbers" t-as="p" t-key="p_index">
                             <span t-if="p === '...'" class="e3k-page-ellipsis">…</span>
                             <button t-else=""
                                     t-att-class="p === state.currentPage ? 'e3k-page-btn e3k-page-btn--active' : 'e3k-page-btn'"
-                                    t-on-click="() => goToPage(p)">
+                                    t-on-click="() => this.goToPage(p)">
                                 <t t-esc="p"/>
                             </button>
                         </t>
                         <button class="e3k-page-btn"
                                 t-att-disabled="state.currentPage === totalPages"
-                                t-on-click="() => goToPage(state.currentPage + 1)">
+                                t-on-click="() => this.goToPage(state.currentPage + 1)">
                             <i class="fa fa-chevron-right"/>
                         </button>
                     </div>
                 </div>
+
             </t>
         </t>
 
