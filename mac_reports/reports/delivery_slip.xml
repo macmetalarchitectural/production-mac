@@ -167,17 +167,17 @@
                 </tr>
             </table>
         </xpath>
-        <xpath expr="//div[@name='div_sched_date']" position="replace">
-            <div t-if="o.state" class="col col-3 mw-100 mb-2" name="div_sched_date">
-                <strong>Shipping Date:</strong>
-                <t t-if="o.state == 'done'">
-                    <p t-field="o.date_done" t-options='{"format": "MM/dd/yyyy"}'/>
-                </t>
-                <t t-if="o.state != 'done'">
-                    <p t-field="o.scheduled_date" t-options='{"format": "MM/dd/yyyy"}'/>
-                </t>
-            </div>
-        </xpath>
+<!--        <xpath expr="//div[@name='div_sched_date']" position="replace">-->
+<!--            <div t-if="o.state" class="col col-3 mw-100 mb-2" name="div_sched_date">-->
+<!--                <strong>Shipping Date:</strong>-->
+<!--                <t t-if="o.state == 'done'">-->
+<!--                    <p t-field="o.date_done" t-options='{"format": "MM/dd/yyyy"}'/>-->
+<!--                </t>-->
+<!--                <t t-if="o.state != 'done'">-->
+<!--                    <p t-field="o.scheduled_date" t-options='{"format": "MM/dd/yyyy"}'/>-->
+<!--                </t>-->
+<!--            </div>-->
+<!--        </xpath>-->
 
 
 
