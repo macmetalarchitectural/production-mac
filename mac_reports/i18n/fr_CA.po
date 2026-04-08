@@ -419,3 +419,45 @@ msgstr "Transfert"
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "units"
 msgstr ""
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Order"
+msgstr "Commande"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Shipping Date"
+msgstr "Date d'expédition"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Terms"
+msgstr "Conditions de paiement"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Total Weight"
+msgstr "Poids total"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Tracking Number"
+msgstr "Numéro de suivi"
+
+#. module: mac_reports
+#: code:addons/mac_reports/models/stock_picking.py:0
+#, python-format
+msgid "Customer Reference"
+msgstr "Référence client"
