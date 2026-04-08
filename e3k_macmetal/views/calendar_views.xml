@@ -8,7 +8,7 @@
       <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
       <field name="arch" type="xml">
 
-          <xpath expr="//div[@id='destination']" position="inside">
+          <xpath expr="//div[@name='videocall_location_div']" position="after">
               <xpath expr="//label[@for='description']" position="move"/>
               <field name="description" position="move"/>
           </xpath>
