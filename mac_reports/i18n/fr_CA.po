@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-07 21:39+0000\n"
-"PO-Revision-Date: 2026-04-07 21:39+0000\n"
+"POT-Creation-Date: 2026-04-08 00:48+0000\n"
+"PO-Revision-Date: 2026-04-08 00:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,11 +53,6 @@ msgid ""
 "                        <strong>Warehouse Address:</strong>\n"
 "                    </span>"
 msgstr "<span><strong>Adresse de livraison:</strong></span>"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "<span>Delivery slip N°</span>"
-msgstr "<span>Delivery slip N°</span>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -153,20 +148,10 @@ msgid "<strong>Scheduled Date:</strong>"
 msgstr "<strong>Date planifiée:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "<strong>Shipping Date:</strong>"
-msgstr "<strong>Date d'expédition:</strong>"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_mac
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac
 msgid "<strong>Shipping address:</strong>"
 msgstr "<strong>Adresse de livraison:</strong>"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "<strong>Terms:</strong>"
-msgstr "<strong>Termes:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
@@ -238,6 +223,14 @@ msgid "COMMENTS :"
 msgstr "COMMENTAIRES:"
 
 #. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
 #: model:ir.model.fields,field_description:mac_reports.field_sale_order__client_order_ref
 msgid "Customer Reference"
 msgstr "Référence client"
@@ -337,6 +330,12 @@ msgid "ORDER COMMENT:"
 msgstr "COMMENTAIRE DE COMMANDE :"
 
 #. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Order"
+msgstr "Commande"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Pack of 6"
 msgstr ""
@@ -388,6 +387,12 @@ msgid "Shipped by:.........................................."
 msgstr "Expédié par :..................................................."
 
 #. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Shipping Date"
+msgstr "Date d'expédition"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid ""
 "Signature to start production :\n"
@@ -400,15 +405,33 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Terms"
+msgstr "Termes"
+
+#. module: mac_reports
 #: model:ir.model.fields,field_description:mac_reports.field_account_bank_statement_line__invoice_note_terms
 #: model:ir.model.fields,field_description:mac_reports.field_account_move__invoice_note_terms
 msgid "Terms and conditions"
-msgstr ""
+msgstr "Termes et conditions"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Time : ........................................................."
 msgstr "Heure: ........................................................."
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Total Weight"
+msgstr "Poids total"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Tracking Number"
+msgstr "Numéro de suivi"
 
 #. module: mac_reports
 #: model:ir.model,name:mac_reports.model_stock_picking
@@ -419,45 +442,3 @@ msgstr "Transfert"
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "units"
 msgstr ""
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Order"
-msgstr "Commande"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Shipping Date"
-msgstr "Date d'expédition"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Terms"
-msgstr "Conditions de paiement"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Carrier"
-msgstr "Transporteur"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Total Weight"
-msgstr "Poids total"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Tracking Number"
-msgstr "Numéro de suivi"
-
-#. module: mac_reports
-#: code:addons/mac_reports/models/stock_picking.py:0
-#, python-format
-msgid "Customer Reference"
-msgstr "Référence client"
