@@ -2,17 +2,25 @@
 <odoo>
     <template id="report_delivery_baleco_mac2" inherit_id="e3k_default_reports.default_report_delivery_document_inherit">
         <xpath expr="//h2" position="replace">
-            <t t-if="o.picking_type_id.code=='outgoing' and o.origin ">
-                <h2>
-                    <span t-field="o.origin"/>
-                </h2>
-            </t>
-            <t t-else="">
-                <h2>
-                    <span>Delivery slip N°</span>
-                    <span t-field="o.name"/>
-                </h2>
-            </t>
+            <div class="row mt-2 mb-2">
+              <div class="col-6">
+                <t t-if="o.picking_type_id.code=='outgoing' and o.origin ">
+                    <h2>
+                        <span t-field="o.origin"/>
+                    </h2>
+                </t>
+                <t t-else="">
+                    <h2>
+                        <span t-field="o.name"/>
+                    </h2>
+                </t>
+              </div>
+              <div class="col-6 d-flex justify-content-end">
+                  <div t-if="o.sale_id.client_order_ref"
+                       t-out="o.sale_id.client_order_ref"
+                       t-options="{'widget': 'barcode', 'symbology': 'QR', 'width': 100, 'height': 100}"/>
+              </div>
+            </div>
         </xpath>
         <!--        test-->
         <xpath expr="//div[@name='div_origin']" position="replace">
@@ -30,34 +38,18 @@
             </div>
         </xpath>
 
-        <xpath expr="//div[@name='div_outgoing_address']" position="replace">
-            <div class="col-6" name="div_outgoing_address">
-                <div t-if="o.sale_id and o.sale_id.partner_id ">
-                    <span>
-                        <strong>Sold to:</strong>
-                    </span>
-                    <div t-field="o.sale_id.partner_id"
-                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                </div>
-                <div t-if="o.picking_type_id.code != 'internal' and (not o.move_ids or not o.move_ids[0].partner_id) and o.picking_type_id.warehouse_id.partner_id">
-                    <span>
-                        <strong>Warehouse Address:</strong>
-                    </span>
-                    <div t-field="o.picking_type_id.warehouse_id.partner_id"
-                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                </div>
+        <xpath expr="//div[@id='informations']" position="replace">
+            <div id="informations" class="mb-4">
+                <t t-call="e3k_default_reports.e3k_information_block">
+                    <t t-set="e3k_doc_informations"
+                       t-value="o.get_info_block_report_values(e3k_nb_block_infos_per_row)"/>
+                </t>
             </div>
         </xpath>
-<!--        <xpath expr="//div[@t-if='o.shipping_weight']" position="replace">-->
-<!--            <div class="col-auto">-->
-<!--                <strong>Total Weight:</strong>-->
-<!--                <br/>-->
 
-<!--            </div>-->
-<!--        </xpath>-->
-        <xpath expr="//div[@name='div_incoming_address']" position="replace">
-            <div class="col-5 offset-1" name="div_incoming_address">
-                <div t-if="o.picking_type_id.code=='incoming' and o.partner_id">
+        <xpath expr="//div[@name='div_outgoing_address']" position="replace">
+            <div class="col" name="div_outgoing_address">
+               <div t-if="o.picking_type_id.code=='incoming' and o.partner_id">
                     <span>
                         <strong>Vendor Address:</strong>
                     </span>
@@ -78,6 +70,31 @@
                     <p t-if="o.sudo().partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
                         <span t-field="o.sudo().partner_id.vat"/>
                     </p>
+                </div>
+            </div>
+        </xpath>
+<!--        <xpath expr="//div[@t-if='o.shipping_weight']" position="replace">-->
+<!--            <div class="col-auto">-->
+<!--                <strong>Total Weight:</strong>-->
+<!--                <br/>-->
+
+<!--            </div>-->
+<!--        </xpath>-->
+        <xpath expr="//div[@name='div_incoming_address']" position="replace">
+            <div class="col" name="div_incoming_address">
+                 <div t-if="o.sale_id and o.sale_id.partner_id ">
+                    <span>
+                        <strong>Sold to:</strong>
+                    </span>
+                    <div t-field="o.sale_id.partner_id"
+                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                </div>
+                <div t-if="o.picking_type_id.code != 'internal' and (not o.move_ids or not o.move_ids[0].partner_id) and o.picking_type_id.warehouse_id.partner_id">
+                    <span>
+                        <strong>Warehouse Address:</strong>
+                    </span>
+                    <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
                 </div>
             </div>
         </xpath>
@@ -161,12 +178,7 @@
                 </t>
             </div>
         </xpath>
-        <xpath expr="//div[@name='div_sched_date']" position="after">
-            <div t-if="not is_html_empty(o.sale_id.payment_term_id.note)" class="col col-3 mw-100 mb-2o" name="div_payment_term_id">
-                <strong>Terms:</strong>
-                <span t-field="o.sale_id.payment_term_id.note"/>
-            </div>
-        </xpath>
+
 
 
 
@@ -256,8 +268,8 @@ font-weight: bold" colspan="3">
         </xpath>
     </template>
     <template id="stock_report_delivery_aggregated_move_mac"
-              inherit_id="stock.stock_report_delivery_aggregated_move_lines">
-        <xpath expr="//tr/td[1]" position="replace">
+              inherit_id="e3k_default_reports.stock_report_delivery_aggregated_move_lines_default_reports">
+        <xpath expr="//tr/td[2]" position="replace">
 
             <t t-if="aggregated_lines[line]['sale_line_id']">
                 <td>
@@ -282,5 +294,13 @@ font-weight: bold" colspan="3">
             </td>
         </xpath>
     </template>
+
+    <template id="external_layout_boxed" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[contains(@t-attf-class, 'o_report_layout_boxed')]" position="attributes">
+            <attribute name="t-attf-style" add="border-top: 1px solid #dcd1d1;padding-top: 15px;" separator=" "/>
+        </xpath>
+    </template>
+
+
 
 </odoo>

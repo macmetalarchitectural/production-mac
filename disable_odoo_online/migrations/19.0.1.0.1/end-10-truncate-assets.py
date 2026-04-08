@@ -134,6 +134,11 @@ def migrate(cr, version):
     env['ir.config_parameter'].set_param('e3k_default_reports.add_default_sale_description', True)
     e3k_logger.warning(E3K_PREFIX_LOG + "Set add_default_sale_description = True")
 
+    paperformat = env.ref('base.paperformat_us', raise_if_not_found=False)
+    if paperformat:
+        paperformat.write({'margin_top': 40, 'header_spacing': 40})
+        e3k_logger.warning(E3K_PREFIX_LOG + "Set paperformat_us margin_top=40 header_spacing=40")
+
     truncate_ir_asset_table(cr)
 
     manage_datas(env, ACTIONS_TO_DO)
