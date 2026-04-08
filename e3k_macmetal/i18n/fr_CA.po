@@ -359,6 +359,12 @@ msgid "days"
 msgstr "jours"
 
 #. module: e3k_macmetal
+#: model:ir.actions.act_window,name:e3k_macmetal.e3k_ticket_product_type_action
+#: model:ir.ui.menu,name:e3k_macmetal.e3k_helpdesk_menu_product_type
+msgid "Product Types"
+msgstr "Types d'article"
+
+#. module: e3k_macmetal
 #: model:ir.model,name:e3k_macmetal.model_e3k_ticket_product_type
 msgid "Ticket Product Type"
 msgstr "Type de produit de ticket"
