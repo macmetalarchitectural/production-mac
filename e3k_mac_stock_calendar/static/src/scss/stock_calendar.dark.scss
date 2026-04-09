@@ -9,7 +9,15 @@
  */
 
 .fc-event.e3k_stock_event {
+    // Dark mode overlay for current/future events
     --o-overlay-opacity: 0.75;
+
+    // Remove opacity on past events — keep them fully visible
+    &.fc-event-past {
+        opacity: 1 !important;
+        filter: none !important;
+        --o-overlay-opacity: 0 !important;
+    }
 }
 
 .e3k_stock_event {
