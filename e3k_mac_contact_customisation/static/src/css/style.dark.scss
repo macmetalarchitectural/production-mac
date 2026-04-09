@@ -29,9 +29,12 @@
 }
 
 .e3k-filter-dropdown {
-    background-color: var(--bs-body-bg);
-    border-color: var(--bs-border-color);
+    background-color: var(--bs-body-bg, #212529) !important;
+    border: 1px solid var(--bs-border-color, #495057) !important;
+    border-radius: 4px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    padding: 6px 0;
+    opacity: 1;
 }
 
 .e3k-filter-item:hover {
