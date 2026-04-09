@@ -71,16 +71,21 @@
  * Class applied on <a> element of each stock.picking event
  * by eventClassNames() method in stock_calendar_common_renderer.js
  *
- * Manages event borders:
- * - Default: 2px black border
+ * Manages event borders and default text color:
+ * - Default: 2px border using --bs-body-color (adapts to light/dark theme)
+ * - Default text: --bs-body-color (overridden by inline style if e3k_calendar_text_color is set)
  * - If flexible_date: 2px red border (via .e3k_flexible_date class)
  *
  * Note: Background and text colors are applied as inline styles
  * in onEventDidMount() because they come from DB (dynamic).
  */
 .e3k_stock_event {
-    // Default border for all stock.picking events
+    // Default border and text color for light mode.
+    // Dark mode overrides are in stock_calendar.dark.scss (loaded only in dark mode).
+    // If e3k_calendar_text_color is set from DB, the inline style applied in
+    // onEventDidMount() overrides the color rule (inline style > class specificity).
     border: 2px solid black !important;
+    color: black;
 
     /**
      * Modifier conditionally applied if record.rawRecord.flexible_date === true
