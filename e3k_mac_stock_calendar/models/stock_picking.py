@@ -35,7 +35,7 @@ class StockPicking(models.Model):
             if rec.partner_id.city:
                 city = rec.partner_id.city
 
-            partner_name = rec.partner_id.name if rec.partner_id else ''
+            partner_name = rec.partner_id.display_name if rec.partner_id else ''
             sale_part = f' / {sale_name}' if sale_name else ''
             city_part = f' / {city}' if city else ''
             mark = mark_for_non_ready_work if rec.worksite_ready else ''
