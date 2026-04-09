@@ -20,6 +20,10 @@
     'assets': {
         'web.assets_backend': [
             'e3k_mac_contact_customisation/static/src/**/*',
+            ('remove', 'e3k_mac_contact_customisation/static/src/**/*.dark.scss'),
+        ],
+        'web.assets_web_dark': [
+            'e3k_mac_contact_customisation/static/src/css/style.dark.scss',
         ],
     },
 }
