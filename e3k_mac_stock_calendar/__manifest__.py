@@ -22,7 +22,7 @@
             'e3k_mac_stock_calendar/static/src/views/calendar/stock_calendar_common_renderer.xml',
             'e3k_mac_stock_calendar/static/src/scss/stock_calendar.scss',
         ],
-        'web.assets_backend_lazy_dark': [
+        'web.assets_web_dark': [
             'e3k_mac_stock_calendar/static/src/scss/stock_calendar.dark.scss',
         ],
     },
