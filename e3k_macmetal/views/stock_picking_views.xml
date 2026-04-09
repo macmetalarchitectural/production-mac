@@ -10,7 +10,7 @@
             <xpath expr="//group[@name='other_infos']/field[@name='company_id']"
                    position="after">
                 <field name="e3k_currency_id" invisible="1"/>
-                <field name="e3k_sales_value" string="Sales Value"/>
+                <field name="e3k_sales_value" string="Sales Value" invisible="1"/>
             </xpath>
         </field>
     </record>

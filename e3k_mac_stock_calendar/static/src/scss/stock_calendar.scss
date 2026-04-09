@@ -112,16 +112,15 @@
 /**
  * Event title style (e3k_custom_display_name)
  *
- * Handles text overflow with ellipsis (...) if title is too long.
+ * Text wraps to next line if too long (no ellipsis truncation).
  * flex: 1 allows title to occupy all available space before dot.
  */
 .e3k_stock_event_title {
     display: inline-block;
     margin-right: 8px;        // Space between title and dot
     flex: 1;                  // Takes all available space
-    overflow: hidden;         // Hide overflowing text
-    text-overflow: ellipsis;  // Display "..." if text is truncated
-    white-space: nowrap;      // Prevent line wrapping
+    white-space: normal;      // Allow line wrapping
+    word-break: break-word;   // Break long words if necessary
 }
 
 /**
