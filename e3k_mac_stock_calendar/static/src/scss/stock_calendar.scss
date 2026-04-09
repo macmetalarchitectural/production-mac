@@ -63,7 +63,21 @@
 .o_calendar_wrapper.e3k_stock_calendar_view {
     overflow-y: auto !important;
 }
-
+// ============================================================================
+// Remove Odoo/FullCalendar default opacity on past events
+// ============================================================================
+/**
+ * FullCalendar adds the class 'fc-event-past' on events whose date has passed.
+ * Odoo uses this class (via --o-overlay-opacity or opacity) to dim past events.
+ * We override this for stock.picking events to keep them fully visible.
+ */
+.fc-event.e3k_stock_event {
+    &.fc-event-past {
+        opacity: 1 !important;
+        filter: none !important;
+        --o-overlay-opacity: 0 !important;
+    }
+}
 // ============================================================================
 // Stock.picking event styles
 // ============================================================================
