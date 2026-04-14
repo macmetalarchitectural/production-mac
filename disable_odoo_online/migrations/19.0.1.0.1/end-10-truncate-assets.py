@@ -51,6 +51,7 @@ ACTIONS_TO_DO = [
             "studio_customization.default_form_view_fo_70116dbd-c349-44b0-8243-af2b5c271c97",
             "studio_customization.default_search_view__29b313f5-a9be-4ec5-b994-63c80cd8569f",
             "studio_customization.helpdesk_configurati_2ea5afb8-034c-47ae-b731-d32485b4e9ba",
+            "studio_customization.update_inside_sales__88b03287-e030-4902-be4c-aa981bbd1d8d",
         ],
         'records': {},
     },
