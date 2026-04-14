@@ -35,6 +35,9 @@ class SaleOrder(models.Model):
     e3k_follow_up_date = fields.Date(string="Follow-up Date")  # no-check
     e3k_inside_sales_rep_id = fields.Many2one(  # no-check
         "res.users",
+        related="partner_id.e3k_inside_sales_rep_id",
+        store=True,
+        readonly=False,
         string="Inside Sales Rep",
         help="The order desk employee who is responsible for the client account.",
     )
