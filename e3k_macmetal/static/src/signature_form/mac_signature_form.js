@@ -37,6 +37,10 @@ function addWeekdays(startDate, days, weekdays = [1, 2, 3, 4, 5]) {
  * Patch NameAndSignature to add delivery date field with OWL date picker
  */
 patch(NameAndSignature.prototype, {
+    get deliveryDatePlaceholder() {
+        return _t("Select date and time");
+    },
+
     setup() {
         super.setup(...arguments);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_picking_mac" inherit_id="stock.report_picking">
+
         <xpath expr="//h2[@t-field='o.name']" position="replace">
             <t t-if="o.origin">
                 <h2 t-field="o.origin" class="mt0 float-start"/>

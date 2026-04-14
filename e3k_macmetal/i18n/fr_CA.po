@@ -58,14 +58,14 @@ msgid "Amount of days"
 msgstr "Nombre de jours"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Auto"
 msgstr "Automatique"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Clear"
@@ -124,7 +124,14 @@ msgid "Description"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+#, python-format
+msgid "Select date and time"
+msgstr "Sélectionner date et heure"
+
+#. module: e3k_macmetal
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Desired Date"
@@ -136,14 +143,14 @@ msgid "Displayable Locations"
 msgstr "Emplacements Affichables"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Draw"
 msgstr "Dessiner"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Full Name"
@@ -172,7 +179,7 @@ msgid "Inventory Locations"
 msgstr "Emplacements de stock"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Load"
@@ -299,21 +306,21 @@ msgid "Signature is missing."
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Style"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Styles"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is greater than the maximum date: "
@@ -321,7 +328,7 @@ msgstr ""
 "La date que vous avez sélectionnée est supérieure à la date maximale: "
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is lower than the minimum date: "
@@ -335,7 +342,7 @@ msgid "The order is not in a state requiring customer signature."
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "This file is invalid. Please select an image."
@@ -347,7 +354,7 @@ msgid "This is the delivery date selected by the customer."
 msgstr "C'est la date de livraison choisie par au client"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Your name"

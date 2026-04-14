@@ -19,7 +19,7 @@
                            t-att-class="{'is-invalid': deliveryState.hasError}"
                            t-att-id="'o_web_sign_delivery_input_' + htmlId"
                            name="delivery"
-                           placeholder="Select date and time"
+                           t-att-placeholder="deliveryDatePlaceholder"
                            autocomplete="off"
                            required=""/>
                     <span class="input-group-text">

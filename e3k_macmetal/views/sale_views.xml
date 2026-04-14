@@ -6,6 +6,22 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+
+<!--            affichier la description distinctement du produit en retirant le widget qui gere ce comportement-->
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="widget"></attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='name']" position="attributes">
+                <attribute name="widget"></attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_id']" position="attributes">
+                <attribute name="widget"></attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']" position="attributes">
+                <attribute name="widget"></attribute>
+            </xpath>
+
+            
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="delivery_route_id" options="{'no_create': True, 'no_open': True}"/>
                 <field name="e3k_on_hold" string="On hold"/>
