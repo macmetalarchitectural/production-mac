@@ -6,14 +6,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-08 00:55+0000\n"
-"PO-Revision-Date: 2026-04-08 00:55+0000\n"
+"POT-Creation-Date: 2026-04-14 19:00+0000\n"
+"PO-Revision-Date: 2026-04-14 19:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mac_reports
+#: model:ir.actions.report,print_report_name:mac_reports.action_report_transfert
+msgid "'Preparation Order - %s' % object.name"
+msgstr "'Bon de préparation - %s' % object.name"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "(document barcode)"
+msgstr "(code-barres document)"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "(package barcode)"
+msgstr "(code-barres du colis)"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "0,00"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "1.00"
+msgstr ""
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "3.00"
+msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -55,14 +86,40 @@ msgid ""
 msgstr "<span><strong>Adresse de livraison:</strong></span>"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Ship to:</strong></span>"
+msgstr "<span><strong>Expédier à:</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Sold to:</strong></span>"
+msgstr "<span><strong>Vendu à:</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Vendor Address:</strong></span>"
+msgstr "<span><strong>Adresse du fournisseur :</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Warehouse Address:</strong></span>"
+msgstr "<span><strong>Adresse de livraison:</strong></span>"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid "<strong class=\"text-nowrap\">Inside sales rep:</strong>"
 msgstr "<strong class=\"text-nowrap\">Responsable de compte:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Carrier:</strong>"
 msgstr "<strong>Méthode de livraison:</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Contact</strong>"
+msgstr "<strong>Contact</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac
@@ -75,12 +132,24 @@ msgid "<strong>Delivery slip:</strong>"
 msgstr "<strong>Bon de livraison:</strong>"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Instructions:</strong>"
+msgstr "<strong>Instructions :</strong>"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Lot/Serial Number</strong>"
 msgstr "<strong>Lot/Numéros de série</strong>"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Operator:</strong>"
+msgstr "<strong>Opérateur :</strong>"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Order Date:</strong>"
 msgstr "<strong>Date de confirmation commande:</strong>"
 
@@ -92,6 +161,7 @@ msgstr "<strong>Commande :</strong>"
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Ordered</strong>"
 msgstr "<strong>Commandé</strong>"
 
@@ -103,27 +173,32 @@ msgstr "<strong>Document d'origine:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>PO</strong>"
 msgstr "<strong>BC</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Preparation order:</strong>"
 msgstr "<strong>Bon de préparation:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Prepared Quantity</strong>"
 msgstr "<strong>Quantité préparée</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Product Barcode</strong>"
 msgstr "<strong>Code-barres de l'article</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Product</strong>"
 msgstr "<strong>Produit</strong>"
 
@@ -144,6 +219,7 @@ msgstr "<strong>Représentant:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Scheduled Date:</strong>"
 msgstr "<strong>Date planifiée:</strong>"
 
@@ -154,7 +230,13 @@ msgid "<strong>Shipping address:</strong>"
 msgstr "<strong>Adresse de livraison:</strong>"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Status:</strong>"
+msgstr "<strong>Statut :</strong>"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>To prepare</strong>"
 msgstr "<strong>À préparer</strong>"
 
@@ -162,6 +244,16 @@ msgstr "<strong>À préparer</strong>"
 #: model_terms:ir.ui.view,arch_db:mac_reports.document_tax_totals_e3k
 msgid "<strong>Total:</strong>"
 msgstr "<strong>Total :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Vendor:</strong>"
+msgstr "<strong>Fournisseur :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Warehouse:</strong>"
+msgstr "<strong>Entrepôt :</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -243,21 +335,23 @@ msgstr "Bureau personnalisable"
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "DELIVERY COMMENT:"
 msgstr "COMMENTAIRE DE LIVRAISON :"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Date : .............................................."
-msgstr "Date : .............................................."
+msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid "Date : ................................................"
-msgstr "Date : ................................................"
+msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "Date: ......................................................"
 msgstr "Date : ......................................................"
 
@@ -269,7 +363,7 @@ msgstr "Note de livraison"
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -287,6 +381,11 @@ msgid "Display Name"
 msgstr "Nom d'affichage"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "From"
+msgstr "De"
+
+#. module: mac_reports
 #: model:ir.model.fields,field_description:mac_reports.field_account_move__id
 #: model:ir.model.fields,field_description:mac_reports.field_account_move_line__id
 #: model:ir.model.fields,field_description:mac_reports.field_sale_order__id
@@ -294,7 +393,13 @@ msgstr "Nom d'affichage"
 #: model:ir.model.fields,field_description:mac_reports.field_stock_move_line__id
 #: model:ir.model.fields,field_description:mac_reports.field_stock_picking__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/sale_order.py:0
+msgid "Inside sales rep"
+msgstr "Responsable de compte"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -321,11 +426,12 @@ msgstr ""
 #. module: mac_reports
 #: model:ir.model.fields,field_description:mac_reports.field_stock_picking__note
 msgid "Notes"
-msgstr "Notes"
+msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "ORDER COMMENT:"
 msgstr "COMMENTAIRE DE COMMANDE :"
 
@@ -341,20 +447,31 @@ msgid "Pack of 6"
 msgstr "Paquet de 6"
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "Package"
+msgstr "Colis"
+
+#. module: mac_reports
 #. odoo-python
 #: code:addons/mac_reports/models/account_move.py:0
 msgid "Payment terms"
 msgstr "Conditions de paiement"
 
 #. module: mac_reports
+#: model:ir.actions.report,name:mac_reports.action_report_transfert
+msgid "Preparation Order"
+msgstr "Bon de préparation"
+
+#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "Prepared by: ................................................"
 msgstr "Préparé par: ................................................"
 
 #. module: mac_reports
 #: model:ir.model,name:mac_reports.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Mouvements d'article (Ligne de mouvement de stock)"
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -420,6 +537,11 @@ msgstr "Termes et conditions"
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Time : ........................................................."
 msgstr "Heure: ........................................................."
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "To"
+msgstr "Vers"
 
 #. module: mac_reports
 #. odoo-python

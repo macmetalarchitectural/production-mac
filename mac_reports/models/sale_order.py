@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 
 
 class SaleOrderNote(models.Model):
@@ -15,3 +15,21 @@ class SaleOrderNote(models.Model):
     delivery_note = fields.Text('Delivery Note')
     sale_note_termes = fields.Text('SO Terms and conditions', default=_default_sale_note_terms, translate=True, copy=False)
     client_order_ref = fields.Text(string='Customer Reference', copy=False)
+
+    def information_block_to_display(self):
+        result = super().information_block_to_display()
+
+        result.update({
+            'e3k_inside_sales_rep_id': {
+                'label': _('Inside sales rep'),
+                'value': self.e3k_inside_sales_rep_id.name or False,
+                'type': 'string',
+            }
+        })
+
+        result.pop('property_delivery_carrier_id')
+
+        if self.state == 'sale':
+            result.pop('commitment_date')
+
+        return result
