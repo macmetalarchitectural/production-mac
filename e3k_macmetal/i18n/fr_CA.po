@@ -490,3 +490,33 @@ msgstr "Livraison en attente"
 #: model:ir.model.fields,field_description:e3k_macmetal.field_stock_picking__e3k_sales_value
 msgid "Sales Value"
 msgstr "Valeur de ventes"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.xml:0
+msgid "Minimum"
+msgstr "Minimum"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "Please select a delivery date."
+msgstr "Veuillez sélectionner une date de livraison."
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "Please select a weekday (Monday to Friday)."
+msgstr "Veuillez sélectionner un jour de la semaine (Lundi à Vendredi)."
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "The date must be at least %s"
+msgstr "La date doit être au moins %s"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.xml:0
+msgid "business day(s) from today (weekdays only)"
+msgstr "jour(s) ouvrable(s) à partir d'aujourd'hui (jours de semaine seulement)"
