@@ -71,6 +71,16 @@ ACTIONS_TO_DO_BEFORE = [
     #     ],
     #     'records': {},
     # },
+
+    {
+        "operation": "unlink",
+        "xmlids": [
+            "mac_reports.report_delivery_baleco_mac2",
+        ],
+        'records': {},
+    },
+
+
 ]
 
 def _apply_operation(record, op, identifier, logger_prefix):
@@ -209,3 +219,5 @@ def migrate(cr, version):
     rename_fields(cr)
 
     remove_non_used_modules(cr)
+
+    manage_datas(env, ACTIONS_TO_DO_BEFORE)
