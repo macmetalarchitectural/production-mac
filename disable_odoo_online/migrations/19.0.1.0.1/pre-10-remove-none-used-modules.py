@@ -75,7 +75,7 @@ ACTIONS_TO_DO_BEFORE = [
     {
         "operation": "unlink",
         "xmlids": [
-            "mac_reports.report_delivery_baleco_mac2",
+            "mac_reports.e3k_report_delivery_document",
         ],
         'records': {},
     },
