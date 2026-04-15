@@ -42,6 +42,16 @@ msgid "<span>With payment terms:</span>"
 msgstr "<span>Avec les conditions de paiement :</span>"
 
 #. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_stock_portal_picking_state
+msgid "<i class=\"fa fa-fw fa-check\"/>Ready"
+msgstr "<i class=\"fa fa-fw fa-check\"/>Prêt"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_stock_portal_picking_state
+msgid "<i class=\"fa fa-fw fa-clock-o\"/>Preparation in progress"
+msgstr "<i class=\"fa fa-fw fa-clock-o\"/>Préparation en cours"
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
 msgid "Add"
 msgstr "Ajouter"

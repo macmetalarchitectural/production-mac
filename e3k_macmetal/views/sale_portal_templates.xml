@@ -23,5 +23,21 @@
       </xpath>
     </template>
 
+    <template id="sale_stock_portal_picking_state" inherit_id="sale_stock.sale_order_portal_content_inherit_sale_stock">
+        <!-- Remplace le badge unique "Preparation" par deux états distincts :
+             - draft/waiting/confirmed → Preparation in progress
+             - assigned               → Ready -->
+        <xpath expr="//div[@name='delivery_details']/span[@t-elif=&quot;picking.state in ['draft', 'waiting', 'confirmed', 'assigned']&quot;]" position="replace">
+            <span t-elif="picking.state in ['draft', 'waiting', 'confirmed']"
+                  class="small badge rounded-pill text-bg-info orders_label_text_align">
+                <i class="fa fa-fw fa-clock-o"/>Preparation in progress
+            </span>
+            <span t-elif="picking.state == 'assigned'"
+                  class="small badge rounded-pill text-bg-success orders_label_text_align">
+                <i class="fa fa-fw fa-check"/>Ready
+            </span>
+        </xpath>
+    </template>
+
   </data>
 </odoo>
