@@ -1,48 +1,42 @@
 /** @odoo-module **/
+import { Chatter } from "@mail/chatter/web_portal/chatter";
+import { patch } from "@web/core/utils/patch";
+import { useService } from "@web/core/utils/hooks";
+import { _t } from "@web/core/l10n/translation";
 
-import { registerInstancePatchModel } from "@mail/model/model_core";
-
-registerInstancePatchModel("mail.chatter", "voip/static/src/models/chatter/chatter.js", {
-
-    /**
-     * @override
-     */
-    _created() {
-        const res = this._super(...arguments);
-        this.onClickScheduleMeeting = this.onClickScheduleMeeting.bind(this);
-
+patch(Chatter.prototype, {
+    setup() {
+        super.setup(...arguments);
+        this.macActionService = useService("action");
     },
 
-     onClickScheduleMeeting(ev) {
-     console.log("onClickScheduleMeeting");
-     console.log(this);
-            const action = {
-                type: 'ir.actions.act_window',
-                name: this.env._t("Schedule activity"),
-                res_model: 'calendar.event',
-                view_mode: 'form',
-                views: [[false, 'form']],
-                target: 'current',
+    onClickScheduleMeeting() {
+        const thread = this.state.thread;
+        if (!thread?.id) {
+            return;
+        }
+        this.macActionService.doAction(
+            {
+                type: "ir.actions.act_window",
+                name: _t("Schedule activity"),
+                res_model: "calendar.event",
+                view_mode: "form",
+                views: [[false, "form"]],
+                target: "current",
                 context: {
-                    default_res_id: this.thread.id,
-                    default_res_model: this.thread.model,
-                    default_partner_ids: [this.thread.id],
-                    default_activity_ids: false,
-
+                    default_res_id: thread.id,
+                    default_res_model: thread.model,
+                    default_partner_ids: [thread.id],
                 },
                 res_id: false,
-            };
-            return this.env.bus.trigger('do-action', {
-                action,
-                options: {
-                    on_close: () => {
-                        if (!this.componentChatterTopbar) {
-                            return;
-                        }
-                        this.componentChatterTopbar.trigger('reload', { keepChanges: true });
-                    },
+            },
+            {
+                onClose: () => {
+                    if (this.state.thread) {
+                        this.load(this.state.thread, ["activities", "messages"]);
+                    }
                 },
-            });
-        }
-
+            }
+        );
+    },
 });

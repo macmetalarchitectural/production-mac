@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+  <!-- Inherit Form View to Modify it -->
+  <record id="view_calendar_event_form" model="ir.ui.view">
+      <field name="name">calendar.event.form.e3k_macmetal</field>
+      <field name="model">calendar.event</field>
+      <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+      <field name="arch" type="xml">
+
+          <xpath expr="//div[@name='videocall_location_div']" position="after">
+              <xpath expr="//label[@for='description']" position="move"/>
+              <field name="description" position="move"/>
+          </xpath>
+
+      </field>
+  </record>
+
   <record id="view_calendar_event_tree_inherited" model="ir.ui.view">
     <field name="name">calendar.event.tree.e3k_macmetal</field>
     <field name="model">calendar.event</field>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- stock.picking — Form -->
+    <record id="e3k_stock_picking_view_form" model="ir.ui.view">
+        <field name="name">e3k.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='other_infos']/field[@name='company_id']"
+                   position="after">
+                <field name="e3k_currency_id" invisible="1"/>
+                <field name="e3k_sales_value" string="Sales Value" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

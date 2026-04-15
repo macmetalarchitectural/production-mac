@@ -22,8 +22,8 @@ class Picking(models.Model):
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    @api.model
-    def create(self, vals):
-        vals['date_deadline'] = False
-        res = super(StockMove, self).create(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['date_deadline'] = False
+        return super(StockMove, self).create(vals_list)
