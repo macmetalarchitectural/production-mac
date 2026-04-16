@@ -144,6 +144,12 @@ def migrate(cr, version):
         paperformat.write({'margin_top': 40, 'header_spacing': 40})
         e3k_logger.warning(E3K_PREFIX_LOG + "Set paperformat_us margin_top=40 header_spacing=40")
 
+    try:
+        util.move_field_to_module(cr, 'e3k.ticket.product.type', 'name', 'studio_customization', 'e3k_macmetal')
+        e3k_logger.warning(E3K_PREFIX_LOG + "Field 'name' of model 'e3k.ticket.product.type' moved to module 'e3k_macmetal'")
+    except Exception as e:
+        e3k_logger.warning(E3K_PREFIX_LOG + f"Failed to move field 'name' of model 'e3k.ticket.product.type' to module 'e3k_macmetal': {e}")
+
     truncate_ir_asset_table(cr)
 
     manage_datas(env, ACTIONS_TO_DO)
