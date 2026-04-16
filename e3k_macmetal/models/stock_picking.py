@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class StockPicking(models.Model):
@@ -20,6 +20,16 @@ class StockPicking(models.Model):
         readonly=True,
         compute="_compute_e3k_sales_value",
     )
+
+    @api.depends('reference_ids.sale_ids', 'move_ids.sale_line_id.order_id')
+    def _compute_sale_id(self):
+        super()._compute_sale_id()
+
+        for picking in self.filtered(lambda p: not p.sale_id):
+            # picking and move should have a link to the SO to see the picking on the stat button.
+            # This will filter the move chain to the delivery moves only.
+            sales_order = picking.reference_ids.mapped('sale_ids') or picking.move_ids.mapped('sale_line_id.order_id')
+            picking.sale_id = sales_order and sales_order[0] or False
 
     def _create_backorder(self):
         backorders = super()._create_backorder()
