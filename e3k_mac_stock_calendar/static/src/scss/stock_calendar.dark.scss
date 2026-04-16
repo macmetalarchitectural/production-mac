@@ -13,7 +13,8 @@
     --o-overlay-opacity: 0.75;
 
     // Remove opacity on past events — keep them fully visible
-    &.fc-event-past {
+    &.fc-event-past,
+    &.fc-event-today  {
         opacity: 1 !important;
         filter: none !important;
         --o-overlay-opacity: 0 !important;
