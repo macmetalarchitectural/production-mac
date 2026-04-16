@@ -72,7 +72,8 @@
  * We override this for stock.picking events to keep them fully visible.
  */
 .fc-event.e3k_stock_event {
-    &.fc-event-past {
+    &.fc-event-past,
+    &.fc-event-today {
         opacity: 1 !important;
         filter: none !important;
         --o-overlay-opacity: 0 !important;
