@@ -18,8 +18,8 @@ class StockPicking(models.Model):
         )
         return {
             'origin': {
-                'label': _('Order'),
-                'value': self.origin or False,
+                'label': _('Order') if not (self.picking_type_id.code=='outgoing' and self.origin) else _('Delivery slip'),
+                'value': self.origin if not (self.picking_type_id.code=='outgoing' and self.origin) else self.name or False,
                 'type': 'string',
             },
             'scheduled_date': {
