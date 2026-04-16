@@ -182,11 +182,17 @@ class CalendarEvent(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             vals['name'] = self.env['ir.sequence'].next_by_code('calendar.event') or _('New')
-        res = super().create(vals_list)
+        res = super(CalendarEvent, self.with_context(skip_attendee_notification=True)).create(vals_list)
         for rec in res:
             if rec.user_id.partner_id not in rec.partner_ids:
-                rec.partner_ids = [(4, rec.user_id.partner_id.id)]
+                rec.with_context(skip_attendee_notification=True).partner_ids = [(4, rec.user_id.partner_id.id)]
         return res
+
+    def write(self, vals):
+        return super(CalendarEvent, self.with_context(skip_attendee_notification=True)).write(vals)
+
+    def _send_invitation_emails(self):
+        return None
 
     @api.depends('description')
     def _compute_display_description(self):
