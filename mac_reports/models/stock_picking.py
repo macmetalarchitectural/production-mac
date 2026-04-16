@@ -29,7 +29,7 @@ class StockPicking(models.Model):
                 'date_info': {'format': '%m/%d/%Y'},
             },
             'payment_term_id': {
-                'label': _('Terms'),
+                'label': _('Payment Terms'),
                 'value': self.sale_id.payment_term_id.name or False,
                 'type': 'string',
             },
