@@ -17,3 +17,4 @@ from . import ticket_product_type
 from . import helpdesk_ticket
 from . import stock_move
 from . import calendar_event
+from . import mail_compose_message

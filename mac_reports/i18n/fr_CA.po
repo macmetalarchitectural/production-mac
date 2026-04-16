@@ -455,7 +455,7 @@ msgstr "Colis"
 #. odoo-python
 #: code:addons/mac_reports/models/account_move.py:0
 msgid "Payment terms"
-msgstr "Conditions de paiement"
+msgstr "Termes de paiement"
 
 #. module: mac_reports
 #: model:ir.actions.report,name:mac_reports.action_report_transfert

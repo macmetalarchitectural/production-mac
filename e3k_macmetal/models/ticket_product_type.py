@@ -8,4 +8,4 @@ class E3kTicketProductType(models.Model):
     _description = "Ticket Product Type"
     _order = "name"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string="Name", required=True, translate=True)
