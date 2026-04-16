@@ -182,17 +182,18 @@ class CalendarEvent(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             vals['name'] = self.env['ir.sequence'].next_by_code('calendar.event') or _('New')
-        res = super(CalendarEvent, self.with_context(skip_attendee_notification=True)).create(vals_list)
+        ctx = {'skip_attendee_notification': True, 'no_mail_to_attendees': True}
+        res = super(CalendarEvent, self.with_context(**ctx)).create(vals_list)
         for rec in res:
             if rec.user_id.partner_id not in rec.partner_ids:
-                rec.with_context(skip_attendee_notification=True).partner_ids = [(4, rec.user_id.partner_id.id)]
+                rec.with_context(**ctx).partner_ids = [(4, rec.user_id.partner_id.id)]
         return res
 
     def write(self, vals):
-        return super(CalendarEvent, self.with_context(skip_attendee_notification=True)).write(vals)
-
-    def _send_invitation_emails(self):
-        return None
+        return super(CalendarEvent, self.with_context(
+            skip_attendee_notification=True,
+            no_mail_to_attendees=True,
+        )).write(vals)
 
     @api.depends('description')
     def _compute_display_description(self):
@@ -397,6 +398,13 @@ class CalendarEvent(models.Model):
         if action.get("context"):
             action.get("context").update({'send_email_from_button': True})
         return action
+
+
+class CalendarAttendee(models.Model):
+    _inherit = 'calendar.attendee'
+
+    def _send_invitation_emails(self):
+        return False
 
 
 class CalendarEventType(models.Model):
