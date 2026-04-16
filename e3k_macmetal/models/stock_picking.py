@@ -21,6 +21,11 @@ class StockPicking(models.Model):
         compute="_compute_e3k_sales_value",
     )
 
+    def _create_backorder(self):
+        backorders = super()._create_backorder()
+        backorders._compute_sale_id()
+        return backorders
+
     def _compute_e3k_sales_value(self):
         for record in self:
             total_val = 0.0
