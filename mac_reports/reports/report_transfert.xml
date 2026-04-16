@@ -162,12 +162,7 @@
                                     <t t-foreach="o.move_ids" t-as="ml">
                                         <tr>
                                             <td>
-                                                <t t-if="ml.sale_line_id">
-                                                    <span t-field="ml.sale_line_id.name"/>
-                                                </t>
-                                                <t t-else="">
                                                     <span t-field="ml.product_id.display_name"/>
-                                                </t>
                                             </td>
                                             <td><span t-out="ml.get_po()"/></td>
                                             <td>
@@ -203,15 +198,8 @@
                                        t-value="any(move_line.product_id and move_line.product_id.sudo().barcode for move_line in o.move_ids)"/>
                                     <t t-foreach="o.move_ids" t-as="ml">
                                         <tr>
-                                            <td>
-                                                <t t-if="ml.sale_line_id">
-                                                    <span t-field="ml.sale_line_id.name"/>
-                                                </t>
-                                                <t t-else="">
+                                           <td>
                                                     <span t-field="ml.product_id.display_name"/>
-                                                    <br/>
-                                                    <span t-field="ml.product_id.description_picking"/>
-                                                </t>
                                             </td>
                                             <td>
                                                 <span t-out="ml.get_po()"/>
