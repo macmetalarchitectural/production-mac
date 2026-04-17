@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_mac_route_config,access_mac_route_config,model_mac_route_config,,1,1,1,1
-access_e3k_ticket_product_type,access_e3k_ticket_product_type,model_e3k_ticket_product_type,,1,1,1,1
