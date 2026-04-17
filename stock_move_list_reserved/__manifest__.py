@@ -3,7 +3,7 @@
 
 {
   'name': 'Stock Move List Reserved',
-  'version': '15.0.1.0.0',
+  'version': '19.0.1.0.0',
   'author': 'Numigi',
   'maintainer': 'numigi',
   'website': 'https://bit.ly/numigi-com',

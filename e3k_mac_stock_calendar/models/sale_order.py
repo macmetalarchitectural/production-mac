@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from odoo import fields, models, api
+from odoo import api, models
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    commitment_date = fields.Datetime(compute='_compute_commitment_date', readonly=False, store=True, )
-
     @api.depends('picking_ids.date_deadline')
     def _compute_commitment_date(self):
+        """Override to compute commitment_date from outgoing pickings"""
         for order in self:
             if order.picking_ids:
-                order.commitment_date = max(order.picking_ids.filtered(lambda p: p.picking_type_code == 'outgoing' and p.date_deadline).mapped('date_deadline'), default=False)
-            else:
-                pass
+                outgoing_pickings = order.picking_ids.filtered(
+                    lambda p: p.picking_type_code == 'outgoing' and p.date_deadline
+                )
+                if outgoing_pickings:
+                    order.commitment_date = max(outgoing_pickings.mapped('date_deadline'))
+                    continue
+            return super()._compute_commitment_date()

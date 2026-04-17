@@ -5,20 +5,20 @@
 
 {
   'name': 'Disable Quick Create',
-  'version': '15.0.1.0.0',
+  'version': '19.0.1.0.0',
   'author': 'Savoir-faire Linux',
   'maintainer': 'Numigi',
   'website': 'https://www.numigi.com',
   'license': 'LGPL-3',
   'category': 'Web',
   'summary': 'Disable "quick create" for all and "create and edit for specific models',
-  'depends': ['web'],
+  'depends': ['web',],
   'data': [
     'views/ir_model.xml',
   ],
   "assets": {
-    'web.assets_common': [
-      'disable_quick_create/static/src/js/disable_quick_create.js',
+    'web.assets_backend': [
+      'disable_quick_create/static/src/views/fields/many2one_create_restrictions.js',
     ],
   },
   'installable': True,

@@ -1,0 +1,4 @@
+[submodule "e3k-proprietary-modules"]
+	path = e3k-proprietary-modules
+	url = git@github.com:E3KCO/e3k-proprietary-modules.git
+	branch = 19.0

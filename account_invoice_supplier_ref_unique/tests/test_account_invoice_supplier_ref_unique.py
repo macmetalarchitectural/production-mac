@@ -12,8 +12,8 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestAccountInvoiceSupplierRefUnique(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
 
         # ENVIRONMENTS
         cls.account_account = cls.env["account.account"]
@@ -22,14 +22,14 @@ class TestAccountInvoiceSupplierRefUnique(AccountTestInvoicingCommon):
         )
 
         # INSTANCES
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         # Account for invoice
         cls.account = cls.account_account.search(
             [
                 (
-                    "user_type_id",
+                    "account_type",
                     "=",
-                    cls.env.ref("account.data_account_type_receivable").id,
+                    "asset_receivable",
                 )
             ],
             limit=1,
@@ -44,6 +44,9 @@ class TestAccountInvoiceSupplierRefUnique(AccountTestInvoicingCommon):
                 "invoice_line_ids": [(0, 0, {"partner_id": cls.partner.id})],
             }
         )
+
+        # Activate unique number check
+        cls.env.company.check_invoice_supplier_number = True
 
     def test_check_unique_supplier_invoice_number_insensitive(self):
         # A new invoice instance with an existing supplier_invoice_number
@@ -61,6 +64,17 @@ class TestAccountInvoiceSupplierRefUnique(AccountTestInvoicingCommon):
                 "partner_id": self.partner.id,
                 "move_type": "in_invoice",
                 "supplier_invoice_number": "ABC123bis",
+            }
+        )
+
+    def test_no_check_unique_supplier_invoice_number(self):
+        # A new invoice instance with an existing supplier_invoice_number
+        self.env.company.check_invoice_supplier_number = False
+        self.account_move.create(
+            {
+                "partner_id": self.partner.id,
+                "move_type": "in_invoice",
+                "supplier_invoice_number": "ABC123",
             }
         )
 
@@ -86,7 +100,6 @@ class TestAccountInvoiceSupplierRefUnique(AccountTestInvoicingCommon):
                 {
                     "date": fields.Date.today(),
                     "reason": "no reason",
-                    "refund_method": "refund",
                     "journal_id": self.invoice.journal_id.id,
                 }
             )

@@ -4,20 +4,21 @@
         <xpath expr="//tr[hasclass('o_subtotal')]" position="replace">
             <tr class="border-black o_subtotal">
                 <td class="text-left" colspan='2'>
-                    <strong t-esc="subtotal['name']"/>
+                    <strong t-out="subtotal['name']"/>
                     <span
                             t-att-class="oe_subtotal_footer_separator"
-                            t-esc="subtotal['formatted_amount']"
+                            t-out="subtotal['base_amount_currency']"
+                            t-options='{"widget": "monetary", "display_currency": currency}'
                     />
                 </td>
             </tr>
         </xpath>
         <xpath expr="//tr[hasclass('o_total')]" position="replace">
             <tr class="border-black o_total">
-
                 <td class="text-left" colspan='2'>
                     <strong>Total:</strong>
-                    <span t-esc="tax_totals['formatted_amount_total']"/>
+                    <span style="color:white;"  t-out="tax_totals['total_amount_currency']"
+                          t-options='{"widget": "monetary", "display_currency": currency}'/>
                 </td>
             </tr>
         </xpath>
@@ -32,6 +33,10 @@ font-weight: bold; page-break-inside: avoid;">
                 <p t-field="doc.sale_note_termes"/>
             </div>
         </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]" position="attributes">
+            <attribute name="class">o_has_total_table table o_main_table table-sm</attribute>
+        </xpath>
+
         <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
             <th name="th_description" class="text-left">Description</th>
 
@@ -45,9 +50,9 @@ font-weight: bold; page-break-inside: avoid;">
         <xpath expr="//div[@id='total']" position="replace">
             <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                 <div id="total" class="row" name="total">
-                    <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                    <div t-attf-class="#{'row' if report_type != 'html' else 'col-sm-7 col-md-5'} ms-auto">
 
-                        <div class="col-7">
+                        <div class="col-7" style="padding-right: 15px;">
                             <table class="table" style="font-weight: bold; !important">
                                 <tr>
                                     <td style="background-color:#FFFFFF; color: black; font-size: 11px !important;"
@@ -78,11 +83,13 @@ font-weight: bold; page-break-inside: avoid;">
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-5">
+                        <div class="col-5" style="padding-left: 15px;">
                             <table class="table table-sm">
                                 <!-- Tax totals -->
-                                <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
-                                <t t-call="account.document_tax_totals"/>
+                                <t t-call="sale.document_tax_totals">
+                                    <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                    <t t-set="currency" t-value="doc.currency_id"/>
+                                </t>
                             </table>
                         </div>
 
@@ -91,11 +98,13 @@ font-weight: bold; page-break-inside: avoid;">
             </t>
             <t t-else="">
                 <div id="total" class="row" name="total">
-                    <div t-attf-class="#{'col-5' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                    <div t-attf-class="#{'col-5' if report_type != 'html' else 'col-sm-7 col-md-5'} ms-auto">
                         <table class="table table-sm">
                             <!-- Tax totals -->
-                            <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
-                            <t t-call="account.document_tax_totals"/>
+                            <t t-call="sale.document_tax_totals">
+                                <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                <t t-set="currency" t-value="doc.currency_id"/>
+                            </t>
                         </table>
                     </div>
                 </div>
@@ -106,8 +115,6 @@ font-weight: bold; page-break-inside: avoid;">
         </xpath>
         <xpath expr="//div[@t-if='doc.commitment_date']" position="replace">
         </xpath>
-        <xpath expr="//p[@t-field='doc.note']" position="replace">
-        </xpath>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
             <div t-if="doc.user_id.name"
@@ -117,9 +124,9 @@ font-weight: bold; page-break-inside: avoid;">
                     <p class="m-0" t-field="doc.user_id"/>
                 </t>
             </div>
-            <div t-if="doc.x_studio_inside_sales_rep" class="col-auto col-3 mw-100 mb-2">
+            <div t-if="doc.e3k_inside_sales_rep_id" class="col-auto col-3 mw-100 mb-2">
                 <strong class="text-nowrap">Inside sales rep:</strong>
-                <p class="m-0" t-field="doc.x_studio_inside_sales_rep"/>
+                <p class="m-0" t-field="doc.e3k_inside_sales_rep_id"/>
             </div>
         </xpath>
     </template>

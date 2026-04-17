@@ -2,31 +2,41 @@
 <odoo>
   <data>
 
-    <template id="frontend_layout" inherit_id="web.frontend_layout" primary="True">
-      <xpath expr="//head/t[@t-call-assets][last()]" position="after">
-        <t t-call-assets="e3k_macmetal.sale_assets" lazy_load="True"/>
-      </xpath>
-    </template>
+<!--    <template id="frontend_layout" inherit_id="web.frontend_layout" primary="True">-->
+<!--      <xpath expr="//head/t[@t-call-assets][last()]" position="after">-->
+<!--        <t t-call-assets="e3k_macmetal.sale_assets" lazy_load="True"/>-->
+<!--      </xpath>-->
+<!--    </template>-->
 
-    <template id="sale_order_portal_template" inherit_id="sale.sale_order_portal_template">
+    <template id="sale_order_portal_template" inherit_id="sale.sale_order_portal_sign_modal">
       <xpath expr="//t[@t-set='default_name']" position="attributes">
         <attribute name="t-value">''</attribute>
       </xpath>
-
-      <xpath expr="//main[@id='sign-dialog']/p/ul" position="inside">
-        <t t-call-assets="e3k_macmetal.sale_assets" lazy_load="True"/>
-        <li t-if="request.env['ir.config_parameter'].sudo().get_param('e3k_macmetal.use_delivery_terms')">
+      <xpath expr="//b[@t-if='sale_order.payment_term_id']" position="replace">
+        <b t-if="sale_order.payment_term_id"><span>With payment terms:</span> <b t-field="sale_order.payment_term_id"/></b>
+        <b t-if="request.env['ir.config_parameter'].sudo().get_param('e3k_macmetal.use_delivery_terms')">
           <span>With delivery terms:</span> <span t-field="res_company.delivery_terms"/>
-        </li>
+        </b>
+        <span>
+          <label>Customer Reference:</label> <span t-field="sale_order.client_order_ref"/>
+        </span>
       </xpath>
+    </template>
 
-      <xpath expr="//main[@id='sign-dialog']/p/ul" position="after">
-        <label>Customer Reference:</label> <span t-field="sale_order.client_order_ref"/>
-      </xpath>
-
-      <xpath expr="//li[@t-if='sale_order.payment_term_id']" position="replace">
-        <li t-if="sale_order.payment_term_id"><span>With payment terms:</span> <b t-field="sale_order.payment_term_id"/></li>
-      </xpath>
+    <template id="sale_stock_portal_picking_state" inherit_id="sale_stock.sale_order_portal_content_inherit_sale_stock">
+        <!-- Remplace le badge unique "Preparation" par deux états distincts :
+             - draft/waiting/confirmed → Preparation in progress
+             - assigned               → Ready -->
+        <xpath expr="//div[@name='delivery_details']/span[@t-elif=&quot;picking.state in ['draft', 'waiting', 'confirmed', 'assigned']&quot;]" position="replace">
+            <span t-elif="picking.state in ['draft', 'waiting', 'confirmed']"
+                  class="small badge rounded-pill text-bg-info orders_label_text_align">
+                <i class="fa fa-fw fa-clock-o"/>Preparation in progress
+            </span>
+            <span t-elif="picking.state == 'assigned'"
+                  class="small badge rounded-pill text-bg-success orders_label_text_align">
+                <i class="fa fa-fw fa-check"/>Ready
+            </span>
+        </xpath>
     </template>
 
   </data>
