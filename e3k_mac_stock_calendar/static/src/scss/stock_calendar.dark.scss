@@ -1,0 +1,44 @@
+/**
+ * Dark mode overrides for stock.picking calendar.
+ *
+ * This file is loaded ONLY when dark mode is active, via web.assets_web_dark.
+ * It overrides the light-mode black values from stock_calendar.scss with white.
+ *
+ * No selector wrapper needed: the entire file is already scoped to dark mode
+ * by the Odoo asset bundle mechanism (cookie color_scheme === "dark").
+ */
+
+.fc-event.e3k_stock_event {
+    // Dark mode overlay for current/future events
+    --o-overlay-opacity: 0.75;
+
+    // Remove opacity on past events — keep them fully visible
+    &.fc-event-past,
+    &.fc-event-today  {
+        opacity: 1 !important;
+        filter: none !important;
+        --o-overlay-opacity: 0 !important;
+    }
+}
+
+.e3k_stock_event {
+    border-color: black !important;
+    color: black !important;
+
+    // Force all inner elements to black — !important needed to override
+    // Odoo/FullCalendar dark mode rules that apply color on these elements
+    .e3k_stock_event_title {
+        color: black !important;
+    }
+
+    &.e3k_flexible_date {
+        // Keep red border in dark mode — it remains visible and meaningful
+        border: 2px solid red !important;
+    }
+}
+
+.e3k_assigned_dot {
+    background-color: black;
+}
+
+

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-29 10:17+0000\n"
-"PO-Revision-Date: 2024-05-29 10:17+0000\n"
+"POT-Creation-Date: 2026-02-26 17:53+0000\n"
+"PO-Revision-Date: 2026-02-26 17:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,16 @@ msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
-msgid "<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_kanban
+msgid ""
+"<i class=\"fa fa-envelope mr-1\" role=\"img\" aria-label=\"Responsible\" "
+"title=\"user_id\"/>"
 msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Action requise"
 
 #. module: e3k_mac_contact_customisation
 #: model:contact.status,name:e3k_mac_contact_customisation.contact_status_active
@@ -39,14 +42,6 @@ msgid "Activity analysis"
 msgstr "Analyse des activités"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#, python-format
-msgid "Activity quantity"
-msgstr "Nombre d'activités"
-
-#. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 msgid "Archived"
 msgstr "Archivé"
@@ -54,64 +49,41 @@ msgstr "Archivé"
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre de pièces jointes"
 
 #. module: e3k_mac_contact_customisation
-#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
-msgid "Avatar"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
+#. odoo-python
 #: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
-#, python-format
 msgid "Busy"
-msgstr ""
+msgstr "Occupé"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model,name:e3k_mac_contact_customisation.model_calendar_attendee
 msgid "Calendar Attendee Information"
-msgstr ""
+msgstr "Information du participant"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model,name:e3k_mac_contact_customisation.model_calendar_event
 msgid "Calendar Event"
-msgstr ""
+msgstr "Évènement"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#, python-format
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 msgid "Closed"
-msgstr "Terminé"
+msgstr "Fermé"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Closed  ▼"
-msgstr "Terminé ▼"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Closed ▲"
-msgstr "Terminé ▲"
-
-#. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__company_partner_id
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_tree_inherited
-#, python-format
 msgid "Company name"
 msgstr "Nom de la société"
 
@@ -121,27 +93,31 @@ msgid "Completed:"
 msgstr "Terminé:"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model:ir.model,name:e3k_mac_contact_customisation.model_res_partner
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_id
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_tree_inherited
-#, python-format
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_name
 msgid "Contact Name"
-msgstr ""
+msgstr "Nom du contact"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Contact image"
-msgstr ""
+msgstr "Image du contact"
+
+#. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__contact_status_id
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__contact_status_id
+msgid "Contact status"
+msgstr "Statut"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_ids
@@ -153,7 +129,7 @@ msgstr "Invités"
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Contacts & Addresses"
-msgstr ""
+msgstr "Contacts et adresses"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.actions.act_window,help:e3k_mac_contact_customisation.action_contact_status
@@ -164,13 +140,13 @@ msgstr "Créer un statut"
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__create_uid
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__create_date
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
@@ -179,12 +155,15 @@ msgid "Customer Type"
 msgstr "Type de client"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__customer_state
+msgid "Customer status"
+msgstr "Statut du client"
+
+#. module: e3k_mac_contact_customisation
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__industry_id
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
-#, python-format
 msgid "Customer type"
 msgstr "Type de client"
 
@@ -200,10 +179,14 @@ msgid "Delivery Addresses"
 msgstr "Adresse de livraison"
 
 #. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_attendee__display_name
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__display_name
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event_type__display_name
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__display_name
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__display_name
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__completed
@@ -212,18 +195,8 @@ msgid "Done"
 msgstr "Terminé"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#, python-format
-msgid ""
-"Done\n"
-"                        & Schedule Next"
-msgstr ""
-"Terminé\n"
-"                        & planifier le prochain"
-
-#. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
 msgid "Done & Schedule Next"
 msgstr "Terminé & planifier le prochain"
@@ -236,54 +209,49 @@ msgstr "Durée"
 #. module: e3k_mac_contact_customisation
 #: model:ir.model,name:e3k_mac_contact_customisation.model_calendar_event_type
 msgid "Event Meeting Type"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
-msgid ""
-"Follow this salesteam to automatically track the events associated to users "
-"of this team."
-msgstr ""
+msgstr "Type de réunion"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Abonnés (Partenaires)"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "From:"
-msgstr "De:"
+msgid "From"
+msgstr "Du"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "A des messages"
 
 #. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_attendee__id
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__id
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event_type__id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__id
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_needaction
-#: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si coché, de nouveaux messages requièrent votre attention."
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_has_error
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si coché, certains messages ont une erreur de livraison."
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__active
@@ -291,6 +259,8 @@ msgid ""
 "If the active field is set to false, it will allow you to hide the Sales "
 "Team without removing it."
 msgstr ""
+"Si le champ actif est défini sur faux, cela permet de masquer l'équipe des "
+"représentants sans la supprimer."
 
 #. module: e3k_mac_contact_customisation
 #: model:contact.status,name:e3k_mac_contact_customisation.contact_status_inactive
@@ -301,47 +271,40 @@ msgstr "Inactif"
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__invoice_address_ids
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__invoice_address_ids
 msgid "Invoice Addresses"
-msgstr ""
+msgstr "Adresses de facturation"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Invoicing Address"
-msgstr ""
+msgstr "Adresse de facturation"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_is_follower
 msgid "Is Follower"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status____last_update
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team____last_update
-msgid "Last Modified on"
-msgstr ""
+msgstr "Est abonné"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__write_uid
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__write_date
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: e3k_mac_contact_customisation
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+msgid "Loading..."
+msgstr "Chargement..."
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
-#, python-format
 msgid "Mark as Done"
 msgstr "Marqué comme fait"
 
@@ -356,27 +319,11 @@ msgid "Meeting Type"
 msgstr "Type de réunion"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
-#, python-format
 msgid "Meeting type"
 msgstr "Type de réunion"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Meeting type  ▼"
-msgstr "Type de réunion ▼"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Meeting type ▲"
-msgstr "Type de réunion ▲"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_form_inherit
@@ -386,22 +333,17 @@ msgstr "Type de réunion:"
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 msgid "Members"
-msgstr ""
+msgstr "Membres"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erreur de livraison de message"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_ids
 msgid "Messages"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
-msgid "Mobile:"
-msgstr ""
+msgstr "Messages"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event_type__name
@@ -409,58 +351,55 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: e3k_mac_contact_customisation
-#: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
+#. odoo-python
 #: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
 #: model:contact.status,name:e3k_mac_contact_customisation.contact_status_new
-#, python-format
 msgid "New"
 msgstr "Nouveau/Prospect"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model:ir.model.fields.selection,name:e3k_mac_contact_customisation.selection__calendar_event__completed__no
-#, python-format
 msgid "No"
 msgstr "Non"
 
 #. module: e3k_mac_contact_customisation
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+msgid "No records found"
+msgstr "Aucun résultat trouvé"
+
+#. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nombre d'actions"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Nombre d'erreurs"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr ""
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
+msgstr "Nombre de messages avec une erreur de livraison"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Other Address"
-msgstr ""
+msgstr "Autre adresse"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__other_address_ids
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__other_address_ids
 msgid "Other Addresses"
-msgstr ""
+msgstr "Autres adresses"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_calendar_event__partner_id
@@ -469,11 +408,10 @@ msgid "Partner-related data of the user"
 msgstr "Données du partenaire lié à l'utilisateur"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Period:"
-msgstr ""
+msgid "Period"
+msgstr "Période"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
@@ -483,40 +421,35 @@ msgstr "Téléphone:"
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Private Address"
-msgstr ""
+msgstr "Adresse privée"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__private_address_ids
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__private_address_ids
 msgid "Private Addresses"
-msgstr ""
+msgstr "Adresses privées"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#, python-format
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+msgid "Qty"
+msgstr "Qté"
+
+#. module: e3k_mac_contact_customisation
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__rating_ids
+msgid "Ratings"
+msgstr "Évaluations"
+
+#. module: e3k_mac_contact_customisation
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 msgid "Rep"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Rep  ▼"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Rep ▲"
-msgstr ""
+msgstr "Rep"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__rep_id
 msgid "Representative"
-msgstr ""
+msgstr "Représentant"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.actions.act_window,name:e3k_mac_contact_customisation.representative_team_action
@@ -542,52 +475,37 @@ msgstr "Responsable"
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Erreur de livraison SMS"
 
 #. module: e3k_mac_contact_customisation
+#. odoo-python
 #: code:addons/e3k_mac_contact_customisation/models/calendar_event.py:0
-#, python-format
 msgid "Schedule Next Test"
-msgstr ""
+msgstr "Planifier le prochain test"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/js/schedule_meeting.js:0
+#: code:addons/e3k_mac_contact_customisation/static/src/js/schedule_next.js:0
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#, python-format
 msgid "Schedule activity"
-msgstr "Activité planifiée"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#, python-format
-msgid "Schedule an activity"
 msgstr "Planifier une activité"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__partner_id
 msgid "Scheduled by"
-msgstr ""
+msgstr "Responsable"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
 msgid "Select all"
 msgstr "Tout sélectionner"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__start
@@ -602,38 +520,14 @@ msgstr ""
 "journée"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__contact_status_id
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__contact_status_id
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_status_id
 #: model:ir.ui.menu,name:e3k_mac_contact_customisation.menu_contact_status
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited
-#, python-format
 msgid "Status"
-msgstr "Statut"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__customer_state
-#, python-format
-msgid "Customer status"
-msgstr "Statut du client"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__contact_status_id
-#, python-format
-msgid "Contact status"
 msgstr "Statut du contact"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Status  ▼"
-msgstr "Statut ▼"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_contact_status__name
@@ -641,16 +535,9 @@ msgid "Status Name"
 msgstr "Statut"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Status ▲"
-msgstr "Statut ▲"
-
-#. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Status..."
-msgstr ""
+msgstr "Statut..."
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__stop
@@ -667,45 +554,29 @@ msgstr ""
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "Tags..."
-msgstr ""
+msgstr "Etiquettes..."
 
 #. module: e3k_mac_contact_customisation
 #: model:contact.status,name:e3k_mac_contact_customisation.contact_status_target
 msgid "Target"
-msgstr ""
+msgstr "Cible"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_calendar_event__team_id
-#, python-format
 msgid "Team"
 msgstr "Équipe"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 msgid "Team Details"
-msgstr ""
+msgstr "Détails de l'équipe"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__member_ids
 msgid "Team Members"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Team ▲"
-msgstr "Équipe ▲"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "Team ▼"
-msgstr "Équipe ▼"
+msgstr "Membres de l'équipe"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_res_partner__user_id
@@ -714,57 +585,42 @@ msgid "The internal user in charge of this contact."
 msgstr "L'utilisateur interne en charge de ce contact."
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
+#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
+msgid "To"
+msgstr "Au"
+
+#. module: e3k_mac_contact_customisation
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/xml/contact_chatter.xml:0
-#, python-format
 msgid "To do"
 msgstr "À faire"
-
-#. module: e3k_mac_contact_customisation
-#. openerp-web
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
-#, python-format
-msgid "To:"
-msgstr "A:"
-
-#. module: e3k_mac_contact_customisation
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: e3k_mac_contact_customisation
-#: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_partner__user_id
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_res_users__user_id
 msgid "User"
-msgstr ""
+msgstr "Vendeur"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__member_ids
 msgid "Users assigned to this team."
-msgstr ""
+msgstr "Utilisateurs assignés à cette équipe."
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,field_description:e3k_mac_contact_customisation.field_representative_team__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Messages du site web"
 
 #. module: e3k_mac_contact_customisation
 #: model:ir.model.fields,help:e3k_mac_contact_customisation.field_representative_team__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historique de communication du site web"
 
 #. module: e3k_mac_contact_customisation
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/js/activity_dashboard.js:0
-#: code:addons/e3k_mac_contact_customisation/static/src/xml/activity_dashboard.xml:0
 #: model:ir.model.fields.selection,name:e3k_mac_contact_customisation.selection__calendar_event__completed__yes
-#, python-format
 msgid "Yes"
 msgstr "Oui"
 
@@ -773,22 +629,22 @@ msgstr "Oui"
 #: model:ir.model,name:e3k_mac_contact_customisation.model_contact_status
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_contact_status_form
 msgid "contact Status"
-msgstr ""
+msgstr "Statut du contact"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_contact_status_tree
 msgid "contact status"
-msgstr ""
+msgstr "Statut du contact"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.representative_team_view_form
 msgid "e.g. North America"
-msgstr ""
+msgstr "ex. Amérique du Nord"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.l10n_ca_res_partner_form_inherit_ca
 msgid "open"
-msgstr ""
+msgstr "ouvert"
 
 #. module: e3k_mac_contact_customisation
 #: model_terms:ir.ui.view,arch_db:e3k_mac_contact_customisation.view_calendar_event_search_inherited

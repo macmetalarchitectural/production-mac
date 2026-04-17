@@ -1,1 +1,4 @@
 odoo_upgrade @ git+https://github.com/odoo/upgrade-util@master
+pre-commit==4.2.0
+pylint==3.3.7
+pylint-odoo==9.3.12

@@ -3,7 +3,7 @@
 
 {
   'name': 'Sale Order Search By Client Order Reference',
-  'version': '15.0.1.0.0',
+  'version': '19.0.1.0.0',
   'category': 'Sales',
   'summary': "Allow to search sale orders by the client order reference.",
   'author': 'Numigi',
@@ -12,5 +12,4 @@
   'data': [
     'views/sales_order_view.xml',
   ],
-  'application': False,
 }

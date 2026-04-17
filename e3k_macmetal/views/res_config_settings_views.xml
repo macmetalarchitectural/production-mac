@@ -6,52 +6,36 @@
     <field name="model">res.config.settings</field>
     <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
     <field name="arch" type="xml">
-      <xpath expr="//div[@id='proforma_configuration']" position="after">
-        <div class="col-12 col-lg-6 o_setting_box" id="use_delivery_terms">
-          <style>
-            .oe_delivery_terms {
-              flex: auto !important;
-            }
-          </style>
-          <div class="o_setting_left_pane">
-            <field name="use_delivery_terms"/>
+      <!-- In Odoo 19, use setting id instead of div id -->
+      <setting id="proforma_configuration" position="after">
+        <!-- Delivery Terms & Conditions -->
+        <setting id="use_delivery_terms"
+                 string="Delivery Terms &amp; Conditions"
+                 help="Show standard delivery terms &amp; conditions on sale orders">
+          <field name="use_delivery_terms"/>
+          <div class="content-group mt16" invisible="not use_delivery_terms">
+            <label for="delivery_terms" class="o_light_label"/>
+            <field name="delivery_terms"
+                   widget="html"
+                   placeholder="Insert your terms &amp; conditions here..."
+                   options="{'style-inline': true}"/>
           </div>
-          <div class="o_setting_right_pane">
-            <label for="use_delivery_terms"/>
-            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
-            <div class="text-muted">
-              Show standard delivery terms &amp; conditions on sale orders
-            </div>
-            <div class="content-group" attrs="{'invisible': [('use_delivery_terms','=',False)]}">
-              <div class="mt16" attrs="{'invisible': [('use_delivery_terms','=',False)]}">
-                <div class="d-flex">
-                  <field name="delivery_terms"
-                    class="oe_delivery_terms"
-                    placeholder="Insert your terms &amp; conditions here..."/>
-                </div>
-              </div>
-            </div>
+        </setting>
+
+        <!-- Padding Delivery Days -->
+        <setting id="padding_delivery_days_setting"
+                 string="Padding Delivery Days"
+                 help="Additional weekdays to add when scheduling delivery dates">
+          <div class="text-muted mb8">
+            Minimum number of weekdays between order confirmation and delivery date
           </div>
-        </div>
-        <div class="col-12 col-lg-6 o_setting_box">
-          <div class="o_setting_left_pane">
+          <div class="d-flex align-items-center gap-2">
+            <label for="padding_delivery_days" string="Add" class="mb-0"/>
+            <field name="padding_delivery_days" class="oe_inline" style="width: 80px;"/>
+            <span>weekdays (excluding weekends)</span>
           </div>
-          <div class="o_setting_right_pane">
-            <span class="o_form_label">Default Padding Delivery Days</span>
-            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
-            <div class="text-muted">
-              Additional days to schedule delivery dates
-            </div>
-            <div class="content-group">
-              <div class="row mt16 o_light_label">
-                <label for="padding_delivery_days" string="Add" class="col-lg-3"/>
-                <field name="padding_delivery_days" class="col-lg-2 p-0"/>
-                <label for="padding_delivery_days" string="days" class="col-lg-2"/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </xpath>
+        </setting>
+      </setting>
     </field>
   </record>
 

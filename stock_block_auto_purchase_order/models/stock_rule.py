@@ -1,195 +1,152 @@
 # © 2018 - today Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, models, fields, SUPERUSER_ID, _
+import logging
 from collections import defaultdict
-from odoo.addons.purchase.models.purchase import PurchaseOrder
-from odoo.tools import float_compare
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from itertools import groupby
-from odoo.addons.stock.models.stock_rule import ProcurementException
 
-from odoo.exceptions import UserError
-import logging
+from odoo import api, fields, models, SUPERUSER_ID, _, Command
+from odoo.addons.stock.models.stock_rule import ProcurementException
+from odoo.tools import groupby as odoo_groupby
+
 _logger = logging.getLogger(__name__)
+
 
 class StockRule(models.Model):
     _inherit = "stock.rule"
 
     def block_po_purchaceorder(self, procurements):
+        """Crée un nouveau PO pour chaque procurement, sans jamais consolider."""
         procurements_by_po_domain = defaultdict(list)
         errors = []
+
         for procurement, rule in procurements:
-            # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
+            company_id = rule.company_id or procurement.company_id
 
-            supplier = False
-            if procurement.values.get('supplierinfo_id'):
-                supplier = procurement.values['supplierinfo_id']
-            else:
-                supplier = procurement.product_id.with_company(procurement.company_id.id)._select_seller(
-                    partner_id=procurement.values.get("supplierinfo_name"),
-                    quantity=procurement.product_qty,
-                    date=procurement_date_planned.date(),
-                    uom_id=procurement.product_uom)
-
-            # Fall back on a supplier for which no price may be defined. Not ideal, but better than
-            # blocking the user.
-            supplier = supplier or procurement.product_id._prepare_sellers(False).filtered(
-                lambda s: not s.company_id or s.company_id == procurement.company_id
-            )[:1]
+            supplier = rule._get_matching_supplier(
+                procurement.product_id, procurement.product_qty, procurement.product_uom,
+                company_id, procurement.values,
+            )
 
             if not supplier:
                 msg = _(
-                    'There is no matching vendor price to generate the purchase order for product %s (no vendor defined, minimum quantity not reached, dates not valid, ...). Go on the product form and complete the list of vendors.') % (
-                          procurement.product_id.display_name)
+                    'There is no matching vendor price to generate the purchase order for product %s '
+                    '(no vendor defined, minimum quantity not reached, dates not valid, ...). '
+                    'Go on the product form and complete the list of vendors.',
+                    procurement.product_id.display_name,
+                )
                 errors.append((procurement, msg))
+                continue
 
-            partner = supplier.name
-            # we put `supplier_info` in values for extensibility purposes
             procurement.values['supplier'] = supplier
             procurement.values['propagate_cancel'] = rule.propagate_cancel
 
-            domain = rule._make_po_get_domain(procurement.company_id, procurement.values, partner)
+            domain = rule._make_po_get_domain(company_id, procurement.values, supplier.partner_id)
             procurements_by_po_domain[domain].append((procurement, rule))
 
         if errors:
             raise ProcurementException(errors)
 
         for domain, procurements_rules in procurements_by_po_domain.items():
-            # Get the procurements for the current domain.
-            # Get the rules for the current domain. Their only use is to create
-            # the PO if it does not exist.
-            procurements, rules = zip(*procurements_rules)
+            procurements_list, rules = zip(*procurements_rules)
+            origins = set(p.origin for p in procurements_list if p.origin)
+            company_id = rules[0].company_id or procurements_list[0].company_id
 
-            # Get the set of procurement origin for the current domain.
-            origins = set([p.origin for p in procurements])
-            # Check if a PO exists for the current domain.
-            po = False
-            company_id = procurements[0].company_id
+            for procurement in procurements_list:
+                if procurement.product_uom.compare(procurement.product_qty, 0.0) < 0:
+                    continue
 
-            for procurement in procurements:
-                # raise UserError('procurements %s' % str(procurement))
-                positive_values = [p.values for p in procurements if
-                                   float_compare(p.product_qty, 0.0, precision_rounding=p.product_uom.rounding) >= 0]
-                if positive_values:
-                    # We need a rule to generate the PO. However the rule generated
-                    # the same domain for PO and the _prepare_purchase_order method
-                    # should only uses the common rules's fields.
-                    vals = rules[0]._prepare_purchase_order(company_id, origins, positive_values)
-                    # The company_id is the same for all procurements since
-                    # _make_po_get_domain add the company in the domain.
-                    # We use SUPERUSER_ID since we don't want the current user to be follower of the PO.
-                    # Indeed, the current user may be a user without access to Purchase, or even be a portal user.
-                    vals['block_auto_purchase_order'] = True
-                    po = self.env['purchase.order'].with_company(company_id).with_user(SUPERUSER_ID).create(vals)
+                positive_values = [p.values for p in procurements_list
+                                   if procurement.product_uom.compare(p.product_qty, 0.0) >= 0]
+                if not positive_values:
+                    continue
+
+                # Toujours créer un nouveau PO (comportement block)
+                vals = rules[0]._prepare_purchase_order(company_id, origins, positive_values)
+                vals['block_auto_purchase_order'] = True
+                po = self.env['purchase.order'].with_company(company_id).with_user(SUPERUSER_ID).create(vals)
 
                 po_lines_by_product = {}
-                grouped_po_lines = groupby(
-                    po.order_line.filtered(
-                        lambda l: not l.display_type and l.product_uom == l.product_id.uom_po_id).sorted(
-                        lambda l: l.product_id.id), key=lambda l: l.product_id.id)
-
-                for product, po_lines in grouped_po_lines:
-                    po_lines_by_product[product] = self.env['purchase.order.line'].concat(*list(po_lines))
+                grouped_po_lines = odoo_groupby(
+                    po.order_line.filtered(lambda l: not l.display_type),
+                    key=lambda l: l.product_id.id,
+                )
+                for product_id, po_lines in grouped_po_lines:
+                    po_lines_by_product[product_id] = self.env['purchase.order.line'].concat(*po_lines)
 
                 po_line_values = []
-
                 po_lines = po_lines_by_product.get(procurement.product_id.id, self.env['purchase.order.line'])
                 po_line = po_lines._find_candidate(*procurement)
 
-                if float_compare(procurement.product_qty, 0,
-                                 precision_rounding=procurement.product_uom.rounding) <= 0:
-                    # If procurement contains negative quantity, don't create a new line that would contain negative qty
-                    continue
-                # If it does not exist a PO line for current procurement.
-                # Generate the create values for it and add it to a list in
-                # order to create it in batch.
-                partner = procurement.values['supplier'].name
-
-                po_line_values.append(self.env['purchase.order.line']._prepare_purchase_order_line_from_procurement(
-                    procurement.product_id, procurement.product_qty,
-                    procurement.product_uom, procurement.company_id,
-                    procurement.values, po))
-                # Check if we need to advance the order date for the new line
-                order_date_planned = procurement.values['date_planned'] - relativedelta(
-                    days=procurement.values['supplier'].delay)
-                if fields.Date.to_date(order_date_planned) < fields.Date.to_date(po.date_order):
-                    po.date_order = order_date_planned
+                if not po_line:
+                    po_line_values.append(
+                        self.env['purchase.order.line']._prepare_purchase_order_line_from_procurement(
+                            *procurement, po
+                        )
+                    )
+                    order_date_planned = procurement.values['date_planned'] - relativedelta(
+                        days=procurement.values['supplier'].delay)
+                    if fields.Date.to_date(order_date_planned) < fields.Date.to_date(po.date_order):
+                        po.date_order = order_date_planned
 
                 self.env['purchase.order.line'].sudo().create(po_line_values)
 
     def unique_po_purchaceorder(self, procurements):
+        """Garantit un seul PO par origine/commande de vente."""
         procurements_by_po_domain = defaultdict(list)
         errors = []
+
         for procurement, rule in procurements:
+            company_id = rule.company_id or procurement.company_id
 
-            # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
-
-            supplier = False
-            if procurement.values.get('supplierinfo_id'):
-                supplier = procurement.values['supplierinfo_id']
-            else:
-                supplier = procurement.product_id.with_company(procurement.company_id.id)._select_seller(
-                    partner_id=procurement.values.get("supplierinfo_name"),
-                    quantity=procurement.product_qty,
-                    date=procurement_date_planned.date(),
-                    uom_id=procurement.product_uom)
-
-            # Fall back on a supplier for which no price may be defined. Not ideal, but better than
-            # blocking the user.
-            supplier = supplier or procurement.product_id._prepare_sellers(False).filtered(
-                lambda s: not s.company_id or s.company_id == procurement.company_id
-            )[:1]
+            supplier = rule._get_matching_supplier(
+                procurement.product_id, procurement.product_qty, procurement.product_uom,
+                company_id, procurement.values,
+            )
 
             if not supplier:
                 msg = _(
-                    'There is no matching vendor price to generate the purchase order for product %s (no vendor defined, minimum quantity not reached, dates not valid, ...). Go on the product form and complete the list of vendors.') % (
-                          procurement.product_id.display_name)
+                    'There is no matching vendor price to generate the purchase order for product %s '
+                    '(no vendor defined, minimum quantity not reached, dates not valid, ...). '
+                    'Go on the product form and complete the list of vendors.',
+                    procurement.product_id.display_name,
+                )
                 errors.append((procurement, msg))
+                continue
 
-            partner = supplier.name
-            # we put `supplier_info` in values for extensibility purposes
             procurement.values['supplier'] = supplier
             procurement.values['propagate_cancel'] = rule.propagate_cancel
 
-            domain = rule._make_po_get_domain(procurement.company_id, procurement.values, partner)
+            domain = rule._make_po_get_domain(company_id, procurement.values, supplier.partner_id)
             procurements_by_po_domain[domain].append((procurement, rule))
 
         if errors:
             raise ProcurementException(errors)
 
         for domain, procurements_rules in procurements_by_po_domain.items():
-            # Get the procurements for the current domain.
-            # Get the rules for the current domain. Their only use is to create
-            # the PO if it does not exist.
-            procurements, rules = zip(*procurements_rules)
+            procurements_list, rules = zip(*procurements_rules)
+            origins = set(p.origin for p in procurements_list if p.origin)
+            company_id = rules[0].company_id or procurements_list[0].company_id
 
-            # Get the set of procurement origin for the current domain.
-            origins = set([p.origin for p in procurements])
-            # Check if a PO exists for the current domain.
-            domain += (('origin', '=', str(origins).replace('{', '').replace('}', '')),)
-            po = self.env['purchase.order'].sudo().search([dom for dom in domain], limit=1)
-            # raise UserError('domain %s' % str(domain))
-            company_id = procurements[0].company_id
+            # Recherche un PO existant par origine (1 PO par SO)
+            domain_with_origin = domain + (('origin', '=', str(origins).replace('{', '').replace('}', '')),)
+            po = self.env['purchase.order'].sudo().search([dom for dom in domain_with_origin], limit=1)
+
             if not po:
-                positive_values = [p.values for p in procurements if
-                                   float_compare(p.product_qty, 0.0, precision_rounding=p.product_uom.rounding) >= 0]
+                positive_values = [p.values for p in procurements_list
+                                   if p.product_uom.compare(p.product_qty, 0.0) >= 0]
                 if positive_values:
-                    # We need a rule to generate the PO. However the rule generated
-                    # the same domain for PO and the _prepare_purchase_order method
-                    # should only uses the common rules's fields.
                     vals = rules[0]._prepare_purchase_order(company_id, origins, positive_values)
-                    # The company_id is the same for all procurements since
-                    # _make_po_get_domain add the company in the domain.
-                    # We use SUPERUSER_ID since we don't want the current user to be follower of the PO.
-                    # Indeed, the current user may be a user without access to Purchase, or even be a portal user.
                     vals['unique_purchase_order'] = True
                     po = self.env['purchase.order'].with_company(company_id).with_user(SUPERUSER_ID).create(vals)
             else:
-                # If a purchase order is found, adapt its `origin` field.
+                reference_ids = set()
+                for procurement in procurements_list:
+                    reference_ids |= set(procurement.values.get('reference_ids', self.env['stock.reference']).ids)
+                po.reference_ids = [Command.link(ref_id) for ref_id in reference_ids]
+                # Mettre à jour l'origine
                 if po.origin:
                     missing_origins = origins - set(po.origin.split(', '))
                     if missing_origins:
@@ -197,122 +154,90 @@ class StockRule(models.Model):
                 else:
                     po.write({'origin': ', '.join(origins)})
 
-            procurements_to_merge = self._get_procurements_to_merge(procurements)
-            procurements = self._merge_procurements(procurements_to_merge)
+            procurements_to_merge = self._get_procurements_to_merge(procurements_list)
+            procurements_list = self._merge_procurements(procurements_to_merge)
 
             po_lines_by_product = {}
-            grouped_po_lines = groupby(
-                po.order_line.filtered(lambda l: not l.display_type and l.product_uom == l.product_id.uom_po_id).sorted(
-                    lambda l: l.product_id.id), key=lambda l: l.product_id.id)
-            for product, po_lines in grouped_po_lines:
-                po_lines_by_product[product] = self.env['purchase.order.line'].concat(*list(po_lines))
+            grouped_po_lines = odoo_groupby(
+                po.order_line.filtered(lambda l: not l.display_type),
+                key=lambda l: l.product_id.id,
+            )
+            for product_id, po_lines in grouped_po_lines:
+                po_lines_by_product[product_id] = self.env['purchase.order.line'].concat(*po_lines)
+
             po_line_values = []
-            for procurement in procurements:
+            for procurement in procurements_list:
                 po_lines = po_lines_by_product.get(procurement.product_id.id, self.env['purchase.order.line'])
                 po_line = po_lines._find_candidate(*procurement)
 
                 if po_line:
-                    # If the procurement can be merge in an existing line. Directly
-                    # write the new values on it.
-                    vals = self._update_purchase_order_line(procurement.product_id,
-                                                            procurement.product_qty, procurement.product_uom,
-                                                            company_id,
-                                                            procurement.values, po_line)
-                    po_line.write(vals)
+                    vals = self._update_purchase_order_line(
+                        procurement.product_id, procurement.product_qty, procurement.product_uom,
+                        company_id, procurement.values, po_line,
+                    )
+                    po_line.sudo().write(vals)
                 else:
-                    if float_compare(procurement.product_qty, 0,
-                                     precision_rounding=procurement.product_uom.rounding) <= 0:
-                        # If procurement contains negative quantity, don't create a new line that would contain negative qty
+                    if procurement.product_uom.compare(procurement.product_qty, 0) <= 0:
                         continue
-                    # If it does not exist a PO line for current procurement.
-                    # Generate the create values for it and add it to a list in
-                    # order to create it in batch.
-                    partner = procurement.values['supplier'].name
-                    po_line_values.append(self.env['purchase.order.line']._prepare_purchase_order_line_from_procurement(
-                        procurement.product_id, procurement.product_qty,
-                        procurement.product_uom, procurement.company_id,
-                        procurement.values, po))
-                    # Check if we need to advance the order date for the new line
+                    po_line_values.append(
+                        self.env['purchase.order.line']._prepare_purchase_order_line_from_procurement(
+                            *procurement, po
+                        )
+                    )
                     order_date_planned = procurement.values['date_planned'] - relativedelta(
                         days=procurement.values['supplier'].delay)
                     if fields.Date.to_date(order_date_planned) < fields.Date.to_date(po.date_order):
                         po.date_order = order_date_planned
+
             self.env['purchase.order.line'].sudo().create(po_line_values)
 
+    @api.model
     def _run_buy(self, procurements):
-        result = False
-        errors = []
-
         vals = {}
 
         for procurement, rule in procurements:
-            group_id = procurement.values.get('group_id')
+            company_id = rule.company_id or procurement.company_id
 
-            # Get the schedule date in order to find a valid seller
-            procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
-
-            supplier = False
-            if procurement.values.get('supplierinfo_id'):
-                supplier = procurement.values['supplierinfo_id']
-            else:
-                supplier = procurement.product_id.with_company(procurement.company_id.id)._select_seller(
-                    partner_id=procurement.values.get("supplierinfo_name"),
-                    quantity=procurement.product_qty,
-                    date=procurement_date_planned.date(),
-                    uom_id=procurement.product_uom)
-
-            # Fall back on a supplier for which no price may be defined. Not ideal, but better than
-            # blocking the user.
-            supplier = supplier or procurement.product_id._prepare_sellers(False).filtered(
-                lambda s: not s.company_id or s.company_id == procurement.company_id
-            )[:1]
+            supplier = rule._get_matching_supplier(
+                procurement.product_id, procurement.product_qty, procurement.product_uom,
+                company_id, procurement.values,
+            )
 
             if not supplier:
-                msg = _(
-                    'There is no matching vendor price to generate the purchase order for product %s (no vendor defined, minimum quantity not reached, dates not valid, ...). Go on the product form and complete the list of vendors.') % (
-                          procurement.product_id.display_name)
-                errors.append((procurement, msg))
+                # Pas de fournisseur : laisser le natif gérer (cancel/notify)
+                super(StockRule, self)._run_buy([(procurement, rule)])
+                continue
 
-            partner = supplier.name
+            partner = supplier.partner_id
+            procurement.values['supplier'] = supplier
+            procurement.values['propagate_cancel'] = rule.propagate_cancel
 
-            # sale_order_line = self.env['sale.order.line'].search([('order_id', '=', group_id.sale_id.id), ('product_id', '=', procurement.product_id.id)])
-            # sale_order_line.filtered(lambda sol: sol.old_product_uom_qty != sol.product_uom_qty and sol.product_id == procurement.product_id.id)
-
-            #sale_order_line = group_id.sale_id.order_line.filtered(lambda sol: sol.old_product_uom_qty != sol.product_uom_qty and sol.product_id == procurement.product_id.id)
+            # En v19, group_id n'existe plus — on retrouve la SO via sale_line_id dans values
+            sale_line_id = procurement.values.get('sale_line_id')
+            sale_order = self.env['sale.order.line'].browse(sale_line_id).order_id if sale_line_id else False
+            new_sale_order = not bool(sale_order.purchase_order_count) if sale_order else True
 
             if partner.id in vals:
-                vals[partner.id]['block_auto_purchase_order'] = partner.block_auto_purchase_order
-                vals[partner.id]['unique_purchase_order'] = partner.unique_purchase_order
-                vals[partner.id]['new_sale_order'] = False if group_id.sale_id.purchase_order_count else True
-                vals[partner.id]['sale_order_id'] = group_id.sale_id
-                #vals[partner.id]['old_product_uom_qty'] = sale_order_line.old_product_uom_qty
+                vals[partner.id]['new_sale_order'] = new_sale_order
+                vals[partner.id]['sale_order_id'] = sale_order
                 vals[partner.id]['values'].append((procurement, rule))
             else:
-                procurement_by_partner = []
-                procurement_by_partner.append((procurement, rule))
-                vals[partner.id] = {'block_auto_purchase_order': partner.block_auto_purchase_order,
-                                    'unique_purchase_order': partner.unique_purchase_order,
-                                    'new_sale_order': False if group_id.sale_id.purchase_order_count else True,
-                                    'sale_order_id': group_id.sale_id,
-                                    #'old_product_uom_qty': sale_order_line.old_product_uom_qty,
-                                    'values': procurement_by_partner
-                                    }
+                vals[partner.id] = {
+                    'block_auto_purchase_order': partner.block_auto_purchase_order,
+                    'unique_purchase_order': partner.unique_purchase_order,
+                    'new_sale_order': new_sale_order,
+                    'sale_order_id': sale_order,
+                    'values': [(procurement, rule)],
+                }
 
-        for val_key in vals.keys():
-            partner_id = self.env['res.partner'].search([('id', '=', val_key)])
-
-            result = False
+        for val_key, val_data in vals.items():
+            partner_id = self.env['res.partner'].browse(val_key)
 
             if partner_id.block_auto_purchase_order:
-                # appliquer le scenario block_po
-                if vals[val_key]['new_sale_order']:
-                    result = self.block_po_purchaceorder(vals[val_key]['values'])
+                if val_data['new_sale_order']:
+                    self.block_po_purchaceorder(val_data['values'])
             elif partner_id.unique_purchase_order:
-                # appliquer le scenario unique_po
-                if vals[val_key]['new_sale_order']:
-                    result = self.unique_po_purchaceorder(vals[val_key]['values'])
+                if val_data['new_sale_order']:
+                    self.unique_po_purchaceorder(val_data['values'])
             else:
-                # appliquer le scenario natif odoo
-                result = super(StockRule, self)._run_buy(vals[val_key]['values'])
-
-        return result
+                super(StockRule, self)._run_buy(val_data['values'])

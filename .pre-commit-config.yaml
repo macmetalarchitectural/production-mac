@@ -1,0 +1,75 @@
+default_stages: [pre-commit]
+exclude: ^((?!e3k_).)*$|/static/
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        name: black is formatting Python code
+        exclude: __init__.py
+        args:
+          - --line-length=120
+          - --target-version=py310
+          - --skip-string-normalization
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort is sorting imports
+        exclude: __init__.py
+
+  # 1) Autoflake doit passer AVANT flake8
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.0
+    hooks:
+      - id: autoflake
+        name: autoflake is removing unused imports and variables
+        args:
+          - --in-place
+          - --remove-all-unused-imports
+          - --remove-unused-variables
+          - --ignore-init-module-imports
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        name: flake8 is checking Python code style and unsed imports
+        exclude:
+          __init__.py
+        args: [--max-line-length=120]
+  - repo: local
+    hooks:
+      - id: pylint-if-python-compatible
+        name: pylint is checking Python code quality and possible warnings
+        entry: python .pre-commit-hooks/run_pylint_if_compatible.py --rcfile=.pre-commit-hooks/.pylintrc.ini
+        language: system
+        types: [python]
+  - repo: local
+    hooks:
+      - id: check-author
+        name: Ensure manifest author is e3k
+        entry: python .pre-commit-hooks/check_author.py
+        language: system
+        types: [file]
+        files: ^e3k_.+/__manifest__\.py$
+  - repo: local
+    hooks:
+      - id: check-odoo-field-prefix
+        name: Ensure Odoo field names start with e3k_ on overridden models
+        entry: python .pre-commit-hooks/check-field-prefix.py
+        language: system
+        types: [ python ]
+        exclude: '(^|/)(3rdparty|venv|env)/'
+
+  - repo: local
+    hooks:
+      - id: check-version-format
+        name: Ensure manifest version uses x.y.z format
+        entry: python .pre-commit-hooks/check_manifest_version.py
+        language: system
+        types: [ file ]
+        files: ^e3k_.+/__manifest__\.py$
+
+

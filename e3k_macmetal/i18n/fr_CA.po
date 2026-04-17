@@ -42,6 +42,16 @@ msgid "<span>With payment terms:</span>"
 msgstr "<span>Avec les conditions de paiement :</span>"
 
 #. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_stock_portal_picking_state
+msgid "<i class=\"fa fa-fw fa-check\"/>Ready"
+msgstr "<i class=\"fa fa-fw fa-check\"/>Prêt"
+
+#. module: e3k_macmetal
+#: model_terms:ir.ui.view,arch_db:e3k_macmetal.sale_stock_portal_picking_state
+msgid "<i class=\"fa fa-fw fa-clock-o\"/>Preparation in progress"
+msgstr "<i class=\"fa fa-fw fa-clock-o\"/>Préparation en cours"
+
+#. module: e3k_macmetal
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
 msgid "Add"
 msgstr "Ajouter"
@@ -58,14 +68,14 @@ msgid "Amount of days"
 msgstr "Nombre de jours"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Auto"
 msgstr "Automatique"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Clear"
@@ -124,7 +134,14 @@ msgid "Description"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+#, python-format
+msgid "Select date and time"
+msgstr "Sélectionner date et heure"
+
+#. module: e3k_macmetal
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Desired Date"
@@ -136,14 +153,14 @@ msgid "Displayable Locations"
 msgstr "Emplacements Affichables"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Draw"
 msgstr "Dessiner"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Full Name"
@@ -172,7 +189,7 @@ msgid "Inventory Locations"
 msgstr "Emplacements de stock"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Load"
@@ -299,21 +316,21 @@ msgid "Signature is missing."
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Style"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Styles"
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is greater than the maximum date: "
@@ -321,7 +338,7 @@ msgstr ""
 "La date que vous avez sélectionnée est supérieure à la date maximale: "
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/js/signature_form.js:0
 #, python-format
 msgid "The date you selected is lower than the minimum date: "
@@ -335,7 +352,7 @@ msgid "The order is not in a state requiring customer signature."
 msgstr ""
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "This file is invalid. Please select an image."
@@ -347,7 +364,7 @@ msgid "This is the delivery date selected by the customer."
 msgstr "C'est la date de livraison choisie par au client"
 
 #. module: e3k_macmetal
-#. openerp-web
+#. odoo-javascript
 #: code:addons/e3k_macmetal/static/src/xml/signature_form.xml:0
 #, python-format
 msgid "Your name"
@@ -357,3 +374,159 @@ msgstr "Votre nom"
 #: model_terms:ir.ui.view,arch_db:e3k_macmetal.res_config_settings_view_form
 msgid "days"
 msgstr "jours"
+
+#. module: e3k_macmetal
+#: model:ir.actions.act_window,name:e3k_macmetal.e3k_ticket_product_type_action
+#: model:ir.ui.menu,name:e3k_macmetal.e3k_helpdesk_menu_product_type
+msgid "Product Types"
+msgstr "Types d'article"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_e3k_ticket_product_type
+msgid "Ticket Product Type"
+msgstr "Type de produit de ticket"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_e3k_ticket_product_type__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Ticket d'Assistance"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_old_amount
+msgid "Old Amount"
+msgstr "Vieux montant"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_helpdesk_ticket__e3k_ticket_product_type_id
+msgid "Product Type"
+msgstr "Type de produit"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_division_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_division_id
+msgid "Division"
+msgstr "Division"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_inside_sales_rep_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_inside_sales_rep_id
+msgid "Inside Sales Rep"
+msgstr "Responsable compte"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_res_partner__e3k_inside_sales_rep_id
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_inside_sales_rep_id
+msgid "The order desk employee who is responsible for the client account."
+msgstr "L'employé qui est responsable du compte client à l'interne."
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_res_partner__e3k_maison_mere_id
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_maison_mere_id
+msgid "Parent Company"
+msgstr "Maison mère"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_product_template
+msgid "Product"
+msgstr "Modèle d'article"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_product_template__e3k_drawing
+#: model:ir.model.fields,field_description:e3k_macmetal.field_purchase_order_line__e3k_drawing
+msgid "Drawing"
+msgstr "Dessin"
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_follow_up_date
+msgid "Follow-up Date"
+msgstr "Date de suivi"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_on_hold
+msgid "On Hold"
+msgstr "En attente"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_on_hold
+msgid "The order is on hold when the checkbox is checked."
+msgstr "La commande est en attente lorsque la case est cochée."
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_receipt_date
+msgid "Date of Receipt"
+msgstr "Date de réception"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_sale_order__e3k_replacement
+msgid "Replacement"
+msgstr "Remplacement"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,help:e3k_macmetal.field_sale_order__e3k_replacement
+msgid "The order is a replacement when the checkbox is checked."
+msgstr "La commande est un remplacement lorsque la case est cochée."
+
+#. module: e3k_macmetal
+#: model:ir.model,name:e3k_macmetal.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_picking__e3k_delivery_on_hold
+msgid "Delivery On Hold"
+msgstr "Livraison en attente"
+
+#. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_picking__e3k_sales_value
+msgid "Sales Value"
+msgstr "Valeur de ventes"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.xml:0
+msgid "Minimum"
+msgstr "Minimum"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "Please select a delivery date."
+msgstr "Veuillez sélectionner une date de livraison."
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "Please select a weekday (Monday to Friday)."
+msgstr "Veuillez sélectionner un jour de la semaine (Lundi à Vendredi)."
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.js:0
+msgid "The date must be at least %s"
+msgstr "La date doit être au moins %s"
+
+#. module: e3k_macmetal
+#. odoo-javascript
+#: code:addons/e3k_macmetal/static/src/signature_form/mac_signature_form.xml:0
+msgid "business day(s) from today (weekdays only)"
+msgstr "jour(s) ouvrable(s) à partir d'aujourd'hui (jours de semaine seulement)"

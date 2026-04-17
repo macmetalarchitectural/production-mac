@@ -1,0 +1,161 @@
+/**
+ * Custom styles for stock.picking calendar
+ *
+ * This file contains all CSS styles for the e3k_mac_stock_calendar module.
+ * It manages the appearance of events and calendar container for stock.picking.
+ *
+ * Organization:
+ * 1. Hide hour column (week/day view)
+ * 2. Event styles (borders, colors)
+ * 3. Event internal layout (title, indicators)
+ */
+
+// ============================================================================
+// Hide hour column in week/day view
+// ============================================================================
+/**
+ * The 'e3k_calendar' class is added on calendar container by viewDidMount
+ * in stock_calendar_common_renderer.js only for stock.picking in week/day view.
+ *
+ * This allows hiding the hour column (fc-timegrid-axis) and time labels
+ * (fc-timegrid-slot-label) to have more space for events.
+ *
+ * Related FullCalendar classes:
+ * - .fc-timegrid-axis: Left column with hours (00:00, 01:00, etc.)
+ * - .fc-timegrid-slot-label: Time slot labels
+ */
+.o_calendar_view {
+    .e3k_calendar {
+        .fc-timegrid-axis {
+            // Collapse to zero width without removing from DOM flow.
+            // display:none would shift the header row, misaligning the first day column.
+            width: 0 !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            overflow: hidden !important;
+        }
+        .fc-timegrid-slot-label {
+            // Hide time slot labels
+            display: none !important;
+        }
+
+        // Hide the time grid (hourly slots) — all stock.picking events are all-day
+        // fc-timegrid-body: the time slot rows (00:00, 01:00, etc.)
+        // fc-scrollgrid-section-liquid: the scrollable body row containing the time grid
+        .fc-timegrid-body,
+        .fc-scrollgrid-section-liquid {
+            display: none !important;
+        }
+    }
+}
+
+// ============================================================================
+// Stock.picking calendar container — scrollable
+// ============================================================================
+/**
+ * .e3k_stock_calendar_view is added to .o_calendar_wrapper by viewDidMount in JS.
+ * .o_calendar_wrapper has a fixed height (CSS grid 1fr) and overflow:hidden (Bootstrap).
+ * With height:'auto' on FullCalendar, .fc grows to fit all events.
+ * Overriding overflow-y to auto makes the wrapper scroll when events exceed its height.
+ * Specificity 0,2,0 beats Bootstrap's .overflow-hidden (0,1,0), both with !important.
+ */
+.o_calendar_wrapper.e3k_stock_calendar_view {
+    overflow-y: auto !important;
+}
+// ============================================================================
+// Remove Odoo/FullCalendar default opacity on past events
+// ============================================================================
+/**
+ * FullCalendar adds the class 'fc-event-past' on events whose date has passed.
+ * Odoo uses this class (via --o-overlay-opacity or opacity) to dim past events.
+ * We override this for stock.picking events to keep them fully visible.
+ */
+.fc-event.e3k_stock_event {
+    &.fc-event-past,
+    &.fc-event-today {
+        opacity: 1 !important;
+        filter: none !important;
+        --o-overlay-opacity: 0 !important;
+    }
+}
+// ============================================================================
+// Stock.picking event styles
+// ============================================================================
+/**
+ * Class applied on <a> element of each stock.picking event
+ * by eventClassNames() method in stock_calendar_common_renderer.js
+ *
+ * Manages event borders and default text color:
+ * - Default: 2px border using --bs-body-color (adapts to light/dark theme)
+ * - Default text: --bs-body-color (overridden by inline style if e3k_calendar_text_color is set)
+ * - If flexible_date: 2px red border (via .e3k_flexible_date class)
+ *
+ * Note: Background and text colors are applied as inline styles
+ * in onEventDidMount() because they come from DB (dynamic).
+ */
+.e3k_stock_event {
+    // Default border and text color for light mode.
+    // Dark mode overrides are in stock_calendar.dark.scss (loaded only in dark mode).
+    // If e3k_calendar_text_color is set from DB, the inline style applied in
+    // onEventDidMount() overrides the color rule (inline style > class specificity).
+    border: 2px solid black !important;
+    color: black;
+
+    /**
+     * Modifier conditionally applied if record.rawRecord.flexible_date === true
+     * Added by eventClassNames() in stock_calendar_common_renderer.js
+     */
+    &.e3k_flexible_date {
+        // Red border for events with flexible date
+        border: 2px solid red !important;
+    }
+}
+
+// ============================================================================
+// Event internal layout
+// ============================================================================
+/**
+ * Main event container defined in XML template
+ * (e3k_mac_stock_calendar.StockCalendarEvent)
+ *
+ * Uses flexbox to align title and indicator (dot) on same line:
+ * - justify-content-between: Title on left, dot on right
+ * - align-items-center: Vertical centering
+ */
+.e3k_stock_event_container {
+    margin: 0;
+    height: 100%;      // Occupy all available event height
+    padding: 2px 4px;  // Internal spacing to avoid sticking to edges
+}
+
+/**
+ * Event title style (e3k_custom_display_name)
+ *
+ * Text wraps to next line if too long (no ellipsis truncation).
+ * flex: 1 allows title to occupy all available space before dot.
+ */
+.e3k_stock_event_title {
+    display: inline-block;
+    margin-right: 8px;        // Space between title and dot
+    flex: 1;                  // Takes all available space
+    white-space: normal;      // Allow line wrapping
+    word-break: break-word;   // Break long words if necessary
+}
+
+/**
+ * Visual indicator for 'assigned' state
+ *
+ * Displays a black circular dot on right of title if state === 'assigned'.
+ * Conditional rendering via t-if in XML template.
+ *
+ * flex-shrink: 0 prevents dot from shrinking if space is limited,
+ * ensuring it always stays visible at 10px × 10px.
+ */
+.e3k_assigned_dot {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;    // Circular shape (50% = perfect circle)
+    flex-shrink: 0;        // Never shrinks, even if space is limited
+}

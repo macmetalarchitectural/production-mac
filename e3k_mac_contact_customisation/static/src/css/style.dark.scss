@@ -1,0 +1,179 @@
+/**
+ * Dark mode overrides for e3k_mac_contact_customisation (Activity Dashboard).
+ *
+ * This file is loaded ONLY when dark mode is active, via web.assets_web_dark.
+ * It overrides the hardcoded light-mode color values from style.css.
+ *
+ * No selector wrapper needed: the entire file is already scoped to dark mode
+ * by the Odoo asset bundle mechanism (cookie color_scheme === "dark").
+ *
+ * Strategy:
+ * - Use Bootstrap CSS variables (--bs-*) where possible — they flip automatically.
+ * - Use semi-transparent color tints for badges (preserve semantic meaning).
+ * - Keep the table header gradient as-is (already dark by design).
+ */
+
+// ── Filter bar ────────────────────────────────────────────────────────────────
+
+.e3k-filter-bar {
+    background-color: var(--bs-secondary-bg);
+    border-bottom-color: var(--bs-border-color);
+}
+
+.e3k-filter-header {
+    border-color: var(--bs-border-color);
+}
+
+.e3k-filter-header:hover {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.e3k-filter-dropdown {
+    background-color: var(--bs-body-bg, #212529) !important;
+    border: 1px solid var(--bs-border-color, #495057) !important;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    padding: 6px 0;
+    opacity: 1;
+}
+
+.e3k-filter-item:hover {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.e3k-filter-item--all {
+    border-bottom-color: var(--bs-border-color);
+}
+
+.e3k-filter-label {
+    color: var(--bs-secondary-color);
+}
+
+// ── Table container ───────────────────────────────────────────────────────────
+
+.e3k-activity-table-wrap {
+    border-color: var(--bs-border-color);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+// ── Table body ────────────────────────────────────────────────────────────────
+
+.e3k-activity-table tbody td {
+    border-bottom-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+// Zèbre — fond alterné subtil en dark
+.e3k-activity-table tbody tr:nth-child(odd) td {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.e3k-activity-table tbody tr:nth-child(even) td {
+    background-color: var(--bs-secondary-bg);
+}
+
+// Hover — teinte indigo légère (cohérente avec l'accent #4f46e5)
+.e3k-activity-table tbody tr:hover td {
+    background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+// Lignes "done" — fond vert très sombre
+.e3k-activity-table .e3k-row-done td {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: var(--bs-body-color);
+}
+
+.e3k-activity-table .e3k-row-done:hover td {
+    background-color: rgba(16, 185, 129, 0.18) !important;
+}
+
+// ── Chips & badges ────────────────────────────────────────────────────────────
+
+// Chip "Team" — fond neutre sombre
+.e3k-team-chip {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+}
+
+// Nom du rep — bleu plus clair sur fond sombre
+.e3k-rep-name {
+    color: #60a5fa;
+}
+
+// Badge type (violet) — tinte transparente pour dark
+.e3k-badge-type {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+}
+
+// Badge status (ambre) — tinte transparente pour dark
+.e3k-badge-status {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+// Closed badge done (vert)
+.e3k-closed-badge--done {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+// Closed badge open (neutre)
+.e3k-closed-badge--open {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-secondary-color);
+}
+
+// ── Loading shimmer ───────────────────────────────────────────────────────────
+
+// Piste de la barre — fond plus sombre
+.e3k-loading-bar {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+// Label pulsant — déjà neutre (#9ca3af), acceptable en dark, légèrement allégé
+.e3k-loading-label {
+    color: var(--bs-secondary-color);
+}
+
+// ── État vide ─────────────────────────────────────────────────────────────────
+
+.e3k-empty-state {
+    color: var(--bs-secondary-color);
+}
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+
+.e3k-pagination {
+    background-color: var(--bs-secondary-bg);
+    border-top-color: var(--bs-border-color);
+}
+
+.e3k-pagination-count {
+    color: var(--bs-secondary-color);
+}
+
+.e3k-page-size-select {
+    background-color: var(--bs-body-bg);
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+.e3k-page-btn {
+    background-color: var(--bs-secondary-bg);
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+.e3k-page-btn:hover:not(:disabled) {
+    background-color: var(--bs-tertiary-bg);
+    border-color: var(--bs-secondary-color);
+}
+
+// Bouton actif — accent indigo, inchangé en dark (déjà lisible)
+// .e3k-page-btn--active → pas d'override nécessaire (#4f46e5 reste lisible)
+
+.e3k-page-ellipsis {
+    color: var(--bs-secondary-color);
+}

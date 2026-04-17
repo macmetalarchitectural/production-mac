@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 10:51+0000\n"
-"PO-Revision-Date: 2023-10-11 10:51+0000\n"
+"POT-Creation-Date: 2026-04-16 16:53+0000\n"
+"PO-Revision-Date: 2026-04-16 16:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,34 +16,41 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
-msgid "0,00"
-msgstr ""
+#: model:ir.actions.report,print_report_name:mac_reports.action_report_transfert
+msgid "'Preparation Order - %s' % object.name"
+msgstr "'Bon de préparation - %s' % object.name"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "(document barcode)"
+msgstr "(code-barres document)"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "(package barcode)"
+msgstr "(code-barres du colis)"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid ""
 "<span>\n"
 "                        <strong>Ship to:</strong>\n"
 "                    </span>"
 msgstr ""
 "<span>\n"
-"                        <strong>Expédier À:</strong>\n"
+"                        <strong>Expédier à:</strong>\n"
 "                    </span>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid ""
 "<span>\n"
 "                        <strong>Sold to:</strong>\n"
 "                    </span>"
-msgstr "<span><strong>Vendu À:</strong></span>"
+msgstr "<span><strong>Vendu à:</strong></span>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid ""
 "<span>\n"
 "                        <strong>Vendor Address:</strong>\n"
@@ -52,11 +59,30 @@ msgstr "<span><strong>Adresse du fournisseur :</strong></span>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
 msgid ""
 "<span>\n"
 "                        <strong>Warehouse Address:</strong>\n"
 "                    </span>"
+msgstr "<span><strong>Adresse de livraison:</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Ship to:</strong></span>"
+msgstr "<span><strong>Expédier à:</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Sold to:</strong></span>"
+msgstr "<span><strong>Vendu à:</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Vendor Address:</strong></span>"
+msgstr "<span><strong>Adresse du fournisseur :</strong></span>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<span><strong>Warehouse Address:</strong></span>"
 msgstr "<span><strong>Adresse de livraison:</strong></span>"
 
 #. module: mac_reports
@@ -65,37 +91,53 @@ msgid "<strong class=\"text-nowrap\">Inside sales rep:</strong>"
 msgstr "<strong class=\"text-nowrap\">Responsable de compte:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Carrier:</strong>"
 msgstr "<strong>Méthode de livraison:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac
 msgid "<strong>Date:</strong>"
-msgstr ""
+msgstr "<strong>Date :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Deadline:</strong>"
+msgstr "<strong>Date d'échéance:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "<strong>Delivery slip:</strong>"
-msgstr ""
+msgstr "<strong>Bon de livraison:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Instructions:</strong>"
+msgstr "<strong>Instructions :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Lot/Serial Number</strong>"
 msgstr "<strong>Lot/Numéros de série</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Operator:</strong>"
+msgstr "<strong>Opérateur :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Order Date:</strong>"
 msgstr "<strong>Date de confirmation commande:</strong>"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "<strong>Order:</strong>"
-msgstr ""
+msgstr "<strong>Commande :</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Ordered</strong>"
 msgstr "<strong>Commandé</strong>"
 
@@ -103,35 +145,31 @@ msgstr "<strong>Commandé</strong>"
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_mac
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac
 msgid "<strong>Origin:</strong>"
-msgstr "<strong>Document d’origine:</strong>"
+msgstr "<strong>Document d'origine:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>PO</strong>"
-msgstr ""
+msgstr "<strong>BC</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_invoice_mac
-msgid "<strong>Payment terms:</strong>"
-msgstr "<strong>Conditions de paiement:</strong>"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Preparation order:</strong>"
 msgstr "<strong>Bon de préparation:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Prepared Quantity</strong>"
 msgstr "<strong>Quantité préparée</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Product Barcode</strong>"
 msgstr "<strong>Code-barres de l'article</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>Product</strong>"
 msgstr "<strong>Produit</strong>"
 
@@ -151,50 +189,80 @@ msgid "<strong>Salesperson:</strong>"
 msgstr "<strong>Représentant:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
-msgid "<strong>Scheduled Date:</strong>"
-msgstr "<strong>Date planifiée:</strong>"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "<strong>Shipping Date:</strong>"
-msgstr "<strong>Date d'expédition:</strong>"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_mac
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac
 msgid "<strong>Shipping address:</strong>"
 msgstr "<strong>Adresse de livraison:</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_purchase_quotation_mac2
-msgid "<strong>Supplier:</strong>"
-msgstr "<strong>Fournisseur:</strong>"
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Status:</strong>"
+msgstr "<strong>Statut :</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid "<strong>Terms:</strong>"
-msgstr "<strong>Termes:</strong>"
-
-#. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "<strong>To prepare</strong>"
 msgstr "<strong>À préparer</strong>"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-msgid ""
-"<strong>Total Weight:</strong>\n"
-"                <br/>"
-msgstr ""
-"<strong>Poids Total:</strong>\n"
-"                <br/>"
-
-#. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.document_tax_totals_e3k
 msgid "<strong>Total:</strong>"
+msgstr "<strong>Total :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Vendor:</strong>"
+msgstr "<strong>Fournisseur :</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "<strong>Weight:</strong>"
+msgstr "<strong>Poids:</strong>"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid ""
+"A charge of 2.5% per month will be added to all invoices unpaid within 30 days, and\n"
+"                        additional fees will be considered if CENTRIA is used for payments.\n"
+"                        <br/>\n"
+"                        MAC cannot be held responsible for color tone variations of the same color for orders that are\n"
+"                        not placed and delivered at the same time within the same project.\n"
+"                        <br/>\n"
+"                        MAC will require advance material reservation when the customer plans to place multiple orders\n"
+"                        for the same project. MAC strongly recommends the purchase of steel from the Textural III or\n"
+"                        Textural III Print* series, which are the most resistant to rust and UV rays. However, if the\n"
+"                        customer opts for the 8000, PERSPECTA OR PERSPECTA + series, the steel will not be guaranteed\n"
+"                        against discoloration due to UV rays, nor against premature rusting at folded or heavily bent\n"
+"                        areas.\n"
+"                        MAC commits to accommodating its customers by manufacturing their orders within the suggested\n"
+"                        timeframes, according to the schedules and pace of its production. MAC cannot be held\n"
+"                        responsible for any damages and additional charges caused by extended delivery delays.\n"
+"                        <br/>\n"
+"                        WITH THE MAX MS-1 SERIES (WITHOUT GROOVE), POSSIBILITY OF SLIGHT UNDULATIONS: NOT RESPONSIBLE.\n"
+"                        <br/>\n"
+"                        CONDITION FOR A FIRST ORDER: A MINIMUM DEPOSIT OF (50%) IS REQUIRED FOR MANUFACTURING."
 msgstr ""
+"Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des\n"
+"                        frais supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.\n"
+"                        <br/>\n"
+"                        MAC ne peut être tenu responsable d'avoir des variations de tons d'une même couleur pour des\n"
+"                        commandes qui ne sont pas placées et livrées en même temps dans le cadre d'un même projet.\n"
+"                        <br/>\n"
+"                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs\n"
+"                        commandes pour un même projet. MAC recommande fortement l'achat d'acier des séries Textural III\n"
+"                        ou Textural III Print* qui sont les plus performants contre la rouille et les rayons UV.\n"
+"                        Si toutefois le client opte pour les séries 8000, PERSPECTA OU PERSPECTA +, l'acier ne sera\n"
+"                        pas garanti contre la décoloration due aux rayons UV, ni contre la rouille prématurée aux\n"
+"                        endroits repliés ou fortement pliés.\n"
+"                        MAC s'engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,\n"
+"                        selon les échéances et la cadence de sa production. MAC ne peut être tenu responsable pour\n"
+"                        tout dommage d'intérêts et de frais supplémentaires causés par des délais prolongés de\n"
+"                        livraison.\n"
+"                        <br/>\n"
+"                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-RESPONSABLE.\n"
+"                        <br/>\n"
+"                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA\n"
+"                        FABRICATION."
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -203,7 +271,7 @@ msgid ""
 "                                        NO CHANGES WILL BE POSSIBLE WHEN THE ORDER IS APPROVED."
 msgstr ""
 "S.V.P. ATTENTION DE BIEN VÉRIFIER VOS MESURES\n"
-"CAR LORSQU’APPROUVÉ, AUCUN CHANGEMENT NE SERA POSSIBLE.\n"
+"CAR LORSQU'APPROUVÉ, AUCUN CHANGEMENT NE SERA POSSIBLE."
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -211,13 +279,26 @@ msgid "COMMENTS :"
 msgstr "COMMENTAIRES:"
 
 #. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
 #: model:ir.model.fields,field_description:mac_reports.field_sale_order__client_order_ref
 msgid "Customer Reference"
 msgstr "Référence client"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+msgid "Customizable Desk"
+msgstr "Bureau personnalisable"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "DELIVERY COMMENT:"
 msgstr "COMMENTAIRE DE LIVRAISON :"
 
@@ -232,52 +313,20 @@ msgid "Date : ................................................"
 msgstr ""
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "Date: ......................................................"
-msgstr ""
+msgstr "Date : ......................................................"
 
 #. module: mac_reports
 #: model:ir.model.fields,field_description:mac_reports.field_sale_order__delivery_note
 msgid "Delivery Note"
-msgstr ""
+msgstr "Note de livraison"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_invoice_mac
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
-msgid ""
-"Des frais de 2,5% par mois seront ajoutés à toutes factures impayées dans les 30 jours et des\n"
-"                        frais\n"
-"                        supplémentaires seront considérés si CENTRIA est utilisé pour les paiements.\n"
-"                        <br/>\n"
-"                        MAC ne peut être tenu responsable d’avoir des variations de tons d’une même couleur pour des\n"
-"                        commandes\n"
-"                        qui ne sont pas placées et livrées en même temps dans le cadre d’un même projet.\n"
-"                        <br/>\n"
-"                        MAC exigera une réservation préalable du matériel lorsque le client prévoit faire plusieurs\n"
-"                        commandes\n"
-"                        pour un même projet. MAC recommande fortement l’achat d’acier des séries Textural III ou\n"
-"                        Textural\n"
-"                        III\n"
-"                        Print* qui sont les plus performants contre la rouille et les rayons UV. Si toutefois le client\n"
-"                        opte\n"
-"                        pour les séries 8000, PERSPECTA OU PERSPECTA +, l’acier ne sera pas garanti contre la\n"
-"                        décoloration\n"
-"                        due\n"
-"                        aux rayons UV, ni contre la rouille prématurée aux endroits repliés ou fortement pliés.\n"
-"                        MAC s’engage à accommoder ses clients en fabricant leurs commandes dans les délais suggérés,\n"
-"                        selon\n"
-"                        les\n"
-"                        échéances et la cadence de sa production. MAC ne peut être tenu responsable pour tout dommage\n"
-"                        d’intérêts\n"
-"\n"
-"                        et de frais supplémentaires causés par des délais prolongés de livraison.\n"
-"                        <br/>\n"
-"                        AVEC LA SÉRIE MAX MS-1 (SANS RAINURE), POSSIBILITÉ DE LÉGÈRES ONDULATIONS : NON-REPSONSABLE.\n"
-"                        <br/>\n"
-"                        CONDITION POUR UNE PREMIÈRE COMMANDE : UN ACOMPTE MINIMUM DE (50%) EST EXIGIBLE POUR LA\n"
-"                        FABRICATION."
-msgstr ""
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Delivery slip"
+msgstr "Bon de livraison"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -286,8 +335,54 @@ msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Description on transfer"
+msgstr "Description sur le transfert"
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:mac_reports.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "From"
+msgstr "De"
+
+#. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__id
+#: model:ir.model.fields,field_description:mac_reports.field_account_move_line__id
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_move_line__id
+#: model:ir.model.fields,field_description:mac_reports.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/sale_order.py:0
+msgid "Inside sales rep"
+msgstr "Responsable de compte"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Insp. By :............................................"
 msgstr "Insp. Par :...................................................."
+
+#. module: mac_reports
+#: model:ir.model,name:mac_reports.model_account_move
+msgid "Journal Entry"
+msgstr "Écriture comptable"
+
+#. module: mac_reports
+#: model:ir.model,name:mac_reports.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -303,19 +398,52 @@ msgstr ""
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "ORDER COMMENT:"
-msgstr "COMMENTAIRE DE COMMANDE : "
+msgstr "COMMENTAIRE DE COMMANDE :"
 
 #. module: mac_reports
-#: model_terms:ir.ui.view,arch_db:mac_reports.report_picking_mac
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Order"
+msgstr "Commande"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "Pack of 6"
+msgstr "Paquet de 6"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "Package"
+msgstr "Colis"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Payment Terms"
+msgstr "Termes de paiement"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/account_move.py:0
+msgid "Payment terms"
+msgstr "Termes de paiement"
+
+#. module: mac_reports
+#: model:ir.actions.report,name:mac_reports.action_report_transfert
+msgid "Preparation Order"
+msgstr "Bon de préparation"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
 msgid "Prepared by: ................................................"
 msgstr "Préparé par: ................................................"
 
 #. module: mac_reports
 #: model:ir.model,name:mac_reports.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -328,19 +456,30 @@ msgid "Received by :.............................................."
 msgstr "Reçu par :........................................................"
 
 #. module: mac_reports
+#: model:ir.model.fields,field_description:mac_reports.field_sale_order__sale_note_termes
+msgid "SO Terms and conditions"
+msgstr "Termes et conditions de vente"
+
+#. module: mac_reports
 #: model:ir.model,name:mac_reports.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de vente"
+msgstr "Commande client"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.sale_order_inherited_add_ndelivery_notes
 msgid "Set the delivery note that will be printed in the delivery slip report"
-msgstr ""
+msgstr "Définir la note de livraison imprimée dans le bon de livraison"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
 msgid "Shipped by:.........................................."
 msgstr "Expédié par :..................................................."
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Shipping Date"
+msgstr "Date d'expédition"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_sale_e3k_mac
@@ -355,9 +494,10 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: mac_reports
-#: model:ir.model.fields,field_description:mac_reports.field_sale_order__sale_note_termes
-msgid "SO Terms and conditions"
-msgstr ""
+#: model:ir.model.fields,field_description:mac_reports.field_account_bank_statement_line__invoice_note_terms
+#: model:ir.model.fields,field_description:mac_reports.field_account_move__invoice_note_terms
+msgid "Terms and conditions"
+msgstr "Termes et conditions"
 
 #. module: mac_reports
 #: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
@@ -365,6 +505,28 @@ msgid "Time : ........................................................."
 msgstr "Heure: ........................................................."
 
 #. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_transfert
+msgid "To"
+msgstr "Vers"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Total Weight"
+msgstr "Poids total"
+
+#. module: mac_reports
+#. odoo-python
+#: code:addons/mac_reports/models/stock_picking.py:0
+msgid "Tracking Number"
+msgstr "Numéro de suivi"
+
+#. module: mac_reports
 #: model:ir.model,name:mac_reports.model_stock_picking
 msgid "Transfer"
 msgstr "Transfert"
+
+#. module: mac_reports
+#: model_terms:ir.ui.view,arch_db:mac_reports.report_delivery_baleco_mac2
+msgid "units"
+msgstr "unités"
