@@ -41,11 +41,11 @@ _RENAMED_FIELDS = [
       ("stock.picking",    "x_studio_delivery_on_hold",          "e3k_delivery_on_hold"),
       ("stock.picking",    "x_studio_sales_value",               "e3k_sales_value"),
         # e3k.ticket.product.type
-      ("e3k.ticket.product.type",    "x_name",               "name"),
+      # ("e3k.ticket.product.type",    "x_name",               "name"),
   ]
 
 _RENAME_MODELS = [
-    ('x_ticket_product_type','e3k.ticket.product.type')
+    # ('x_ticket_product_type','e3k.ticket.product.type')
 ]
 
 
