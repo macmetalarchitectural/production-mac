@@ -17,7 +17,7 @@
             <tr class="border-black o_total">
                 <td class="text-left" colspan='2'>
                     <strong>Total:</strong>
-                    <span t-out="tax_totals['total_amount_currency']"
+                    <span style="color:white;"  t-out="tax_totals['total_amount_currency']"
                           t-options='{"widget": "monetary", "display_currency": currency}'/>
                 </td>
             </tr>
