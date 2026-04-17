@@ -144,7 +144,7 @@ def migrate(cr, version):
         paperformat.write({'margin_top': 40, 'header_spacing': 40})
         e3k_logger.warning(E3K_PREFIX_LOG + "Set paperformat_us margin_top=40 header_spacing=40")
 
-    report_transfer_operation = en.ref('stock.action_report_picking', raise_if_not_found=False)
+    report_transfer_operation = env.ref('stock.action_report_picking', raise_if_not_found=False)
     if report_transfer_operation:
         report_transfer_operation.unlink_action()
         e3k_logger.warning(E3K_PREFIX_LOG + "Unlink action")
