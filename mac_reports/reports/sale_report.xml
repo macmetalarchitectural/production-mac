@@ -32,7 +32,7 @@
                 <br/>
                 <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
     font-weight: bold; page-break-inside: avoid;">
-                    <p t-field="doc.setting_sale_note_termes"/>
+                    <p t-out="setting_sale_note_termes"/>
                 </div>
             </t>
         </xpath>
