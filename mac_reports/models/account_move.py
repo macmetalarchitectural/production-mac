@@ -31,3 +31,12 @@ class AccountMove(models.Model):
         if 'invoice_payment_term_id' not in result:
             result.update(payment_term)
         return result
+
+    def _get_not_termes_from_settings(self):
+        self.ensure_one()
+        use_company_terms = self.env['ir.config_parameter'].sudo().get_param(
+            'e3k_default_reports.use_sale_order_terms'
+        )
+        if use_company_terms:
+            return self.env.company.sale_order_terms or ''
+        return self.invoice_note_terms or ''
