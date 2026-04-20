@@ -26,12 +26,15 @@
     <template id="report_sale_e3k_mac" inherit_id="e3k_default_reports.report_sale_e3k">
 
         <xpath expr="//p[@t-field='doc.sale_note_termes']" position="replace">
-            <br/>
-            <br/>
-            <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
-font-weight: bold; page-break-inside: avoid;">
-                <p t-field="doc.sale_note_termes"/>
-            </div>
+            <t t-set="setting_sale_note_termes" t-value="doc._get_not_termes_from_settings()"/>
+            <t t-if="setting_sale_note_termes">
+                <br/>
+                <br/>
+                <div style="border: 1px solid #000; padding: 10px; background-color:#FFFFFF; color: black; font-size: 11px !important;  border-top: 1px solid black;
+    font-weight: bold; page-break-inside: avoid;">
+                    <p t-field="doc.setting_sale_note_termes"/>
+                </div>
+            </t>
         </xpath>
         <xpath expr="//table[hasclass('o_main_table')]" position="attributes">
             <attribute name="class">o_has_total_table table o_main_table table-sm</attribute>
