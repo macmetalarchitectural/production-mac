@@ -25,7 +25,7 @@
             </div>
         </xpath>
 
-        <xpath expr="//div[@i-if='o.partner_shipping_id']" position="attributes">
+        <xpath expr="//div[@t-if='o.partner_shipping_id']" position="attributes">
             <attribute name="class"></attribute>
         </xpath>
     </template>
