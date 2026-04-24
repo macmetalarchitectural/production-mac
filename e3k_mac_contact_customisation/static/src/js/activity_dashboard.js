@@ -132,6 +132,7 @@ export class ActivityDashboard extends Component {
     static components = { FilterCheckboxGroup, ActivityTable };
 
     setup() {
+        this._t = _t;
         this.orm = useService("orm");
         this.state = useState({
             teams: [],

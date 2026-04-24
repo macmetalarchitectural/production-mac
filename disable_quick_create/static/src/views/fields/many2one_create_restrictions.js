@@ -30,14 +30,11 @@ export const disableCreateEditService = {
                 }
 
                 try {
-                    const result = await orm.searchRead(
+                    modelsConfig[resModel] = await orm.call(
                         "ir.model",
-                        [["model", "=", resModel]],
-                        ["disable_create_edit"],
-                        { limit: 1 }
+                        "get_disable_create_edit",
+                        [resModel]
                     );
-
-                    modelsConfig[resModel] = result.length > 0 && result[0].disable_create_edit;
                     return modelsConfig[resModel];
                 } catch (error) {
                     console.error(`Error checking disable_create_edit for model ${resModel}:`, error);
