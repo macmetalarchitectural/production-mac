@@ -183,7 +183,7 @@
             <div class="e3k-filter-bar-inner d-flex flex-wrap gap-2 p-2">
 
                 <FilterCheckboxGroup
-                    label="'Team'"
+                    label="_t('Team')"
                     filterKey="'teams'"
                     items="state.teams"
                     selectedIds="state.filters.teams"
@@ -193,7 +193,7 @@
                     onItemChange="(key, id) => this.onTeamItemChange(key, id)"/>
 
                 <FilterCheckboxGroup
-                    label="'Rep'"
+                    label="_t('Rep')"
                     filterKey="'reps'"
                     items="state.reps"
                     selectedIds="state.filters.reps"
@@ -203,7 +203,7 @@
                     onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
 
                 <FilterCheckboxGroup
-                    label="'Meeting type'"
+                    label="_t('Meeting type')"
                     filterKey="'meetingTypes'"
                     items="state.meetingTypes"
                     selectedIds="state.filters.meetingTypes"
@@ -213,7 +213,7 @@
                     onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
 
                 <FilterCheckboxGroup
-                    label="'Status'"
+                    label="_t('Status')"
                     filterKey="'status'"
                     items="state.statuses"
                     selectedIds="state.filters.status"
@@ -223,7 +223,7 @@
                     onItemChange="(key, id) => this.onFilterItemChange(key, id)"/>
 
                 <FilterCheckboxGroup
-                    label="'Closed'"
+                    label="_t('Closed')"
                     filterKey="'completed'"
                     items="completedItems"
                     selectedIds="state.filters.completed"
