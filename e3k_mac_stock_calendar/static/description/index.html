@@ -16,37 +16,31 @@
   <section class="patterned py-5">
     <div class="container">
       <div class="card-e3k rounded-3 p-4 mx-auto" style="max-width:600px; background-color:#F4F5F5; border-bottom:15px solid #2D2F3C;">
-        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">e3k Mac Contact Customisation</h1>
+        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">E3K Stock Calendar</h1>
         <div class="vstack gap-3">
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Résumé</h2>
-            <p class="mb-0">Ce module enrichit la gestion des contacts pour MAC Metal en ajoutant des statuts de contact, des équipes de représentants et un tableau de bord d'activités. Il réorganise le formulaire de contact pour présenter les adresses (livraison, facturation, autres) dans des onglets séparés en vue kanban, et offre un suivi complet des activités de vente par équipe et représentant.</p>
+            <p class="mb-0">Ce module ajoute une vue calendrier aux transferts de stock (livraisons), avec un codage couleur automatique selon la route de livraison. Il permet aux planificateurs de visualiser et de réorganiser les livraisons à la semaine, en tenant compte des indicateurs de préparation du chantier et des dates flexibles. La date limite des livraisons se synchronise automatiquement avec la date de livraison promise sur la commande client associée.</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Module(s) requis</h2>
-            <p class="mb-0 text-secondary">Localisation Canada (l10n_ca), Messagerie (mail), e3k MacMetal (e3k_macmetal), Validation partenaires ventes (partner_validation_sale)</p>
+            <p class="mb-0 text-secondary">e3k MacMetal (e3k_macmetal)</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Étapes de mise en place / configuration du module</h2>
             <div>
-              <ol>
-                <li>Aller dans <strong>Contacts → Configuration → Status</strong> pour créer les statuts de contact souhaités (ex. : Actif, Inactif, Prospect).</li>
-                <li>Aller dans <strong>Contacts → Configuration → Types de clients</strong> pour créer les catégories de clients.</li>
-                <li>Créer les équipes de représentants et y assigner les utilisateurs appropriés.</li>
-                <li>Le tableau de bord des activités est accessible directement depuis le menu une fois le module installé.</li>
-              </ol>
+              <p class="mb-0">Aucune configuration requise. Le module s'active automatiquement à l'installation. La vue calendrier est accessible depuis la liste des transferts de stock.</p>
             </div>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Fonctionnement du module</h2>
             <ol class="mb-0">
-              <li>Un champ « Statut » et un champ « Type de client » s'affichent sur le formulaire de contact, et se propagent automatiquement à tous les sous-contacts de l'entreprise.</li>
-              <li>Les adresses du contact sont organisées en onglets séparés (Contacts, Livraison, Facturation, Autre, Privée) présentés en vue kanban.</li>
-              <li>Un bouton « Planifier une activité » dans le chatter ouvre directement le formulaire d'événement calendrier associé au contact.</li>
-              <li>Chaque événement calendrier reçoit un numéro de séquence automatique et est associé à un type de réunion, une équipe et un représentant.</li>
-              <li>Les événements peuvent être marqués comme « Terminés » et on peut en planifier un suivant en un seul clic.</li>
-              <li>Le tableau de bord des activités affiche un résumé filtrable par équipe, représentant, type de réunion, statut du contact et période, avec pagination côté client.</li>
-              <li>Les courriels d'invitation aux événements sont désactivés par défaut pour éviter les envois non désirés.</li>
+              <li>Une vue calendrier hebdomadaire des transferts de stock s'affiche, avec chaque livraison positionnée selon sa date limite.</li>
+              <li>Chaque événement est coloré automatiquement selon la route de livraison assignée (Route 1 à 6), avec des variantes selon le type de retrait (pickup ou livraison directe).</li>
+              <li>Le nom affiché dans le calendrier indique le client, l'origine de la commande et la ville de livraison, avec un indicateur visuel si le chantier n'est pas encore prêt.</li>
+              <li>Les indicateurs « Chantier prêt », « Date flexible » et « En attente de livraison » sont disponibles dans la liste des transferts pour faciliter le suivi.</li>
+              <li>Lorsque la date limite d'un transfert est modifiée, la date de livraison promise sur la commande client liée est mise à jour automatiquement.</li>
+              <li>Un filtre « Problèmes de planification » permet d'identifier rapidement les transferts en retard sur leur date prévue.</li>
             </ol>
           </div>
         </div>
