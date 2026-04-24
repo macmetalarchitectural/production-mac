@@ -16,37 +16,35 @@
   <section class="patterned py-5">
     <div class="container">
       <div class="card-e3k rounded-3 p-4 mx-auto" style="max-width:600px; background-color:#F4F5F5; border-bottom:15px solid #2D2F3C;">
-        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">e3k Mac Contact Customisation</h1>
+        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">Disable Quick Create</h1>
         <div class="vstack gap-3">
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Résumé</h2>
-            <p class="mb-0">Ce module enrichit la gestion des contacts pour MAC Metal en ajoutant des statuts de contact, des équipes de représentants et un tableau de bord d'activités. Il réorganise le formulaire de contact pour présenter les adresses (livraison, facturation, autres) dans des onglets séparés en vue kanban, et offre un suivi complet des activités de vente par équipe et représentant.</p>
+            <p class="mb-0">Ce module permet de désactiver l'option de création rapide (« Quick Create ») et l'option « Créer et modifier » sur les champs de type lien (Many2One) dans toute l'interface Odoo. Un administrateur peut configurer, modèle par modèle, lesquels ne permettent pas la création à la volée, forçant ainsi les utilisateurs à passer par les formulaires complets.</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Module(s) requis</h2>
-            <p class="mb-0 text-secondary">Localisation Canada (l10n_ca), Messagerie (mail), e3k MacMetal (e3k_macmetal), Validation partenaires ventes (partner_validation_sale)</p>
+            <p class="mb-0 text-secondary">Aucun module requis.</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Étapes de mise en place / configuration du module</h2>
             <div>
               <ol>
-                <li>Aller dans <strong>Contacts → Configuration → Status</strong> pour créer les statuts de contact souhaités (ex. : Actif, Inactif, Prospect).</li>
-                <li>Aller dans <strong>Contacts → Configuration → Types de clients</strong> pour créer les catégories de clients.</li>
-                <li>Créer les équipes de représentants et y assigner les utilisateurs appropriés.</li>
-                <li>Le tableau de bord des activités est accessible directement depuis le menu une fois le module installé.</li>
+                <li>Aller dans le menu <strong>Paramètres techniques → Structure de la base de données → Modèles</strong>.</li>
+                <li>Sélectionner le modèle pour lequel vous souhaitez désactiver la création rapide.</li>
+                <li>Activer l'option <strong>« Désactiver Créer et Modifier »</strong> dans le formulaire du modèle.</li>
+                <li>Enregistrer. L'effet est immédiat pour tous les utilisateurs.</li>
               </ol>
             </div>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Fonctionnement du module</h2>
             <ol class="mb-0">
-              <li>Un champ « Statut » et un champ « Type de client » s'affichent sur le formulaire de contact, et se propagent automatiquement à tous les sous-contacts de l'entreprise.</li>
-              <li>Les adresses du contact sont organisées en onglets séparés (Contacts, Livraison, Facturation, Autre, Privée) présentés en vue kanban.</li>
-              <li>Un bouton « Planifier une activité » dans le chatter ouvre directement le formulaire d'événement calendrier associé au contact.</li>
-              <li>Chaque événement calendrier reçoit un numéro de séquence automatique et est associé à un type de réunion, une équipe et un représentant.</li>
-              <li>Les événements peuvent être marqués comme « Terminés » et on peut en planifier un suivant en un seul clic.</li>
-              <li>Le tableau de bord des activités affiche un résumé filtrable par équipe, représentant, type de réunion, statut du contact et période, avec pagination côté client.</li>
-              <li>Les courriels d'invitation aux événements sont désactivés par défaut pour éviter les envois non désirés.</li>
+              <li>L'option « Créer rapidement » n'apparaît plus dans la liste déroulante des champs de lien lorsqu'elle est désactivée sur le modèle cible.</li>
+              <li>L'option « Créer et modifier » est également masquée, obligeant l'utilisateur à ouvrir un enregistrement existant ou à passer par le formulaire complet.</li>
+              <li>La configuration se fait modèle par modèle depuis la liste des modèles techniques, sans nécessiter de redémarrage du serveur.</li>
+              <li>Le paramètre est mis en cache côté navigateur pour des performances optimales sans appels répétitifs au serveur.</li>
+              <li>Tous les types de champs Many2One (produits, contacts, etc.) sont couverts automatiquement par ce module.</li>
             </ol>
           </div>
         </div>

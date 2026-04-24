@@ -16,37 +16,36 @@
   <section class="patterned py-5">
     <div class="container">
       <div class="card-e3k rounded-3 p-4 mx-auto" style="max-width:600px; background-color:#F4F5F5; border-bottom:15px solid #2D2F3C;">
-        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">e3k Mac Contact Customisation</h1>
+        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">e3k MACMÉTAL</h1>
         <div class="vstack gap-3">
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Résumé</h2>
-            <p class="mb-0">Ce module enrichit la gestion des contacts pour MAC Metal en ajoutant des statuts de contact, des équipes de représentants et un tableau de bord d'activités. Il réorganise le formulaire de contact pour présenter les adresses (livraison, facturation, autres) dans des onglets séparés en vue kanban, et offre un suivi complet des activités de vente par équipe et représentant.</p>
+            <p class="mb-0">Ce module est la personnalisation principale de MAC Métal pour Odoo. Il enrichit les commandes de vente, les transferts de stock, les contacts et les tickets de support avec des champs et des comportements propres aux opérations de l'entreprise. Il gère notamment les routes de livraison, les indicateurs de suivi des commandes, les représentants aux ventes internes et la signature des commandes par le client via le portail.</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Module(s) requis</h2>
-            <p class="mb-0 text-secondary">Localisation Canada (l10n_ca), Messagerie (mail), e3k MacMetal (e3k_macmetal), Validation partenaires ventes (partner_validation_sale)</p>
+            <p class="mb-0 text-secondary">Ventes et achats (sale_purchase), CRM (crm), Calendrier (calendar), Inventaire (stock), Assistance (helpdesk)</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Étapes de mise en place / configuration du module</h2>
             <div>
               <ol>
-                <li>Aller dans <strong>Contacts → Configuration → Status</strong> pour créer les statuts de contact souhaités (ex. : Actif, Inactif, Prospect).</li>
-                <li>Aller dans <strong>Contacts → Configuration → Types de clients</strong> pour créer les catégories de clients.</li>
-                <li>Créer les équipes de représentants et y assigner les utilisateurs appropriés.</li>
-                <li>Le tableau de bord des activités est accessible directement depuis le menu une fois le module installé.</li>
+                <li>Aller dans <strong>Paramètres → Configuration des routes</strong> pour créer les routes de livraison (Route1 à Route6) avec leur code respectif.</li>
+                <li>Dans <strong>Paramètres → Ventes</strong>, configurer les conditions de livraison par défaut et le nombre de jours de tampon pour les livraisons.</li>
+                <li>Assigner les représentants aux ventes internes sur les fiches des clients.</li>
               </ol>
             </div>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Fonctionnement du module</h2>
             <ol class="mb-0">
-              <li>Un champ « Statut » et un champ « Type de client » s'affichent sur le formulaire de contact, et se propagent automatiquement à tous les sous-contacts de l'entreprise.</li>
-              <li>Les adresses du contact sont organisées en onglets séparés (Contacts, Livraison, Facturation, Autre, Privée) présentés en vue kanban.</li>
-              <li>Un bouton « Planifier une activité » dans le chatter ouvre directement le formulaire d'événement calendrier associé au contact.</li>
-              <li>Chaque événement calendrier reçoit un numéro de séquence automatique et est associé à un type de réunion, une équipe et un représentant.</li>
-              <li>Les événements peuvent être marqués comme « Terminés » et on peut en planifier un suivant en un seul clic.</li>
-              <li>Le tableau de bord des activités affiche un résumé filtrable par équipe, représentant, type de réunion, statut du contact et période, avec pagination côté client.</li>
-              <li>Les courriels d'invitation aux événements sont désactivés par défaut pour éviter les envois non désirés.</li>
+              <li>Les commandes de vente affichent la route de livraison, le représentant aux ventes internes, la date de réception, la date de suivi et les indicateurs « En attente » et « Remplacement ».</li>
+              <li>La description des lignes de commande est affichée séparément du produit pour faciliter la lecture.</li>
+              <li>Les clients peuvent signer leur commande directement depuis le portail client ; la date de livraison souhaitée est enregistrée lors de la signature.</li>
+              <li>Les transferts de stock indiquent si la livraison est un retrait (pickup), si elle est en attente, et calculent automatiquement la valeur des ventes associées.</li>
+              <li>Les contacts sont enrichis avec les champs Division, Représentant aux ventes interne et Maison-mère.</li>
+              <li>Les tickets de support peuvent être liés à un type de produit et indiquer les montants anciens et actuels pour les ajustements de prix.</li>
+              <li>Les conditions de livraison par défaut configurées dans les paramètres sont utilisées automatiquement dans les documents de vente.</li>
             </ol>
           </div>
         </div>
