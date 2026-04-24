@@ -54,3 +54,9 @@ class StockPicking(models.Model):
                 'type': 'string',
             },
         }
+
+    def do_print_picking(self):
+        preparation_report = self.env.ref('mac_reports.action_report_transfert')
+        if preparation_report and self.picking_type_id.code=='internal':
+            return preparation_report.report_action(self)
+        return super().do_print_picking()
