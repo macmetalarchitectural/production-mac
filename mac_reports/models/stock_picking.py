@@ -57,6 +57,9 @@ class StockPicking(models.Model):
 
     def do_print_picking(self):
         preparation_report = self.env.ref('mac_reports.action_report_transfert')
+        delivery_report = self.env.ref('stock.action_report_delivery')
         if preparation_report and self.picking_type_id.code=='internal':
             return preparation_report.report_action(self)
+        elif delivery_report and self.picking_type_id.code=='outgoing':
+            return delivery_report.report_action(self)
         return super().do_print_picking()
