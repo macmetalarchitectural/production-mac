@@ -16,37 +16,36 @@
   <section class="patterned py-5">
     <div class="container">
       <div class="card-e3k rounded-3 p-4 mx-auto" style="max-width:600px; background-color:#F4F5F5; border-bottom:15px solid #2D2F3C;">
-        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">e3k Mac Contact Customisation</h1>
+        <h1 class="h2 text-center fw-900 mb-4" style="font-weight:900;">Partner Validation Sale</h1>
         <div class="vstack gap-3">
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Résumé</h2>
-            <p class="mb-0">Ce module enrichit la gestion des contacts pour MAC Metal en ajoutant des statuts de contact, des équipes de représentants et un tableau de bord d'activités. Il réorganise le formulaire de contact pour présenter les adresses (livraison, facturation, autres) dans des onglets séparés en vue kanban, et offre un suivi complet des activités de vente par équipe et représentant.</p>
+            <p class="mb-0">Ce module ajoute un processus d'approbation des clients avant de pouvoir confirmer une commande de vente ou valider une livraison. Un client passe par trois états successifs : Nouveau, Confirmé et Approuvé. Seuls les clients approuvés peuvent faire l'objet d'une commande confirmée ou d'un transfert sortant, renforçant ainsi le contrôle sur les nouveaux clients.</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Module(s) requis</h2>
-            <p class="mb-0 text-secondary">Localisation Canada (l10n_ca), Messagerie (mail), e3k MacMetal (e3k_macmetal), Validation partenaires ventes (partner_validation_sale)</p>
+            <p class="mb-0 text-secondary">Validation partenaires (partner_validation), Ventes et inventaire (sale_stock)</p>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Étapes de mise en place / configuration du module</h2>
             <div>
               <ol>
-                <li>Aller dans <strong>Contacts → Configuration → Status</strong> pour créer les statuts de contact souhaités (ex. : Actif, Inactif, Prospect).</li>
-                <li>Aller dans <strong>Contacts → Configuration → Types de clients</strong> pour créer les catégories de clients.</li>
-                <li>Créer les équipes de représentants et y assigner les utilisateurs appropriés.</li>
-                <li>Le tableau de bord des activités est accessible directement depuis le menu une fois le module installé.</li>
+                <li>Assigner le groupe <strong>« Sales Partner Validation »</strong> aux utilisateurs autorisés à approuver les clients.</li>
+                <li>Dans <strong>Contacts → Configuration → Champs restreints</strong>, définir les champs qui ne peuvent pas être modifiés sur un client approuvé (option « Appliquer sur les ventes »).</li>
+                <li>Les nouveaux clients créés auront automatiquement le statut « Nouveau » jusqu'à confirmation et approbation.</li>
               </ol>
             </div>
           </div>
           <div>
             <h2 class="h4 fw-900 mb-2" style="font-weight:900;">Fonctionnement du module</h2>
             <ol class="mb-0">
-              <li>Un champ « Statut » et un champ « Type de client » s'affichent sur le formulaire de contact, et se propagent automatiquement à tous les sous-contacts de l'entreprise.</li>
-              <li>Les adresses du contact sont organisées en onglets séparés (Contacts, Livraison, Facturation, Autre, Privée) présentés en vue kanban.</li>
-              <li>Un bouton « Planifier une activité » dans le chatter ouvre directement le formulaire d'événement calendrier associé au contact.</li>
-              <li>Chaque événement calendrier reçoit un numéro de séquence automatique et est associé à un type de réunion, une équipe et un représentant.</li>
-              <li>Les événements peuvent être marqués comme « Terminés » et on peut en planifier un suivant en un seul clic.</li>
-              <li>Le tableau de bord des activités affiche un résumé filtrable par équipe, représentant, type de réunion, statut du contact et période, avec pagination côté client.</li>
-              <li>Les courriels d'invitation aux événements sont désactivés par défaut pour éviter les envois non désirés.</li>
+              <li>Chaque fiche client affiche son statut de validation (Nouveau, Confirmé ou Approuvé) dans la section Ventes.</li>
+              <li>Un bouton « Confirmer » permet à tout utilisateur d'indiquer qu'un client est prêt pour approbation.</li>
+              <li>Un bouton « Approuver » (réservé aux utilisateurs du groupe Sales Partner Validation) accorde au client le statut final permettant les transactions.</li>
+              <li>Un bouton « Rejeter » remet le client à l'état Nouveau si nécessaire.</li>
+              <li>La confirmation d'une commande de vente est bloquée si le client n'est pas encore approuvé, avec un message d'erreur explicite.</li>
+              <li>La validation d'une livraison sortante vers un client non approuvé est également bloquée.</li>
+              <li>Les champs désignés comme restreints ne peuvent pas être modifiés sur un client approuvé sans les droits suffisants, protégeant ainsi l'intégrité des données validées.</li>
             </ol>
           </div>
         </div>
