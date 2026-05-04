@@ -25,7 +25,9 @@ class StockPicking(models.Model):
     def _compute_sale_id(self):
         super()._compute_sale_id()
 
-        for picking in self.filtered(lambda p: not p.sale_id):
+        for picking in self.filtered(lambda p:
+                                     not p.sale_id and
+                                     p.picking_type_id.code in ('internal', 'outgoing')):
             # picking and move should have a link to the SO to see the picking on the stat button.
             # This will filter the move chain to the delivery moves only.
             sales_order = picking.reference_ids.mapped('sale_ids') or picking.move_ids.mapped('sale_line_id.order_id')
