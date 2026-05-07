@@ -224,10 +224,14 @@ class CalendarEvent(models.Model):
     # ── Helpers dashboard ────────────────────────────────────────────────────
 
     def _translate_activity_records(self, records):
-        """Traduit les champs nom dans la langue de l'utilisateur."""
-        lang = self.env.user.lang
-        if not lang or lang == 'en_US':
-            return records
+        """Traduit les champs nom dans la langue de l'utilisateur.
+
+        En Odoo 19, les champs Char traduisibles sont stockés en JSONB — la
+        requête SQL brute retourne un dict au lieu d'une chaîne. On passe
+        toujours par le ORM pour obtenir une chaîne plain-text, quelle que
+        soit la langue (y compris en_US).
+        """
+        lang = self.env.user.lang or 'en_US'
         team_model = self.env['representative.team'].with_context(lang=lang)
         status_model = self.env['contact.status'].with_context(lang=lang)
         industry_model = self.env['res.partner.industry'].with_context(lang=lang)
