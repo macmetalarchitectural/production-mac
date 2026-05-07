@@ -34,7 +34,9 @@ patch(CalendarCommonRenderer.prototype, {
      * Behavior:
      * - First calls original viewDidMount to preserve default behavior
      * - Adds 'e3k_calendar' class if: resModel === 'stock.picking' AND (scale === 'week' OR 'day')
-     * - This class allows hiding the hour column via CSS (see stock_calendar.scss)
+     *   → allows hiding the hour column via CSS (see stock_calendar.scss)
+     * - Adds 'e3k_stock_calendar_view' on wrapper for ALL stock.picking scales (week/day/month)
+     *   → enables scrollbar when events exceed the fixed calendar height
      */
     get options() {
         const options = super.options;
@@ -48,11 +50,16 @@ patch(CalendarCommonRenderer.prototype, {
             const resModel = this.props.model.resModel;
             const scale = this.props.model.scale;
 
-            // Add custom class only for stock.picking in week/day view
             // .o_calendar_wrapper is the real container (CSS grid 1fr, overflow:hidden)
             const wrapper = el.closest('.o_calendar_wrapper');
-            if (resModel === 'stock.picking' && (scale === 'week' || scale === 'day')) {
-                el.classList.add('e3k_calendar');
+            if (resModel === 'stock.picking') {
+                // e3k_calendar: hides hour column — only needed in time-grid views (week/day)
+                if (scale === 'week' || scale === 'day') {
+                    el.classList.add('e3k_calendar');
+                } else {
+                    el.classList.remove('e3k_calendar');
+                }
+                // e3k_stock_calendar_view: enables scrollbar — applies to all scales (week/day/month)
                 if (wrapper) {
                     wrapper.classList.add('e3k_stock_calendar_view');
                 }
