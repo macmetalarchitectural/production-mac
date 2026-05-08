@@ -17,7 +17,7 @@ _ACTIVITY_SELECT = """
         t.name                  AS meeting_type,
         p.contact_status_id     AS contact_status_id,
         s.name                  AS status,
-        r.industry_id           AS industry_id,
+        COALESCE(p.industry_id, r.industry_id) AS industry_id,
         i.name                  AS customer_type,
         r.name                  AS company_name,
         p.name                  AS contact,
@@ -26,7 +26,7 @@ _ACTIVITY_SELECT = """
     LEFT JOIN res_partner         p ON p.id = c.contact_id
     LEFT JOIN calendar_event_type t ON t.id = c.meeting_type_id
     LEFT JOIN res_partner         r ON r.id = c.company_partner_id
-    LEFT JOIN res_partner_industry i ON i.id = p.industry_id
+    LEFT JOIN res_partner_industry i ON i.id = COALESCE(p.industry_id, r.industry_id)
     LEFT JOIN contact_status      s ON s.id = p.contact_status_id
     LEFT JOIN representative_team m ON m.id = c.team_id
     LEFT JOIN res_partner         a ON a.id = c.rep_id
@@ -38,7 +38,7 @@ _ACTIVITY_GROUP_ORDER = """
         c.team_id, m.name, c.rep_id, a.name,
         c.meeting_type_id, t.name,
         p.contact_status_id, s.name,
-        r.industry_id, i.name,
+        p.industry_id, r.industry_id, i.name,
         r.name, p.name, c.completed
     ORDER BY
         m.name ASC, a.name ASC,
@@ -224,10 +224,14 @@ class CalendarEvent(models.Model):
     # ── Helpers dashboard ────────────────────────────────────────────────────
 
     def _translate_activity_records(self, records):
-        """Traduit les champs nom dans la langue de l'utilisateur."""
-        lang = self.env.user.lang
-        if not lang or lang == 'en_US':
-            return records
+        """Traduit les champs nom dans la langue de l'utilisateur.
+
+        En Odoo 19, les champs Char traduisibles sont stockés en JSONB — la
+        requête SQL brute retourne un dict au lieu d'une chaîne. On passe
+        toujours par le ORM pour obtenir une chaîne plain-text, quelle que
+        soit la langue (y compris en_US).
+        """
+        lang = self.env.user.lang or 'en_US'
         team_model = self.env['representative.team'].with_context(lang=lang)
         status_model = self.env['contact.status'].with_context(lang=lang)
         industry_model = self.env['res.partner.industry'].with_context(lang=lang)
