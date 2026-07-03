@@ -7,6 +7,7 @@ class StockQuant(models.Model):
     _inherit = 'stock.quant'
 
     note = fields.Char('Note')  # no-check
+    e3k_lot_ref = fields.Char(related='lot_id.ref', string='Internal Reference', store=True)
 
     @api.model
     def _get_inventory_fields_write(self):

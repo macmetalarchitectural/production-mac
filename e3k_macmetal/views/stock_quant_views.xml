@@ -24,4 +24,16 @@
     </field>
   </record>
 
+  <record id="view_stock_quant_tree_simple_lot_ref" model="ir.ui.view">
+    <field name="name">stock.quant.list.lot.ref</field>
+    <field name="model">stock.quant</field>
+    <field name="inherit_id" ref="stock.view_stock_quant_tree_simple"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='lot_id']" position="after">
+        <field name="e3k_lot_ref" groups="stock.group_production_lot"
+               column_invisible="context.get('hide_lot', False)" optional="show"/>
+      </xpath>
+    </field>
+  </record>
+
 </odoo>
