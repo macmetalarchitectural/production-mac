@@ -218,6 +218,12 @@ msgid "Note"
 msgstr ""
 
 #. module: e3k_macmetal
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_move_line__e3k_lot_ref
+#: model:ir.model.fields,field_description:e3k_macmetal.field_stock_quant__e3k_lot_ref
+msgid "Internal Reference"
+msgstr "Référence interne"
+
+#. module: e3k_macmetal
 #: code:addons/e3k_macmetal/models/stock_quant.py:0
 #, python-format
 msgid "Only a stock manager can validate an inventory adjustment."
