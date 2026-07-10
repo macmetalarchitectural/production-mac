@@ -16,28 +16,36 @@ def post_init_hook(env):
 
     Only ``hard_lock_date`` is touched. The soft lock dates
     (sale/purchase/tax/fiscalyear) are reversible from the UI and are left as-is.
+
+    Scoped to company id=1 (M.A.C. Métal Architectural Inc.) so it can only ever
+    affect that single company.
     """
+    company_id = 1
+
     env.cr.execute(
         "SELECT id, name, hard_lock_date "
         "FROM res_company "
-        "WHERE hard_lock_date IS NOT NULL"
+        "WHERE id = %s AND hard_lock_date IS NOT NULL",
+        (company_id,),
     )
     rows = env.cr.fetchall()
 
     if not rows:
         _logger.info(
-            "e3k_reset_hard_lock_date: no company has a hard lock date set; nothing to do."
+            "e3k_reset_hard_lock_date: company id=%s has no hard lock date set; nothing to do.",
+            company_id,
         )
         return
 
-    for company_id, name, hard_lock_date in rows:
+    for cid, name, hard_lock_date in rows:
         _logger.warning(
             "e3k_reset_hard_lock_date: clearing hard_lock_date=%s on company id=%s (%s)",
-            hard_lock_date, company_id, name,
+            hard_lock_date, cid, name,
         )
 
     env.cr.execute(
-        "UPDATE res_company SET hard_lock_date = NULL WHERE hard_lock_date IS NOT NULL"
+        "UPDATE res_company SET hard_lock_date = NULL WHERE id = %s",
+        (company_id,),
     )
     # Drop the cached (computed) values so the change is visible without a restart.
     env["res.company"].invalidate_model(["hard_lock_date", "user_hard_lock_date"])
