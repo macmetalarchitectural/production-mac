@@ -51,6 +51,7 @@ class SaleOrder(models.Model):
     e3k_on_hold = fields.Boolean(  # no-check
         string="On Hold",
         default=False,
+        tracking=True,
         help="The order is on hold when the checkbox is checked.",
     )
     e3k_receipt_date = fields.Datetime(string="Date of Receipt")  # no-check
