@@ -19,6 +19,8 @@ class StockPicking(models.Model):
         currency_field="e3k_currency_id",
         readonly=True,
         compute="_compute_e3k_sales_value",
+        store=True,
+        aggregator="sum",
     )
 
     @api.depends('reference_ids.sale_ids', 'move_ids.sale_line_id.order_id')
@@ -38,6 +40,14 @@ class StockPicking(models.Model):
         backorders._compute_sale_id()
         return backorders
 
+    @api.depends(
+        'picking_type_code',
+        'move_ids',
+        'move_ids.product_uom_qty',
+        'move_ids.sale_line_id',
+        'move_ids.sale_line_id.price_unit',
+        'move_ids.sale_line_id.discount',
+    )
     def _compute_e3k_sales_value(self):
         for record in self:
             total_val = 0.0
