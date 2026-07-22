@@ -7,7 +7,7 @@
     "author": "e3k",
     "license": "Other proprietary",
     "website": "https://e3k.co",
-    "version": "19.0.2",
+    "version": "19.0.3",
     "depends": [
         'sale_purchase',
         'crm',
