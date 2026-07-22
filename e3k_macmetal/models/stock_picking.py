@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import _, api, fields, models
-
-E3K_OPEN_DELIVERY_STATES = ('waiting', 'assigned', 'confirmed')
-E3K_ST_HUBERT_DELIVERY_PICKING_TYPE_ID = 1
-E3K_SALES_VALUE_RECOMPUTE_BATCH_SIZE = 50
+from odoo import fields, models, api
 
 
 class StockPicking(models.Model):
@@ -72,46 +68,3 @@ class StockPicking(models.Model):
                         total_val += (move.product_uom_qty * price_after_discount)
 
             record.e3k_sales_value = total_val
-
-    @api.model
-    def _recompute_e3k_sales_value_batched(self, domain, batch_size=None):
-        batch_size = batch_size or E3K_SALES_VALUE_RECOMPUTE_BATCH_SIZE
-        total = 0
-        last_id = 0
-        while True:
-            pickings = self.search(
-                domain + [('id', '>', last_id)],
-                limit=batch_size,
-                order='id',
-            )
-            if not pickings:
-                break
-            pickings._compute_e3k_sales_value()
-            pickings.flush_recordset(['e3k_sales_value'])
-            self.env.invalidate_all()
-            self.env.cr.commit()
-            total += len(pickings)
-            last_id = pickings[-1].id
-        return total
-
-    @api.model
-    def action_recompute_open_delivery_e3k_sales_value(self):
-        """Recalculate e3k_sales_value on open St-Hubert delivery pickings."""
-        domain = [
-            ('picking_type_id', '=', E3K_ST_HUBERT_DELIVERY_PICKING_TYPE_ID),
-            ('state', 'in', E3K_OPEN_DELIVERY_STATES),
-        ]
-        total = self._recompute_e3k_sales_value_batched(domain)
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Recalcul terminé'),
-                'message': _(
-                    'Valeur de ventes recalculée pour %(count)s livraisons ouvertes.',
-                    count=total,
-                ),
-                'type': 'success',
-                'sticky': False,
-            },
-        }
