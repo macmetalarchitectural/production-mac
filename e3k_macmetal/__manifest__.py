@@ -18,7 +18,6 @@
     "data": [
         'security/ir.model.access.csv',
         'data/data.xml',
-        'data/server_action.xml',
         'views/res_config_settings_views.xml',
         'views/sale_portal_templates.xml',
         'views/sale_views.xml',
