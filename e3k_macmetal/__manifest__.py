@@ -7,7 +7,7 @@
     "author": "e3k",
     "license": "Other proprietary",
     "website": "https://e3k.co",
-    "version": "19.0.2",
+    "version": "19.0.5",
     "depends": [
         'sale_purchase',
         'crm',
@@ -18,6 +18,7 @@
     "data": [
         'security/ir.model.access.csv',
         'data/data.xml',
+        'data/server_action.xml',
         'views/res_config_settings_views.xml',
         'views/sale_portal_templates.xml',
         'views/sale_views.xml',
