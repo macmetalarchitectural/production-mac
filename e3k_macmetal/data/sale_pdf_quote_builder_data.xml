@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Native sale_pdf_quote_builder only merges the selected headers/footers/product
+             documents into "Devis en PDF" while the order is a draft or sent quotation
+             (ir_actions_report.py: `order.state != 'sale' or always_include`). Flipping this
+             existing switch keeps them in the report once the order is confirmed, without
+             touching the native report logic. -->
+        <record id="param_sale_always_include_selected_documents" model="ir.config_parameter" forcecreate="True">
+            <field name="key">sale.always_include_selected_documents</field>
+            <field name="value">True</field>
+        </record>
+
+    </data>
+</odoo>
