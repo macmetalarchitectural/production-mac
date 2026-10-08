@@ -10,6 +10,7 @@
     "version": "19.0.2",
     "depends": [
         'sale_purchase',
+        'sale_pdf_quote_builder',
         'crm',
         'calendar',
         'stock',
@@ -18,6 +19,7 @@
     "data": [
         'security/ir.model.access.csv',
         'data/data.xml',
+        'data/sale_pdf_quote_builder_data.xml',
         'views/res_config_settings_views.xml',
         'views/sale_portal_templates.xml',
         'views/sale_views.xml',
@@ -38,6 +40,9 @@
         'web.assets_frontend_lazy': [
             'e3k_macmetal/static/src/signature_form/mac_signature_form.js',
             'e3k_macmetal/static/src/signature_form/mac_signature_form.xml',
+        ],
+        'web.assets_backend': [
+            'e3k_macmetal/static/src/js/sale_pdf_quote_builder/keep_editable_on_confirm.js',
         ],
     },
     "images": [],
